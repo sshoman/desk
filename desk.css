@@ -1,12 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 *{box-sizing:border-box}
-:root{--wall:#28251f;--walnut:#6d4128;--walnut-dark:#3c2519;--brass:#c4a16b;--paper:#eee4d1;--ink:#26231e}
-html,body{margin:0;min-width:320px;min-height:100%;background:#1b1713;color:var(--paper);font-family:"DM Sans",Arial,sans-serif}
-body{display:grid;place-items:center;min-height:100vh}
-.desk-scene{position:relative;width:min(100vw,1600px);aspect-ratio:16/9;overflow:hidden;isolation:isolate;background:
- radial-gradient(ellipse at 51% 2%,#77624a55 0,transparent 35%),
- radial-gradient(ellipse at 78% 37%,#62503d33 0,transparent 30%),
- linear-gradient(180deg,#302c25 0%,#26231f 62%,#1b1714 100%);
- box-shadow:0 24px 80px #0009}
+:root{--wall:#28251f;--walnut:#6d4128;--brass:#c4a16b;--paper:#eee4d1}
+html,body{width:100%;height:100%;min-width:320px;min-height:0;margin:0;overflow:hidden;background:#1b1713;color:var(--paper);font-family:"DM Sans",Arial,sans-serif}
+body{display:grid;place-items:center;height:100svh;min-height:100svh}
+.desk-scene{
+ position:relative;width:min(100vw,1600px,177.7778svh);height:auto;max-height:100svh;aspect-ratio:16/9;
+ margin:auto;overflow:hidden;isolation:isolate;
+ background:
+  radial-gradient(ellipse at 51% 2%,#77624a55 0,transparent 35%),
+  radial-gradient(ellipse at 78% 37%,#62503d33 0,transparent 30%),
+  linear-gradient(180deg,#302c25 0%,#26231f 62%,#1b1714 100%);
+ box-shadow:0 24px 80px #0009;
+}
 .desk-scene:before{content:"";position:absolute;inset:0;z-index:0;opacity:.16;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 3px,#d8c7a608 4px,transparent 5px)}
 .wall-light{position:absolute;z-index:0;left:36%;top:-13%;width:35%;height:55%;background:radial-gradient(ellipse,#b78c5730,transparent 70%);filter:blur(22px)}
 .shelf{position:absolute;z-index:1;left:0;top:0;width:12.6%;height:69.5%;background:linear-gradient(90deg,#160f0b,#4b2c1b 12%,#2b1b12 84%,#130e0a);box-shadow:inset -12px 0 18px #0008}
@@ -16,481 +21,168 @@ body{display:grid;place-items:center;min-height:100vh}
 .shelf-books i:nth-child(3n){height:34%;background:linear-gradient(90deg,#38251b,#a16b42 50%,#3c2619)}
 .shelf-books i:nth-child(4n){height:24%;background:linear-gradient(90deg,#252b31,#7c7770 48%,#30363b)}
 .shelf-books i:nth-child(5n){height:39%;background:linear-gradient(90deg,#32271c,#90784e 50%,#332719)}
-.wall-gallery{position:absolute;z-index:2;left:14.5%;right:4.2%;top:10.2%;height:27.8%;display:grid;grid-template-columns:repeat(6,1fr);gap:2.05%;align-items:stretch}
-.travel-frame{position:relative;min-width:0;height:100%;padding:5px;background:linear-gradient(135deg,#bb9761,#5c4128 34%,#d3b17a 63%,#4a3322);border:1px solid #120d09;box-shadow:0 5px 9px #0008,0 0 0 1px #d7bd8b55;transform:translateY(var(--tilt,0))}
-.travel-frame:before{content:"";position:absolute;inset:4px;border:1px solid #d8bd8a88;pointer-events:none;z-index:2}
-.travel-art{width:100%;height:100%;display:block;background:#b9a58a}
-.travel-frame:nth-child(1){--tilt:0}
-.travel-frame:nth-child(2){--tilt:1.3%}
-.travel-frame:nth-child(3){--tilt:-.7%}
-.travel-frame:nth-child(4){--tilt:.7%}
-.travel-frame:nth-child(5){--tilt:-.5%}
-.travel-frame:nth-child(6){--tilt:.6%}
+.wall-gallery{position:absolute;z-index:2;left:16.2%;right:7.2%;top:11.4%;height:18.2%;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1.7%;align-items:center}
+.travel-frame{position:relative;display:block;width:66%;height:100%;margin:0 auto;padding:3px;min-width:0;overflow:hidden;background:linear-gradient(135deg,#c9a16c,#62452c 34%,#d6b47d 68%,#513923);border:1px solid #17100a;box-shadow:0 4px 8px #0008,0 0 0 1px #d4b78255;transition:transform .2s ease,box-shadow .2s ease}
+.travel-frame:before{content:"";position:absolute;inset:3px;border:1px solid #e0c89488;pointer-events:none;z-index:2}
+.travel-photo{display:block;width:100%;height:calc(100% - 23px);object-fit:contain;object-position:center;background:#342c22;filter:none;transition:transform .25s ease}
+.travel-frame figcaption{display:flex;flex-direction:column;align-items:center;justify-content:center;height:19px;line-height:1.05;text-align:center;color:#46321f;background:linear-gradient(180deg,#e0cca2,#b48e58);border-top:1px solid #f3dfb8}
+.travel-frame figcaption b{font:700 clamp(4px,.40vw,6px)/1 "DM Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.travel-frame figcaption small{font:clamp(3px,.29vw,4.5px)/1.1 "DM Sans",sans-serif;color:#6a5234;margin-top:2px}
+.travel-frame:hover,.travel-frame:focus-visible{z-index:15;transform:translateY(-5px) scale(1.08);box-shadow:0 12px 22px #000b,0 0 0 2px #e0c38a}
+.travel-frame:hover .travel-photo,.travel-frame:focus-visible .travel-photo{transform:scale(1.035)}
+.travel-frame:focus-visible{outline:2px solid #e7c98d;outline-offset:3px}
 .wall-line{position:absolute;z-index:1;left:13%;right:0;top:42.5%;height:1px;background:linear-gradient(90deg,transparent,#c0a17433 15%,#c0a17422 85%,transparent)}
-/* The desk is a real layered object, not a photo with floating decorations. */
-.desk-top{position:absolute;z-index:3;left:0;right:0;top:68%;height:16.7%;background:
- radial-gradient(ellipse at 48% 0%,#f5d4a055,transparent 52%),
- repeating-linear-gradient(92deg,transparent 0 95px,#fff1 96px,#0000000a 98px,transparent 101px),
- repeating-linear-gradient(0deg,transparent 0 28px,#3b241822 29px,transparent 31px),
- linear-gradient(180deg,#d6aa75 0%,#a97043 8%,#75472b 31%,#95613c 54%,#59331f 100%);
- border-top:3px solid #e4bd88;box-shadow:0 10px 22px #000b,inset 0 2px 4px #f4dfb477}
-.desk-front{position:absolute;z-index:2;left:0;right:0;top:83.8%;height:16.2%;background:
- repeating-linear-gradient(90deg,transparent 0 185px,#1b0f0926 186px 188px,transparent 189px 191px),
- linear-gradient(180deg,#77492c 0%,#57341f 26%,#3b2518 100%);border-top:5px solid #3a2417;box-shadow:inset 0 3px 6px #d1a16b44}
-.drawer{position:absolute;left:32%;top:17%;width:36%;height:60%;border:1px solid #2a180f88;background:linear-gradient(180deg,#68412b77,#3b251a66);box-shadow:inset 0 1px 3px #f0c48a22,0 2px 7px #0004}
-.drawer:after{content:"";position:absolute;left:49%;top:42%;width:2%;height:4px;border-radius:4px;background:linear-gradient(#e2c58c,#83613a)}
-/* Lamp and plant give the left side some height without crowding the laptop. */
-.desk-lamp{position:absolute;z-index:5;left:13.7%;top:43%;width:12%;height:33%}
+.desk-top{position:absolute;z-index:3;left:0;right:0;top:68%;height:16.7%;background:radial-gradient(ellipse at 48% 0%,#f5d4a055,transparent 52%),repeating-linear-gradient(92deg,transparent 0 95px,#fff1 96px,#0000000a 98px,transparent 101px),repeating-linear-gradient(0deg,transparent 0 28px,#3b241822 29px,transparent 31px),linear-gradient(180deg,#d6aa75 0%,#a97043 8%,#75472b 31%,#95613c 54%,#59331f 100%);border-top:3px solid #e4bd88;box-shadow:0 10px 22px #000b,inset 0 2px 4px #f4dfb477}
+.desk-front{position:absolute;z-index:2;left:0;right:0;top:83.8%;height:16.2%;background:repeating-linear-gradient(90deg,transparent 0 188px,#1b0f0918 189px 190px,transparent 191px 193px),linear-gradient(180deg,#77492c 0%,#57341f 26%,#3b2518 100%);border-top:5px solid #3a2417;box-shadow:inset 0 3px 6px #d1a16b44}
+.desk-lamp{position:absolute;z-index:5;left:27%;top:43.5%;width:8.5%;height:31%}
 .lamp-shade{position:absolute;left:4%;top:0;width:92%;height:28%;border-radius:100% 100% 18% 18% / 85% 85% 20% 20%;background:linear-gradient(180deg,#e2c18a,#996331 58%,#50321d);clip-path:polygon(16% 0,84% 0,100% 100%,0 100%);box-shadow:0 10px 18px #0008}
 .lamp-shade:after{content:"";position:absolute;left:13%;right:13%;bottom:8%;height:3px;background:#f0d5a5;opacity:.8}
 .lamp-stem{position:absolute;left:48%;top:24%;width:4%;height:62%;background:linear-gradient(90deg,#70451e,#e0b76e 45%,#6c421f)}
 .lamp-base{position:absolute;left:18%;bottom:4%;width:68%;height:9%;border-radius:50%;background:linear-gradient(180deg,#e7c98c,#895622 60%,#382314);box-shadow:0 5px 9px #0008}
-.plant{position:absolute;z-index:5;width:9%;height:25%}
-.plant-left{left:26%;top:49%}
-.plant-right{right:4%;top:41%;width:9%;height:29%}
-.plant-leaves{position:absolute;left:0;right:0;top:0;height:68%}
-.plant-leaves i{position:absolute;left:50%;bottom:0;width:22%;height:68%;border-radius:100% 0 100% 0;transform-origin:bottom center;background:linear-gradient(135deg,#687a50,#243b2b 75%);box-shadow:inset -2px -2px 4px #101c14}
-.plant-leaves i:nth-child(1){transform:translateX(-50%) rotate(-42deg)}
-.plant-leaves i:nth-child(2){transform:translateX(-50%) rotate(-20deg);height:85%}
-.plant-leaves i:nth-child(3){transform:translateX(-50%) rotate(4deg);height:95%}
-.plant-leaves i:nth-child(4){transform:translateX(-50%) rotate(29deg);height:82%}
-.plant-leaves i:nth-child(5){transform:translateX(-50%) rotate(48deg);height:66%}
-.plant-pot{position:absolute;left:18%;bottom:0;width:64%;height:33%;border-radius:8% 8% 28% 28%;background:linear-gradient(90deg,#553623,#a36e46 50%,#422819);box-shadow:0 5px 8px #0008}
-.plant-pot:before{content:"";position:absolute;left:-4%;top:-5%;width:108%;height:13%;border-radius:50%;background:linear-gradient(#bc8d5b,#684228)}
-/* Laptop: display, bezel, hinge and keyboard share one parent, so their alignment is locked. */
+.pencil-cup{position:absolute;z-index:5;right:7%;top:52%;width:3.5%;height:15%;border-radius:3px 3px 9px 9px;background:linear-gradient(90deg,#4d351f,#bf8c4c 42%,#51351e);box-shadow:0 5px 8px #0008}
+.pencil-cup:before{content:"";position:absolute;left:0;right:0;top:-4%;height:8%;border-radius:50%;background:linear-gradient(#d9b779,#6a4828)}
+.pencil-cup:after{content:"";position:absolute;left:22%;top:-56%;width:8%;height:60%;background:#25231f;box-shadow:9px -8px 0 -1px #be8850,18px -3px 0 -1px #25231f,27px -10px 0 -1px #98714a;transform:rotate(3deg)}
+.award-objects{position:absolute;z-index:9;left:13.8%;top:65.2%;width:11.4%;height:17.4%;display:flex;align-items:flex-end;gap:7%}
+.award-plaque{position:relative;flex:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5% 4% 8%;color:#d9c18f;border:1px solid #c9a66e;background:radial-gradient(ellipse at 50% 0%,#d9c18c2b,transparent 60%),linear-gradient(145deg,#39483d,#18251d 60%,#304236);box-shadow:0 7px 12px #0009,inset 0 0 0 2px #101b15,inset 0 0 0 3px #c8a56b88,inset 0 1px 2px #fff4;transition:transform .2s ease,box-shadow .2s ease}
+.award-plaque:before{content:"";position:absolute;inset:6px;border:1px solid #d2b77d88;pointer-events:none}
+.award-plaque:after{content:"";position:absolute;left:9%;right:9%;bottom:-8%;height:8%;background:linear-gradient(180deg,#d4b174,#805a32 60%,#4c331f);border:1px solid #4c331f;box-shadow:0 3px 4px #0009}
+.award-plaque.second{height:87%}
+.award-topline{font:500 clamp(3px,.34vw,5px)/1.15 "DM Sans",sans-serif;letter-spacing:.1em;color:#c3b08b}
+.award-plaque strong{margin-top:14%;font:600 clamp(8px,.82vw,13px)/1 "Playfair Display",serif;color:#e8d5a8;text-shadow:0 1px 3px #000b}
+.award-plaque small{display:block;margin-top:7%;font:500 clamp(4px,.4vw,6px)/1.25 "DM Sans",sans-serif;color:#d4c39e;max-width:90%}
+.award-plaque i{position:absolute;bottom:14%;width:42%;height:1px;background:#d2b579;box-shadow:0 1px 0 #0008}
+.award-hover{position:absolute;left:50%;bottom:calc(100% + 9px);width:clamp(145px,17vw,220px);padding:10px 12px;background:#eee4d1;border:1px solid #b99a67;box-shadow:0 10px 25px #0009;color:#382d21;font:10px/1.45 "DM Sans",sans-serif;text-align:left;opacity:0;visibility:hidden;transform:translate(-50%,6px);transition:opacity .18s,transform .18s,visibility .18s;z-index:20}
+.award-plaque:hover,.award-plaque:focus-visible{z-index:21;transform:translateY(-3px);box-shadow:0 12px 20px #000b}
+.award-plaque:hover .award-hover,.award-plaque:focus-visible .award-hover{opacity:1;visibility:visible;transform:translate(-50%,0)}
 .laptop{position:absolute;z-index:7;left:36.7%;top:40.6%;width:29.5%;height:43%;filter:drop-shadow(0 12px 15px #0009)}
 .laptop-display{position:absolute;left:6.5%;top:0;width:87%;height:72%;padding:7px 7px 8px;border-radius:12px 12px 3px 3px;background:linear-gradient(135deg,#1d201e,#080a09 60%,#343330);border:1px solid #5c5e58;box-shadow:inset 0 0 0 2px #050605,0 2px 3px #000}
 .laptop-camera{position:absolute;z-index:2;top:3px;left:50%;width:3px;height:3px;border-radius:50%;background:#65655c;transform:translateX(-50%)}
-.screen-ui{position:relative;width:100%;height:100%;overflow:hidden;padding:8% 9%;border-radius:3px;background:
- radial-gradient(ellipse at 50% 0%,#64705a22,transparent 55%),
- linear-gradient(145deg,#171c19,#0c100e 70%);color:#e9e2d3}
+.screen-ui{position:relative;width:100%;height:100%;overflow:hidden;padding:7% 7%;border-radius:3px;background:radial-gradient(ellipse at 50% 0%,#64705a22,transparent 55%),linear-gradient(145deg,#171c19,#0c100e 70%);color:#e9e2d3}
 .screen-top{display:flex;justify-content:space-between;align-items:center;color:#b4ad9b;font-size:clamp(4px,.46vw,7px);letter-spacing:.18em}
 .screen-dot{display:inline-block;width:5px;height:5px;margin-right:5px;border-radius:50%;background:#a9be91;box-shadow:0 0 7px #a9be91}
-.screen-title{margin:8% 0 2%;font:600 clamp(13px,1.5vw,22px)/1.05 "Playfair Display",Georgia,serif;letter-spacing:.1em;text-align:center;color:#eee4d2}
-.screen-subtitle{text-align:center;margin:0;color:#a39d8d;font-size:clamp(4px,.44vw,7px);letter-spacing:.2em}
-.screen-divider{width:32%;height:1px;margin:5% auto 4%;background:linear-gradient(90deg,transparent,#bda276,transparent)}
-.screen-links{display:flex;justify-content:center;gap:3%;width:82%;margin:0 auto}
-.screen-links a{width:48%;padding:3% 2%;border:1px solid #bda27666;color:#e9e0cf;text-align:center;text-decoration:none;font-size:clamp(5px,.52vw,8px);letter-spacing:.12em;transition:background .2s,border-color .2s}
-.screen-links a:hover,.screen-links a:focus-visible{outline:none;background:#bda27622;border-color:#d7ba83}
+.screen-title{margin:6% 0 1%;font:600 clamp(17px,1.9vw,28px)/1.05 "Playfair Display",Georgia,serif;letter-spacing:.14em;text-align:center;color:#eee4d2}
+.screen-subtitle{text-align:center;margin:0;color:#a39d8d;font-size:clamp(5px,.54vw,8px);letter-spacing:.18em}
+.screen-divider{width:46%;height:1px;margin:4% auto;background:linear-gradient(90deg,transparent,#bda276,transparent)}
+.screen-links{display:flex;justify-content:center;gap:3.5%;width:100%;margin:0 auto}
+.screen-links button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:48.25%;min-width:0;min-height:clamp(48px,5vw,72px);padding:6px 4px;border:1px solid #d0b988;border-radius:3px;background:linear-gradient(145deg,#3c5140,#202e24);color:#f0e5d1;text-align:center;cursor:pointer;box-shadow:0 4px 8px #0008,inset 0 1px 0 #fff4;transition:background .16s,border-color .16s,transform .16s}
+.screen-links button:hover,.screen-links button:focus-visible{outline:2px solid #e2c78e;outline-offset:2px;border-color:#e1c58b;background:linear-gradient(145deg,#50634f,#2c3b30);transform:translateY(-2px)}
+.screen-links svg{display:none}
+.screen-links button span{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+.screen-links button b{font:700 clamp(8px,.82vw,12px)/1 "DM Sans",sans-serif;letter-spacing:.1em;white-space:nowrap}
+.screen-links button small{font:500 clamp(5px,.5vw,7px)/1 "DM Sans",sans-serif;color:#c9bea8}
 .laptop-hinge{position:absolute;left:5%;top:71%;width:90%;height:3%;background:linear-gradient(180deg,#2e302d,#91918a 48%,#343632)}
 .laptop-base{position:absolute;left:0;top:74%;width:100%;height:17%;border-radius:2px 2px 14px 14px;background:linear-gradient(180deg,#b3b1a8 0%,#777972 12%,#a7a49a 35%,#54564f 100%);clip-path:polygon(6% 0,94% 0,100% 100%,0 100%);box-shadow:inset 0 2px 2px #eee8d755}
 .keyboard{position:absolute;left:22%;top:78%;width:56%;height:7%;border-radius:2px;background:repeating-linear-gradient(90deg,#242824 0 4px,#55564f 4px 5px),repeating-linear-gradient(0deg,transparent 0 4px,#000 4px 5px)}
 .trackpad{position:absolute;left:39%;top:86%;width:22%;height:4%;border:1px solid #3d403b88;border-radius:2px;background:#88898044}
-/* Awards sit on the desk as physical plaques, not text floating over the photo. */
-.award-objects{position:absolute;z-index:6;left:27%;top:62%;width:10%;height:20%;display:flex;align-items:end;gap:9%}
-.award{position:relative;width:43%;height:78%;border:1px solid #caa76e;background:linear-gradient(135deg,#e3d2ad66,#a58a5f22,#efe0bd66);box-shadow:0 7px 12px #0008, inset 0 0 0 3px #fff2;backdrop-filter:blur(2px)}
-.award:nth-child(2){height:68%}
-.award:before{content:"";position:absolute;left:20%;right:20%;bottom:-8%;height:8%;background:linear-gradient(#a77d4a,#4b321f)}
-.award b{position:absolute;left:0;right:0;top:32%;text-align:center;color:#e3c68f;font:600 clamp(5px,.56vw,8px) "Playfair Display",serif;text-shadow:0 1px 2px #000}
-.award span{position:absolute;left:0;right:0;top:48%;text-align:center;color:#dcc79f;font-size:clamp(3px,.31vw,5px);letter-spacing:.12em}
-/* Paper and book are kept low and flat on the right side of the desk. */
-.paper{position:absolute;z-index:6;left:68%;top:70.8%;width:7.5%;height:12%;padding:1.1%;transform:rotate(-2deg);background:linear-gradient(120deg,#f3ead8,#d9cbb3);color:#554330;box-shadow:2px 7px 12px #0009;border:1px solid #c7b899}
-.paper small{display:block;font-size:clamp(3px,.33vw,5px);letter-spacing:.1em;color:#8b714f}
-.paper strong{display:block;margin-top:8%;font:600 clamp(6px,.66vw,10px)/1.15 "Playfair Display",serif}
-.paper-lines{height:34%;margin-top:8%;background:repeating-linear-gradient(0deg,transparent 0 5px,#998b7555 5px 6px)}
-.book{position:absolute;z-index:6;left:76%;top:73%;width:15%;height:8%;transform:rotate(.6deg);border-radius:2px 3px 4px 2px;background:linear-gradient(90deg,#151b19,#324038 70%,#17201b);border:1px solid #9a744c;box-shadow:0 5px 9px #0009,0 2px 0 #d3b27c}
-.book:before{content:"";position:absolute;left:3%;right:3%;top:8%;height:82%;border:1px solid #c2a36f66}
-.book-title{position:absolute;inset:23% 8%;display:grid;place-items:center;text-align:center;color:#e2d0ad;font:600 clamp(6px,.64vw,10px)/1.15 "Playfair Display",Georgia,serif;letter-spacing:.08em}
-.pencil-cup{position:absolute;z-index:5;right:7%;top:52%;width:3.5%;height:15%;border-radius:3px 3px 9px 9px;background:linear-gradient(90deg,#4d351f,#bf8c4c 42%,#51351e);box-shadow:0 5px 8px #0008}
-.pencil-cup:before{content:"";position:absolute;left:0;right:0;top:-4%;height:8%;border-radius:50%;background:linear-gradient(#d9b779,#6a4828)}
-.pencil-cup:after{content:"";position:absolute;left:22%;top:-56%;width:8%;height:60%;background:#25231f;box-shadow:9px -8px 0 -1px #be8850,18px -3px 0 -1px #25231f,27px -10px 0 -1px #98714a;transform:rotate(3deg)}
-.scene-caption{position:absolute;z-index:4;left:50%;bottom:2.1%;transform:translateX(-50%);display:flex;align-items:center;gap:11px;color:#d8c5a3;font-size:clamp(5px,.53vw,8px);letter-spacing:.3em;text-shadow:0 2px 5px #000}
-.scene-caption i{width:30px;height:1px;background:#c3a16a}
-@media(max-width:760px){
- .desk-scene{width:100vw;min-height:420px;aspect-ratio:16/9}
- .wall-gallery{left:14%;right:3%;gap:1.2%;top:10%;height:25%}
- .travel-frame{padding:3px}
- .shelf{width:11%}
- .laptop{left:34.5%;width:34%;top:41%;height:45%}
- .desk-lamp{left:12%;width:13%}
- .plant-left{left:25%;width:9%}
- .award-objects{left:22%;width:12%;top:64%}
- .paper{left:67%;top:70%;width:8.5%}
- .book{left:77%;width:14%}
- .screen-top{font-size:clamp(3px,.7vw,5px)}
- .screen-title{font-size:clamp(9px,1.8vw,13px)}
- .screen-subtitle{font-size:clamp(3px,.55vw,4px)}
- .screen-links a{font-size:clamp(3px,.7vw,5px)}
-}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
-.wall-gallery{left:16.2%;right:10.3%;top:10.2%;height:25.4%;gap:2%}
-.travel-frame{display:block;width:100%;height:100%;margin:0;padding:4px;overflow:hidden}
-.frame-art{display:block;width:100%;height:100%;overflow:hidden}
-.travel-art{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.award-objects{display:none}
-.laptop{left:36.7%;top:40.6%;width:29.5%;height:38.5%}
-.laptop-display{left:9%;width:82%;height:70%;padding:6px 6px 7px}
-.laptop-hinge{left:5%;top:70%;width:90%;height:3%}
-.laptop-base{top:73%;height:15%}
-.keyboard{top:76%;height:6.5%}
-.trackpad{top:84%;height:4.5%}
-.book{left:76%;top:72.5%;width:15.3%;height:9%;border-radius:3px 5px 6px 3px;background:linear-gradient(90deg,#111813,#27342c 70%,#151e18)}
-.book:before{left:3%;right:3%;top:7%;height:85%;background:repeating-linear-gradient(0deg,#eee4d2 0 2px,#d6c7aa 3px 4px);border:0;box-shadow:inset 0 0 0 1px #ad9b7d}
-.book:after{content:"";position:absolute;left:0;top:0;bottom:0;width:7%;background:linear-gradient(90deg,#0b100e,#6d5336)}
-.book-title{inset:22% 10%;color:#e4d2ae}
-@media(max-width:760px){.wall-gallery{left:15%;right:5%;top:10%;height:24%;gap:1.2%}.laptop{left:34.5%;top:41%;width:34%;height:38%}.laptop-display{left:8%;width:84%;height:69%}}
-
-/* The wall now uses real travel photography inside the physical frame geometry. */
-.travel-frame{display:block;margin:0;padding:4px;min-width:0;overflow:hidden}
-.travel-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.94) contrast(1.03);background:#76624b}
-.travel-frame:nth-child(1) .travel-photo{object-position:50% 45%}
-.travel-frame:nth-child(2) .travel-photo{object-position:50% 50%}
-.travel-frame:nth-child(3) .travel-photo{object-position:50% 50%}
-.travel-frame:nth-child(4) .travel-photo{object-position:50% 42%}
-.travel-frame:nth-child(5) .travel-photo{object-position:50% 50%}
-.travel-frame:nth-child(6) .travel-photo{object-position:50% 48%}
-/* A closed hardback, with a narrow visible page edge and a clean cover. */
-.book{isolation:isolate;background:linear-gradient(135deg,#18231c,#314437 58%,#17211b);border:1px solid #b08a57;box-shadow:0 6px 10px #0009,0 2px 0 #c2a16d}
-.book:before{z-index:-1;left:3%;right:-4%;top:7%;height:95%;background:linear-gradient(180deg,#eee8d9,#c9bda5);border:1px solid #8e7d61;box-shadow:none}
-.book:after{left:0;top:0;bottom:0;width:6%;background:linear-gradient(90deg,#101713,#87643e)}
-.book-title{inset:23% 10%;font-size:clamp(7px,.7vw,11px);color:#e7d5b1}
-.book-title small{display:block;font:500 .56em "DM Sans",sans-serif;letter-spacing:.12em}
-
-/* Make the book read as a closed cover with only a slim page edge showing. */
-.book{left:76%;top:72.5%;width:15.3%;height:9%;overflow:visible;isolation:isolate;border:1px solid #a98451;border-radius:3px;background:linear-gradient(135deg,#17251e 0%,#314638 52%,#1b2a21 100%);box-shadow:0 7px 11px #0009,0 2px 0 #d0b07a}
-.book:before{z-index:-1;left:2%;right:-3%;top:auto;bottom:-5%;height:8%;border:0;border-radius:0 0 3px 3px;background:linear-gradient(180deg,#e8dfcc,#b8a98c);box-shadow:0 2px 3px #0007}
-.book:after{left:0;top:0;bottom:0;width:5%;background:linear-gradient(90deg,#0b120e,#7d5a38)}
-.book-title{z-index:1;inset:20% 9%;display:grid;place-content:center;gap:5px;text-align:center;color:#e7d6b4;font:600 clamp(7px,.78vw,12px)/1.1 "Playfair Display",Georgia,serif;letter-spacing:.08em}
-.book-title small{display:block;font:500 clamp(3px,.36vw,5px)/1.2 "DM Sans",sans-serif;letter-spacing:.14em;color:#d4c19d}
-
-/* Smaller original travel artwork, spaced like personal photographs. */
-.wall-gallery{
- left:15.5%;right:6.5%;top:11.2%;height:20%;
- display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1.6%;
- align-items:start;
-}
-.travel-frame{
- display:block;width:72%;height:100%;margin:0 auto;padding:3px;
- overflow:hidden;position:relative;
- background:linear-gradient(135deg,#c9a16c,#62452c 34%,#d6b47d 68%,#513923);
- border:1px solid #17100a;
- box-shadow:0 4px 8px #0008,0 0 0 1px #d4b78255;
-}
-.travel-frame:before{content:"";position:absolute;inset:3px;border:1px solid #e0c89488;pointer-events:none;z-index:2}
-.travel-photo{display:block;width:100%;height:calc(100% - 23px);object-fit:contain;object-position:center;background:#342c22;filter:none}
-.travel-frame figcaption{
- display:flex;flex-direction:column;align-items:center;justify-content:center;
- height:20px;line-height:1.05;text-align:center;color:#46321f;
- background:linear-gradient(180deg,#e0cca2,#b48e58);
- border-top:1px solid #f3dfb8;
-}
-.travel-frame figcaption b{font:700 clamp(4px,.43vw,6.5px)/1 "DM Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase}
-.travel-frame figcaption small{font:clamp(3px,.33vw,5px)/1.1 "DM Sans",sans-serif;color:#6a5234;margin-top:2px}
-
-/* The right-hand plant is intentionally gone. Keep the left plant clear of the awards. */
-.plant-right{display:none!important}
-.plant-left{left:23.5%;top:45%;width:8%;height:20%}
-
-/* Awards are solid engraved desk plaques. No hover behaviour. */
-.award-objects{
- position:absolute;z-index:6;left:27.1%;top:65.5%;width:8.5%;height:15.5%;
- display:flex;align-items:flex-end;gap:8%;
-}
-.award-plaque{
- position:relative;flex:1;height:100%;display:flex;flex-direction:column;
- align-items:center;justify-content:center;text-align:center;padding:5% 4% 8%;
- color:#d9c18f;
- border:1px solid #9b8058;
- background:
-  linear-gradient(115deg,#ffffff28,transparent 24%,#ffffff10 52%,transparent 75%),
-  linear-gradient(135deg,#45504a,#202923 54%,#364239);
- box-shadow:0 5px 9px #0009,inset 0 0 0 2px #bfa16d55,inset 0 1px 1px #fff4;
-}
-.award-plaque:before{
- content:"";position:absolute;inset:5px;border:1px solid #c4a66d66;pointer-events:none;
-}
-.award-plaque:after{
- content:"";position:absolute;left:12%;right:12%;bottom:-7%;height:7%;
- background:linear-gradient(180deg,#c1a06a,#63452a);
- border:1px solid #5b3d24;box-shadow:0 2px 3px #0008;
-}
-.award-plaque.second{height:87%}
-.award-topline{font:500 clamp(2.5px,.27vw,4px)/1.15 "DM Sans",sans-serif;letter-spacing:.08em;color:#c3b08b}
-.award-plaque strong{margin-top:13%;font:600 clamp(6px,.68vw,10px)/1 "Playfair Display",serif;color:#e8d5a8}
-.award-plaque small{display:block;margin-top:6%;font:500 clamp(3px,.32vw,4.7px)/1.2 "DM Sans",sans-serif;color:#d4c39e}
-.award-plaque i{position:absolute;bottom:18%;width:35%;height:1px;background:#bda06c}
-
-/* Make the laptop's portfolio controls unmistakable and easy to click. */
-.screen-title{margin:6% 0 1%;font-size:clamp(17px,1.9vw,28px);letter-spacing:.14em}
-.screen-subtitle{font-size:clamp(5px,.54vw,8px);letter-spacing:.18em}
-.screen-divider{margin:4% auto 4%;width:46%}
-.screen-links{
- display:flex;justify-content:center;gap:4%;width:100%;margin:0 auto;
-}
-.screen-links button{
- display:flex;align-items:center;justify-content:center;gap:8px;
- width:48%;min-height:clamp(37px,4.3vw,62px);padding:5px 7px;
- border:1px solid #c9b183;background:linear-gradient(145deg,#35473a,#1e2c23);
- color:#f0e5d1;text-align:left;cursor:pointer;
- box-shadow:0 3px 7px #0007,inset 0 1px 0 #fff3;
- transition:background .16s,border-color .16s,transform .16s;
-}
-.screen-links button:hover,.screen-links button:focus-visible{
- outline:2px solid #e2c78e;outline-offset:2px;
- border-color:#e1c58b;background:linear-gradient(145deg,#50634f,#2c3b30);
- transform:translateY(-2px);
-}
-.screen-links svg{width:clamp(13px,1.45vw,21px);height:clamp(13px,1.45vw,21px);fill:none;stroke:#e7d5b5;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.screen-links button span{display:flex;flex-direction:column;gap:3px}
-.screen-links button b{font:700 clamp(6px,.68vw,10px)/1 "DM Sans",sans-serif;letter-spacing:.12em}
-.screen-links button small{font:500 clamp(4px,.42vw,6px)/1 "DM Sans",sans-serif;color:#c9bea8}
-
-/* Portfolios open above the workroom, leaving the desk visible through a dim layer. */
-.portfolio-modal{position:absolute;z-index:100;inset:0}
-.portfolio-modal[hidden]{display:none}
-.modal-shade{
- position:absolute;inset:0;display:grid;place-items:center;padding:3%;
- background:rgba(8,10,9,.78);backdrop-filter:blur(5px);
-}
-.portfolio-window{
- display:flex;flex-direction:column;width:min(94%,1380px);height:min(90%,900px);
- overflow:hidden;background:#f3f1eb;border:1px solid #b89a67;
- box-shadow:0 20px 65px #000b;border-radius:5px;
-}
-.portfolio-header{
- flex:none;min-height:54px;display:flex;align-items:center;justify-content:space-between;
- padding:8px 16px;background:linear-gradient(90deg,#19251d,#28382d);
- color:#eee4d0;border-bottom:1px solid #a98b5b;
-}
-.portfolio-header>div{display:flex;flex-direction:column;gap:3px}
-.portfolio-header strong{font:600 14px "Playfair Display",Georgia,serif;letter-spacing:.06em}
-.portfolio-header small{font:500 8px "DM Sans",sans-serif;letter-spacing:.18em;color:#c4b18c}
-.portfolio-close{
- width:34px;height:34px;border:1px solid #bda274;background:#26382c;color:#eee2ca;
- font:300 27px/1 "DM Sans",sans-serif;cursor:pointer;
-}
-.portfolio-close:hover,.portfolio-close:focus-visible{outline:2px solid #e0c58d;outline-offset:2px;background:#3c5141}
-.portfolio-frame{display:block;flex:1;width:100%;min-height:0;border:0;background:#fff}
-@media(max-width:760px){
- .wall-gallery{left:14.5%;right:5%;top:10.5%;height:19%;gap:1%}
- .travel-frame{width:79%;padding:2px}
- .travel-frame figcaption{height:16px}
- .award-objects{left:25%;top:66%;width:9%;height:14%}
- .plant-left{left:21.5%;top:46%;width:8%;height:18%}
- .laptop{left:34.5%;width:34%;top:41%;height:38%}
- .laptop-display{left:8%;width:84%;height:69%}
- .screen-title{font-size:clamp(12px,2.8vw,18px)}
- .screen-subtitle{font-size:clamp(4px,.9vw,6px)}
- .screen-links{gap:2%}
- .screen-links button{min-height:clamp(27px,5.5vw,40px);gap:4px;padding:3px}
- .screen-links button b{font-size:clamp(4px,1vw,7px)}
- .screen-links button small{font-size:clamp(3px,.7vw,5px)}
- .screen-links svg{width:clamp(9px,1.8vw,13px);height:clamp(9px,1.8vw,13px)}
- .standing-book{left:78%;top:53%;width:11%;height:27%}
- .book-cover strong{font-size:clamp(6px,1.25vw,9px)}
- .book-cover>span{font-size:clamp(3px,.65vw,4px)}
- .book-author,.book-edition{font-size:clamp(2.5px,.55vw,3.5px)}
- .award-topline{font-size:clamp(2px,.46vw,3px)}
- .award-plaque strong{font-size:clamp(4px,.9vw,6px)}
- .award-plaque small{font-size:clamp(2px,.48vw,3px)}
- .portfolio-window{width:96%;height:92%}
- .portfolio-header{min-height:43px;padding:6px 10px}
- .portfolio-header strong{font-size:12px}
- .portfolio-header small{font-size:7px}
- .portfolio-close{width:30px;height:30px}
-}
-
-
-/* Smaller originals in the six wall frames. */
-.wall-gallery{
-  left:16.2%;
-  right:7.2%;
-  top:11.4%;
-  height:18.2%;
-  grid-template-columns:repeat(6,minmax(0,1fr));
-  gap:1.7%;
-  align-items:center;
-}
-.travel-frame{
-  display:block;
-  width:66%;
-  height:100%;
-  margin:0 auto;
-  padding:3px;
-  overflow:hidden;
-}
-.travel-frame figcaption{height:19px}
-.travel-frame figcaption b{font-size:clamp(4px,.40vw,6px)}
-.travel-frame figcaption small{font-size:clamp(3px,.29vw,4.5px)}
-
-/* Keep the right plant out. The left plant stays beside, not on top of, the awards. */
-.plant-right{display:none!important}
-.plant-left{left:23.2%;top:46%;width:7.7%;height:18.5%}
-
-/* Put the real 3D book mockup on the desk. No hover behaviour. */
-.book-mockup{
-  position:absolute;
-  z-index:8;
-  left:72.4%;
-  top:58.7%;
-  width:27%;
-  height:25.4%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  pointer-events:none;
-}
-.book-mockup img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  object-position:center bottom;
-  filter:drop-shadow(5px 9px 7px #0008);
-  user-select:none;
-  -webkit-user-drag:none;
-}
-
-/* Bring the two portfolio actions forward, while keeping them inside the laptop display. */
-.screen-links{
-  width:100%;
-  gap:3.5%;
-  margin-top:1%;
-}
-.screen-links button{
-  width:48%;
-  min-height:clamp(48px,5vw,72px);
-  padding:7px 10px;
-  gap:10px;
-  border:1px solid #d0b988;
-  background:linear-gradient(145deg,#3c5140,#202e24);
-  box-shadow:0 4px 8px #0008,inset 0 1px 0 #fff4;
-}
-.screen-links button b{font-size:clamp(7px,.72vw,11px)}
-.screen-links button small{font-size:clamp(4.5px,.45vw,7px)}
-.screen-links svg{width:clamp(16px,1.6vw,24px);height:clamp(16px,1.6vw,24px)}
-
-/* The modal dims the room without hiding it completely. */
-.modal-shade{
-  background:rgba(8,10,9,.64);
-  backdrop-filter:blur(3px);
-}
-.portfolio-window{height:min(92%,900px);width:min(95%,1380px)}
-@media(max-width:760px){
-  .wall-gallery{left:14.5%;right:5.5%;top:11.5%;height:18.5%;gap:1.1%}
-  .travel-frame{width:72%;padding:2px}
-  .travel-frame figcaption{height:15px}
-  .plant-left{left:21.5%;top:46%;width:8%;height:18%}
-  .book-mockup{left:71%;top:59%;width:28%;height:24%}
-  .screen-links{gap:2%}
-  .screen-links button{min-height:clamp(32px,6vw,46px);padding:3px 4px;gap:4px}
-  .screen-links button b{font-size:clamp(4px,1vw,7px)}
-  .screen-links button small{font-size:clamp(3px,.7vw,5px)}
-  .screen-links svg{width:clamp(9px,1.8vw,13px);height:clamp(9px,1.8vw,13px)}
-  .portfolio-window{width:96%;height:92%}
-}
-
-/* Give both awards a little more room so their engraving reads clearly. */
-.award-objects{left:25.4%;top:65.5%;width:11%;height:15.8%;gap:6%}
-.award-topline{font-size:clamp(3px,.32vw,5px)}
-.award-plaque strong{font-size:clamp(7px,.78vw,12px)}
-.award-plaque small{font-size:clamp(4px,.4vw,6px)}
-@media(max-width:760px){
- .award-objects{left:23.8%;top:65.5%;width:12%;height:14.5%;gap:5%}
- .award-topline{font-size:clamp(2.5px,.48vw,3.5px)}
- .award-plaque strong{font-size:clamp(4.5px,1vw,6.5px)}
- .award-plaque small{font-size:clamp(2.5px,.6vw,4px)}
-}
-
-
-html,body{width:100%;height:100%;min-height:0;overflow:hidden}
-body{display:grid;place-items:center;min-height:100svh;height:100svh}
-.desk-scene{width:min(100vw,1600px,177.7778svh);height:auto;max-height:100svh;aspect-ratio:16/9;margin:0 auto;overflow:hidden}
-
-.award-objects{left:22%;top:65.1%;width:13.2%;height:17.2%;gap:7%;align-items:flex-end}
-.award-plaque{border:1px solid #c9a66e;background:radial-gradient(ellipse at 50% 0%,#d9c18c2b,transparent 60%),linear-gradient(145deg,#39483d,#18251d 60%,#304236);box-shadow:0 7px 12px #0009,inset 0 0 0 2px #101b15,inset 0 0 0 3px #c8a56b88,inset 0 1px 2px #fff4}
-.award-plaque:before{inset:6px;border:1px solid #d2b77d88}
-.award-plaque:after{left:9%;right:9%;bottom:-8%;height:8%;background:linear-gradient(180deg,#d4b174,#805a32 60%,#4c331f);border:1px solid #4c331f;box-shadow:0 3px 4px #0009}
-.award-topline{font-size:clamp(3px,.34vw,5px);letter-spacing:.1em}
-.award-plaque strong{margin-top:14%;font-size:clamp(8px,.82vw,13px);text-shadow:0 1px 3px #000b}
-.award-plaque small{margin-top:7%;font-size:clamp(4px,.4vw,6px);max-width:90%;line-height:1.25}
-.award-plaque i{bottom:14%;width:42%;height:1px;background:#d2b579;box-shadow:0 1px 0 #0008}
-
-.plant,.plant-left,.plant-right{display:none!important}
-.desk-front{background:repeating-linear-gradient(90deg,transparent 0 188px,#1b0f0918 189px 190px,transparent 191px 193px),linear-gradient(180deg,#77492c 0%,#57341f 26%,#3b2518 100%)}
-.drawer,.drawer:after{display:none!important}
-
-.paper{left:62.6%;top:67.2%;width:9.1%;height:15.2%;padding:1.05% 1.1% .8%;transform:perspective(900px) rotateX(15deg) rotateZ(-5deg);transform-origin:center bottom;background:linear-gradient(118deg,#fffdf5 0%,#f0e7d5 58%,#d8ccb4 100%);border:1px solid #c9baa0;box-shadow:2px 7px 10px #0008,0 1px 0 #fff8 inset;color:#473a2a}
-.paper:before{content:"";position:absolute;inset:3px;border:1px solid #c8b99d66;pointer-events:none}
-.paper:after{content:"";position:absolute;right:0;top:0;width:13%;height:13%;background:linear-gradient(225deg,#c7b899 0 48%,#f4eddf 51%);border-left:1px solid #c6b89d;border-bottom:1px solid #c6b89d}
+/* A pinned research sheet, with a small raised corner and paper shadow. */
+.paper{position:absolute;z-index:5;left:72.8%;top:34%;width:9.4%;height:15.9%;padding:1.1% 1.1% .8%;transform:perspective(700px) rotateY(-5deg) rotateZ(-2deg);transform-origin:center top;background:linear-gradient(118deg,#fffdf5 0%,#f0e7d5 58%,#d8ccb4 100%);border:1px solid #c9baa0;box-shadow:2px 7px 10px #0008,0 1px 0 #fff8 inset;color:#473a2a;outline:none;transition:transform .22s ease,box-shadow .22s ease}
+.paper:before{content:"";position:absolute;z-index:-1;inset:3px -4px -5px 3px;background:#a99b82;border:1px solid #78694e;box-shadow:2px 4px 6px #0008;transform:skewY(1deg)}
+.paper:after{content:"";position:absolute;right:0;top:0;width:14%;height:14%;background:linear-gradient(225deg,#c7b899 0 48%,#f4eddf 51%);border-left:1px solid #c6b89d;border-bottom:1px solid #c6b89d}
+.paper-pin{position:absolute;z-index:5;left:50%;top:-5px;width:9px;height:9px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff0b8,#b98b47 55%,#684521 75%);box-shadow:0 2px 3px #0009}
 .paper-meta{display:flex;justify-content:space-between;color:#987b51;font:700 clamp(3px,.31vw,4.5px)/1 "DM Sans",sans-serif;letter-spacing:.12em}
 .paper strong{display:block;margin-top:10%;font:700 clamp(7px,.7vw,10px)/1.1 "Playfair Display",Georgia,serif;color:#352b21}
 .paper-rule{display:block;width:65%;height:1px;margin:8% 0;background:#aa8b5d}
 .paper p{margin:0;color:#78664c;font:500 clamp(3px,.31vw,4.5px)/1.25 "DM Sans",sans-serif}
 .paper-lines{height:25%;margin-top:7%;background:repeating-linear-gradient(0deg,transparent 0 5px,#988a7355 5px 6px)}
 .paper-signature{display:block;margin-top:5%;color:#a18a68;font:600 clamp(2.5px,.25vw,3.5px)/1 "DM Sans",sans-serif;letter-spacing:.08em}
+.paper:hover,.paper:focus-visible{z-index:30;transform:perspective(700px) rotateY(-2deg) rotateZ(0deg) translateY(-4px);box-shadow:5px 12px 18px #0009}
+.paper-hover{position:absolute;z-index:20;left:50%;top:calc(100% + 8px);width:clamp(150px,18vw,230px);display:flex;flex-direction:column;gap:5px;padding:10px 12px;background:#eee4d1;border:1px solid #b99a67;box-shadow:0 12px 28px #0009;color:#382d21;font:10px/1.45 "DM Sans",sans-serif;opacity:0;visibility:hidden;transform:translate(-50%,6px);transition:opacity .18s,transform .18s,visibility .18s}
+.paper-hover b{font:600 12px "Playfair Display",Georgia,serif}
+.paper-hover a{align-self:flex-start;color:#674b2d;font-weight:700;text-decoration:none;border-bottom:1px solid #b99a67}
+.paper:hover .paper-hover,.paper:focus-visible .paper-hover{opacity:1;visibility:visible;transform:translate(-50%,0)}
 
-.scene-footer{position:absolute;z-index:20;left:3%;right:3%;bottom:1.2%;display:flex;align-items:center;justify-content:space-between;gap:14px;color:#dfcba8;text-shadow:0 2px 5px #000a;font:500 clamp(6px,.58vw,9px)/1.2 "DM Sans",sans-serif;letter-spacing:.14em}
-.footer-location{white-space:nowrap;color:#c6b18d}
-.scene-footer nav{display:flex;align-items:center;gap:clamp(12px,2vw,28px)}
-.scene-footer a{color:#eadcc2;text-decoration:none;white-space:nowrap;border-bottom:1px solid #c9aa7566;padding:3px 0;font-weight:600;letter-spacing:.08em}
+/* The book stays on the desk. Its details appear on hover or keyboard focus. */
+.book-mockup{position:absolute;z-index:8;left:72.4%;top:58.7%;width:27%;height:25.4%;display:flex;align-items:center;justify-content:center;pointer-events:auto;outline:none}
+.book-mockup img{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(5px 9px 7px #0008);user-select:none;-webkit-user-drag:none;pointer-events:none;transition:transform .22s ease,filter .22s ease}
+.book-mockup:hover img,.book-mockup:focus-visible img{transform:translateY(-5px) scale(1.025);filter:drop-shadow(7px 15px 11px #000a)}
+.book-hover{position:absolute;z-index:15;top:2%;right:2%;min-width:140px;display:flex;flex-direction:column;gap:4px;padding:9px 12px;background:#eee4d1;border:1px solid #b99a67;box-shadow:0 10px 24px #0009;color:#382d21;font:10px/1.35 "DM Sans",sans-serif;opacity:0;visibility:hidden;transform:translateY(5px);transition:opacity .18s,transform .18s,visibility .18s}
+.book-hover b{font:600 12px "Playfair Display",Georgia,serif}
+.book-mockup:hover .book-hover,.book-mockup:focus-visible .book-hover{opacity:1;visibility:visible;transform:translateY(0)}
+
+.scene-footer{position:absolute;z-index:20;left:3%;right:3%;bottom:1.2%;display:flex;align-items:center;justify-content:center;color:#dfcba8;text-shadow:0 2px 5px #000a;font:500 clamp(7px,.62vw,10px)/1.2 "DM Sans",sans-serif}
+.scene-footer nav{display:flex;align-items:center;gap:clamp(20px,3vw,42px)}
+.scene-footer a{color:#eadcc2;text-decoration:none;white-space:nowrap;border-bottom:1px solid #c9aa7566;padding:4px 0;font-weight:600;letter-spacing:.08em;transition:color .16s,border-color .16s}
 .scene-footer a:hover,.scene-footer a:focus-visible{color:#fff2d3;border-color:#f0d19b;outline:none}
 
+/* Portfolio overlay. It expands from the laptop button that opened it. */
+.portfolio-modal{position:absolute;z-index:100;inset:0}
+.portfolio-modal[hidden]{display:none}
+.modal-shade{position:absolute;inset:0;display:grid;place-items:center;padding:3%;background:rgba(8,10,9,.64);backdrop-filter:blur(3px);animation:shade-in .22s ease both}
+.portfolio-window{display:flex;flex-direction:column;width:min(95%,1380px);height:min(92%,900px);overflow:hidden;background:#f3f1eb;border:1px solid #b89a67;box-shadow:0 20px 65px #000b;border-radius:5px;transform-origin:var(--portfolio-origin-x,50%) var(--portfolio-origin-y,50%)}
+.portfolio-window.portfolio-opening{animation:portfolio-zoom-in .46s cubic-bezier(.16,1,.3,1) both}
+@keyframes shade-in{from{opacity:0}to{opacity:1}}
+@keyframes portfolio-zoom-in{from{opacity:.35;transform:scale(.08)}to{opacity:1;transform:scale(1)}}
+.portfolio-header{flex:none;min-height:48px;display:flex;align-items:center;justify-content:flex-end;padding:6px 10px;background:linear-gradient(90deg,#19251d,#28382d);border-bottom:1px solid #a98b5b}
+.portfolio-header strong{display:none}
+.portfolio-close{width:34px;height:34px;border:1px solid #bda274;background:#26382c;color:#eee2ca;font:300 27px/1 "DM Sans",sans-serif;cursor:pointer}
+.portfolio-close:hover,.portfolio-close:focus-visible{outline:2px solid #e0c58d;outline-offset:2px;background:#3c5141}
+.portfolio-frame{display:block;flex:1;width:100%;min-height:0;border:0;background:#fff}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* Portrait is rearranged as a tall scene. The desktop canvas is never cropped. */
 @media(max-width:760px){
  html,body{width:100%;height:100%;min-height:0;overflow:hidden}
- body{min-height:100svh;height:100svh}
+ body{display:block;height:100svh;min-height:100svh}
  .desk-scene{width:100vw;height:100svh;max-height:100svh;min-height:0;aspect-ratio:auto;margin:0}
- .shelf,.desk-lamp{display:none}
+ .shelf,.desk-lamp,.pencil-cup{display:none}
  .wall-light{left:25%;top:-10%;width:55%;height:34%}
  .wall-gallery{left:7%;right:5%;top:4.5%;height:21%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));column-gap:3%;row-gap:4%;align-items:stretch}
  .travel-frame{display:block;width:86%;height:100%;margin:0 auto;padding:2px;min-width:0;overflow:hidden}
- .travel-photo{width:100%;height:calc(100% - 17px);object-fit:cover}
+ .travel-photo{width:100%;height:calc(100% - 17px);object-fit:contain}
  .travel-frame figcaption{height:15px}
  .travel-frame figcaption b{font-size:clamp(5px,1.35vw,7px)}
  .travel-frame figcaption small{font-size:clamp(3px,.9vw,5px)}
  .wall-line{top:27%}
  .desk-top{top:60%;height:19.5%}
  .desk-front{top:79.5%;height:20.5%}
- .laptop{left:15%;top:29%;width:70%;height:31.5%;filter:drop-shadow(0 7px 9px #0009)}
+ .laptop{left:20%;top:29%;width:60%;height:31.5%;filter:drop-shadow(0 7px 9px #0009)}
  .laptop-display{left:6.5%;width:87%;height:72%;padding:5px;border-radius:8px 8px 2px 2px}
- .screen-ui{padding:7% 7%}
+ .screen-ui{padding:6% 5%}
  .screen-top{font-size:clamp(4px,1vw,6px)}
- .screen-title{font-size:clamp(16px,4.6vw,22px);margin:6% 0 1%}
+ .screen-title{font-size:clamp(16px,4.6vw,22px);margin:5% 0 1%}
  .screen-subtitle{font-size:clamp(5px,1.2vw,7px)}
  .screen-divider{margin:3% auto}
  .screen-links{width:100%;gap:3%}
- .screen-links button{min-height:clamp(36px,7vh,53px);padding:4px 5px;gap:5px}
- .screen-links button b{font-size:clamp(6px,1.65vw,9px)}
- .screen-links button small{font-size:clamp(4px,1.15vw,6px)}
- .screen-links svg{width:clamp(12px,3vw,17px);height:clamp(12px,3vw,17px)}
+ .screen-links button{min-height:clamp(35px,5.5vh,46px);padding:3px 2px;gap:3px}
+ .screen-links button b{font-size:clamp(6px,1.85vw,9px);letter-spacing:.05em}
+ .screen-links button small{font-size:clamp(4px,1.2vw,6px)}
  .laptop-hinge{top:71%;height:3%}
  .laptop-base{top:74%;height:17%}
  .keyboard{top:78%;height:7%}
  .trackpad{top:86%;height:4%}
- .award-objects{left:2.5%;top:63%;width:22%;height:15.5%;gap:5%}
+ .award-objects{left:2%;top:64%;width:23%;height:14%;gap:5%}
  .award-plaque{padding:4% 2% 8%}
  .award-topline{font-size:clamp(2.5px,.8vw,4px)}
  .award-plaque strong{font-size:clamp(5px,1.6vw,8px)}
  .award-plaque small{font-size:clamp(3px,.95vw,5px)}
- .paper{left:29%;top:63%;width:18%;height:14.5%;padding:2%;transform:perspective(700px) rotateX(13deg) rotateZ(-5deg)}
+ .award-hover{width:150px;font-size:9px}
+ .paper{left:3%;top:31%;width:14%;height:13%;padding:2%;transform:perspective(700px) rotateY(-4deg) rotateZ(-2deg)}
  .paper-meta{font-size:clamp(3px,.78vw,4px)}
  .paper strong{font-size:clamp(6px,1.5vw,9px)}
  .paper p{font-size:clamp(3px,.75vw,4.5px)}
  .paper-lines{background:repeating-linear-gradient(0deg,transparent 0 4px,#988a7355 4px 5px)}
  .paper-signature{font-size:clamp(2px,.6vw,3.5px)}
- .book-mockup{left:62%;top:61%;width:35%;height:18%}
- .book-mockup img{object-fit:contain;object-position:center}
- .pencil-cup{display:none}
- .scene-footer{left:3%;right:3%;bottom:1.5%;gap:4px;flex-direction:column;justify-content:center;align-items:center;font-size:clamp(7px,1.8vw,10px);letter-spacing:.08em}
- .footer-location{display:none}
+ .paper-hover{width:150px;left:0;transform:translateY(6px)}
+ .paper:hover .paper-hover,.paper:focus-visible .paper-hover{transform:translateY(0)}
+ .book-mockup{left:63%;top:62%;width:34%;height:17%}
+ .book-hover{min-width:125px;right:0;font-size:9px}
+ .book-hover b{font-size:11px}
+ .scene-footer{left:3%;right:3%;bottom:1.5%;font-size:clamp(8px,1.8vw,10px)}
  .scene-footer nav{gap:24px}
- .scene-footer a{padding:4px 0}
  .portfolio-window{width:96%;height:93%}
- .portfolio-header{min-height:44px;padding:6px 10px}
- .portfolio-header strong{font-size:12px}
- .portfolio-header small{font-size:7px}
+ .portfolio-header{min-height:42px;padding:5px 8px}
  .portfolio-close{width:30px;height:30px}
 }
 @media(max-width:380px){
  .wall-gallery{left:5%;right:4%;column-gap:1%;height:20%}
  .travel-frame{width:90%}
- .laptop{left:13%;width:74%}
- .award-objects{left:2%;width:23%}
- .paper{left:28%;width:18.5%}
- .book-mockup{left:60.5%;width:38%}
+ .laptop{left:19%;width:62%}
+ .award-objects{left:1.5%;width:23.5%}
+ .paper{left:3%;width:14%}
+ .book-mockup{left:62%;width:36%}
+ .scene-footer nav{gap:18px}
 }
-
-/* Keep the paper fully in the clear strip beside the laptop, not underneath its base. */
-.paper{left:66.5%;top:67.4%;width:8.2%;height:14.6%}
-@media(max-width:760px){.paper{left:29%;top:63%;width:18%;height:14.5%}}
+@media(max-height:620px) and (min-width:761px){
+ .desk-scene{width:min(100vw,1600px,177.7778svh)}
+}
