@@ -146,3 +146,10 @@ body{display:grid;place-items:center;min-height:100vh}
 .book:after{left:0;top:0;bottom:0;width:6%;background:linear-gradient(90deg,#101713,#87643e)}
 .book-title{inset:23% 10%;font-size:clamp(7px,.7vw,11px);color:#e7d5b1}
 .book-title small{display:block;font:500 .56em "DM Sans",sans-serif;letter-spacing:.12em}
+
+/* Make the book read as a closed cover with only a slim page edge showing. */
+.book{left:76%;top:72.5%;width:15.3%;height:9%;overflow:visible;isolation:isolate;border:1px solid #a98451;border-radius:3px;background:linear-gradient(135deg,#17251e 0%,#314638 52%,#1b2a21 100%);box-shadow:0 7px 11px #0009,0 2px 0 #d0b07a}
+.book:before{z-index:-1;left:2%;right:-3%;top:auto;bottom:-5%;height:8%;border:0;border-radius:0 0 3px 3px;background:linear-gradient(180deg,#e8dfcc,#b8a98c);box-shadow:0 2px 3px #0007}
+.book:after{left:0;top:0;bottom:0;width:5%;background:linear-gradient(90deg,#0b120e,#7d5a38)}
+.book-title{z-index:1;inset:20% 9%;display:grid;place-content:center;gap:5px;text-align:center;color:#e7d6b4;font:600 clamp(7px,.78vw,12px)/1.1 "Playfair Display",Georgia,serif;letter-spacing:.08em}
+.book-title small{display:block;font:500 clamp(3px,.36vw,5px)/1.2 "DM Sans",sans-serif;letter-spacing:.14em;color:#d4c19d}
