@@ -19,7 +19,6 @@ scene.innerHTML=`
  <div class="plant plant-left" aria-hidden="true"><div class="plant-leaves">${Array.from({length:5},()=>"<i></i>").join("")}</div><div class="plant-pot"></div></div>
  <div class="plant plant-right" aria-hidden="true"><div class="plant-leaves">${Array.from({length:5},()=>"<i></i>").join("")}</div><div class="plant-pot"></div></div>
  <div class="pencil-cup" aria-hidden="true"></div>
- <div class="award-objects" aria-label="Awards"><div class="award"><b>1ST</b><span>PITCH</span></div><div class="award"><b>TOP 3</b><span>FINTECH</span></div></div>
  <section class="laptop" aria-label="Portfolio on the laptop">
   <div class="laptop-display"><span class="laptop-camera"></span><div class="screen-ui">
    <div class="screen-top"><span>SHOMAN</span><span><i class="screen-dot"></i>ONLINE</span></div>
