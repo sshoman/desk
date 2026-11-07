@@ -3,7 +3,7 @@
 *{box-sizing:border-box}
 html{min-width:320px;background:#211a14}
 body{margin:0;min-height:100vh;background:#211a14;color:var(--cream);font-family:"DM Sans",Arial,sans-serif}
-.desk-stage{position:relative;width:min(100vw,1672px);aspect-ratio:16/9;margin:0 auto;overflow:hidden;isolation:isolate;background:#211a14 var(--desk-photo) center center/100% 100% no-repeat;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.desk-stage{position:relative;width:min(100vw,1672px);aspect-ratio:16/9;margin:0 auto;overflow:hidden;isolation:isolate;background:#211a14 url("./office.webp") center center/100% 100% no-repeat;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 .desk-stage img{display:block;user-select:none;-webkit-user-drag:none;pointer-events:none}
 
 /* Place each original travel illustration inside a frame already present in the room photo. */
