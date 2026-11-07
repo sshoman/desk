@@ -1,10 +1,10 @@
 const cities=[
- {name:"Seoul",moment:"AI Conference",src:"https://5e3efbb2.shoman.pages.dev/lovable-uploads/travelkorea.svg",alt:"Original Seoul travel artwork"},
- {name:"Amman",moment:"Startup Pitch",src:"https://5e3efbb2.shoman.pages.dev/lovable-uploads/travelamman.svg",alt:"Original Amman travel artwork"},
- {name:"Copenhagen",moment:"LARP",src:"https://5e3efbb2.shoman.pages.dev/lovable-uploads/travelcopenhagen.svg",alt:"Original Copenhagen travel artwork"},
- {name:"Kuala Lumpur",moment:"Book Tour",src:"https://5e3efbb2.shoman.pages.dev/lovable-uploads/travelkl.svg",alt:"Original Kuala Lumpur travel artwork"},
- {name:"Tel Aviv",moment:"Pokémon Hunt",src:"https://5e3efbb2.shoman.pages.dev/lovable-uploads/traveltlv.svg",alt:"Original Tel Aviv travel artwork"},
- {name:"Istanbul",moment:"Startup Istanbul",src:"https://5e3efbb2.shoman.pages.dev/lovable-uploads/travelistanbul.svg",alt:"Original Istanbul travel artwork"}
+ {name:"Seoul",moment:"AI Conference",src:"./assets/travelkorea-photo.svg",alt:"Original Seoul travel artwork"},
+ {name:"Amman",moment:"Startup Pitch",src:"./assets/travelamman-photo.svg",alt:"Original Amman travel artwork"},
+ {name:"Copenhagen",moment:"LARP",src:"./assets/travelcopenhagen-photo.svg",alt:"Original Copenhagen travel artwork"},
+ {name:"Kuala Lumpur",moment:"Book Tour",src:"./assets/travelkl-photo.svg",alt:"Original Kuala Lumpur travel artwork"},
+ {name:"Tel Aviv",moment:"Pokémon Hunt",src:"./assets/traveltlv-photo.svg",alt:"Original Tel Aviv travel artwork"},
+ {name:"Istanbul",moment:"Startup Istanbul",src:"./assets/travelistanbul-photo.svg",alt:"Original Istanbul travel artwork"}
 ];
 
 const scene=document.getElementById("desk-scene");
@@ -20,10 +20,8 @@ scene.innerHTML=`
  <section class="wall-gallery" aria-label="Original travel memories">${frameMarkup}</section>
  <div class="wall-line" aria-hidden="true"></div>
  <div class="desk-top" aria-hidden="true"></div>
- <div class="desk-front" aria-hidden="true"><span class="drawer"></span></div>
- <div class="desk-lamp" aria-hidden="true"><span class="lamp-shade"></span><span class="lamp-stem"></span><span class="lamp-base"></span></div>
- <div class="plant plant-left" aria-hidden="true"><div class="plant-leaves">${Array.from({length:5},()=>"<i></i>").join("")}</div><div class="plant-pot"></div></div>
- <div class="pencil-cup" aria-hidden="true"></div>
+ <div class="desk-front" aria-hidden="true"></div>
+ <div class="desk-lamp" aria-hidden="true"><span class="lamp-shade"></span><span class="lamp-stem"></span><span class="lamp-base"></span></div><div class="pencil-cup" aria-hidden="true"></div>
 
  <div class="award-objects" aria-label="Awards">
   <div class="award-plaque">
@@ -61,9 +59,12 @@ scene.innerHTML=`
  </section>
 
  <div class="paper" aria-label="Research paper">
-  <small>RESEARCH PAPER · 2026</small>
-  <strong>Agentic Learning Without Retention</strong>
+  <div class="paper-meta"><span>RESEARCH PAPER</span><span>2026</span></div>
+  <strong>Agentic Learning<br>Without Retention</strong>
+  <i class="paper-rule"></i>
+  <p>Turning failed experience into transferable understanding.</p>
   <div class="paper-lines"></div>
+  <small class="paper-signature">SHOMAN · RESEARCH NOTE</small>
  </div>
 
  <div class="book-mockup" aria-label="Original Post Progressive 3D book mockup">
@@ -82,7 +83,14 @@ scene.innerHTML=`
   </div>
  </div>
 
- <div class="scene-caption"><span>SHOMAN</span><i></i><span>THE WORKROOM</span></div>
+ <footer class="scene-footer">
+  <span class="footer-location">PALESTINE · ELSEWHERE · ONLINE</span>
+  <nav aria-label="Personal links">
+   <a href="https://linkedin.com/in/shoman" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+   <a href="https://github.com/sshoman" target="_blank" rel="noopener noreferrer">GitHub</a>
+   <a href="mailto:shoman@outlook.co.il">Contact</a>
+  </nav>
+ </footer>
 `;
 
 const modal=scene.querySelector("#portfolio-modal");
