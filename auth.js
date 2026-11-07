@@ -21,6 +21,19 @@
     #desk-auth-gate .auth-error{min-height:17px;margin:12px 0 0;color:#e5a28f;font:11px Arial,sans-serif}
   `;
   document.head.appendChild(style);
+
+  function releaseProtectedAssets() {
+    document.querySelectorAll("[data-protected-src]").forEach(element => {
+      const source = element.getAttribute("data-protected-src");
+      if (!source) return;
+      element.setAttribute("src", source);
+      element.removeAttribute("data-protected-src");
+    });
+    const scene = document.createElement("script");
+    scene.src = "./desk-scene.js";
+    scene.defer = true;
+    document.head.appendChild(scene);
+  }
   const mount = () => {
     if (document.getElementById("desk-auth-gate")) return;
     const gate = document.createElement("section");
@@ -41,6 +54,7 @@
         if (allowed.has(hash)) {
           try { sessionStorage.setItem(sessionKey,"1"); } catch (_) {}
           document.documentElement.classList.remove("desk-locked");
+          releaseProtectedAssets();
           gate.remove();
         } else {
           error.textContent = "That password doesn't unlock this desk.";
