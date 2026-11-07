@@ -186,3 +186,136 @@ body{display:grid;place-items:center;height:100svh;min-height:100svh}
 @media(max-height:620px) and (min-width:761px){
  .desk-scene{width:min(100vw,1600px,177.7778svh)}
 }
+
+
+/* Full-bleed room. The scene follows the browser viewport instead of a fixed canvas. */
+html,body{width:100%;height:100%;min-height:0;margin:0;overflow:hidden}
+body{display:block;width:100vw;height:100svh;min-height:100svh}
+.desk-scene{
+ width:100vw!important;height:100svh!important;max-width:none!important;max-height:none!important;
+ min-height:0!important;aspect-ratio:auto!important;margin:0!important;
+ box-shadow:none!important;overflow:hidden;
+}
+
+/* Clear the left wall. The paper hangs here and its award sits directly below. */
+.shelf,.shelf-books{display:none!important}
+.paper{left:4.6%!important;top:33.5%!important;width:10.4%!important;height:19%!important;transform:perspective(850px) rotateY(4deg) rotateZ(-1.6deg)}
+.award-objects{left:4.1%!important;top:65.4%!important;width:12.8%!important;height:17.5%!important;gap:6%}
+
+/* Replace the old right-side pencil cup with a proper articulated brass desk lamp. */
+.pencil-cup{display:none!important}
+.desk-lamp-right{
+ position:absolute;z-index:8;left:88.2%;top:39.2%;width:8.7%;height:39%;
+ filter:drop-shadow(3px 6px 5px #0009);
+}
+.desk-lamp-right .lamp-base{
+ position:absolute;left:10%;bottom:0;width:82%;height:7.5%;
+ border-radius:50%;
+ background:radial-gradient(ellipse at 46% 28%,#f2d69a 0%,#be9657 35%,#654321 72%,#2c1b10 100%);
+ border-bottom:2px solid #28190e;
+ box-shadow:0 4px 7px #0008;
+}
+.desk-lamp-right .lamp-back-arm{
+ position:absolute;left:62%;bottom:6%;width:3.8%;height:47%;
+ border-radius:4px;
+ background:linear-gradient(90deg,#4c321b,#c59b5c 42%,#f0d39b 52%,#704a25);
+ transform:rotate(18deg);transform-origin:bottom center;
+ box-shadow:1px 0 2px #0008;
+}
+.desk-lamp-right .lamp-joint{
+ position:absolute;left:42%;top:42%;width:12%;aspect-ratio:1;
+ border-radius:50%;
+ background:radial-gradient(circle at 35% 30%,#f5dba7,#b18448 58%,#51351b 82%);
+ border:1px solid #634522;box-shadow:0 1px 3px #0008;
+}
+.desk-lamp-right .lamp-upper-arm{
+ position:absolute;left:23%;top:24%;width:4%;height:30%;
+ border-radius:3px;
+ background:linear-gradient(90deg,#503319,#d3ae70 45%,#f0d8a4 53%,#6b4927);
+ transform:rotate(-42deg);transform-origin:bottom center;
+ box-shadow:1px 0 2px #0008;
+}
+.desk-lamp-right .lamp-shade{
+ position:absolute;left:0;top:0;width:68%;height:25%;
+ clip-path:polygon(22% 0,78% 0,100% 100%,0 100%);
+ border-radius:35% 35% 8% 8%;
+ background:linear-gradient(180deg,#28251e 0%,#685032 14%,#c19a5e 74%,#4b321d 100%);
+ border:1px solid #382514;
+ box-shadow:inset 0 2px 3px #fff4,0 5px 9px #0008;
+}
+.desk-lamp-right .lamp-bulb{
+ position:absolute;left:13%;top:21%;width:42%;height:4%;
+ background:#f8dfaa;
+ border-radius:50%;
+ box-shadow:0 2px 14px 5px #f5d59a88;
+}
+
+/* Portfolio navigation reads like part of a real personal site already open on the laptop. */
+.screen-ui{padding:6.5% 7% 6%}
+.screen-top{padding-bottom:4%;border-bottom:1px solid #d6d1c266;font-size:clamp(4px,.43vw,6px)}
+.screen-site-name{font:700 clamp(6px,.68vw,10px)/1 "DM Sans",sans-serif;letter-spacing:.15em;color:#eee5d4}
+.screen-site-status{display:flex;align-items:center;gap:7px;font-size:.8em;color:#aaa996;letter-spacing:.12em}
+.screen-intro{padding:5.5% 0 4%}
+.screen-intro>span{display:block;margin-bottom:2%;font:700 clamp(4px,.42vw,6px)/1 "DM Sans",sans-serif;letter-spacing:.16em;color:#c0ac86}
+.screen-title{margin:0;font:600 clamp(12px,1.25vw,18px)/1.1 "Playfair Display",Georgia,serif;letter-spacing:.01em;text-align:left;color:#f0e7d8}
+.screen-subtitle,.screen-divider{display:none}
+.screen-links{display:flex;justify-content:space-between;align-items:stretch;gap:3%;width:100%;margin:0}
+.screen-links button{
+ position:relative;display:flex;align-items:center;justify-content:flex-start;gap:7%;
+ width:48.5%;min-width:0;min-height:clamp(46px,5.2vw,70px);
+ padding:6% 6%;
+ border:1px solid #b9a9858c;border-radius:3px;
+ background:linear-gradient(135deg,#f0e8d8 0%,#d9d0be 100%);
+ color:#2c332b;text-align:left;cursor:pointer;
+ box-shadow:0 2px 4px #0004,inset 0 1px 0 #fff9;
+ transition:transform .16s ease,background .16s ease,box-shadow .16s ease;
+}
+.screen-links button:hover,.screen-links button:focus-visible{
+ outline:2px solid #e1c58b;outline-offset:2px;
+ background:linear-gradient(135deg,#fff6e4,#e4d9c3);
+ transform:translateY(-2px);
+ box-shadow:0 5px 9px #0005,inset 0 1px 0 #fff;
+}
+.screen-number{flex:none;color:#9b8056;font:600 clamp(7px,.7vw,10px)/1 "DM Sans",sans-serif;letter-spacing:.08em}
+.screen-copy{display:flex;flex-direction:column;gap:5px;min-width:0}
+.screen-copy b{font:700 clamp(8px,.85vw,12px)/1 "DM Sans",sans-serif;letter-spacing:.02em;white-space:nowrap}
+.screen-copy small{font:500 clamp(4px,.44vw,6px)/1.15 "DM Sans",sans-serif;color:#766f61;white-space:nowrap}
+.screen-arrow{margin-left:auto;align-self:flex-start;color:#9b8056;font:600 clamp(9px,.9vw,13px)/1 "DM Sans",sans-serif}
+.screen-links svg{display:none}
+
+/* Keep the popup broad enough for the portfolio to breathe. */
+.modal-shade{padding:2.5%}
+.portfolio-window{width:90vw!important;height:90vh!important;max-width:1700px!important;max-height:1300px!important}
+
+/* Wide and short viewports still use the full available width and height. */
+@media(min-width:761px){
+ .desk-scene{width:100vw!important;height:100svh!important}
+}
+@media(max-width:760px){
+ .desk-scene{width:100vw!important;height:100svh!important}
+ .shelf,.shelf-books{display:none!important}
+ .paper{left:3.5%!important;top:30%!important;width:16%!important;height:16%!important}
+ .award-objects{left:3%!important;top:64%!important;width:23%!important;height:14.5%!important}
+ .desk-lamp-right{left:86%;top:57%;width:11%;height:21%}
+ .desk-lamp-right .lamp-back-arm{height:46%;bottom:6%}
+ .desk-lamp-right .lamp-upper-arm{height:30%}
+ .desk-lamp-right .lamp-shade{width:74%;height:28%}
+ .screen-ui{padding:5% 5%}
+ .screen-top{padding-bottom:3%}
+ .screen-site-name{font-size:clamp(6px,1.5vw,9px)}
+ .screen-site-status{font-size:clamp(3px,.8vw,5px)}
+ .screen-intro{padding:4% 0 3%}
+ .screen-intro>span{font-size:clamp(3px,.8vw,5px)}
+ .screen-title{font-size:clamp(11px,2.8vw,17px)}
+ .screen-links{gap:2.5%}
+ .screen-links button{min-height:clamp(34px,5.1vh,47px);padding:4% 3%;gap:4%}
+ .screen-number{font-size:clamp(5px,1.25vw,8px)}
+ .screen-copy b{font-size:clamp(6px,1.55vw,9px)}
+ .screen-copy small{font-size:clamp(3px,.92vw,5px)}
+ .screen-arrow{font-size:clamp(7px,1.8vw,10px)}
+ .portfolio-window{width:94vw!important;height:90vh!important}
+}
+@media(max-width:380px){
+ .desk-lamp-right{left:85%;width:12%}
+ .screen-copy small{font-size:clamp(2.7px,.8vw,4px)}
+}
