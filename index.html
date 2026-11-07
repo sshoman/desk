@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#211a14"><meta name="robots" content="noindex,nofollow,noarchive">
-<meta name="description" content="Shoman. A private collection of work, places and ideas.">
+<meta name="theme-color" content="#211a14">
+<meta name="description" content="Shoman. A collection of work, places and ideas.">
 <title>Shoman</title>
-<script src="./auth.js"></script>
+
 <link rel="stylesheet" href="./desk.css">
 </head>
 <body>
@@ -20,27 +20,27 @@
 
   <div class="wall-gallery" aria-label="Travel photographs">
     <div class="travel-frame tf1" tabindex="0">
-      <img data-protected-src="https://shoman.pages.dev/lovable-uploads/travelkorea.svg" alt="Original Seoul travel illustration" draggable="false">
+      <img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/travelkorea.svg" alt="Original Seoul travel illustration" draggable="false">
       <span class="travel-name">SEOUL</span><span class="travel-detail"><small>AI Conference</small></span>
     </div>
     <div class="travel-frame tf2" tabindex="0">
-      <img data-protected-src="https://shoman.pages.dev/lovable-uploads/travelamman.svg" alt="Original Amman travel illustration" draggable="false">
+      <img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/travelamman.svg" alt="Original Amman travel illustration" draggable="false">
       <span class="travel-name">AMMAN</span><span class="travel-detail"><small>Startup Pitch</small></span>
     </div>
     <div class="travel-frame tf3" tabindex="0">
-      <img data-protected-src="https://shoman.pages.dev/lovable-uploads/travelcopenhagen.svg" alt="Original Copenhagen travel illustration" draggable="false">
+      <img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/travelcopenhagen.svg" alt="Original Copenhagen travel illustration" draggable="false">
       <span class="travel-name">COPENHAGEN</span><span class="travel-detail"><small>LARP</small></span>
     </div>
     <div class="travel-frame tf4" tabindex="0">
-      <img data-protected-src="https://shoman.pages.dev/lovable-uploads/travelkl.svg" alt="Original Kuala Lumpur travel illustration" draggable="false">
+      <img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/travelkl.svg" alt="Original Kuala Lumpur travel illustration" draggable="false">
       <span class="travel-name">KUALA LUMPUR</span><span class="travel-detail"><small>Book Tour</small></span>
     </div>
     <div class="travel-frame tf5" tabindex="0">
-      <img data-protected-src="https://shoman.pages.dev/lovable-uploads/traveltlv.svg" alt="Original Tel Aviv travel illustration" draggable="false">
+      <img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/traveltlv.svg" alt="Original Tel Aviv travel illustration" draggable="false">
       <span class="travel-name">TEL AVIV</span><span class="travel-detail"><small>Pokémon Hunt</small></span>
     </div>
     <div class="travel-frame tf6" tabindex="0">
-      <img data-protected-src="https://shoman.pages.dev/lovable-uploads/travelistanbul.svg" alt="Original Istanbul travel illustration" draggable="false">
+      <img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/travelistanbul.svg" alt="Original Istanbul travel illustration" draggable="false">
       <span class="travel-name">ISTANBUL</span><span class="travel-detail"><small>Startup Istanbul</small></span>
     </div>
   </div>
@@ -73,7 +73,7 @@
   </section>
 
   <div class="book-layer" tabindex="0" aria-label="exProgressive book cover">
-    <img class="book-photo" data-protected-src="https://shoman.pages.dev/lovable-uploads/PPontherock.png" alt="Original exProgressive book mockup" draggable="false">
+    <img class="book-photo" src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/PPontherock.png" alt="Original exProgressive book mockup" draggable="false">
     <div class="book-detail"><strong>exProgressive</strong><span>What The Left Doesn't Get</span><small>Written by Shoman</small></div>
   </div>
 
@@ -89,5 +89,6 @@
 document.addEventListener("contextmenu", e => { if (e.target.closest(".desk-stage")) e.preventDefault(); });
 document.addEventListener("dragstart", e => { if (e.target.closest(".desk-stage")) e.preventDefault(); });
 </script>
+<script src="./desk-scene.js" defer></script>
 </body>
 </html>
