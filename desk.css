@@ -130,3 +130,19 @@ body{display:grid;place-items:center;min-height:100vh}
 .book:after{content:"";position:absolute;left:0;top:0;bottom:0;width:7%;background:linear-gradient(90deg,#0b100e,#6d5336)}
 .book-title{inset:22% 10%;color:#e4d2ae}
 @media(max-width:760px){.wall-gallery{left:15%;right:5%;top:10%;height:24%;gap:1.2%}.laptop{left:34.5%;top:41%;width:34%;height:38%}.laptop-display{left:8%;width:84%;height:69%}}
+
+/* The wall now uses real travel photography inside the physical frame geometry. */
+.travel-frame{display:block;margin:0;padding:4px;min-width:0;overflow:hidden}
+.travel-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(.94) contrast(1.03);background:#76624b}
+.travel-frame:nth-child(1) .travel-photo{object-position:50% 45%}
+.travel-frame:nth-child(2) .travel-photo{object-position:50% 50%}
+.travel-frame:nth-child(3) .travel-photo{object-position:50% 50%}
+.travel-frame:nth-child(4) .travel-photo{object-position:50% 42%}
+.travel-frame:nth-child(5) .travel-photo{object-position:50% 50%}
+.travel-frame:nth-child(6) .travel-photo{object-position:50% 48%}
+/* A closed hardback, with a narrow visible page edge and a clean cover. */
+.book{isolation:isolate;background:linear-gradient(135deg,#18231c,#314437 58%,#17211b);border:1px solid #b08a57;box-shadow:0 6px 10px #0009,0 2px 0 #c2a16d}
+.book:before{z-index:-1;left:3%;right:-4%;top:7%;height:95%;background:linear-gradient(180deg,#eee8d9,#c9bda5);border:1px solid #8e7d61;box-shadow:none}
+.book:after{left:0;top:0;bottom:0;width:6%;background:linear-gradient(90deg,#101713,#87643e)}
+.book-title{inset:23% 10%;font-size:clamp(7px,.7vw,11px);color:#e7d5b1}
+.book-title small{display:block;font:500 .56em "DM Sans",sans-serif;letter-spacing:.12em}
