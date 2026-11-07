@@ -79,7 +79,7 @@ scene.innerHTML=`
  </div>
 
  <div class="portfolio-modal" id="portfolio-modal" hidden aria-hidden="true">
-  <div class="modal-shade" data-modal-close>
+  <div class="modal-shade">
    <section class="portfolio-window" role="dialog" aria-modal="true" aria-labelledby="portfolio-modal-title">
     <header class="portfolio-header">
      <strong id="portfolio-modal-title">Portfolio</strong>
@@ -133,7 +133,7 @@ function closePortfolio(){
 scene.addEventListener("click",event=>{
  const trigger=event.target.closest("[data-portfolio]");
  if(trigger){event.preventDefault();openPortfolio(trigger);return;}
- if(event.target.closest("[data-modal-close]"))closePortfolio();
+ if(event.target.closest(".portfolio-close")||event.target.classList.contains("modal-shade"))closePortfolio();
 });
 document.addEventListener("keydown",event=>{
  if(event.key==="Escape")closePortfolio();
