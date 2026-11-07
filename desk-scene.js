@@ -16,13 +16,18 @@ const frameMarkup=cities.map(city=>`
 
 scene.innerHTML=`
  <div class="wall-light" aria-hidden="true"></div>
- <div class="shelf" aria-hidden="true"><div class="shelf-books">${Array.from({length:32},()=>"<i></i>").join("")}</div></div>
  <section class="wall-gallery" aria-label="Original travel memories">${frameMarkup}</section>
  <div class="wall-line" aria-hidden="true"></div>
  <div class="desk-top" aria-hidden="true"></div>
  <div class="desk-front" aria-hidden="true"></div>
- <div class="desk-lamp" aria-hidden="true"><span class="lamp-shade"></span><span class="lamp-stem"></span><span class="lamp-base"></span></div>
- <div class="pencil-cup" aria-hidden="true"></div>
+ <div class="desk-lamp desk-lamp-right" aria-hidden="true">
+  <span class="lamp-base"></span>
+  <span class="lamp-back-arm"></span>
+  <span class="lamp-joint"></span>
+  <span class="lamp-upper-arm"></span>
+  <span class="lamp-shade"></span>
+  <span class="lamp-bulb"></span>
+ </div>
 
  
  <div class="award-objects" aria-label="Awards">
@@ -44,18 +49,21 @@ scene.innerHTML=`
 
  <section class="laptop" aria-label="Portfolio on the laptop">
   <div class="laptop-display"><span class="laptop-camera"></span><div class="screen-ui">
-   <div class="screen-top"><span>PERSONAL SITE</span><span><i class="screen-dot"></i>ONLINE</span></div>
-   <h1 class="screen-title">SHOMAN</h1>
-   <p class="screen-subtitle">CHOOSE A PORTFOLIO</p>
-   <div class="screen-divider"></div>
+   <div class="screen-top"><span class="screen-site-name">SHOMAN</span><span class="screen-site-status">INDEPENDENT BUILDER <i class="screen-dot"></i></span></div>
+   <div class="screen-intro">
+    <span>SELECTED WORK</span>
+    <h1 class="screen-title">A few things I've built.</h1>
+   </div>
    <nav class="screen-links" aria-label="Open a portfolio">
     <button type="button" data-portfolio="./design-portfolio.html" data-title="Design portfolio">
-     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5h7l2 2h9v10H3zM3 6.5V5h7l2 1.5"/></svg>
-     <span><b>DESIGN</b><small>Portfolio</small></span>
+     <span class="screen-number">01</span>
+     <span class="screen-copy"><b>Design</b><small>Product & visual work</small></span>
+     <span class="screen-arrow">↗</span>
     </button>
     <button type="button" data-portfolio="./marketing-portfolio.html" data-title="Marketing portfolio">
-     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5h18v13H3zM4 7l8 6 8-6"/></svg>
-     <span><b>MARKETING</b><small>Portfolio</small></span>
+     <span class="screen-number">02</span>
+     <span class="screen-copy"><b>Marketing</b><small>Growth & campaigns</small></span>
+     <span class="screen-arrow">↗</span>
     </button>
    </nav>
   </div></div>
