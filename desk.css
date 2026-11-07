@@ -323,3 +323,52 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 /* Give the original hardback mockup its own clear spot beside the new lamp. */
 .book-mockup{left:70.4%;width:18.5%;height:25.4%}
 @media(max-width:760px){.book-mockup{left:65%;width:27%;height:17%}}
+
+
+/* A single continuous brass lamp, rather than disconnected mechanical arms. */
+.desk-lamp-right{
+ position:absolute;z-index:8;left:88.4%;top:40.5%;width:8.2%;height:36%;
+ filter:drop-shadow(3px 6px 5px #0009);
+}
+.desk-lamp-right:before{
+ content:"";position:absolute;z-index:-1;left:-95%;top:-5%;width:280%;height:66%;
+ background:radial-gradient(ellipse at 55% 10%,#f4d59a35 0%,#dfb87514 35%,transparent 72%);
+ pointer-events:none;
+}
+.desk-lamp-right .lamp-base{
+ position:absolute;left:7%;bottom:0;width:86%;height:8%;
+ border-radius:50%;
+ background:radial-gradient(ellipse at 45% 25%,#f3d79b 0%,#bd9557 34%,#674623 72%,#2e1d11 100%);
+ border-bottom:2px solid #28190e;
+ box-shadow:0 4px 7px #0008,inset 0 1px 1px #fff7;
+}
+.desk-lamp-right .lamp-stem{
+ position:absolute;left:48%;top:22%;width:5%;height:73%;
+ border-radius:4px;
+ background:linear-gradient(90deg,#53371e 0%,#b7894f 28%,#f0d59e 48%,#986b35 73%,#412a18 100%);
+ box-shadow:1px 0 2px #0008;
+}
+.desk-lamp-right .lamp-shade{
+ position:absolute;left:10%;top:0;width:80%;height:29%;
+ clip-path:polygon(17% 0,83% 0,100% 100%,0 100%);
+ border-radius:35% 35% 8% 8%;
+ background:linear-gradient(180deg,#27231d 0%,#685032 20%,#bd955c 75%,#4d341d 100%);
+ border:1px solid #382514;
+ box-shadow:inset 0 2px 3px #fff5,0 5px 9px #0008;
+}
+.desk-lamp-right .lamp-bulb{
+ position:absolute;left:25%;top:26%;width:50%;height:4%;
+ border-radius:50%;
+ background:#ffe2a6;
+ box-shadow:0 2px 13px 6px #f5d59a99;
+}
+.desk-lamp-right .lamp-back-arm,
+.desk-lamp-right .lamp-joint,
+.desk-lamp-right .lamp-upper-arm{display:none!important}
+@media(max-width:760px){
+ .desk-lamp-right{left:86.5%;top:57%;width:10.5%;height:21%}
+ .desk-lamp-right .lamp-stem{top:23%;height:72%}
+ .desk-lamp-right .lamp-shade{left:8%;width:84%;height:32%}
+ .desk-lamp-right .lamp-bulb{top:29%}
+}
+@media(max-width:380px){.desk-lamp-right{left:86%;width:11%}}
