@@ -153,3 +153,182 @@ body{display:grid;place-items:center;min-height:100vh}
 .book:after{left:0;top:0;bottom:0;width:5%;background:linear-gradient(90deg,#0b120e,#7d5a38)}
 .book-title{z-index:1;inset:20% 9%;display:grid;place-content:center;gap:5px;text-align:center;color:#e7d6b4;font:600 clamp(7px,.78vw,12px)/1.1 "Playfair Display",Georgia,serif;letter-spacing:.08em}
 .book-title small{display:block;font:500 clamp(3px,.36vw,5px)/1.2 "DM Sans",sans-serif;letter-spacing:.14em;color:#d4c19d}
+
+/* Smaller original travel artwork, spaced like personal photographs. */
+.wall-gallery{
+ left:15.5%;right:6.5%;top:11.2%;height:20%;
+ display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1.6%;
+ align-items:start;
+}
+.travel-frame{
+ display:block;width:72%;height:100%;margin:0 auto;padding:3px;
+ overflow:hidden;position:relative;
+ background:linear-gradient(135deg,#c9a16c,#62452c 34%,#d6b47d 68%,#513923);
+ border:1px solid #17100a;
+ box-shadow:0 4px 8px #0008,0 0 0 1px #d4b78255;
+}
+.travel-frame:before{content:"";position:absolute;inset:3px;border:1px solid #e0c89488;pointer-events:none;z-index:2}
+.travel-photo{display:block;width:100%;height:calc(100% - 23px);object-fit:contain;object-position:center;background:#342c22;filter:none}
+.travel-frame figcaption{
+ display:flex;flex-direction:column;align-items:center;justify-content:center;
+ height:20px;line-height:1.05;text-align:center;color:#46321f;
+ background:linear-gradient(180deg,#e0cca2,#b48e58);
+ border-top:1px solid #f3dfb8;
+}
+.travel-frame figcaption b{font:700 clamp(4px,.43vw,6.5px)/1 "DM Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.travel-frame figcaption small{font:clamp(3px,.33vw,5px)/1.1 "DM Sans",sans-serif;color:#6a5234;margin-top:2px}
+
+/* The right-hand plant is intentionally gone. Keep the left plant clear of the awards. */
+.plant-right{display:none!important}
+.plant-left{left:23.5%;top:45%;width:8%;height:20%}
+
+/* Awards are solid engraved desk plaques. No hover behaviour. */
+.award-objects{
+ position:absolute;z-index:6;left:27.1%;top:65.5%;width:8.5%;height:15.5%;
+ display:flex;align-items:flex-end;gap:8%;
+}
+.award-plaque{
+ position:relative;flex:1;height:100%;display:flex;flex-direction:column;
+ align-items:center;justify-content:center;text-align:center;padding:5% 4% 8%;
+ color:#d9c18f;
+ border:1px solid #9b8058;
+ background:
+  linear-gradient(115deg,#ffffff28,transparent 24%,#ffffff10 52%,transparent 75%),
+  linear-gradient(135deg,#45504a,#202923 54%,#364239);
+ box-shadow:0 5px 9px #0009,inset 0 0 0 2px #bfa16d55,inset 0 1px 1px #fff4;
+}
+.award-plaque:before{
+ content:"";position:absolute;inset:5px;border:1px solid #c4a66d66;pointer-events:none;
+}
+.award-plaque:after{
+ content:"";position:absolute;left:12%;right:12%;bottom:-7%;height:7%;
+ background:linear-gradient(180deg,#c1a06a,#63452a);
+ border:1px solid #5b3d24;box-shadow:0 2px 3px #0008;
+}
+.award-plaque.second{height:87%}
+.award-topline{font:500 clamp(2.5px,.27vw,4px)/1.15 "DM Sans",sans-serif;letter-spacing:.08em;color:#c3b08b}
+.award-plaque strong{margin-top:13%;font:600 clamp(6px,.68vw,10px)/1 "Playfair Display",serif;color:#e8d5a8}
+.award-plaque small{display:block;margin-top:6%;font:500 clamp(3px,.32vw,4.7px)/1.2 "DM Sans",sans-serif;color:#d4c39e}
+.award-plaque i{position:absolute;bottom:18%;width:35%;height:1px;background:#bda06c}
+
+/* Make the laptop's portfolio controls unmistakable and easy to click. */
+.screen-title{margin:6% 0 1%;font-size:clamp(17px,1.9vw,28px);letter-spacing:.14em}
+.screen-subtitle{font-size:clamp(5px,.54vw,8px);letter-spacing:.18em}
+.screen-divider{margin:4% auto 4%;width:46%}
+.screen-links{
+ display:flex;justify-content:center;gap:4%;width:100%;margin:0 auto;
+}
+.screen-links button{
+ display:flex;align-items:center;justify-content:center;gap:8px;
+ width:48%;min-height:clamp(37px,4.3vw,62px);padding:5px 7px;
+ border:1px solid #c9b183;background:linear-gradient(145deg,#35473a,#1e2c23);
+ color:#f0e5d1;text-align:left;cursor:pointer;
+ box-shadow:0 3px 7px #0007,inset 0 1px 0 #fff3;
+ transition:background .16s,border-color .16s,transform .16s;
+}
+.screen-links button:hover,.screen-links button:focus-visible{
+ outline:2px solid #e2c78e;outline-offset:2px;
+ border-color:#e1c58b;background:linear-gradient(145deg,#50634f,#2c3b30);
+ transform:translateY(-2px);
+}
+.screen-links svg{width:clamp(13px,1.45vw,21px);height:clamp(13px,1.45vw,21px);fill:none;stroke:#e7d5b5;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.screen-links button span{display:flex;flex-direction:column;gap:3px}
+.screen-links button b{font:700 clamp(6px,.68vw,10px)/1 "DM Sans",sans-serif;letter-spacing:.12em}
+.screen-links button small{font:500 clamp(4px,.42vw,6px)/1 "DM Sans",sans-serif;color:#c9bea8}
+
+/* A standing hardback with a visible spine, page block and proper cover face. */
+.standing-book{
+ position:absolute;z-index:6;left:78%;top:51.2%;width:10.4%;height:29%;
+ perspective:850px;filter:drop-shadow(5px 9px 7px #0009);
+}
+.book-pages{
+ position:absolute;z-index:0;left:10%;right:-1%;top:2%;bottom:1%;
+ background:linear-gradient(90deg,#b6a98f,#f1eadb 18%,#d8ceb9 88%,#8e8068);
+ clip-path:polygon(0 0,94% 0,100% 3%,100% 97%,95% 100%,0 98%);
+}
+.book-spine{
+ position:absolute;z-index:2;left:0;top:0;bottom:2%;width:17%;
+ display:flex;align-items:center;justify-content:center;
+ background:linear-gradient(90deg,#101a14,#355040 47%,#18251d);
+ border:1px solid #7f6944;border-right:0;
+ transform:skewY(-1deg);
+ box-shadow:inset 2px 0 4px #0008;
+}
+.book-spine span{
+ writing-mode:vertical-rl;transform:rotate(180deg);
+ color:#d9c69e;font:600 clamp(4px,.43vw,6px) "Playfair Display",serif;letter-spacing:.12em;
+}
+.book-cover{
+ position:absolute;z-index:1;left:14%;right:2%;top:0;bottom:2%;
+ display:flex;flex-direction:column;align-items:center;justify-content:center;
+ padding:9% 7%;text-align:center;
+ background:
+  radial-gradient(ellipse at 50% 45%,#506b5733,transparent 55%),
+  linear-gradient(135deg,#263f32 0%,#14271e 58%,#20392c 100%);
+ border:1px solid #b3935e;
+ box-shadow:inset 0 0 0 3px #122219,inset 0 0 0 4px #c1a16b88,3px 2px 4px #0007;
+ transform:rotateY(-5deg);
+}
+.book-cover:before{
+ content:"";position:absolute;inset:8px;border:1px solid #c8ad7a66;pointer-events:none;
+}
+.book-author{font:500 clamp(3px,.32vw,4.5px)/1.1 "DM Sans",sans-serif;letter-spacing:.18em;color:#c9b88f}
+.book-cover strong{margin-top:15%;color:#eee1c6;font:600 clamp(9px,1vw,15px)/1.05 "Playfair Display",Georgia,serif;letter-spacing:.01em}
+.book-rule{display:block;width:42%;height:1px;margin:12% 0;background:#c4a36c}
+.book-cover>span{font:600 clamp(4px,.42vw,6px)/1.35 "DM Sans",sans-serif;letter-spacing:.13em;color:#ddcca9}
+.book-edition{margin-top:18%;font:500 clamp(3px,.31vw,4.5px)/1 "DM Sans",sans-serif;letter-spacing:.18em;color:#bba77c}
+
+/* Portfolios open above the workroom, leaving the desk visible through a dim layer. */
+.portfolio-modal{position:absolute;z-index:100;inset:0}
+.portfolio-modal[hidden]{display:none}
+.modal-shade{
+ position:absolute;inset:0;display:grid;place-items:center;padding:3%;
+ background:rgba(8,10,9,.78);backdrop-filter:blur(5px);
+}
+.portfolio-window{
+ display:flex;flex-direction:column;width:min(94%,1380px);height:min(90%,900px);
+ overflow:hidden;background:#f3f1eb;border:1px solid #b89a67;
+ box-shadow:0 20px 65px #000b;border-radius:5px;
+}
+.portfolio-header{
+ flex:none;min-height:54px;display:flex;align-items:center;justify-content:space-between;
+ padding:8px 16px;background:linear-gradient(90deg,#19251d,#28382d);
+ color:#eee4d0;border-bottom:1px solid #a98b5b;
+}
+.portfolio-header>div{display:flex;flex-direction:column;gap:3px}
+.portfolio-header strong{font:600 14px "Playfair Display",Georgia,serif;letter-spacing:.06em}
+.portfolio-header small{font:500 8px "DM Sans",sans-serif;letter-spacing:.18em;color:#c4b18c}
+.portfolio-close{
+ width:34px;height:34px;border:1px solid #bda274;background:#26382c;color:#eee2ca;
+ font:300 27px/1 "DM Sans",sans-serif;cursor:pointer;
+}
+.portfolio-close:hover,.portfolio-close:focus-visible{outline:2px solid #e0c58d;outline-offset:2px;background:#3c5141}
+.portfolio-frame{display:block;flex:1;width:100%;min-height:0;border:0;background:#fff}
+@media(max-width:760px){
+ .wall-gallery{left:14.5%;right:5%;top:10.5%;height:19%;gap:1%}
+ .travel-frame{width:79%;padding:2px}
+ .travel-frame figcaption{height:16px}
+ .award-objects{left:25%;top:66%;width:9%;height:14%}
+ .plant-left{left:21.5%;top:46%;width:8%;height:18%}
+ .laptop{left:34.5%;width:34%;top:41%;height:38%}
+ .laptop-display{left:8%;width:84%;height:69%}
+ .screen-title{font-size:clamp(12px,2.8vw,18px)}
+ .screen-subtitle{font-size:clamp(4px,.9vw,6px)}
+ .screen-links{gap:2%}
+ .screen-links button{min-height:clamp(27px,5.5vw,40px);gap:4px;padding:3px}
+ .screen-links button b{font-size:clamp(4px,1vw,7px)}
+ .screen-links button small{font-size:clamp(3px,.7vw,5px)}
+ .screen-links svg{width:clamp(9px,1.8vw,13px);height:clamp(9px,1.8vw,13px)}
+ .standing-book{left:78%;top:53%;width:11%;height:27%}
+ .book-cover strong{font-size:clamp(6px,1.25vw,9px)}
+ .book-cover>span{font-size:clamp(3px,.65vw,4px)}
+ .book-author,.book-edition{font-size:clamp(2.5px,.55vw,3.5px)}
+ .award-topline{font-size:clamp(2px,.46vw,3px)}
+ .award-plaque strong{font-size:clamp(4px,.9vw,6px)}
+ .award-plaque small{font-size:clamp(2px,.48vw,3px)}
+ .portfolio-window{width:96%;height:92%}
+ .portfolio-header{min-height:43px;padding:6px 10px}
+ .portfolio-header strong{font-size:12px}
+ .portfolio-header small{font-size:7px}
+ .portfolio-close{width:30px;height:30px}
+}
