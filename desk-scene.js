@@ -9,7 +9,7 @@ const cities=[
 
 const scene=document.getElementById("desk-scene");
 const frameMarkup=cities.map(city=>`
- <figure class="travel-frame" aria-label="${city.name}, ${city.moment}">
+ <figure class="travel-frame" tabindex="0" aria-label="${city.name}, ${city.moment}">
   <img class="travel-photo" src="${city.src}" alt="${city.alt}" loading="eager" draggable="false">
   <figcaption><b>${city.name}</b><small>${city.moment}</small></figcaption>
  </figure>`).join("");
@@ -21,20 +21,24 @@ scene.innerHTML=`
  <div class="wall-line" aria-hidden="true"></div>
  <div class="desk-top" aria-hidden="true"></div>
  <div class="desk-front" aria-hidden="true"></div>
- <div class="desk-lamp" aria-hidden="true"><span class="lamp-shade"></span><span class="lamp-stem"></span><span class="lamp-base"></span></div><div class="pencil-cup" aria-hidden="true"></div>
+ <div class="desk-lamp" aria-hidden="true"><span class="lamp-shade"></span><span class="lamp-stem"></span><span class="lamp-base"></span></div>
+ <div class="pencil-cup" aria-hidden="true"></div>
 
+ 
  <div class="award-objects" aria-label="Awards">
-  <div class="award-plaque">
-   <span class="award-topline">REHOBOTH · SOUTH KOREA</span>
+  <div class="award-plaque" tabindex="0" aria-label="First place, Rehoboth pitch competition">
+   <span class="award-topline">PITCH COMPETITION</span>
    <strong>1st Place</strong>
-   <small>Pitch Competition</small>
+   <small>Startup Pitch</small>
    <i></i>
+   <span class="award-hover">First place in the Rehoboth pitch competition.</span>
   </div>
-  <div class="award-plaque second">
+  <div class="award-plaque second" tabindex="0" aria-label="Top 3, Arab Bank financial technology startups">
    <span class="award-topline">ARAB BANK · 2019</span>
    <strong>Top 3</strong>
-   <small>Financial Technology Startups</small>
+   <small>FinTech Startups</small>
    <i></i>
+   <span class="award-hover">Top 3 in the Arab Bank financial technology startup competition.</span>
   </div>
  </div>
 
@@ -58,24 +62,27 @@ scene.innerHTML=`
   <div class="laptop-hinge"></div><div class="laptop-base"></div><div class="keyboard"></div><div class="trackpad"></div>
  </section>
 
- <div class="paper" aria-label="Research paper">
+ <div class="paper" tabindex="0" aria-label="Research paper pinned to the wall">
+  <span class="paper-pin" aria-hidden="true"></span>
   <div class="paper-meta"><span>RESEARCH PAPER</span><span>2026</span></div>
   <strong>Agentic Learning<br>Without Retention</strong>
   <i class="paper-rule"></i>
   <p>Turning failed experience into transferable understanding.</p>
   <div class="paper-lines"></div>
   <small class="paper-signature">SHOMAN · RESEARCH NOTE</small>
+  <div class="paper-hover"><b>Agentic Learning Without Retention</b><span>Research note on turning tested experience into transferable understanding.</span><a href="./paper.html" target="_blank" rel="noopener">Read paper ↗</a></div>
  </div>
 
- <div class="book-mockup" aria-label="Original Post Progressive 3D book mockup">
+ <div class="book-mockup" tabindex="0" aria-label="Post Progressive book">
   <img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/PPontherock.png" alt="Original 3D Post Progressive book mockup" loading="eager" draggable="false">
+  <div class="book-hover"><b>Post Progressive</b><span>Written by Shoman</span></div>
  </div>
 
  <div class="portfolio-modal" id="portfolio-modal" hidden aria-hidden="true">
   <div class="modal-shade" data-modal-close>
    <section class="portfolio-window" role="dialog" aria-modal="true" aria-labelledby="portfolio-modal-title">
     <header class="portfolio-header">
-     <div><strong id="portfolio-modal-title">Portfolio</strong><small>SHOMAN / SELECTED WORK</small></div>
+     <strong id="portfolio-modal-title">Portfolio</strong>
      <button class="portfolio-close" type="button" aria-label="Close portfolio" data-modal-close>×</button>
     </header>
     <iframe class="portfolio-frame" title="Portfolio content" src="about:blank" loading="lazy"></iframe>
@@ -84,7 +91,6 @@ scene.innerHTML=`
  </div>
 
  <footer class="scene-footer">
-  <span class="footer-location">PALESTINE · ELSEWHERE · ONLINE</span>
   <nav aria-label="Personal links">
    <a href="https://linkedin.com/in/shoman" target="_blank" rel="noopener noreferrer">LinkedIn</a>
    <a href="https://github.com/sshoman" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -96,14 +102,24 @@ scene.innerHTML=`
 const modal=scene.querySelector("#portfolio-modal");
 const modalTitle=scene.querySelector("#portfolio-modal-title");
 const modalFrame=scene.querySelector(".portfolio-frame");
+const modalWindow=scene.querySelector(".portfolio-window");
 let lastTrigger=null;
 
 function openPortfolio(trigger){
  lastTrigger=trigger;
  modalTitle.textContent=trigger.dataset.title||"Portfolio";
- modalFrame.src=trigger.dataset.portfolio;
  modal.hidden=false;
  modal.setAttribute("aria-hidden","false");
+ const buttonRect=trigger.getBoundingClientRect();
+ const windowRect=modalWindow.getBoundingClientRect();
+ const originX=Math.max(0,Math.min(100,((buttonRect.left+buttonRect.width/2-windowRect.left)/windowRect.width)*100));
+ const originY=Math.max(0,Math.min(100,((buttonRect.top+buttonRect.height/2-windowRect.top)/windowRect.height)*100));
+ modalWindow.style.setProperty("--portfolio-origin-x",originX+"%");
+ modalWindow.style.setProperty("--portfolio-origin-y",originY+"%");
+ modalWindow.classList.remove("portfolio-opening");
+ void modalWindow.offsetWidth;
+ modalWindow.classList.add("portfolio-opening");
+ modalFrame.src=trigger.dataset.portfolio;
  requestAnimationFrame(()=>scene.querySelector(".portfolio-close")?.focus());
 }
 function closePortfolio(){
