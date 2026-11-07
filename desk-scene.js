@@ -22,9 +22,7 @@ scene.innerHTML=`
  <div class="desk-front" aria-hidden="true"></div>
  <div class="desk-lamp desk-lamp-right" aria-hidden="true">
   <span class="lamp-base"></span>
-  <span class="lamp-back-arm"></span>
-  <span class="lamp-joint"></span>
-  <span class="lamp-upper-arm"></span>
+  <span class="lamp-stem"></span>
   <span class="lamp-shade"></span>
   <span class="lamp-bulb"></span>
  </div>
