@@ -319,3 +319,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .desk-lamp-right{left:85%;width:12%}
  .screen-copy small{font-size:clamp(2.7px,.8vw,4px)}
 }
+
+/* Give the original hardback mockup its own clear spot beside the new lamp. */
+.book-mockup{left:70.4%;width:18.5%;height:25.4%}
+@media(max-width:760px){.book-mockup{left:65%;width:27%;height:17%}}
