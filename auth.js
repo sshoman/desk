@@ -29,10 +29,12 @@
       element.setAttribute("src", source);
       element.removeAttribute("data-protected-src");
     });
-    const scene = document.createElement("script");
-    scene.src = "./desk-scene.js";
-    scene.defer = true;
-    document.head.appendChild(scene);
+    if (document.querySelector(".desk-stage")) {
+      const scene = document.createElement("script");
+      scene.src = "./desk-scene.js";
+      scene.defer = true;
+      document.head.appendChild(scene);
+    }
   }
   const mount = () => {
     if (document.getElementById("desk-auth-gate")) return;
