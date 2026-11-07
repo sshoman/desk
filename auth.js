@@ -4,7 +4,40 @@
     "d4df850641c4b24902905d2bfff1347ae2f68fa216dfa893d9e5df6f4d9f86a9"
   ]);
   const sessionKey = "shoman-desk-unlocked-v1";
-  try { if (sessionStorage.getItem(sessionKey) === "1") return; } catch (_) {}
+
+  function releaseProtectedAssets() {
+    document.querySelectorAll("[data-protected-src]").forEach(element => {
+      const source = element.getAttribute("data-protected-src");
+      if (!source) return;
+      element.setAttribute("src", source);
+      element.removeAttribute("data-protected-src");
+    });
+    if (document.querySelector(".desk-stage") && !document.getElementById("desk-scene-script")) {
+      const scene = document.createElement("script");
+      scene.id = "desk-scene-script";
+      scene.src = "./desk-scene.js";
+      scene.defer = true;
+      document.head.appendChild(scene);
+    }
+  }
+
+  document.addEventListener("contextmenu", event => {
+    if (event.target.closest(".travel-frame,.image-grid,.certificate,.desk-stage")) event.preventDefault();
+  });
+  document.addEventListener("dragstart", event => {
+    if (event.target.closest("img")) event.preventDefault();
+  });
+
+  let alreadyUnlocked = false;
+  try { alreadyUnlocked = sessionStorage.getItem(sessionKey) === "1"; } catch (_) {}
+  if (alreadyUnlocked) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", releaseProtectedAssets, { once: true });
+    } else {
+      releaseProtectedAssets();
+    }
+    return;
+  }
   document.documentElement.classList.add("desk-locked");
   const style = document.createElement("style");
   style.textContent = `
@@ -22,20 +55,6 @@
   `;
   document.head.appendChild(style);
 
-  function releaseProtectedAssets() {
-    document.querySelectorAll("[data-protected-src]").forEach(element => {
-      const source = element.getAttribute("data-protected-src");
-      if (!source) return;
-      element.setAttribute("src", source);
-      element.removeAttribute("data-protected-src");
-    });
-    if (document.querySelector(".desk-stage")) {
-      const scene = document.createElement("script");
-      scene.src = "./desk-scene.js";
-      scene.defer = true;
-      document.head.appendChild(scene);
-    }
-  }
   const mount = () => {
     if (document.getElementById("desk-auth-gate")) return;
     const gate = document.createElement("section");
@@ -70,6 +89,4 @@
   };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded",mount,{once:true});
   else mount();
-  document.addEventListener("contextmenu",event=>{if(event.target.closest(".travel-frame,.image-grid,.certificate,.desk-stage"))event.preventDefault();});
-  document.addEventListener("dragstart",event=>{if(event.target.closest("img"))event.preventDefault();});
 })();
