@@ -236,48 +236,6 @@ body{display:grid;place-items:center;min-height:100vh}
 .screen-links button b{font:700 clamp(6px,.68vw,10px)/1 "DM Sans",sans-serif;letter-spacing:.12em}
 .screen-links button small{font:500 clamp(4px,.42vw,6px)/1 "DM Sans",sans-serif;color:#c9bea8}
 
-/* A standing hardback with a visible spine, page block and proper cover face. */
-.standing-book{
- position:absolute;z-index:6;left:78%;top:51.2%;width:10.4%;height:29%;
- perspective:850px;filter:drop-shadow(5px 9px 7px #0009);
-}
-.book-pages{
- position:absolute;z-index:0;left:10%;right:-1%;top:2%;bottom:1%;
- background:linear-gradient(90deg,#b6a98f,#f1eadb 18%,#d8ceb9 88%,#8e8068);
- clip-path:polygon(0 0,94% 0,100% 3%,100% 97%,95% 100%,0 98%);
-}
-.book-spine{
- position:absolute;z-index:2;left:0;top:0;bottom:2%;width:17%;
- display:flex;align-items:center;justify-content:center;
- background:linear-gradient(90deg,#101a14,#355040 47%,#18251d);
- border:1px solid #7f6944;border-right:0;
- transform:skewY(-1deg);
- box-shadow:inset 2px 0 4px #0008;
-}
-.book-spine span{
- writing-mode:vertical-rl;transform:rotate(180deg);
- color:#d9c69e;font:600 clamp(4px,.43vw,6px) "Playfair Display",serif;letter-spacing:.12em;
-}
-.book-cover{
- position:absolute;z-index:1;left:14%;right:2%;top:0;bottom:2%;
- display:flex;flex-direction:column;align-items:center;justify-content:center;
- padding:9% 7%;text-align:center;
- background:
-  radial-gradient(ellipse at 50% 45%,#506b5733,transparent 55%),
-  linear-gradient(135deg,#263f32 0%,#14271e 58%,#20392c 100%);
- border:1px solid #b3935e;
- box-shadow:inset 0 0 0 3px #122219,inset 0 0 0 4px #c1a16b88,3px 2px 4px #0007;
- transform:rotateY(-5deg);
-}
-.book-cover:before{
- content:"";position:absolute;inset:8px;border:1px solid #c8ad7a66;pointer-events:none;
-}
-.book-author{font:500 clamp(3px,.32vw,4.5px)/1.1 "DM Sans",sans-serif;letter-spacing:.18em;color:#c9b88f}
-.book-cover strong{margin-top:15%;color:#eee1c6;font:600 clamp(9px,1vw,15px)/1.05 "Playfair Display",Georgia,serif;letter-spacing:.01em}
-.book-rule{display:block;width:42%;height:1px;margin:12% 0;background:#c4a36c}
-.book-cover>span{font:600 clamp(4px,.42vw,6px)/1.35 "DM Sans",sans-serif;letter-spacing:.13em;color:#ddcca9}
-.book-edition{margin-top:18%;font:500 clamp(3px,.31vw,4.5px)/1 "DM Sans",sans-serif;letter-spacing:.18em;color:#bba77c}
-
 /* Portfolios open above the workroom, leaving the desk visible through a dim layer. */
 .portfolio-modal{position:absolute;z-index:100;inset:0}
 .portfolio-modal[hidden]{display:none}
@@ -331,4 +289,94 @@ body{display:grid;place-items:center;min-height:100vh}
  .portfolio-header strong{font-size:12px}
  .portfolio-header small{font-size:7px}
  .portfolio-close{width:30px;height:30px}
+}
+
+
+/* Smaller originals in the six wall frames. */
+.wall-gallery{
+  left:16.2%;
+  right:7.2%;
+  top:11.4%;
+  height:18.2%;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:1.7%;
+  align-items:center;
+}
+.travel-frame{
+  display:block;
+  width:66%;
+  height:100%;
+  margin:0 auto;
+  padding:3px;
+  overflow:hidden;
+}
+.travel-frame figcaption{height:19px}
+.travel-frame figcaption b{font-size:clamp(4px,.40vw,6px)}
+.travel-frame figcaption small{font-size:clamp(3px,.29vw,4.5px)}
+
+/* Keep the right plant out. The left plant stays beside, not on top of, the awards. */
+.plant-right{display:none!important}
+.plant-left{left:23.2%;top:46%;width:7.7%;height:18.5%}
+
+/* Put the real 3D book mockup on the desk. No hover behaviour. */
+.book-mockup{
+  position:absolute;
+  z-index:8;
+  left:72.4%;
+  top:58.7%;
+  width:27%;
+  height:25.4%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+}
+.book-mockup img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center bottom;
+  filter:drop-shadow(5px 9px 7px #0008);
+  user-select:none;
+  -webkit-user-drag:none;
+}
+
+/* Bring the two portfolio actions forward, while keeping them inside the laptop display. */
+.screen-links{
+  width:100%;
+  gap:3.5%;
+  margin-top:1%;
+}
+.screen-links button{
+  width:48%;
+  min-height:clamp(48px,5vw,72px);
+  padding:7px 10px;
+  gap:10px;
+  border:1px solid #d0b988;
+  background:linear-gradient(145deg,#3c5140,#202e24);
+  box-shadow:0 4px 8px #0008,inset 0 1px 0 #fff4;
+}
+.screen-links button b{font-size:clamp(7px,.72vw,11px)}
+.screen-links button small{font-size:clamp(4.5px,.45vw,7px)}
+.screen-links svg{width:clamp(16px,1.6vw,24px);height:clamp(16px,1.6vw,24px)}
+
+/* The modal dims the room without hiding it completely. */
+.modal-shade{
+  background:rgba(8,10,9,.64);
+  backdrop-filter:blur(3px);
+}
+.portfolio-window{height:min(92%,900px);width:min(95%,1380px)}
+@media(max-width:760px){
+  .wall-gallery{left:14.5%;right:5.5%;top:11.5%;height:18.5%;gap:1.1%}
+  .travel-frame{width:72%;padding:2px}
+  .travel-frame figcaption{height:15px}
+  .plant-left{left:21.5%;top:46%;width:8%;height:18%}
+  .book-mockup{left:71%;top:59%;width:28%;height:24%}
+  .screen-links{gap:2%}
+  .screen-links button{min-height:clamp(32px,6vw,46px);padding:3px 4px;gap:4px}
+  .screen-links button b{font-size:clamp(4px,1vw,7px)}
+  .screen-links button small{font-size:clamp(3px,.7vw,5px)}
+  .screen-links svg{width:clamp(9px,1.8vw,13px);height:clamp(9px,1.8vw,13px)}
+  .portfolio-window{width:96%;height:92%}
 }
