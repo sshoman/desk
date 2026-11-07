@@ -12,16 +12,7 @@
 <body>
 <main class="desk-stage" aria-label="Shoman's desk">
 
-<div class="wall-gallery" aria-label="Travel photographs on the wall">
-    <div class="wall-photo tf1" title="Seoul"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/travelkorea.svg" alt="Seoul" draggable="false"></div>
-    <div class="wall-photo tf2" title="Amman"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/travelamman.svg" alt="Amman" draggable="false"></div>
-    <div class="wall-photo tf3" title="Copenhagen"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/travelcopenhagen.svg" alt="Copenhagen" draggable="false"></div>
-    <div class="wall-photo tf4" title="Kuala Lumpur"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/travelkl.svg" alt="Kuala Lumpur" draggable="false"></div>
-    <div class="wall-photo tf5" title="Tel Aviv"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/traveltlv.svg" alt="Tel Aviv" draggable="false"></div>
-    <div class="wall-photo tf6" title="Istanbul"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/travelistanbul.svg" alt="Istanbul" draggable="false"></div>
-  </div>
-
-  <div class="award-label award-one" tabindex="0">
+<div class="award-label award-one" tabindex="0">
     <div class="award-engraving"><b>1st Place</b><span>Pitch Competition</span></div>
     <small class="award-hover"><strong>1st Place, Pitch Competition</strong><br>Rehoboth · South Korea</small>
   </div>
@@ -62,6 +53,5 @@
 document.addEventListener("contextmenu", e => { if (e.target.closest(".desk-stage")) e.preventDefault(); });
 document.addEventListener("dragstart", e => { if (e.target.closest(".desk-stage")) e.preventDefault(); });
 </script>
-<script src="./desk-scene.js" defer></script>
 </body>
 </html>
