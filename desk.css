@@ -104,3 +104,53 @@
  .award-engraving span{font-size:clamp(3px,.72vw,4px)}
  .book-photo{object-fit:cover}
 }
+
+
+/* 2026 photo-room update. The photograph is the room; these are the original live controls. */
+.quotes-wall{display:none!important}
+.desk-stage{background-color:#211a14;background-image:var(--desk-photo);background-position:center top;background-size:100% 100%;background-repeat:no-repeat}
+.travel-frame{top:9.25%;height:25.25%;width:10.28%;z-index:3}
+.tf1{left:16.08%}.tf2{left:28.76%}.tf3{left:41.25%}.tf4{left:53.65%}.tf5{left:66.20%}.tf6{left:78.05%}
+.travel-frame:before{background:transparent;border:1px solid #b28b50;box-shadow:0 1px 8px #0008,inset 0 0 0 2px #d2b783;z-index:0}
+.travel-frame img{inset:5px 5px 23px;width:calc(100% - 10px);height:calc(100% - 28px);object-fit:contain;image-rendering:auto;filter:saturate(.88) contrast(1.02);opacity:1}
+.travel-name{left:5px;right:5px;bottom:5px;height:18px;background:linear-gradient(180deg,#ddc99e,#a7834d);border-top:1px solid #f2dfb8;color:#3b2b19;font-size:clamp(5px,.58vw,8px);letter-spacing:.1em}
+.travel-detail{bottom:-28px}
+.laptop-screen{left:39.78%;top:43.72%;width:22.88%;height:25.25%;padding:1.12% 1.3% .8%;border:1px solid #383a31;border-radius:1px;background:radial-gradient(ellipse at 50% 0%,#263024,#111710 72%);box-shadow:inset 0 0 24px #000b,0 0 0 1px #0008}
+.screen-folders{margin-top:4.5%}
+.award-label{border-radius:2px;background:linear-gradient(145deg,#d3b57b 0%,#9a7543 24%,#e1c894 54%,#8f693b 100%);border:1px solid #75522d;box-shadow:0 2px 2px #120b06b8,inset 0 1px 1px #fff9,inset 0 -2px 3px #463017aa;text-shadow:none}
+.award-one{left:22.25%;top:67.45%;width:5.25%;height:3.05%}
+.award-two{left:28.72%;top:67.55%;width:4.55%;height:3.0%}
+.award-engraving{inset:1px;padding:1%;color:#49351e;text-shadow:0 1px 0 #ead7a9,0 -1px 0 #6d4e2c}
+.award-engraving b{font:700 clamp(5px,.52vw,8px)/1.02 "Playfair Display",Georgia,serif;letter-spacing:.025em}
+.award-engraving span{margin-top:1px;font:700 clamp(3px,.30vw,4.5px)/1.05 "DM Sans",sans-serif;letter-spacing:0}
+.award-hover{z-index:20}
+.book-layer{left:74.55%;top:70.35%;width:17.3%;height:8.4%;z-index:7}
+.book-photo{object-fit:cover;object-position:center;border:1px solid #59452e;box-shadow:0 3px 1px #6d5335,0 7px 12px #0009}
+.paper-note{left:67.05%;top:70.25%;width:7.05%;height:13.65%;min-height:0;padding:0;transform:rotate(-3.5deg) perspective(650px) rotateY(-5deg);z-index:6;background:transparent;border:0;box-shadow:none;isolation:isolate}
+.paper-note:before{content:"";position:absolute;z-index:-1;inset:3px -3px -4px 3px;background:#b7a789;border:1px solid #76654b;box-shadow:0 8px 13px #0009;transform:skewY(.8deg)}
+.paper-page{position:relative;width:100%;height:100%;overflow:hidden;padding:8% 8% 5%;background:linear-gradient(115deg,#f3ead7 0%,#e8ddc7 56%,#d6c7ac 100%);border:1px solid #b6a589;box-shadow:inset 0 0 0 2px #fff8,0 2px 4px #0006;color:#4a3c2b}
+.paper-page:after{content:"";position:absolute;right:0;top:0;width:17%;height:17%;background:linear-gradient(225deg,#b9a98c 0 49%,#f5ecd9 51%);border-left:1px solid #c2b49a;border-bottom:1px solid #c2b49a;box-shadow:-1px 1px 2px #5f503a44}
+.paper-page>span{display:block;font:700 clamp(3px,.34vw,5px)/1.1 "DM Sans",sans-serif;letter-spacing:.12em;color:#92784f}
+.paper-page>b{display:block;margin-top:9%;font:700 clamp(6px,.72vw,10px)/1.12 "Playfair Display",Georgia,serif;color:#382d21}
+.paper-rule{display:block;width:75%;height:1px;margin-top:8%;background:linear-gradient(90deg,#9e8157,#c8b796)}
+.paper-lines{height:36%;margin-top:8%;background:repeating-linear-gradient(to bottom,transparent 0 5px,#8f887b55 5px 6px)}
+.paper-detail{z-index:21;left:50%;bottom:calc(100% + 8px);width:clamp(150px,17vw,220px);padding:10px 12px;background:#f1e7d6;border:1px solid #c5a36c;color:#382b1e;box-shadow:0 12px 28px #0009;font-size:10px;line-height:1.5;opacity:0;visibility:hidden;transform:translate(-50%,6px);transition:.18s}
+.paper-note:hover .paper-detail,.paper-note:focus-visible .paper-detail{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.desk-footer{top:87.3%}
+@media(max-width:760px){
+ .travel-frame{height:25.25%;width:10.28%}
+ .travel-name{height:14px;font-size:clamp(4px,1.1vw,6px)}
+ .travel-frame img{inset:3px 3px 18px;width:calc(100% - 6px);height:calc(100% - 21px)}
+ .award-engraving b{font-size:clamp(4px,1vw,6px)}
+ .award-engraving span{font-size:clamp(2px,.48vw,3.2px)}
+ .laptop-screen{padding:1% 1.1% .7%}
+ .screen-top{font-size:clamp(4px,.85vw,7px)}
+ .screen-brand{font-size:clamp(10px,2.6vw,21px)}
+ .screen-prompt{font-size:clamp(4px,.72vw,6px)}
+ .folder-link b{font-size:clamp(4px,1vw,7px)}
+ .folder-link small{font-size:clamp(3px,.65vw,4.5px)}
+ .paper-page>span{font-size:clamp(2.5px,.66vw,4px)}
+ .paper-page>b{font-size:clamp(4px,1vw,7px)}
+ .paper-lines{background:repeating-linear-gradient(to bottom,transparent 0 3px,#8f887b55 3px 4px)}
+ .paper-detail{font-size:8px}
+}
