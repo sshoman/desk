@@ -1,65 +1,91 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#211d19"><meta name="description" content="Salah Shoman. A desk full of things built, written, and explored.">
-<title>Salah Shoman | The Desk</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#211a14"><meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="description" content="Shoman. A private collection of work, places and ideas.">
+<title>Shoman</title>
+<script src="./auth.js"></script>
+<script src="./desk-scene.js"></script>
 <link rel="stylesheet" href="./desk.css">
 </head>
 <body>
-<main class="room" aria-label="Salah Shoman's desk">
-  <div class="wall-light"></div>
-  <header class="wall-gallery">
-    <div class="gallery-heading"><span>FIELD NOTES</span><i></i><span>PLACES THAT LEFT A MARK</span></div>
-    <div class="travel-frames">
-      <a class="travel-frame" href="https://shoman.pages.dev/lovable-uploads/travelkorea.svg" target="_blank" rel="noopener"><span class="frame-mat"><img src="https://shoman.pages.dev/lovable-uploads/travelkorea.svg" alt="Seoul travel illustration"></span><span class="travel-caption"><b>Seoul</b><small>AI Conference</small></span></a>
-      <a class="travel-frame" href="https://shoman.pages.dev/lovable-uploads/travelamman.svg" target="_blank" rel="noopener"><span class="frame-mat"><img src="https://shoman.pages.dev/lovable-uploads/travelamman.svg" alt="Amman travel illustration"></span><span class="travel-caption"><b>Amman</b><small>Startup Pitch</small></span></a>
-      <a class="travel-frame" href="https://shoman.pages.dev/lovable-uploads/travelcopenhagen.svg" target="_blank" rel="noopener"><span class="frame-mat"><img src="https://shoman.pages.dev/lovable-uploads/travelcopenhagen.svg" alt="Copenhagen travel illustration"></span><span class="travel-caption"><b>Copenhagen</b><small>LARP</small></span></a>
-      <a class="travel-frame" href="https://shoman.pages.dev/lovable-uploads/travelkl.svg" target="_blank" rel="noopener"><span class="frame-mat"><img src="https://shoman.pages.dev/lovable-uploads/travelkl.svg" alt="Kuala Lumpur travel illustration"></span><span class="travel-caption"><b>Kuala Lumpur</b><small>Book Tour</small></span></a>
-      <a class="travel-frame" href="https://shoman.pages.dev/lovable-uploads/traveltlv.svg" target="_blank" rel="noopener"><span class="frame-mat"><img src="https://shoman.pages.dev/lovable-uploads/traveltlv.svg" alt="Tel Aviv travel illustration"></span><span class="travel-caption"><b>Tel Aviv</b><small>Pokémon Hunt</small></span></a>
-      <a class="travel-frame" href="https://shoman.pages.dev/lovable-uploads/travelistanbul.svg" target="_blank" rel="noopener"><span class="frame-mat"><img src="https://shoman.pages.dev/lovable-uploads/travelistanbul.svg" alt="Istanbul travel illustration"></span><span class="travel-caption"><b>Istanbul</b><small>Startup Istanbul</small></span></a>
+<main class="desk-stage" aria-label="Shoman's desk">
+  <div class="wall-gallery" aria-label="Travel photographs">
+    <div class="travel-frame tf1" tabindex="0">
+      <img src="https://shoman.pages.dev/lovable-uploads/travelkorea.svg" alt="Original Seoul travel illustration" draggable="false">
+      <span class="travel-detail"><b>SEOUL</b><small>AI Conference</small></span>
     </div>
-  </header>
-  <div class="room-label"><span>THE WORKROOM</span><i></i><span>EST. IN CURIOSITY</span></div>
-  <section class="desk-scene" aria-label="Desk with portfolios, awards and a book">
-    <div class="desk-top"></div><div class="desk-gloss"></div><div class="desk-edge"></div>
-    <div class="desk-front"><div class="drawer drawer-left"><small>S. SHOMAN</small><i></i></div><div class="drawer drawer-right"><i></i></div></div>
-    <div class="desk-leg leg-left"></div><div class="desk-leg leg-right"></div>
-    <div class="desk-items">
-      <div class="award-group">
-        <article class="award" tabindex="0">
-          <div class="award-plaque"><small>RECOGNITION</small><img src="https://shoman.pages.dev/lovable-uploads/awardsrehoboth.svg" alt="Rehoboth award emblem"><strong>1st Place</strong><span>Pitch Competition</span></div>
-          <div class="award-detail"><small>AWARD 01</small><strong>1st Place, Pitch Competition</strong><span>Rehoboth · South Korea</span></div>
-        </article>
-        <article class="award award-second" tabindex="0">
-          <div class="award-plaque"><small>RECOGNITION</small><img src="https://shoman.pages.dev/lovable-uploads/awardsbank.svg" alt="Arab Bank award emblem"><strong>Top 3</strong><span>FinTech Startups · 2019</span></div>
-          <div class="award-detail"><small>AWARD 02</small><strong>Top 3 Financial Technology Startups</strong><span>Arab Bank · 2019</span></div>
-        </article>
-      </div>
-      <div class="laptop">
-        <div class="laptop-lid"><i class="camera"></i><div class="screen">
-          <div class="screen-top"><span>PERSONAL WORKSPACE</span><span class="online"><i></i> ONLINE</span></div>
-          <div class="screen-name"><span>SALAH</span><b>SHOMAN</b></div><div class="screen-rule"></div>
-          <p>Choose a folder to explore</p>
-          <div class="screen-apps">
-            <a class="screen-app" href="./design-portfolio.html"><span class="app-icon"><svg viewBox="0 0 40 40"><path d="M8 10.5 20 4l12 6.5v15L20 32l-12-6.5zM8 10.5l12 7 12-7M20 17.5V32"/></svg></span><b>Design Portfolio</b><small>Products · Visual work</small></a>
-            <a class="screen-app" href="./marketing-portfolio.html"><span class="app-icon"><svg viewBox="0 0 40 40"><path d="M5 9.5h30v21H5zM6 11l14 11 14-11M20 22v9"/></svg></span><b>Marketing Portfolio</b><small>Growth · Campaigns · Copy</small></a>
-          </div>
-          <div class="screen-foot"><span>BUILT, NOT BORROWED</span><span>01 / 02</span></div>
-        </div></div>
-        <div class="hinge"></div><div class="laptop-base"><i></i><b></b></div>
-      </div>
-      <div class="book-object" tabindex="0" aria-label="Wild Cash. Hover to reveal Amazon link">
-        <div class="book-pages"></div><div class="book-cover"><small>A PRACTICAL GUIDE</small><strong>WILD<br>CASH</strong><span>HOW TO TAME<br>CASH FLOW</span><b>SALAH SHOMAN</b></div><div class="book-spine">WILD CASH · SALAH SHOMAN</div>
-        <div class="book-hover"><small>THE BOOK</small><strong>Wild Cash</strong><span>How to Tame Cash Flow</span><a href="https://www.amazon.com/Wild-Cash-How-Tame-Flow/dp/B0BTRRC7TX" target="_blank" rel="noopener">Find it on Amazon <b>↗</b></a></div>
-      </div>
-      <a class="paper-folio" href="./paper.html"><small>RESEARCH NOTE</small><strong>Agentic Learning<br>Without Retention</strong><span>Open paper ↗</span></a>
-      <div class="lamp" aria-hidden="true"><i></i><b></b><span></span></div><div class="desk-mat"></div>
+    <div class="travel-frame tf2" tabindex="0">
+      <img src="https://shoman.pages.dev/lovable-uploads/travelamman.svg" alt="Original Amman travel illustration" draggable="false">
+      <span class="travel-detail"><b>AMMAN</b><small>Startup Pitch</small></span>
     </div>
+    <div class="travel-frame tf3" tabindex="0">
+      <img src="https://shoman.pages.dev/lovable-uploads/travelcopenhagen.svg" alt="Original Copenhagen travel illustration" draggable="false">
+      <span class="travel-detail"><b>COPENHAGEN</b><small>LARP</small></span>
+    </div>
+    <div class="travel-frame tf4" tabindex="0">
+      <img src="https://shoman.pages.dev/lovable-uploads/travelkl.svg" alt="Original Kuala Lumpur travel illustration" draggable="false">
+      <span class="travel-detail"><b>KUALA LUMPUR</b><small>Book Tour</small></span>
+    </div>
+    <div class="travel-frame tf5" tabindex="0">
+      <img src="https://shoman.pages.dev/lovable-uploads/traveltlv.svg" alt="Original Tel Aviv travel illustration" draggable="false">
+      <span class="travel-detail"><b>TEL AVIV</b><small>Pokémon Hunt</small></span>
+    </div>
+    <div class="travel-frame tf6" tabindex="0">
+      <img src="https://shoman.pages.dev/lovable-uploads/travelistanbul.svg" alt="Original Istanbul travel illustration" draggable="false">
+      <span class="travel-detail"><b>ISTANBUL</b><small>Startup Istanbul</small></span>
+    </div>
+  </div>
+
+  <div class="award-label award-one" tabindex="0">
+    <b>1st Place</b><span>Pitch Competition</span>
+    <small class="award-hover"><strong>1st Place, Pitch Competition</strong><br>Rehoboth · South Korea</small>
+  </div>
+  <div class="award-label award-two" tabindex="0">
+    <b>Top 3</b><span>FinTech Startups · 2019</span>
+    <small class="award-hover"><strong>Top 3 Financial Technology Startups</strong><br>Arab Bank · 2019</small>
+  </div>
+
+  <section class="laptop-screen" aria-label="Portfolio folders on the laptop">
+    <div class="screen-top"><span>PERSONAL WORKSPACE</span><span class="screen-status"><i></i> READY</span></div>
+    <div class="screen-brand">SHOMAN</div>
+    <div class="screen-rule"></div>
+    <p class="screen-prompt">Choose a folder</p>
+    <div class="screen-folders">
+      <a class="folder-link" href="./design-portfolio.html">
+        <span class="folder-icon"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 12.5h12l3 3h15v16H5zM5 12.5v-3h12l3 3"/></svg></span>
+        <b>Design Portfolio</b><small>Products · Visual work</small>
+      </a>
+      <a class="folder-link" href="./marketing-portfolio.html">
+        <span class="folder-icon"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 9.5h30v21H5zM6 11l14 11 14-11M20 22v9"/></svg></span>
+        <b>Marketing Portfolio</b><small>Growth · Campaigns</small>
+      </a>
+    </div>
+    <div class="screen-bottom"><span>BUILT, NOT BORROWED</span><span>SHOMAN / 01</span></div>
   </section>
-  <footer class="room-footer"><span>PALESTINE · ELSEWHERE · ONLINE</span><a href="https://linkedin.com/in/shoman" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://github.com/sshoman" target="_blank" rel="noopener">GitHub ↗</a><a href="mailto:shoman@outlook.co.il">Contact ↗</a></footer>
+
+  <div class="book-layer" tabindex="0" aria-label="exProgressive book cover">
+    <div class="book-cover">
+      <small>AN UNCOMFORTABLE READ</small>
+      <strong>ex<br>Progressive</strong>
+      <span>WHAT THE LEFT<br>DOESN'T GET</span>
+      <b>SHOMAN</b>
+    </div>
+    <div class="book-detail"><strong>exProgressive</strong><span>What the Left Doesn't Get</span><small>Written by Shoman</small></div>
+  </div>
+
+  <div class="paper-note" tabindex="0">
+    <span>RESEARCH NOTE</span>
+    <b>Agentic Learning<br>Without Retention</b>
+    <small class="paper-detail">A framework for turning tested experience into transferable understanding.</small>
+  </div>
+
+  <div class="desk-footer"><span>SHOMAN</span><i></i><span>THE WORKROOM</span></div>
 </main>
+<script>
+document.addEventListener("contextmenu", e => { if (e.target.closest(".desk-stage")) e.preventDefault(); });
+document.addEventListener("dragstart", e => { if (e.target.closest(".desk-stage")) e.preventDefault(); });
+</script>
 </body>
 </html>
