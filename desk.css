@@ -380,3 +380,15 @@ body{display:grid;place-items:center;min-height:100vh}
   .screen-links svg{width:clamp(9px,1.8vw,13px);height:clamp(9px,1.8vw,13px)}
   .portfolio-window{width:96%;height:92%}
 }
+
+/* Give both awards a little more room so their engraving reads clearly. */
+.award-objects{left:25.4%;top:65.5%;width:11%;height:15.8%;gap:6%}
+.award-topline{font-size:clamp(3px,.32vw,5px)}
+.award-plaque strong{font-size:clamp(7px,.78vw,12px)}
+.award-plaque small{font-size:clamp(4px,.4vw,6px)}
+@media(max-width:760px){
+ .award-objects{left:23.8%;top:65.5%;width:12%;height:14.5%;gap:5%}
+ .award-topline{font-size:clamp(2.5px,.48vw,3.5px)}
+ .award-plaque strong{font-size:clamp(4.5px,1vw,6.5px)}
+ .award-plaque small{font-size:clamp(2.5px,.6vw,4px)}
+}
