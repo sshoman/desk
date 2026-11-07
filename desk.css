@@ -154,3 +154,182 @@
  .paper-lines{background:repeating-linear-gradient(to bottom,transparent 0 3px,#8f887b55 3px 4px)}
  .paper-detail{font-size:8px}
 }
+
+
+/* Wall: the original five taped quote notes, now spread across the photo wall. */
+.quotes-wall{
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:1.15%;
+  position:absolute;
+  left:12.15%;
+  top:8.6%;
+  width:76.8%;
+  height:27.8%;
+  z-index:12;
+  pointer-events:none;
+}
+.quote-note{
+  position:relative;
+  width:auto;
+  height:100%;
+  min-width:0;
+  min-height:0;
+  padding:9% 8% 7%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  overflow:visible;
+  pointer-events:auto;
+  border:1px solid #b99b65;
+  box-shadow:2px 6px 10px #08060475, inset 0 1px 0 #fff9;
+  transform:rotate(-1.25deg);
+  background:linear-gradient(135deg,#fff1c4,#e8cf8e);
+  color:#43341f;
+}
+.quote-note:nth-child(even){transform:rotate(1.25deg);background:linear-gradient(135deg,#f3e2bd,#dbc59e)}
+.quote-note:before{
+  content:"";
+  position:absolute;
+  top:-5px;
+  left:38%;
+  width:25%;
+  height:11px;
+  background:#d8d1b6dd;
+  border:1px solid #b8ad8e;
+  box-shadow:0 1px 2px #0004;
+  transform:rotate(-2deg);
+}
+.note-no{position:absolute;right:7px;top:6px;font:700 clamp(6px,.48vw,8px) Arial,sans-serif;letter-spacing:.12em;color:#846d4b}
+.quote-note>b{font:700 clamp(8px,.78vw,13px)/1.15 "DM Sans",sans-serif;letter-spacing:.09em}
+.note-stub{display:block;margin-top:7px;font:clamp(7px,.62vw,10px)/1.25 Georgia,serif;color:#6c5940}
+.q2{background:linear-gradient(135deg,#f3e5c5,#e4c9a0)}
+.q3{background:linear-gradient(135deg,#e9dfed,#cfc0dc)}
+.q4{background:linear-gradient(135deg,#dce8ef,#c1d5e1)}
+.q5{background:linear-gradient(135deg,#dce7d9,#c2d4b8)}
+.quote-reveal{
+  position:absolute;
+  z-index:30;
+  top:calc(100% + 9px);
+  left:50%;
+  right:auto;
+  width:clamp(195px,20vw,300px);
+  padding:13px 15px;
+  background:linear-gradient(145deg,#fff4d5,#ead8b3);
+  border:1px solid #b99b65;
+  box-shadow:0 14px 32px #000b;
+  color:#3b2d1d;
+  opacity:0;
+  visibility:hidden;
+  transform:translate(-50%,-5px) scale(.98);
+  transform-origin:top center;
+  transition:opacity .16s,transform .16s,visibility .16s;
+  pointer-events:none;
+}
+.quote-reveal p{margin:0;font:clamp(10px,.78vw,13px)/1.5 Georgia,serif}
+.quote-reveal small{display:block;margin-top:8px;text-align:right;font:700 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8c7046}
+.quote-note:hover .quote-reveal,.quote-note:focus-visible .quote-reveal{
+  opacity:1;visibility:visible;transform:translate(-50%,0) scale(1)
+}
+.q1 .quote-reveal{left:0;transform:translate(0,-5px) scale(.98);transform-origin:top left}
+.q1:hover .quote-reveal,.q1:focus-visible .quote-reveal{transform:translate(0,0) scale(1)}
+.q5 .quote-reveal{left:auto;right:0;transform:translate(0,-5px) scale(.98);transform-origin:top right}
+.q5:hover .quote-reveal,.q5:focus-visible .quote-reveal{transform:translate(0,0) scale(1)}
+
+/* The six city illustrations are tabletop photographs, not wall art. */
+.desk-gallery{position:absolute;inset:0;z-index:10;pointer-events:none}
+.desk-gallery .travel-frame{
+  position:absolute;
+  top:73%;
+  width:4.65%;
+  height:7.5%;
+  min-width:0;
+  overflow:visible;
+  padding:0;
+  pointer-events:auto;
+  filter:drop-shadow(0 3px 3px #0009);
+}
+.desk-gallery .tf1{left:4.5%;top:73.3%;transform:rotate(-3deg)}
+.desk-gallery .tf2{left:14.2%;top:75.2%;transform:rotate(2.3deg)}
+.desk-gallery .tf3{left:32.5%;top:72.8%;transform:rotate(-1.5deg)}
+.desk-gallery .tf4{left:65.2%;top:74.4%;transform:rotate(2deg)}
+.desk-gallery .tf5{left:84.6%;top:78.4%;transform:rotate(-2.5deg)}
+.desk-gallery .tf6{left:91.0%;top:72.6%;transform:rotate(2.5deg)}
+.desk-gallery .travel-frame:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:linear-gradient(135deg,#79532d,#352316 48%,#8a6337);
+  border:1px solid #382616;
+  box-shadow:inset 0 0 0 2px #bd965b,inset 0 0 0 4px #4c321d,0 3px 5px #0008;
+}
+.desk-gallery .travel-frame:after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  left:29%;
+  right:29%;
+  top:91%;
+  height:16%;
+  background:linear-gradient(90deg,#3b2617,#a27641 50%,#362316);
+  clip-path:polygon(0 0,100% 0,75% 100%,25% 100%);
+  box-shadow:0 2px 3px #0008;
+}
+.desk-gallery .travel-frame img{
+  position:absolute;
+  z-index:1;
+  inset:5px 5px 17px;
+  width:calc(100% - 10px);
+  height:calc(100% - 22px);
+  object-fit:contain;
+  image-rendering:auto;
+  filter:saturate(.88) contrast(1.02);
+  opacity:1;
+  pointer-events:none;
+}
+.desk-gallery .travel-name{
+  position:absolute;
+  z-index:3;
+  left:5px;
+  right:5px;
+  bottom:5px;
+  height:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(180deg,#dfca9d,#aa8049);
+  border-top:1px solid #f2dfb8;
+  color:#3b2b19;
+  font:700 clamp(4px,.36vw,6px) "DM Sans",sans-serif;
+  letter-spacing:.07em;
+  text-shadow:0 1px #f4e3bd;
+  white-space:nowrap;
+}
+.desk-gallery .travel-detail{
+  left:50%;
+  bottom:calc(100% + 8px);
+  min-width:120px;
+  padding:5px 8px;
+  z-index:35;
+  background:#241d17ed;
+  border:1px solid #c6a46a;
+  color:#f4ead7;
+}
+.desk-gallery .travel-detail small{font:10px Georgia,serif;color:#e5d4b2}
+.desk-gallery .travel-frame:hover .travel-detail,.desk-gallery .travel-frame:focus-visible .travel-detail{
+  opacity:1;visibility:visible;transform:translate(-50%,0)
+}
+
+@media(max-width:760px){
+  .quotes-wall{left:7%;top:8.5%;width:86%;height:27%;gap:1%}
+  .quote-note{padding:9% 6% 6%}
+  .quote-note>b{font-size:clamp(5px,1.12vw,9px)}
+  .note-stub{font-size:clamp(4px,.92vw,7px);margin-top:4px}
+  .note-no{font-size:clamp(4px,.7vw,6px)}
+  .quote-reveal{width:clamp(150px,38vw,220px);padding:8px 10px}
+  .quote-reveal p{font-size:9px}
+  .desk-gallery .travel-frame{width:5.2%;height:7.1%}
+  .desk-gallery .travel-frame img{inset:3px 3px 14px;width:calc(100% - 6px);height:calc(100% - 17px)}
+  .desk-gallery .travel-name{left:3px;right:3px;bottom:3px;height:9px;font-size:clamp(2.6px,.55vw,4px)}
+}
