@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Junior | Product Showcase</title>
+<base href="https://jrf4.juniorfront.pages.dev/">
+<link rel="stylesheet" href="https://jrf4.juniorfront.pages.dev/assets/index-PpMsJ2fJ.css">
+<script>
+(function () {
+  try {
+    localStorage.setItem("currentUser", JSON.stringify({
+      id: "u-tamara",
+      name: "Tamara",
+      role: "admin"
+    }));
+  } catch (error) {
+    document.documentElement.dataset.showcaseError = "storage-unavailable";
+  }
+})();
+</script>
+<script type="module" crossorigin src="https://sshoman.github.io/desk/junior-showcase-assets/app.js"></script>
+</head>
+<body class="bg-gray-900">
+<div id="root"></div>
+</body>
+</html>
