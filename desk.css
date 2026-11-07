@@ -490,3 +490,7 @@ body{display:grid;place-items:center;min-height:100svh;height:100svh}
  .paper{left:28%;width:18.5%}
  .book-mockup{left:60.5%;width:38%}
 }
+
+/* Keep the paper fully in the clear strip beside the laptop, not underneath its base. */
+.paper{left:66.5%;top:67.4%;width:8.2%;height:14.6%}
+@media(max-width:760px){.paper{left:29%;top:63%;width:18%;height:14.5%}}
