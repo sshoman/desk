@@ -1,49 +1,18 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#211a14">
 <meta name="description" content="Shoman. A collection of work, places and ideas.">
 <title>Shoman</title>
-
-<link rel="preload" as="image" href="./office.webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./desk.css">
 </head>
 <body>
-<main class="desk-stage" aria-label="Shoman's desk">
-  <div class="desk-front" aria-hidden="true"><span class="drawer"></span><span class="drawer-handle"></span></div>
-
-<section class="laptop-screen" aria-label="Portfolio links on the laptop">
-    <div class="screen-top"><span>SHOMAN</span><span class="screen-status"><i></i> ONLINE</span></div>
-    <div class="screen-brand">WORKSPACE</div>
-    <div class="screen-rule"></div>
-    <p class="screen-prompt">SELECT A PORTFOLIO</p>
-    <div class="screen-folders">
-      <a class="folder-link" href="./design-portfolio.html"><b>DESIGN</b><small>Portfolio</small></a>
-      <a class="folder-link" href="./marketing-portfolio.html"><b>MARKETING</b><small>Portfolio</small></a>
-    </div>
-  </section>
-
-  <div class="book-layer" tabindex="0" aria-label="exProgressive book cover">
-    <img class="book-photo" src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/PPontherock.png" alt="Original exProgressive book mockup" draggable="false">
-    <div class="book-detail"><strong>exProgressive</strong><span>What The Left Doesn't Get</span><small>Written by Shoman</small></div>
-  </div>
-
-  <div class="paper-note" tabindex="0" aria-label="Research paper">
-    <div class="paper-page">
-      <span>RESEARCH PAPER · 2026</span>
-      <b>Agentic Learning<br>Without Retention</b>
-      <i class="paper-rule"></i>
-      <div class="paper-lines" aria-hidden="true"></div>
-      <small class="paper-detail">A framework for turning tested experience into transferable understanding.</small>
-    </div>
-  </div>
-
-  <div class="desk-footer"><span>SHOMAN</span><i></i><span>THE WORKROOM</span></div>
-</main>
-<script>
-document.addEventListener("contextmenu", e => { if (e.target.closest(".desk-stage")) e.preventDefault(); });
-document.addEventListener("dragstart", e => { if (e.target.closest(".desk-stage")) e.preventDefault(); });
-</script>
+<main id="desk-scene" class="desk-scene" aria-label="Shoman's workroom"></main>
+<script src="./desk-scene.js" defer></script>
 </body>
 </html>
