@@ -66,16 +66,8 @@ scene.innerHTML=`
   <div class="paper-lines"></div>
  </div>
 
- <div class="standing-book" aria-label="exProgressive book">
-  <div class="book-pages"></div>
-  <div class="book-spine"><span>exProgressive</span></div>
-  <div class="book-cover">
-   <small class="book-author">WRITTEN BY SHOMAN</small>
-   <strong>exProgressive</strong>
-   <i class="book-rule"></i>
-   <span>WHAT THE LEFT DOESN'T GET</span>
-   <small class="book-edition">A BOOK BY SHOMAN</small>
-  </div>
+ <div class="book-mockup" aria-label="Original Post Progressive 3D book mockup">
+  <img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/PPontherock.png" alt="Original 3D Post Progressive book mockup" loading="eager" draggable="false">
  </div>
 
  <div class="portfolio-modal" id="portfolio-modal" hidden aria-hidden="true">
