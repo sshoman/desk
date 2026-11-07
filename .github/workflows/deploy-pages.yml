@@ -1,9 +1,6 @@
 name: Deploy shoman to Cloudflare Pages
 
 on:
-  push:
-    branches:
-      - desk-interior
   workflow_dispatch:
 
 permissions:
@@ -20,5 +17,5 @@ jobs:
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          accountId: 3ad1a9e21806ee57348b5c99264accf0
           command: pages deploy . --project-name=shoman --branch=desk-interior
