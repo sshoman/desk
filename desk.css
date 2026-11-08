@@ -2271,3 +2271,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .travel-frame:nth-child(5){width:clamp(78px,22vw,88px)!important}
  .travel-frame:nth-child(5) .travel-photo{object-position:left center!important}
 }
+
+
+/* KL is intentionally a low-resolution source image, not a blur filter. */
+img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
