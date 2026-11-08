@@ -45,6 +45,8 @@
  let category="outreach",index=0;
  const image=document.getElementById("marketing-slide-image"),title=document.getElementById("slide-category");
  const count=document.getElementById("slide-counter"),label=document.getElementById("slide-label");
+ const allSamples=Object.values(categories).flatMap(group=>group.items);
+ allSamples.forEach(item=>{const preload=new Image();preload.src=item.src});
  const render=()=>{
   const data=categories[category],item=data.items[index];
   image.src=item.src;image.alt=item.alt;title.textContent=data.title;
@@ -56,9 +58,21 @@
  document.getElementById("slide-prev").addEventListener("click",()=>{const items=categories[category].items;index=(index+items.length-1)%items.length;render()});
  document.getElementById("slide-next").addEventListener("click",()=>{const items=categories[category].items;index=(index+1)%items.length;render()});
  document.addEventListener("keydown",event=>{
+  if(!viewer.hidden)return;
   if(event.key==="ArrowLeft"){const items=categories[category].items;index=(index+items.length-1)%items.length;render()}
   if(event.key==="ArrowRight"){const items=categories[category].items;index=(index+1)%items.length;render()}
  });
+ let swipeStartX=null;
+ const slide=document.getElementById("marketing-slide");
+ slide.addEventListener("pointerdown",event=>{swipeStartX=event.clientX});
+ slide.addEventListener("pointerup",event=>{
+  if(swipeStartX===null)return;
+  const delta=event.clientX-swipeStartX;swipeStartX=null;
+  if(Math.abs(delta)<45)return;
+  const items=categories[category].items;
+  index=(index+(delta<0?1:items.length-1))%items.length;render();
+ });
+ slide.addEventListener("pointercancel",()=>{swipeStartX=null});
  const viewer=document.getElementById("certificate-viewer"),full=document.getElementById("certificate-full-image");
  const close=()=>{viewer.hidden=true;viewer.setAttribute("aria-hidden","true");full.src=""};
  document.querySelectorAll("[data-certificate-open]").forEach(button=>button.addEventListener("click",()=>{

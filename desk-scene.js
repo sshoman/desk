@@ -32,7 +32,7 @@ scene.innerHTML=`
 
  
  <div class="award-glass-display" aria-label="Awards">
-  <article class="glass-trophy glass-rehoboth" role="img" aria-label="First place, Rehoboth pitch competition">
+  <article class="glass-trophy glass-rehoboth" tabindex="0" aria-label="First place, Rehoboth pitch competition" aria-describedby="award-rehoboth-details">
    <span class="glass-contact-shadow"></span>
    <div class="glass-foot"><span class="glass-foot-front"></span><span class="glass-foot-side"></span></div>
    <div class="glass-prism">
@@ -48,8 +48,13 @@ scene.innerHTML=`
     </div>
     <span class="glass-face-right"></span><span class="glass-face-top"></span>
    </div>
+   <div class="award-hover" id="award-rehoboth-details">
+    <span class="award-hover-kicker">REHOBOTH · SOUTH KOREA</span>
+    <strong>1st Place</strong>
+    <small>Pitch Competition</small>
+   </div>
   </article>
-  <article class="glass-trophy glass-arab" role="img" aria-label="Top three, Arab Bank FinTech startups competition, 2019">
+  <article class="glass-trophy glass-arab" tabindex="0" aria-label="Top three, Arab Bank Financial Technology Startups, 2019" aria-describedby="award-arab-details">
    <span class="glass-contact-shadow"></span>
    <div class="glass-foot"><span class="glass-foot-front"></span><span class="glass-foot-side"></span></div>
    <div class="glass-prism">
@@ -64,6 +69,11 @@ scene.innerHTML=`
      </div>
     </div>
     <span class="glass-face-right"></span><span class="glass-face-top"></span>
+   </div>
+   <div class="award-hover" id="award-arab-details">
+    <span class="award-hover-kicker">ARAB BANK · 2019</span>
+    <strong>Top 3</strong>
+    <small>Financial Technology Startups</small>
    </div>
   </article>
  </div>
@@ -102,9 +112,17 @@ scene.innerHTML=`
   <div class="paper-hover"><b>Agentic Learning Without Retention</b><span>From experience to transferable understanding. The paper proposes treating experience as temporary evidence, not knowledge to inherit.</span><span>It gives informative failures and other surprises priority, then tests competing explanations with counterexamples and prospective tests. Only explanations that survive become conditional principles, connected into a revisable worldview.</span><span class="paper-hover-action">Open the full research paper ↗</span></div>
  </a>
 
- <a class="book-mockup" href="https://www.amazon.com/s?k=exProgressive+Salah+Shoman" target="_blank" rel="noopener noreferrer" aria-label="Buy exProgressive by Shoman on Amazon">
-  <img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/PPontherock.png" alt="3D cover mockup of exProgressive by Shoman" loading="eager" draggable="false">
-  <span class="book-hover"><b>exProgressive</b><span>What The Left Doesn’t Get.</span><span>A critique of how the modern Left understands power, morality, equality and progress. It also challenges the right, rather than treating it as the answer.</span><span>Looks at the assumptions hiding behind good intentions, the language of moral authority, and the ways ideas can produce outcomes their supporters did not intend.</span><small>By Shoman · Open on Amazon ↗</small></span>
+ <a class="book-mockup" href="https://www.amazon.com/dp/B0DLDYF2QS" target="_blank" rel="noopener noreferrer" aria-label="Open exProgressive: How Capitalism Used Inequality by Salah Shoman on Amazon">
+  <img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/PPontherock.png" alt="3D book mockup for exProgressive by Salah Shoman" loading="eager" draggable="false">
+  <span class="book-hover">
+   <img class="book-hover-cover" src="./portfolio-assets/exprogressive-cover.jpg" alt="Current Amazon cover for exProgressive: How Capitalism Used Inequality" loading="eager">
+   <span class="book-hover-copy">
+    <b>exProgressive</b>
+    <strong>How Capitalism Used Inequality</strong>
+    <span>Why do some highly unequal societies move faster than egalitarian ones? The book traces this pattern from early civilizations to modern America, examining how elite power and the destruction of old systems can accelerate technological change, and who pays for it.</span>
+    <small>By Salah Shoman · Open on Amazon ↗</small>
+   </span>
+  </span>
  </a>
 
  <div class="portfolio-modal" id="portfolio-modal" hidden aria-hidden="true">
