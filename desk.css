@@ -372,3 +372,54 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .desk-lamp-right .lamp-bulb{top:29%}
 }
 @media(max-width:380px){.desk-lamp-right{left:86%;width:11%}}
+
+
+/* Full-width wall display. Spread the travel frames evenly across the full wall. */
+.wall-gallery{left:1.4%!important;right:1.4%!important;top:11.2%;height:18.8%;gap:.45%;grid-template-columns:repeat(6,minmax(0,1fr))}
+.travel-frame{width:70%;height:100%;margin:0 auto;padding:3px;overflow:visible}
+.travel-photo{width:100%;height:100%;object-fit:cover;object-position:center;background:#342c22}
+.travel-frame figcaption{position:absolute;z-index:4;left:4px;right:4px;bottom:4px;height:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,#f0e2c7f2,#bd9a65f5);border-top:1px solid #fff6;color:#48341f;opacity:0;visibility:hidden;transform:translateY(5px);transition:opacity .18s,transform .18s,visibility .18s}
+.travel-frame:hover figcaption,.travel-frame:focus-visible figcaption{opacity:1;visibility:visible;transform:translateY(0)}
+.travel-frame:hover,.travel-frame:focus-visible{z-index:15;transform:translateY(-4px) scale(1.06)}
+.travel-frame:before{inset:3px;pointer-events:none}
+
+/* Awards: raised metal rim, extruded sides and a solid foot. */
+.award-objects{perspective:700px}
+.award-plaque{overflow:visible;border-radius:2px;transform:perspective(600px) rotateY(-5deg) rotateX(1deg);transform-style:preserve-3d;background:linear-gradient(110deg,#d6bb80 0 2px,#39483d 2px 7px,#18251d 18%,#26372c 78%,#0d1712 100%);border:1px solid #d4b478;box-shadow:0 12px 17px #000b,2px 2px 0 #78572f,4px 4px 0 #302419,inset 1px 1px 0 #fff7,inset 3px 0 0 #96703e,inset -3px 0 0 #0e160f}
+.award-plaque:before{inset:5px;border:1px solid #e4cc91;box-shadow:inset 0 0 0 1px #ffffff12,0 0 0 1px #0d160f;background:linear-gradient(135deg,#ffffff0a,transparent 35%,#0002 100%)}
+.award-plaque:after{left:5%;right:5%;bottom:-9%;height:9%;background:linear-gradient(180deg,#e0c185 0%,#987344 40%,#49311d 100%);border:1px solid #4d341d;border-radius:0 0 2px 2px;box-shadow:0 5px 5px #0008,inset 0 1px 0 #fff7}
+.award-depth{position:absolute;z-index:-1;top:3px;right:-7px;bottom:-5px;width:7px;background:linear-gradient(90deg,#3e2a19,#b28b50 30%,#52371e 75%,#20170f);border:1px solid #50351e;transform:skewY(-2deg);box-shadow:3px 4px 5px #0009}
+.award-plaque strong{text-shadow:0 1px 0 #090f0b,0 2px 3px #000b}
+.award-plaque:hover,.award-plaque:focus-visible{transform:perspective(600px) rotateY(-2deg) rotateX(0) translateY(-4px) scale(1.025);box-shadow:0 16px 22px #000c,2px 2px 0 #78572f,4px 4px 0 #302419,inset 1px 1px 0 #fff7,inset 3px 0 0 #96703e,inset -3px 0 0 #0e160f}
+
+/* Clickable book and paper details. */
+.paper{display:block;text-decoration:none;color:inherit;cursor:pointer}
+.paper-hover{z-index:25}
+.paper-hover-action{align-self:flex-start;color:#674b2d;font-weight:700;border-bottom:1px solid #b99a67}
+.book-mockup{text-decoration:none;color:inherit;cursor:pointer}
+.book-hover{min-width:185px;top:-5%;right:-2%;padding:11px 13px}
+.book-hover b{font-size:15px}
+.book-hover span{font-size:11px}
+.book-hover small{font:700 9px/1.3 "DM Sans",sans-serif;color:#795d37;letter-spacing:.04em;margin-top:2px}
+
+/* A complete brass table lamp with a visible bulb and a downward light cone. */
+.desk-lamp-right{top:36.5%!important;height:42%!important}
+.desk-lamp-right .lamp-glow{position:absolute;z-index:0;left:-30%;top:20%;width:160%;height:76%;clip-path:polygon(36% 0,64% 0,100% 100%,0 100%);background:linear-gradient(180deg,#ffe7b34d 0%,#f9d69b1c 48%,transparent 100%);filter:blur(6px);pointer-events:none}
+.desk-lamp-right .lamp-shade{left:8%;top:0;width:84%;height:27%;clip-path:polygon(28% 0,72% 0,100% 100%,0 100%);border-radius:46% 46% 8% 8%;background:linear-gradient(180deg,#211d18 0%,#655039 18%,#bb965e 78%,#6b4827 100%);border:1px solid #352516;box-shadow:inset 0 3px 4px #fff4,0 5px 9px #0009}
+.desk-lamp-right .lamp-cap{position:absolute;z-index:3;left:45%;top:-2.5%;width:10%;height:4%;border-radius:50%;background:linear-gradient(180deg,#ead09a,#815a2c 80%);box-shadow:0 1px 2px #0009}
+.desk-lamp-right .lamp-bulb{z-index:2;left:24%;top:24%;width:52%;height:5%;border-radius:50%;background:radial-gradient(ellipse,#fff4cc 0%,#ffd98e 46%,#c28d4f 100%);box-shadow:0 3px 12px 7px #f5d59a88}
+.desk-lamp-right .lamp-stem{z-index:1;left:48%;top:23%;width:5%;height:70%;background:linear-gradient(90deg,#53371e 0%,#b7894f 28%,#f0d59e 48%,#986b35 73%,#412a18)}
+.desk-lamp-right .lamp-base{z-index:2;left:5%;width:90%;height:9%;background:radial-gradient(ellipse at 45% 25%,#f3d79b 0%,#bd9557 34%,#674623 72%,#2e1d11 100%);box-shadow:0 5px 8px #0009,inset 0 1px 1px #fff8}
+.desk-lamp-right:before{left:-115%;top:8%;width:330%;height:90%}
+
+/* Recessed keyboard bed and individually raised keycaps. */
+.keyboard{position:absolute;z-index:4;left:19.5%;top:76.2%;width:61%;height:9.6%;padding:3px 4px 4px;border:1px solid #363a34;border-radius:3px;background:linear-gradient(180deg,#343833 0%,#73766e 18%,#3b4039 100%);box-shadow:inset 0 1px 1px #fff6,inset 0 -2px 2px #1118,0 3px 5px #0009;transform:perspective(420px) rotateX(8deg)}
+.keyboard-bed{width:100%;height:100%;padding:2px 3px 3px;border-radius:2px;background:linear-gradient(180deg,#101510,#373c35 35%,#1b201b);box-shadow:inset 0 2px 3px #000b,inset 0 1px 0 #9da09355}
+.key-grid{display:flex;flex-direction:column;gap:2px;width:100%;height:100%;perspective:350px}
+.key-row{display:flex;flex:1;gap:2px;min-height:0;transform:rotateX(1deg)}
+.keycap{position:relative;display:flex;align-items:center;justify-content:center;flex:1;min-width:0;height:100%;overflow:hidden;border:1px solid #171b17;border-radius:2px;background:linear-gradient(180deg,#73786f 0%,#4e544c 12%,#30362f 70%,#222720 100%);box-shadow:0 1px 0 #92978a,0 2px 1px #0d110e,inset 0 1px 0 #c6c9bc55,inset 0 -1px 0 #090d0a;color:#c4c7b9;font:500 clamp(2px,.25vw,3.7px)/1 "DM Sans",sans-serif;text-shadow:0 1px 1px #000}
+.key-wide{font-size:clamp(1.8px,.21vw,3px)}
+.key-space{background:linear-gradient(180deg,#666c63,#343a33 65%,#1d221d);box-shadow:0 1px 0 #909487,0 2px 1px #0d110e,inset 0 1px 0 #c6c9bc55}
+.key-row.row-5 .keycap{font-size:clamp(1.8px,.19vw,2.8px)}
+.trackpad{z-index:5;left:39%;top:86.2%;width:22%;height:4.8%;border:1px solid #454943;border-radius:2px;background:linear-gradient(145deg,#b4b5ad 0%,#898d84 55%,#696e66 100%);box-shadow:inset 0 1px 0 #fff8,inset 0 -1px 1px #30342f55,0 1px 2px #0006}
+.laptop-base{background:linear-gradient(180deg,#d0d0c8 0%,#8d9189 9%,#b9bbb2 27%,#777b73 56%,#545950 100%);box-shadow:inset 0 2px 2px #fff9,inset 0 -3px 3px #25292355,0 4px 8px #0006}
