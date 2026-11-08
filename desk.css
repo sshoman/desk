@@ -1794,3 +1794,38 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 @media (min-width:601px) and (max-width:1100px) and (orientation:landscape){
  .paper{left:21%!important;top:28%!important;width:9.5%!important;height:18%!important;z-index:4!important}
 }
+
+
+/* Portrait tablets need a tighter, taller gallery than the phone layout.
+   Keep the paper on the far-left wall plane behind the laptop. */
+@media (min-width:601px) and (max-width:1100px) and (orientation:portrait){
+ .wall-gallery{
+  left:2%!important;right:2%!important;top:3.2%!important;height:28.5%!important;
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:repeat(2,minmax(0,1fr))!important;column-gap:1.5%!important;row-gap:2%!important;
+ }
+ .travel-frame{
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr) 15px!important;
+  width:clamp(50px,6.2vw,66px)!important;height:98%!important;
+  margin:0 auto!important;padding:3px 3px 0!important;overflow:hidden!important;transform:none!important;
+ }
+ .travel-photo{
+  grid-column:1!important;grid-row:1!important;width:100%!important;height:100%!important;
+  min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;
+  object-fit:cover!important;object-position:center!important;
+ }
+ .travel-frame figcaption{
+  position:relative!important;grid-column:1!important;grid-row:2!important;
+  left:auto!important;right:auto!important;bottom:auto!important;width:100%!important;
+  height:15px!important;min-height:15px!important;opacity:1!important;visibility:visible!important;transform:none!important;
+ }
+ .travel-frame figcaption b{font-size:clamp(5px,.9vw,8px)!important}
+ .travel-frame figcaption small{display:none!important}
+ .paper{
+  left:1.4%!important;top:29.5%!important;width:10.5%!important;height:17.5%!important;
+  z-index:4!important;padding:1.2%!important;
+ }
+ .laptop{left:18%!important;top:33%!important;width:64%!important;height:31.5%!important;z-index:7!important}
+ .book-mockup{left:82%!important;top:73%!important;width:16%!important;height:12.5%!important}
+}
