@@ -33,7 +33,7 @@ scene.innerHTML=`
  
  <div class="award-objects" aria-label="Awards">
   <div class="award-plaque" tabindex="0" aria-label="First place, Rehoboth pitch competition">
-   <span class="award-depth" aria-hidden="true"></span>
+   <span class="award-depth" aria-hidden="true"></span><span class="award-side-right" aria-hidden="true"></span><span class="award-side-top" aria-hidden="true"></span>
    <span class="award-topline">PITCH COMPETITION</span>
    <strong>1st Place</strong>
    <small>Startup Pitch</small>
@@ -41,7 +41,7 @@ scene.innerHTML=`
    <span class="award-hover">First place in the Rehoboth pitch competition.</span>
   </div>
   <div class="award-plaque second" tabindex="0" aria-label="Top 3, Arab Bank financial technology startups">
-   <span class="award-depth" aria-hidden="true"></span>
+   <span class="award-depth" aria-hidden="true"></span><span class="award-side-right" aria-hidden="true"></span><span class="award-side-top" aria-hidden="true"></span>
    <span class="award-topline">ARAB BANK · 2019</span>
    <strong>Top 3</strong>
    <small>FinTech Startups</small>
@@ -58,14 +58,14 @@ scene.innerHTML=`
     <h1 class="screen-title">A few things I've built.</h1>
    </div>
    <nav class="screen-links" aria-label="Open a portfolio">
-    <button type="button" data-portfolio="./design-portfolio.html" data-title="Product work">
+    <button type="button" data-portfolio="./design-portfolio.html" data-title="Design Portfolio">
      <span class="screen-number">01</span>
-     <span class="screen-copy"><b>Product</b><small>Products & interfaces</small></span>
+     <span class="screen-copy"><b>Design Portfolio</b><small>Selected design work</small></span>
      <span class="screen-arrow">↗</span>
     </button>
-    <button type="button" data-portfolio="./marketing-portfolio.html" data-title="Growth work">
+    <button type="button" data-portfolio="./marketing-portfolio.html" data-title="Marketing Portfolio">
      <span class="screen-number">02</span>
-     <span class="screen-copy"><b>Growth</b><small>Acquisition & systems</small></span>
+     <span class="screen-copy"><b>Marketing Portfolio</b><small>Selected marketing work</small></span>
      <span class="screen-arrow">↗</span>
     </button>
    </nav>
@@ -81,12 +81,12 @@ scene.innerHTML=`
   <p>From experience to transferable worldviews.</p>
   <div class="paper-lines"></div>
   <small class="paper-signature">SHOMAN · RESEARCH NOTE</small>
-  <div class="paper-hover"><b>Agentic Learning Without Retention</b><span>A framework for learning from experience without carrying forward untested assumptions.</span><span class="paper-hover-action">Open research paper ↗</span></div>
+  <div class="paper-hover"><b>Agentic Learning Without Retention</b><span>From experience to transferable understanding. The paper proposes treating experience as temporary evidence, not knowledge to inherit.</span><span>It gives informative failures and other surprises priority, then tests competing explanations with counterexamples and prospective tests. Only explanations that survive become conditional principles, connected into a revisable worldview.</span><span class="paper-hover-action">Open the full research paper ↗</span></div>
  </a>
 
  <a class="book-mockup" href="https://www.amazon.com/s?k=exProgressive+Salah+Shoman" target="_blank" rel="noopener noreferrer" aria-label="Buy exProgressive by Shoman on Amazon">
   <img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/PPontherock.png" alt="3D cover mockup of exProgressive by Shoman" loading="eager" draggable="false">
-  <span class="book-hover"><b>exProgressive</b><span>What The Left Doesn't Get.</span><small>By Shoman · Find it on Amazon ↗</small></span>
+  <span class="book-hover"><b>exProgressive</b><span>What The Left Doesn’t Get.</span><span>A critique of how the modern Left understands power, morality, equality and progress. It also challenges the right, rather than treating it as the answer.</span><span>Looks at the assumptions hiding behind good intentions, the language of moral authority, and the ways ideas can produce outcomes their supporters did not intend.</span><small>By Shoman · Open on Amazon ↗</small></span>
  </a>
 
  <div class="portfolio-modal" id="portfolio-modal" hidden aria-hidden="true">

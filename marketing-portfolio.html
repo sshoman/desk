@@ -1,15 +1,76 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Marketing Portfolio | Shoman</title><link rel="stylesheet" href="./portfolio.css">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marketing Portfolio | Shoman</title>
+<link rel="stylesheet" href="./portfolio.css">
+</head>
+<body>
+<main class="portfolio-shell">
+ <header class="portfolio-masthead">
+  <h1>Marketing Portfolio</h1>
+  <div class="certificate-dock" aria-label="Marketing certificates">
+   <button class="certificate-preview" type="button" data-certificate-open="https://5e3efbb2.shoman.pages.dev/lovable-uploads/outreachcertificate.png" aria-label="View outreach certificate full size">
+    <img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/outreachcertificate.png" alt="Outreach certificate">
+    <span class="certificate-zoom" aria-hidden="true">↗</span>
+   </button>
+   <button class="certificate-preview" type="button" data-certificate-open="https://5e3efbb2.shoman.pages.dev/lovable-uploads/contentcertificate.png" aria-label="View content certificate full size">
+    <img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/contentcertificate.png" alt="Content certificate">
+    <span class="certificate-zoom" aria-hidden="true">↗</span>
+   </button>
+  </div>
+ </header>
 
-</head><body>
-<main>
-<section class="hero"><div class="eyebrow">Selected work / messaging and content</div><h1>Marketing Portfolio</h1><p class="lede">Outreach, copy and content samples from the original portfolio. This section contains campaign and content work, not website projects.</p><div class="hero-meta"><span class="pill">Outreach</span><span class="pill">Cold email</span><span class="pill">Content</span></div></section>
-<div class="section-heading"><h2>Outreach &amp; copy</h2><p>Original outreach sequences, cold-email examples and the existing certificate.</p></div>
-<article class="card"><div class="card-body"><div class="card-kicker">01 / Outreach</div><h3>Outreach samples</h3><p>Original campaign and email examples from the existing portfolio.</p></div>
-<div class="image-grid"><div class="image-tile"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/outreach-sequences.png" alt="Outreach sequences sample" loading="lazy"></div><div class="image-tile"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/coldemail21.png" alt="Cold email sample one" loading="lazy"></div><div class="image-tile"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/coldemail23.jpg" alt="Cold email sample two" loading="lazy"></div><div class="image-tile"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/coldemail24.png" alt="Cold email sample three" loading="lazy"></div></div>
-<div class="certificate"><div class="image-tile"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/outreachcertificate.png" alt="Outreach certificate"></div><span>Original outreach certificate. Select it to view full size.</span></div></article>
-<div class="section-heading"><h2>Content</h2><p>Original content examples and the existing content certificate.</p></div>
-<article class="card"><div class="card-body"><div class="card-kicker">02 / Content</div><h3>Content samples</h3><p>Original content examples carried over from the previous portfolio.</p></div>
-<div class="image-grid"><div class="image-tile"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/content1.PNG" alt="Content sample one" loading="lazy"></div><div class="image-tile"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/content2.png" alt="Content sample two" loading="lazy"></div><div class="image-tile"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/content4.png" alt="Content sample three" loading="lazy"></div></div>
-<div class="certificate"><div class="image-tile"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/contentcertificate.png" alt="Content certificate"></div><span>Original content certificate. Select it to view full size.</span></div></article>
-</main><footer class="footer">Shoman / Marketing Portfolio</footer>
-</body></html>
+ <section class="samples" aria-label="Marketing work samples">
+  <article class="sample">
+   <h2>Outreach sequences</h2>
+   <div class="sample-media"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/outreach-sequences.png" alt="Original outreach sequences sample" loading="lazy"></div>
+  </article>
+  <article class="sample">
+   <h2>Cold email sample 01</h2>
+   <div class="sample-media"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/coldemail21.png" alt="Original cold email sample one" loading="lazy"></div>
+  </article>
+  <article class="sample">
+   <h2>Cold email sample 02</h2>
+   <div class="sample-media"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/coldemail23.jpg" alt="Original cold email sample two" loading="lazy"></div>
+  </article>
+  <article class="sample">
+   <h2>Cold email sample 03</h2>
+   <div class="sample-media"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/coldemail24.png" alt="Original cold email sample three" loading="lazy"></div>
+  </article>
+  <article class="sample">
+   <h2>Content sample 01</h2>
+   <div class="sample-media"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/content1.PNG" alt="Original content sample one" loading="lazy"></div>
+  </article>
+  <article class="sample">
+   <h2>Content sample 02</h2>
+   <div class="sample-media"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/content2.png" alt="Original content sample two" loading="lazy"></div>
+  </article>
+  <article class="sample">
+   <h2>Content sample 03</h2>
+   <div class="sample-media"><img src="https://5e3efbb2.shoman.pages.dev/lovable-uploads/content4.png" alt="Original content sample three" loading="lazy"></div>
+  </article>
+ </section>
+</main>
+
+<div class="certificate-viewer" id="certificate-viewer" hidden aria-hidden="true">
+ <button type="button" class="certificate-close" data-certificate-close aria-label="Close certificate">×</button>
+ <img id="certificate-full-image" alt="Full-size certificate">
+</div>
+
+<script>
+(function(){
+ const viewer=document.getElementById("certificate-viewer");
+ const full=document.getElementById("certificate-full-image");
+ const close=()=>{viewer.hidden=true;viewer.setAttribute("aria-hidden","true");full.src=""};
+ document.querySelectorAll("[data-certificate-open]").forEach(button=>button.addEventListener("click",()=>{
+  full.src=button.dataset.certificateOpen;full.alt=button.querySelector("img").alt+" full size";
+  viewer.hidden=false;viewer.setAttribute("aria-hidden","false");
+ }));
+ viewer.addEventListener("click",event=>{if(event.target===viewer||event.target.closest("[data-certificate-close]"))close()});
+ document.addEventListener("keydown",event=>{if(event.key==="Escape")close()});
+})();
+</script>
+</body>
+</html>
