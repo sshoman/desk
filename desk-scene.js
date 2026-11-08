@@ -77,10 +77,6 @@ scene.innerHTML=`
    </div>
   </article>
  </div>
- <div class="desk-coin" aria-label="George Carlin gold commemorative coin">
-  <img src="./assets/george-carlin-gold-coin.webp" alt="A gold commemorative coin featuring a raised portrait of George Carlin">
- </div>
-
  <section class="laptop" aria-label="Portfolio on the laptop">
   <div class="laptop-display"><span class="laptop-camera"></span><div class="screen-ui">
    <div class="screen-top"><span class="screen-site-name">SHOMAN</span><span class="screen-site-status">INDEPENDENT BUILDER <i class="screen-dot"></i></span></div>

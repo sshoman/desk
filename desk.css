@@ -1670,14 +1670,80 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 /* Book detail card sits above the physical book. */
 .book-hover{top:auto!important;bottom:calc(100% + 14px)!important;left:auto!important;right:0!important}
 
-/* George Carlin gold medallion on the desk, between the awards and laptop. */
-.desk-coin{
- position:absolute;z-index:11;left:26.1%;top:73.2%;width:8.8%;height:10.5%;
- display:flex;align-items:center;justify-content:center;pointer-events:none;
- transform:perspective(700px) rotateY(-13deg) rotateZ(-5deg);
- filter:drop-shadow(4px 8px 5px rgba(0,0,0,.72));
+
+/* Portrait layout for both phones and portrait tablets. Use the full height intentionally,
+   rather than letting a wide desktop composition collapse into a narrow column. */
+@media (max-width:900px) and (orientation:portrait){
+ html,body{width:100%;height:100%;min-height:0;overflow:hidden}
+ body{display:block;width:100vw;height:100svh;min-height:100svh}
+ .desk-scene{width:100vw!important;height:100svh!important;max-width:none!important;max-height:none!important;aspect-ratio:auto!important;margin:0!important;overflow:hidden}
+ .wall-gallery{
+  left:2%!important;right:2%!important;top:4%!important;height:21%!important;
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:repeat(2,minmax(0,1fr))!important;column-gap:1.5%!important;row-gap:2.5%!important;
+ }
+ .travel-frame{
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr) 15px!important;
+  align-content:stretch!important;overflow:hidden!important;width:54%!important;height:80%!important;
+  margin:0 auto!important;padding:3px 3px 0!important;transform:none!important;
+ }
+ .travel-photo{
+  display:block!important;grid-column:1!important;grid-row:1!important;width:100%!important;height:100%!important;
+  min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;
+  object-fit:cover!important;object-position:center!important;opacity:1!important;visibility:visible!important;
+ }
+ .travel-frame figcaption{
+  position:relative!important;grid-column:1!important;grid-row:2!important;left:auto!important;right:auto!important;bottom:auto!important;
+  display:flex!important;width:100%!important;height:15px!important;min-height:15px!important;opacity:1!important;
+  visibility:visible!important;transform:none!important;
+ }
+ .travel-frame figcaption b{font-size:clamp(5px,1.15vw,8px)!important}
+ .travel-frame figcaption small{display:none!important}
+ .travel-frame:hover,.travel-frame:focus-visible{transform:none!important;box-shadow:0 4px 8px #0008,0 0 0 1px #d4b78255!important}
+ .wall-line{top:27%!important}
+ .paper{
+  left:2.5%!important;top:30%!important;width:13.5%!important;height:18.5%!important;
+  z-index:8!important;padding:1.5%!important;
+ }
+ .laptop{
+  left:17%!important;top:28.5%!important;width:66%!important;height:33%!important;
+  filter:drop-shadow(0 7px 9px #0009)!important;
+ }
+ .laptop-display{left:6.5%!important;width:87%!important;height:72%!important;padding:5px!important;border-radius:8px 8px 2px 2px!important}
+ .desk-top{top:65.5%!important;height:18.7%!important}
+ .desk-front{top:84.2%!important;height:15.8%!important}
+ .award-glass-display{left:2%!important;top:65.1%!important;width:32%!important;height:17%!important;gap:1%!important}
+ .glass-prism{width:58px!important;height:112px!important;bottom:7%!important}
+ .glass-arab .glass-prism{width:52px!important;height:98px!important}
+ .glass-foot{width:68px!important;height:7px!important;bottom:2.2%!important}
+ .glass-arab .glass-foot{width:62px!important}
+ .glass-engraving{padding-top:30px!important}
+ .book-mockup{left:66%!important;top:65%!important;width:30%!important;height:17%!important}
+ .scene-footer{left:3%!important;right:3%!important;bottom:1.4%!important;font-size:clamp(8px,1.6vw,11px)!important}
+ .scene-footer nav{gap:clamp(20px,5vw,30px)!important}
+ .portfolio-window{width:97vw!important;height:94svh!important}
+ .modal-shade{padding:1.5%!important}
 }
-.desk-coin img{display:block;width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
-@media(max-width:760px){
- .desk-coin{left:3.5%;top:82.2%;width:13%;height:11%;transform:perspective(600px) rotateY(-12deg) rotateZ(-7deg)}
+@media (max-width:600px) and (orientation:portrait){
+ .wall-gallery{top:3.8%!important;height:21%!important}
+ .travel-frame{width:62%!important;height:80%!important}
+ .paper{left:1.8%!important;top:30%!important;width:13.5%!important;height:17.5%!important}
+ .laptop{left:16%!important;top:29%!important;width:68%!important;height:32%!important}
+ .desk-top{top:65.5%!important;height:18.7%!important}
+ .award-glass-display{left:1.5%!important;top:65.4%!important;width:32%!important;height:17%!important}
+ .book-mockup{left:66%!important;top:65.5%!important;width:29%!important;height:16.5%!important}
+ .desk-lamp-right{display:none!important}
+ .scene-footer{bottom:1.5%!important}
+}
+@media (max-width:900px) and (orientation:landscape){
+ .desk-scene{width:100vw!important;height:100svh!important}
+ .portfolio-window{width:97vw!important;height:94svh!important}
+ .modal-shade{padding:1.5%!important}
+}
+@media (max-height:650px) and (max-width:900px) and (orientation:landscape){
+ .wall-gallery{top:5%!important;height:21%!important}
+ .laptop{top:32%!important;height:42%!important}
+ .desk-top{top:67%!important;height:17%!important}
+ .desk-front{top:84%!important;height:16%!important}
+ .scene-footer{bottom:1%!important}
 }
