@@ -1935,3 +1935,46 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  }
  .paper{left:.2%!important;width:7.2%!important;z-index:4!important}
 }
+
+
+/* Final tablet and phone proportions. Shorter photo frames, a less tall laptop
+   display, a larger book, and footer links lifted safely into the visible scene. */
+@media (min-width:601px) and (max-width:1400px) and (orientation:portrait){
+ .wall-gallery{top:3%!important;height:25%!important;row-gap:2%!important}
+ .travel-frame{width:clamp(64px,7vw,76px)!important;height:95%!important}
+ .laptop{left:18%!important;top:39%!important;width:64%!important;height:32%!important}
+ .laptop-display{height:64%!important}
+ .laptop-hinge{top:63%!important;height:3%!important}
+ .laptop-base{top:66%!important;height:25%!important}
+ .keyboard{top:68%!important;height:11%!important}
+ .trackpad{top:83.5%!important;height:4.5%!important}
+ .book-mockup{left:76%!important;top:67%!important;width:22%!important;height:19%!important}
+ .scene-footer{bottom:3.6%!important;font-size:clamp(9px,1vw,12px)!important}
+ .scene-footer nav{gap:clamp(20px,3vw,30px)!important}
+}
+@media (min-width:601px) and (max-width:1400px) and (orientation:landscape){
+ .wall-gallery{top:3%!important;height:29%!important;row-gap:2%!important}
+ .travel-frame{width:clamp(62px,6.2vw,82px)!important;height:95%!important}
+ .laptop{left:36.7%!important;top:39.5%!important;width:29.5%!important;height:40%!important}
+ .laptop-display{height:62%!important}
+ .laptop-hinge{top:61%!important;height:3%!important}
+ .laptop-base{top:64%!important;height:26%!important}
+ .keyboard{top:66%!important;height:11%!important}
+ .trackpad{top:81.5%!important;height:5%!important}
+ .book-mockup{left:74%!important;top:59%!important;width:22%!important;height:23%!important}
+ .scene-footer{bottom:3.6%!important;font-size:clamp(9px,.9vw,12px)!important}
+ .scene-footer nav{gap:clamp(18px,2.4vw,30px)!important}
+}
+@media (max-width:600px) and (orientation:portrait){
+ .wall-gallery{top:3%!important;height:22%!important;row-gap:2%!important}
+ .travel-frame{width:clamp(60px,17vw,70px)!important;height:95%!important}
+ .laptop{left:17%!important;top:32%!important;width:66%!important;height:32%!important}
+ .laptop-display{height:64%!important}
+ .laptop-hinge{top:63%!important;height:3%!important}
+ .laptop-base{top:66%!important;height:25%!important}
+ .keyboard{top:68%!important;height:11%!important}
+ .trackpad{top:83.5%!important;height:4.5%!important}
+ .book-mockup{left:74%!important;top:65.5%!important;width:24%!important;height:19%!important}
+ .scene-footer{bottom:3.8%!important;font-size:clamp(9px,2.5vw,11px)!important}
+ .scene-footer nav{gap:clamp(18px,5vw,24px)!important}
+}
