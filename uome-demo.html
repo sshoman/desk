@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UoMe | Informal Billing Demo</title>
+<style>
+:root{--gold:#d7b43d;--ink:#252525;--muted:#77746d}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#e9e6df}
+button,input{font:inherit}button{cursor:pointer}
+.demo-stage{width:100%;height:100%;min-height:620px;display:flex;align-items:center;justify-content:center;padding:12px;background:radial-gradient(ellipse at center,#fff 0%,#ece8df 56%,#d9d3c8 100%)}
+.phone{position:relative;width:min(390px,100%);height:min(835px,calc(100vh - 24px));min-height:610px;padding:7px;border-radius:43px;background:linear-gradient(140deg,#4d4d4d,#181818 40%,#3b3b3b 70%,#111);border:1px solid #777;box-shadow:0 24px 48px #0003,0 3px 7px #0005,inset 0 0 0 2px #5e5e5e}
+.phone-screen{position:relative;width:100%;height:100%;overflow:hidden;border-radius:34px;background:#f0ece4;display:flex;flex-direction:column}
+.statusbar{height:25px;flex:0 0 25px;display:flex;align-items:center;justify-content:space-between;padding:0 17px;background:#f8f8f8;font-size:11px;font-weight:700;color:#222}
+.status-icons{letter-spacing:2px;font-size:10px}
+.chat-header{height:61px;flex:0 0 61px;display:flex;align-items:center;gap:10px;padding:0 11px;background:#fbfbfb;border-bottom:1px solid #e4e4e4}
+.back{border:0;background:transparent;font-size:25px;color:#555;padding:0 2px}
+.avatar{width:37px;height:37px;border-radius:50%;display:grid;place-items:center;background:#efefef;border:1px solid #ddd;color:#4b4030;font-size:10px;font-weight:800;letter-spacing:-.5px}
+.contact{flex:1;min-width:0}.contact strong{display:block;font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.contact span{display:block;margin-top:3px;color:#888;font-size:10px}
+.head-action{border:0;background:transparent;color:#555;font-size:17px;padding:5px}
+.chat-feed{flex:1;min-height:0;overflow:auto;padding:13px 11px 12px;background-color:#e9e5dc;background-image:radial-gradient(#d5d0c6 .65px,transparent .65px);background-size:11px 11px;display:flex;flex-direction:column;gap:10px}
+.date-chip{align-self:center;padding:5px 10px;border-radius:8px;background:#f7f4ec;color:#777;font-size:9px;box-shadow:0 1px 1px #0001}
+.message{position:relative;max-width:88%;padding:10px 11px 17px;border-radius:10px;box-shadow:0 1px 1px #0001;font-size:12px;line-height:1.42}
+.message.incoming{align-self:flex-start;background:#fff;border-top-left-radius:3px}.message.outgoing{align-self:flex-end;background:#d8f4c7;border-top-right-radius:3px}
+.message time{position:absolute;right:8px;bottom:4px;color:#999;font-size:9px}
+.invoice-card{align-self:flex-start;width:min(91%,330px);border-radius:9px;background:#fff;overflow:hidden;box-shadow:0 2px 5px #0002;border:1px solid #e7e1d6}
+.invoice-head{padding:12px 13px 7px;border-bottom:2px solid #bdb7aa}
+.brand-row{display:flex;align-items:center;justify-content:space-between}.brand-word{font:700 35px/1 Georgia,serif;letter-spacing:-2px;color:var(--gold)}
+.invoice-tag{font-size:8px;font-weight:700;letter-spacing:1px;color:#9e8124}
+.invoice-to{display:flex;justify-content:space-between;gap:10px;padding:12px 13px 7px}
+.invoice-to label,.invoice-date label{display:block;color:#be9e31;font-size:9px;font-weight:700;margin-bottom:4px}
+.invoice-to strong{display:block;font-size:15px}.invoice-date{text-align:right;white-space:nowrap}.invoice-date strong{display:block;font-size:11px;margin-bottom:6px}
+.invoice-lines{padding:5px 12px 0}.invoice-table-head,.invoice-item{display:grid;grid-template-columns:1.35fr .55fr .65fr;gap:6px;align-items:center}
+.invoice-table-head{padding:4px 6px;color:#777;font-size:9px;font-weight:700;border-bottom:1px solid #eee}
+.invoice-item{padding:10px 6px;background:#f2f2f2;font-size:10px}.invoice-item strong{font-size:10px}.invoice-item span{text-align:right;color:#555}.invoice-item b{text-align:right;font-size:11px}
+.tax-row{display:flex;justify-content:space-between;padding:9px 6px;font-size:10px;color:#555}
+.total-row{display:flex;justify-content:space-between;align-items:center;padding:10px 13px;background:var(--gold);color:#fff;font-size:14px;font-weight:700}
+.thanks-note{padding:14px 12px 11px;text-align:center;color:#9a978e;font:italic 13px/1.3 Georgia,serif}
+.pay-now{width:100%;border:0;border-top:1px solid #c5a42b;background:var(--gold);color:white;font-size:22px;font-weight:800;letter-spacing:.1px;padding:13px 10px;transition:background .2s}
+.pay-now:hover{background:#c7a32c}.invoice-foot{display:flex;align-items:center;justify-content:space-between;padding:7px 11px;color:#999;font-size:9px}
+.text-button{border:0;background:transparent;color:#9a7a1d;font-size:9px;font-weight:700;padding:3px}.invoice-status{font-size:9px;color:#16834e;font-weight:800;letter-spacing:.08em}
+.chat-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 11px;background:#f8f8f8;border-top:1px solid #e8e5df}
+.demo-hint{font-size:9px;color:#918b7f}.create-invoice{border:1px solid #c9a83b;border-radius:20px;background:#fffaf0;color:#8e721c;padding:7px 12px;font-size:10px;font-weight:700}
+.composer{height:51px;flex:0 0 51px;display:flex;align-items:center;gap:7px;padding:7px 10px;background:#f7f7f7;border-top:1px solid #eee}
+.composer input{flex:1;min-width:0;height:34px;border:1px solid #e4e4e4;border-radius:18px;padding:0 12px;background:#fff;font-size:11px;outline:none}
+.composer input:focus{border-color:#d4b13b}.composer button{width:34px;height:34px;border:0;border-radius:50%;background:var(--gold);color:#fff;font-size:15px;font-weight:700}
+.home-indicator{height:13px;flex:0 0 13px;background:#f7f7f7;display:flex;justify-content:center;align-items:center}.home-indicator:after{content:"";width:94px;height:4px;border-radius:3px;background:#222}
+.overlay{position:absolute;z-index:10;inset:25px 0 13px;background:#f8f6f1;display:flex;flex-direction:column}.overlay[hidden]{display:none}
+.overlay-head{height:55px;display:flex;align-items:center;gap:12px;padding:0 15px;border-bottom:1px solid #e4dfd4;background:white}
+.overlay-head button{border:0;background:transparent;font-size:22px;color:#59554c}.overlay-head strong{font-size:14px}
+.overlay-body{flex:1;overflow:auto;padding:16px 16px 22px}
+.field{display:block;margin:0 0 13px}.field label{display:block;font-size:10px;font-weight:700;color:#8c7a50;margin-bottom:5px}
+.field input{width:100%;height:39px;border:1px solid #ded8ca;border-radius:8px;background:#fff;padding:0 11px;font-size:12px;color:#333;outline:none}
+.field input:focus{border-color:#d0ab32;box-shadow:0 0 0 2px #d7b43d22}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.live-total{display:flex;justify-content:space-between;align-items:center;margin:16px 0;padding:13px;border-radius:9px;background:#f0eadb;color:#65552d;font-size:12px;font-weight:700}
+.primary-action{width:100%;height:45px;border:0;border-radius:8px;background:var(--gold);color:white;font-size:12px;font-weight:800;box-shadow:0 2px 5px #aa8b2933}
+.primary-action:hover{background:#bd9a2d}.form-note{margin:10px 0 0;color:#999184;font-size:9px;line-height:1.45}
+.payment-overlay{background:#faf9f6}.payment-brand{font:700 38px/1 Georgia,serif;letter-spacing:-2px;color:var(--gold);text-align:center;margin:22px 0 7px}
+.payment-sub{text-align:center;color:#888;font-size:10px}.payment-summary{margin:22px 0 18px;padding:16px;border:1px solid #e4dfd4;border-radius:10px;background:white;text-align:center}
+.payment-summary span{display:block;color:#9a884f;font-size:9px;font-weight:700;letter-spacing:.12em}
+.payment-summary strong{display:block;margin-top:7px;font-size:29px;color:#28251e}.payment-summary small{display:block;margin-top:6px;color:#8d887d;font-size:10px}
+.sign-box{padding:14px;border:1px solid #ddd7ca;border-radius:10px;background:#fff}.sign-box label{display:block;margin-bottom:7px;color:#8a7849;font-size:10px;font-weight:700}
+#signature{display:block;width:100%;height:126px;border:1px dashed #c8c0ae;border-radius:5px;background:#fff;touch-action:none}
+.signature-tools{display:flex;align-items:center;justify-content:space-between;margin-top:7px}.signature-tools span{color:#a19b8e;font-size:9px}
+.signature-tools button{border:0;background:transparent;color:#9d7b1b;font-size:10px;font-weight:700}
+.signature-required{margin:12px 0;color:#aaa394;font-size:9px;line-height:1.4}
+.payment-success{display:none;text-align:center;padding:36px 15px}.payment-success.show{display:block}
+.success-mark{width:54px;height:54px;margin:10px auto 15px;display:grid;place-items:center;border-radius:50%;background:#e3f3e7;color:#23824e;font-size:25px}
+.payment-success h2{font:600 21px Georgia,serif;margin:0 0 7px}.payment-success p{font-size:11px;color:#777}
+.payment-success button{margin-top:16px}.demo-disclaimer{margin-top:13px;text-align:center;color:#a19b90;font-size:8px;letter-spacing:.08em}
+@media(max-width:430px){.demo-stage{padding:0;background:#f0ede7}.phone{width:100%;height:100%;min-height:0;border:0;border-radius:0;padding:0;box-shadow:none;background:none}.phone-screen{border-radius:0}.statusbar{padding-top:2px}}
+</style>
+</head>
+<body>
+<div class="demo-stage"><div class="phone"><div class="phone-screen">
+ <div class="statusbar"><span>9:41</span><span class="status-icons">● ● ▰</span></div>
+ <header class="chat-header">
+  <button class="back" aria-label="Back">‹</button><div class="avatar">V&amp;J</div>
+  <div class="contact"><strong>V&amp;J Advertising</strong><span>last seen: today at 01:45</span></div>
+  <button class="head-action" aria-label="Video call">▣</button><button class="head-action" aria-label="Call">☎</button><button class="head-action" aria-label="More">⋮</button>
+ </header>
+ <main class="chat-feed" id="chatFeed">
+  <div class="date-chip">29 June 2019</div>
+  <div class="message incoming" id="invoiceRequest">UoME $6000 for 10 hours consultation fees on the ManUpStairs campaign<time>01:44</time></div>
+  <article class="invoice-card">
+   <div class="invoice-head"><div class="brand-row"><div class="brand-word">UoME</div><div class="invoice-tag">INFORMAL INVOICE</div></div></div>
+   <div class="invoice-to">
+    <div><label>Invoice to</label><strong id="clientDisplay">George Carlin</strong></div>
+    <div class="invoice-date"><label>Invoice date</label><strong>29/06/2019</strong><label>Due date</label><strong id="dueDisplay">1/07/2019</strong></div>
+   </div>
+   <div class="invoice-lines">
+    <div class="invoice-table-head"><span>Item</span><span>Qty × Price</span><span>Amount</span></div>
+    <div class="invoice-item"><strong id="itemDisplay">Consultation Fees</strong><span id="qtyPriceDisplay">10 × $600</span><b id="amountDisplay">$6,000</b></div>
+    <div class="tax-row"><span>Tax</span><b id="taxDisplay">$0</b></div>
+   </div>
+   <div class="total-row"><span>Total</span><strong id="totalDisplay">$6,000</strong></div>
+   <div class="thanks-note">Thank you for working<br>with our agency</div>
+   <button class="pay-now" id="payNow">Pay Now</button>
+   <div class="invoice-foot"><span id="invoiceNumber">UoME #1847</span><span id="invoiceStatus"></span><button class="text-button" id="editInvoice">EDIT</button></div>
+  </article>
+  <div class="message outgoing" id="thanksMessage">Okay, thank you guys 😁<time>02:48 ✓✓</time></div>
+ </main>
+ <div class="chat-actions"><button class="create-invoice" id="makeInvoice">＋ Create invoice</button><span class="demo-hint">Try editing or paying this invoice</span></div>
+ <form class="composer" id="chatForm"><button type="button" class="head-action" aria-label="Add attachment">＋</button><input id="chatInput" placeholder="Type a message" autocomplete="off"><button type="submit" aria-label="Send message">➤</button></form>
+ <div class="home-indicator"></div>
+
+ <section class="overlay" id="invoiceOverlay" hidden>
+  <div class="overlay-head"><button type="button" id="closeInvoice" aria-label="Back">‹</button><strong>Edit invoice</strong></div>
+  <div class="overlay-body">
+   <div class="field"><label for="clientInput">Invoice to</label><input id="clientInput" value="George Carlin"></div>
+   <div class="field"><label for="itemInput">Description</label><input id="itemInput" value="Consultation Fees"></div>
+   <div class="field-grid"><div class="field"><label for="qtyInput">Quantity / hours</label><input id="qtyInput" type="number" min="1" step="1" value="10"></div><div class="field"><label for="rateInput">Price per hour ($)</label><input id="rateInput" type="number" min="0" step="1" value="600"></div></div>
+   <div class="field"><label for="dueInput">Due date</label><input id="dueInput" value="1/07/2019"></div>
+   <div class="live-total"><span>Invoice total</span><strong id="liveTotal">$6,000</strong></div>
+   <button class="primary-action" id="saveInvoice" type="button">Update and send invoice</button>
+   <p class="form-note">This is a working portfolio prototype. Values update the invoice in the chat. No real invoice or payment is sent.</p>
+  </div>
+ </section>
+
+ <section class="overlay payment-overlay" id="paymentOverlay" hidden>
+  <div class="overlay-head"><button type="button" id="backToInvoice" aria-label="Back">‹</button><strong>UoME secure payment</strong></div>
+  <div class="overlay-body" id="paymentBody">
+   <div class="payment-brand">UoME</div><div class="payment-sub">Simple billing. Easier payments.</div>
+   <div class="payment-summary"><span>INVOICE #1847 · PAYMENT REQUEST</span><strong id="paymentTotal">$6,000</strong><small>Payment to <b id="paymentClient">George Carlin</b></small></div>
+   <div class="sign-box"><label for="signature">E-sign to pay</label><canvas id="signature" width="650" height="250"></canvas><div class="signature-tools"><span>Sign inside the box</span><button type="button" id="clearSignature">Clear signature</button></div></div>
+   <p class="signature-required">Your signature confirms this demo invoice. This prototype does not collect payment details or process a real transaction.</p>
+   <button class="primary-action" id="confirmPayment" type="button" disabled>Sign and pay $6,000</button>
+   <div class="demo-disclaimer">INTERACTIVE DEMO · NO REAL PAYMENT</div>
+  </div>
+  <div class="payment-success" id="paymentSuccess"><div class="success-mark">✓</div><h2>Payment confirmed</h2><p id="successCopy">George Carlin’s invoice has been marked as paid.</p><button class="primary-action" id="returnToChat" type="button">Back to conversation</button></div>
+ </section>
+</div></div>
+<script>
+(function(){
+ const $=id=>document.getElementById(id);
+ const state={client:"George Carlin",item:"Consultation Fees",qty:10,rate:600,due:"1/07/2019",paid:false,signed:false};
+ const money=n=>"$"+Number(n||0).toLocaleString("en-US",{maximumFractionDigits:2});
+ const total=()=>Math.max(0,Number(state.qty)||0)*Math.max(0,Number(state.rate)||0);
+ function render(){
+  $("clientDisplay").textContent=state.client;$("itemDisplay").textContent=state.item;
+  $("qtyPriceDisplay").textContent=(Number(state.qty)||0)+" × "+money(state.rate);
+  $("amountDisplay").textContent=money(total());$("totalDisplay").textContent=money(total());
+  $("dueDisplay").textContent=state.due;$("paymentTotal").textContent=money(total());
+  $("paymentClient").textContent=state.client;$("liveTotal").textContent=money(total());
+  $("confirmPayment").textContent="Sign and pay "+money(total());
+  $("payNow").textContent=state.paid?"Paid ✓":"Pay Now";$("payNow").disabled=state.paid;
+  $("payNow").style.opacity=state.paid?".72":"1";
+  $("invoiceStatus").textContent=state.paid?"PAID":"";
+  $("invoiceRequest").firstChild.textContent="UoME "+money(total())+" for "+state.qty+" hours "+(state.item||"services")+" on the ManUpStairs campaign";
+ }
+ function openEditor(){
+  $("clientInput").value=state.client;$("itemInput").value=state.item;$("qtyInput").value=state.qty;
+  $("rateInput").value=state.rate;$("dueInput").value=state.due;$("invoiceOverlay").hidden=false;liveTotal();
+ }
+ function liveTotal(){$("liveTotal").textContent=money((Number($("qtyInput").value)||0)*(Number($("rateInput").value)||0))}
+ function closeEditor(){$("invoiceOverlay").hidden=true}
+ $("makeInvoice").addEventListener("click",openEditor);$("editInvoice").addEventListener("click",openEditor);
+ $("closeInvoice").addEventListener("click",closeEditor);
+ ["qtyInput","rateInput"].forEach(id=>$(id).addEventListener("input",liveTotal));
+ $("saveInvoice").addEventListener("click",()=>{
+  state.client=$("clientInput").value.trim()||"Client";state.item=$("itemInput").value.trim()||"Service";
+  state.qty=Math.max(1,Number($("qtyInput").value)||1);state.rate=Math.max(0,Number($("rateInput").value)||0);
+  state.due=$("dueInput").value.trim()||state.due;state.paid=false;render();closeEditor();
+  const note=document.createElement("div");note.className="message outgoing";note.textContent="Updated invoice sent to "+state.client;
+  const time=document.createElement("time");time.textContent="Just now ✓✓";note.appendChild(time);
+  $("chatFeed").appendChild(note);$("chatFeed").scrollTop=$("chatFeed").scrollHeight;
+ });
+ function clearSignature(){const c=$("signature"),ctx=c.getContext("2d");ctx.clearRect(0,0,c.width,c.height);state.signed=false;$("confirmPayment").disabled=true}
+ $("payNow").addEventListener("click",()=>{$("paymentOverlay").hidden=false;$("paymentBody").style.display="block";$("paymentSuccess").classList.remove("show");clearSignature()});
+ $("backToInvoice").addEventListener("click",()=>$("paymentOverlay").hidden=true);
+ $("returnToChat").addEventListener("click",()=>{$("paymentOverlay").hidden=true;$("thanksMessage").firstChild.textContent="Payment confirmed. Thank you!";render()});
+ $("clearSignature").addEventListener("click",clearSignature);
+ const canvas=$("signature"),ctx=canvas.getContext("2d");let drawing=false;
+ function point(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height}}
+ canvas.addEventListener("pointerdown",e=>{drawing=true;canvas.setPointerCapture(e.pointerId);const p=point(e);ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineWidth=4;ctx.lineCap="round";ctx.lineJoin="round";ctx.strokeStyle="#27251e"});
+ canvas.addEventListener("pointermove",e=>{if(!drawing)return;const p=point(e);ctx.lineTo(p.x,p.y);ctx.stroke();state.signed=true;$("confirmPayment").disabled=false});
+ const stop=()=>{drawing=false};canvas.addEventListener("pointerup",stop);canvas.addEventListener("pointercancel",stop);
+ $("confirmPayment").addEventListener("click",()=>{if(!state.signed)return;state.paid=true;render();$("paymentBody").style.display="none";$("paymentSuccess").classList.add("show");$("successCopy").textContent=state.client+"'s "+money(total())+" invoice has been marked as paid."});
+ $("chatForm").addEventListener("submit",e=>{e.preventDefault();const input=$("chatInput"),text=input.value.trim();if(!text)return;const bubble=document.createElement("div");bubble.className="message outgoing";bubble.textContent=text;const time=document.createElement("time");time.textContent="Now ✓";bubble.appendChild(time);$("chatFeed").appendChild(bubble);$("chatFeed").scrollTop=$("chatFeed").scrollHeight;input.value=""});
+ render();
+})();
+</script>
+</body>
+</html>
