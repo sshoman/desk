@@ -101,7 +101,7 @@ scene.innerHTML=`
   <div class="laptop-hinge"></div><div class="laptop-base"></div><div class="keyboard" aria-hidden="true"><div class="keyboard-bed"><div class="key-grid"><div class="key-row row-1"><span class="keycap" style="flex:1">esc</span><span class="keycap" style="flex:1">1</span><span class="keycap" style="flex:1">2</span><span class="keycap" style="flex:1">3</span><span class="keycap" style="flex:1">4</span><span class="keycap" style="flex:1">5</span><span class="keycap" style="flex:1">6</span><span class="keycap" style="flex:1">7</span><span class="keycap" style="flex:1">8</span><span class="keycap" style="flex:1">9</span><span class="keycap" style="flex:1">0</span><span class="keycap" style="flex:1">-</span><span class="keycap" style="flex:1">=</span><span class="keycap" style="flex:1">⌫</span></div><div class="key-row row-2"><span class="keycap key-wide" style="flex:1.35">tab</span><span class="keycap" style="flex:1">Q</span><span class="keycap" style="flex:1">W</span><span class="keycap" style="flex:1">E</span><span class="keycap" style="flex:1">R</span><span class="keycap" style="flex:1">T</span><span class="keycap" style="flex:1">Y</span><span class="keycap" style="flex:1">U</span><span class="keycap" style="flex:1">I</span><span class="keycap" style="flex:1">O</span><span class="keycap" style="flex:1">P</span><span class="keycap" style="flex:1">[</span><span class="keycap" style="flex:1">]</span><span class="keycap" style="flex:1">\</span></div><div class="key-row row-3"><span class="keycap key-wide" style="flex:1.6">caps</span><span class="keycap" style="flex:1">A</span><span class="keycap" style="flex:1">S</span><span class="keycap" style="flex:1">D</span><span class="keycap" style="flex:1">F</span><span class="keycap" style="flex:1">G</span><span class="keycap" style="flex:1">H</span><span class="keycap" style="flex:1">J</span><span class="keycap" style="flex:1">K</span><span class="keycap" style="flex:1">L</span><span class="keycap" style="flex:1">;</span><span class="keycap" style="flex:1">'</span><span class="keycap key-wide" style="flex:1.5">enter</span></div><div class="key-row row-4"><span class="keycap key-wide" style="flex:1.95">shift</span><span class="keycap" style="flex:1">Z</span><span class="keycap" style="flex:1">X</span><span class="keycap" style="flex:1">C</span><span class="keycap" style="flex:1">V</span><span class="keycap" style="flex:1">B</span><span class="keycap" style="flex:1">N</span><span class="keycap" style="flex:1">M</span><span class="keycap" style="flex:1">,</span><span class="keycap" style="flex:1">.</span><span class="keycap" style="flex:1">/</span><span class="keycap key-wide" style="flex:1.95">shift</span></div><div class="key-row row-5"><span class="keycap" style="flex:1.05">fn</span><span class="keycap" style="flex:1.1">ctrl</span><span class="keycap" style="flex:1.1">⌘</span><span class="keycap" style="flex:1.05">alt</span><span class="keycap key-wide key-space" style="flex:4.8"></span><span class="keycap" style="flex:1.05">alt</span><span class="keycap" style="flex:1.1">⌘</span><span class="keycap" style="flex:1">←</span><span class="keycap" style="flex:1">↓</span><span class="keycap" style="flex:1">→</span></div></div></div></div><div class="trackpad" aria-hidden="true"></div>
  </section>
 
- <a class="paper" href="./paper.html" target="_blank" rel="noopener" aria-label="Open Agentic Learning Without Retention research paper">
+ <a class="paper" href="/paper.html" target="_self" data-paper-link aria-label="Open Agentic Learning Without Retention research paper">
   <span class="paper-pin" aria-hidden="true"></span>
   <div class="paper-meta"><span>RESEARCH PAPER</span><span>2026</span></div>
   <strong>Agentic Learning<br>Without Retention</strong>
@@ -109,7 +109,13 @@ scene.innerHTML=`
   <p>From experience to transferable worldviews.</p>
   <div class="paper-lines"></div>
   <small class="paper-signature">SHOMAN · RESEARCH NOTE</small>
-  <div class="paper-hover"><b>Agentic Learning Without Retention</b><span>From experience to transferable understanding. The paper proposes treating experience as temporary evidence, not knowledge to inherit.</span><span>It gives informative failures and other surprises priority, then tests competing explanations with counterexamples and prospective tests. Only explanations that survive become conditional principles, connected into a revisable worldview.</span><span class="paper-hover-action">Open the full research paper ↗</span></div>
+  <div class="paper-hover">
+   <span class="hover-card-kicker">RESEARCH PAPER · 2026</span>
+   <b>Agentic Learning Without Retention</b>
+   <span>From experience to transferable understanding. The paper treats experience as temporary evidence, not knowledge to inherit.</span>
+   <span>It prioritizes informative failures, tests competing explanations with counterexamples and prospective tests, then turns only surviving explanations into conditional principles and a revisable worldview.</span>
+   <small class="paper-hover-action">Open the full research paper ↗</small>
+  </div>
  </a>
 
  <a class="book-mockup" href="https://www.amazon.com/dp/B0DLDYF2QS" target="_blank" rel="noopener noreferrer" aria-label="Open exProgressive: How Capitalism Used Inequality by Salah Shoman on Amazon">
@@ -117,10 +123,11 @@ scene.innerHTML=`
   <span class="book-hover">
    <img class="book-hover-cover" src="./portfolio-assets/exprogressive-cover.jpg" alt="Current Amazon cover for exProgressive: How Capitalism Used Inequality" loading="eager">
    <span class="book-hover-copy">
+    <span class="hover-card-kicker">BOOK · SALAH SHOMAN</span>
     <b>exProgressive</b>
     <strong>How Capitalism Used Inequality</strong>
     <span>Why do some highly unequal societies move faster than egalitarian ones? The book traces this pattern from early civilizations to modern America, examining how elite power and the destruction of old systems can accelerate technological change, and who pays for it.</span>
-    <small>By Salah Shoman · Open on Amazon ↗</small>
+    <small>Open on Amazon ↗</small>
    </span>
   </span>
  </a>
@@ -128,10 +135,7 @@ scene.innerHTML=`
  <div class="portfolio-modal" id="portfolio-modal" hidden aria-hidden="true">
   <div class="modal-shade">
    <section class="portfolio-window" role="dialog" aria-modal="true" aria-labelledby="portfolio-modal-title">
-    <header class="portfolio-header">
-     <strong id="portfolio-modal-title">Portfolio</strong>
-     <button class="portfolio-close" type="button" aria-label="Close portfolio" data-modal-close>×</button>
-    </header>
+    <button class="portfolio-close" type="button" aria-label="Close portfolio" data-modal-close>×</button>
     <iframe class="portfolio-frame" title="Portfolio content" src="about:blank" loading="eager"></iframe>
    </section>
   </div>
@@ -176,6 +180,16 @@ function closePortfolio(){
  modalFrame.src="about:blank";
  lastTrigger?.focus();
 }
+
+/* Any click on the shade outside the portfolio window dismisses the overlay. */
+modal.addEventListener("click",event=>{
+ if(!modalWindow.contains(event.target))closePortfolio();
+});
+/* The paper always opens the local paper page, never an external record. */
+scene.querySelector("[data-paper-link]")?.addEventListener("click",event=>{
+ event.preventDefault();
+ window.location.assign(new URL("/paper.html",window.location.origin).href);
+});
 
 scene.addEventListener("click",event=>{
  const trigger=event.target.closest("[data-portfolio]");
