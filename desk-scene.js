@@ -135,6 +135,7 @@ scene.innerHTML=`
  <div class="portfolio-modal" id="portfolio-modal" hidden aria-hidden="true">
   <div class="modal-shade">
    <section class="portfolio-window" role="dialog" aria-modal="true" aria-labelledby="portfolio-modal-title">
+    <span id="portfolio-modal-title" class="portfolio-modal-title">Portfolio</span>
     <button class="portfolio-close" type="button" aria-label="Close portfolio" data-modal-close>×</button>
     <iframe class="portfolio-frame" title="Portfolio content" src="about:blank" loading="eager"></iframe>
    </section>

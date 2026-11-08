@@ -1672,3 +1672,10 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 @media(max-width:760px){
  .portfolio-close{top:8px!important;right:8px!important;width:40px!important;height:40px!important;font-size:26px!important}
 }
+
+
+/* Keep the dialog title available to assistive technology without showing a second header. */
+.portfolio-modal-title{
+ position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;
+ overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;
+}
