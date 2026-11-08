@@ -753,3 +753,162 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  }
  .travel-frame figcaption small{display:none!important}
 }
+
+
+/* Travel frames narrowed by 20 percent from the previous revision. */
+.travel-frame{width:35.2%!important}
+@media(max-width:760px){.travel-frame{width:41.6%!important}}
+
+/* Broad, recessed touchpad with machined perspective edges. */
+.trackpad{
+ left:38%!important;top:86.2%!important;width:24%!important;height:6%!important;
+ display:block!important;position:absolute!important;overflow:visible!important;
+ border:1px solid #3e443e!important;border-radius:3px 3px 4px 4px!important;
+ clip-path:polygon(4% 0,96% 0,100% 100%,0 100%)!important;
+ transform:perspective(420px) rotateX(17deg)!important;transform-origin:center top!important;
+ background:linear-gradient(180deg,#d3d5cc 0%,#959a90 12%,#676d64 38%,#353b34 100%)!important;
+ box-shadow:inset 0 1px 0 #fff9,inset 0 -3px 3px #1b211c99,0 3px 4px #0008!important;
+}
+.trackpad:before{
+ content:"";position:absolute;inset:2px 3px 3px;clip-path:polygon(4% 0,96% 0,100% 100%,0 100%);
+ background:linear-gradient(180deg,#383f38 0%,#191f1a 100%);box-shadow:inset 0 1px 2px #000c;pointer-events:none;
+}
+.trackpad-surface{
+ position:absolute;z-index:1;left:5%;right:5%;top:17%;bottom:18%;
+ clip-path:polygon(3% 0,97% 0,100% 100%,0 100%);
+ background:linear-gradient(145deg,#b9bdb3 0%,#a0a69c 33%,#858c82 70%,#6d756b 100%);
+ border:1px solid #e6e8dc!important;
+ box-shadow:inset 0 1px 0 #fff9,inset 0 -2px 3px #333a3344,0 1px 1px #0008;
+}
+.trackpad-edge{position:absolute;z-index:2;left:8%;right:8%;bottom:3%;height:1px;background:#eff1e899;pointer-events:none}
+@media(max-width:760px){.trackpad{left:38%!important;top:86.2%!important;width:24%!important;height:6%!important}}
+
+/* Classier 3D awards: cast-metal edges, enamel faces and weighted bases. */
+.award-display{
+ position:absolute!important;z-index:9!important;left:2.8%!important;top:66.1%!important;
+ width:20%!important;height:18.2%!important;display:flex!important;align-items:stretch!important;
+ justify-content:space-between!important;gap:1.8%!important;
+ perspective:1000px!important;transform-style:preserve-3d!important;pointer-events:none!important;
+}
+.award-piece{position:relative!important;flex:1 1 0!important;min-width:0!important;height:100%!important;perspective:850px!important;transform-style:preserve-3d!important}
+.award-shadow{
+ position:absolute;left:2%;right:-7%;bottom:1%;height:12%;border-radius:50%;
+ background:radial-gradient(ellipse,#100a06b8 0%,#1b100b66 48%,transparent 78%);
+ filter:blur(3px);transform:rotate(-7deg) scaleY(.45);pointer-events:none;
+}
+.award-solid{
+ --award-width:91px;--award-height:119px;--award-depth:18px;
+ position:absolute;left:50%;bottom:18%;width:var(--award-width);height:var(--award-height);
+ transform-style:preserve-3d;transform-origin:center bottom;
+ transform:translateX(-50%) rotateY(-23deg) rotateX(4deg);
+}
+.award-arab .award-solid{transform:translateX(-50%) rotateY(-16deg) rotateX(3deg) rotateZ(1deg);bottom:17%}
+.award-face{position:absolute;left:50%;top:50%;backface-visibility:hidden;border-style:solid;border-width:1px}
+.award-face-front{
+ width:100%;height:100%;transform:translate(-50%,-50%) translateZ(calc(var(--award-depth) / 2));
+ border-color:#d6bd8b;background:linear-gradient(132deg,#17372d 0%,#10281f 25%,#0b1c16 68%,#152d22 100%);
+ box-shadow:inset 1px 1px 0 #fff6,inset 0 0 0 4px #9d8051,inset 0 0 0 6px #233a2d,0 0 0 1px #231a11;overflow:hidden;
+}
+.award-arab .award-face-front{
+ background:linear-gradient(132deg,#343b45 0%,#1d2530 34%,#101720 100%);border-color:#c5a875;
+ box-shadow:inset 1px 1px 0 #fff6,inset 0 0 0 4px #aa8755,inset 0 0 0 6px #27303a,0 0 0 1px #231a11;
+}
+.award-face-front:before{
+ content:"";position:absolute;inset:9px;border:1px solid #d6c18e88;box-shadow:inset 0 0 0 1px #ffffff16;pointer-events:none;
+}
+.award-face-front:after{
+ content:"";position:absolute;left:11%;right:11%;top:7%;height:35%;
+ background:linear-gradient(135deg,#ffffff18,transparent 70%);transform:skewY(-8deg);pointer-events:none;
+}
+.award-face-right{
+ width:var(--award-depth);height:100%;transform:translate(-50%,-50%) rotateY(90deg) translateZ(calc(var(--award-width) / 2));
+ border-color:#4c3822;background:linear-gradient(90deg,#b69158 0%,#76552f 25%,#382719 70%,#24180f 100%);
+ box-shadow:inset 1px 0 0 #f6dca4,inset -3px 0 3px #0008;
+}
+.award-face-top{
+ width:100%;height:var(--award-depth);transform:translate(-50%,-50%) rotateX(90deg) translateZ(calc(var(--award-height) / 2));
+ border-color:#70532f;background:linear-gradient(180deg,#f0d9a5 0%,#c2a16a 43%,#795832 100%);
+ box-shadow:inset 0 1px 0 #fff9,inset 0 -3px 4px #60432266;
+}
+.award-face-back{
+ width:100%;height:100%;transform:translate(-50%,-50%) rotateY(180deg) translateZ(calc(var(--award-depth) / 2));
+ background:#172219;border-color:#7f633b;
+}
+.award-face-left{
+ width:var(--award-depth);height:100%;transform:translate(-50%,-50%) rotateY(-90deg) translateZ(calc(var(--award-width) / 2));
+ background:linear-gradient(90deg,#332316,#795a34);border-color:#4b351d;
+}
+.award-face-bottom{
+ width:100%;height:var(--award-depth);transform:translate(-50%,-50%) rotateX(-90deg) translateZ(calc(var(--award-height) / 2));
+ background:linear-gradient(180deg,#3d2a1a,#b18a52);border-color:#4a321d;
+}
+.award-engraving{
+ position:absolute;inset:0;z-index:2;display:flex;align-items:center;flex-direction:column;
+ justify-content:flex-start;text-align:center;padding:17px 7px 7px;color:#d9c394;text-shadow:0 1px 1px #0009;
+}
+.award-kicker{font:700 7px/1.2 "DM Sans",sans-serif;letter-spacing:.19em;text-transform:uppercase}
+.award-subtitle{margin-top:5px;font:500 5.8px/1.2 "DM Sans",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#c4ad7d}
+.award-main{margin-top:18px;font:600 29px/.95 "Playfair Display",Georgia,serif;color:#f0dfb7;letter-spacing:-.04em}
+.award-rank{margin-top:3px;font:700 7px/1 "DM Sans",sans-serif;letter-spacing:.28em;color:#d2bd8e}
+.award-rule{width:46%;height:1px;margin-top:11px;background:linear-gradient(90deg,transparent,#d3b77c,transparent)}
+.award-detail{margin-top:8px;font:600 5.5px/1.2 "DM Sans",sans-serif;letter-spacing:.11em;color:#c5af83}
+.award-seal{
+ position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:grid;place-items:center;
+ width:16px;height:16px;border:1px solid #c5a56c;border-radius:50%;color:#f1dca7;
+ font:10px/1 Georgia,serif;box-shadow:inset 0 0 0 2px #d8bf8a33,0 1px 2px #0009;
+}
+.award-plinth{
+ --base-width:100px;--base-height:11px;--base-depth:24px;
+ position:absolute;left:50%;bottom:7%;width:var(--base-width);height:var(--base-height);
+ transform:translateX(-50%) rotateY(-20deg);transform-style:preserve-3d;
+ background:linear-gradient(180deg,#e6cf9e,#9b7646 65%,#4c321d);
+ border:1px solid #614521;box-shadow:0 4px 5px #0008,inset 0 1px 0 #fff9;
+}
+.award-arab .award-plinth{transform:translateX(-50%) rotateY(-15deg) rotateZ(1deg)}
+.plinth-front{position:absolute;left:-1px;right:-1px;top:0;height:100%;transform:translateZ(12px);background:linear-gradient(180deg,#d0b17a,#80603a 55%,#46301c);border:1px solid #563b21}
+.plinth-side{position:absolute;right:-12px;top:0;width:24px;height:100%;transform-origin:left center;transform:rotateY(90deg);background:linear-gradient(90deg,#9b7848,#43301e);border:1px solid #50391f}
+.plinth-top{position:absolute;left:0;right:0;top:-12px;height:24px;transform-origin:center bottom;transform:rotateX(90deg);background:linear-gradient(180deg,#f1dcad,#b38d53);border:1px solid #6c4b25}
+.award-rehoboth .award-solid{--award-width:94px;--award-height:122px;--award-depth:19px}
+.award-arab .award-solid{--award-width:86px;--award-height:113px;--award-depth:21px}
+.award-rehoboth .award-plinth{--base-width:104px}
+.award-arab .award-plinth{--base-width:98px}
+@media(max-width:760px){
+ .award-display{left:1.2%!important;top:64.8%!important;width:34%!important;height:18%!important;gap:1%!important}
+ .award-piece{transform:scale(.78);transform-origin:center bottom}
+ .award-rehoboth .award-solid{--award-width:74px;--award-height:96px;--award-depth:16px}
+ .award-arab .award-solid{--award-width:68px;--award-height:88px;--award-depth:16px}
+ .award-rehoboth .award-plinth{--base-width:82px}
+ .award-arab .award-plinth{--base-width:78px}
+ .award-main{font-size:23px}.award-kicker{font-size:5.8px}.award-subtitle{font-size:4.8px}
+ .award-detail{font-size:4.6px}.award-engraving{padding-top:14px}
+}
+
+/* UX and marketing gallery details. */
+.sample-load-note{margin:-3px 0 11px;color:#988875;font:600 10px/1.4 "DM Sans",Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.category-tabs{display:flex;gap:9px;margin:0 0 18px}
+.category-tab{
+ appearance:none;border:1px solid #cfc1aa;border-radius:999px;background:#f9f5ed;color:#6c5d49;
+ padding:10px 18px;font:700 11px "DM Sans",Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;
+}
+.category-tab[aria-selected="true"]{background:#51412d;color:#f7f0e5;border-color:#51412d;box-shadow:0 3px 8px #3a2b1b22}
+.marketing-slider{max-width:1460px;margin:0 auto}
+.slider-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:11px}
+.slider-caption{font:700 11px "DM Sans",Arial,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#6c5d49}
+.slider-counter{font:600 10px "DM Sans",Arial,sans-serif;color:#928572;font-variant-numeric:tabular-nums}
+.slider-image-wrap{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:200px;background:#fffdf8;border:1px solid #d9cebd;box-shadow:0 9px 25px #3b2c1c12;overflow:hidden}
+.slider-image-wrap img{display:block;width:100%;height:auto;max-height:76vh;object-fit:contain;background:#fff}
+.slider-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0 0}
+.slider-control{
+ display:inline-flex;align-items:center;gap:9px;padding:9px 13px;
+ border:1px solid #cfc1aa;border-radius:999px;background:#f9f5ed;color:#5c4c38;
+ font:700 10px "DM Sans",Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;cursor:pointer
+}
+.slider-control:hover,.slider-control:focus-visible{background:#efe7d9;outline:2px solid #bda77e;outline-offset:2px}
+.slider-current{font:600 10px "DM Sans",Arial,sans-serif;color:#8a7a64;text-align:center}
+@media(max-width:760px){
+ .category-tabs{gap:6px}.category-tab{padding:9px 13px;font-size:10px}
+ .slider-image-wrap{min-height:140px}.slider-image-wrap img{max-height:68vh}
+ .slider-control{padding:8px 10px;font-size:9px}
+}
+
+/* Live UX previews are stacked as individual projects. */

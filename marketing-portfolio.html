@@ -1,68 +1,65 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Marketing Portfolio | Shoman</title>
-<link rel="stylesheet" href="./portfolio.css">
-</head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Marketing Portfolio | Shoman</title><link rel="stylesheet" href="./portfolio.css"></head>
 <body>
 <main class="portfolio-shell">
  <header class="portfolio-masthead">
   <h1>Marketing Portfolio</h1>
-  <div class="certificate-dock" aria-label="Marketing certificates">
+  <div class="certificate-dock" aria-label="Outreach certificate">
    <button class="certificate-preview" type="button" data-certificate-open="./portfolio-assets/outreachcertificate.png" aria-label="View outreach certificate full size">
     <img src="./portfolio-assets/outreachcertificate.png" alt="Outreach certificate" loading="eager" fetchpriority="high">
     <span class="certificate-zoom" aria-hidden="true">↗</span>
    </button>
-   <button class="certificate-preview" type="button" data-certificate-open="./portfolio-assets/contentcertificate.png" aria-label="View content certificate full size">
-    <img src="./portfolio-assets/contentcertificate.png" alt="Content certificate" loading="eager" fetchpriority="high">
-    <span class="certificate-zoom" aria-hidden="true">↗</span>
-   </button>
   </div>
  </header>
-
- <section class="samples" aria-label="Marketing work samples">
-  <article class="sample">
-   <h2>Outreach sequences</h2>
-   <div class="sample-media"><img src="./portfolio-assets/outreach-sequences.png" alt="Original outreach sequences sample" loading="lazy"></div>
-  </article>
-  <article class="sample">
-   <h2>Cold email sample 01</h2>
-   <div class="sample-media"><img src="./portfolio-assets/coldemail21.png" alt="Original cold email sample one" loading="lazy"></div>
-  </article>
-  <article class="sample">
-   <h2>Cold email sample 02</h2>
-   <div class="sample-media"><img src="./portfolio-assets/coldemail23.jpg" alt="Original cold email sample two" loading="lazy"></div>
-  </article>
-  <article class="sample">
-   <h2>Cold email sample 03</h2>
-   <div class="sample-media"><img src="./portfolio-assets/coldemail24.png" alt="Original cold email sample three" loading="lazy"></div>
-  </article>
-  <article class="sample">
-   <h2>Content sample 01</h2>
-   <div class="sample-media"><img src="./portfolio-assets/content1.PNG" alt="Original content sample one" loading="lazy"></div>
-  </article>
-  <article class="sample">
-   <h2>Content sample 02</h2>
-   <div class="sample-media"><img src="./portfolio-assets/content2.png" alt="Original content sample two" loading="lazy"></div>
-  </article>
-  <article class="sample">
-   <h2>Content sample 03</h2>
-   <div class="sample-media"><img src="./portfolio-assets/content4.png" alt="Original content sample three" loading="lazy"></div>
-  </article>
+ <section class="marketing-slider" aria-label="Marketing samples">
+  <div class="category-tabs" role="tablist" aria-label="Marketing sample categories">
+   <button class="category-tab" type="button" role="tab" id="tab-outreach" aria-selected="true" aria-controls="marketing-slide" data-category="outreach">Outreach</button>
+   <button class="category-tab" type="button" role="tab" id="tab-social" aria-selected="false" aria-controls="marketing-slide" data-category="social">Social Media</button>
+  </div>
+  <div class="slider-toolbar"><span class="slider-caption" id="slide-category">OUTREACH</span><span class="slider-counter" id="slide-counter">01 / 04</span></div>
+  <div class="slider-image-wrap" id="marketing-slide"><img id="marketing-slide-image" src="./portfolio-assets/outreach-sequences.png" alt="Outreach sequence sample" loading="eager"></div>
+  <div class="slider-controls">
+   <button class="slider-control" type="button" id="slide-prev" aria-label="Previous sample">← Previous</button>
+   <span class="slider-current" id="slide-label">Outreach sequences</span>
+   <button class="slider-control" type="button" id="slide-next" aria-label="Next sample">Next →</button>
+  </div>
  </section>
 </main>
-
-<div class="certificate-viewer" id="certificate-viewer" hidden aria-hidden="true">
- <button type="button" class="certificate-close" data-certificate-close aria-label="Close certificate">×</button>
- <img id="certificate-full-image" alt="Full-size certificate">
-</div>
-
+<div class="certificate-viewer" id="certificate-viewer" hidden aria-hidden="true"><button type="button" class="certificate-close" data-certificate-close aria-label="Close certificate">×</button><img id="certificate-full-image" alt="Full-size certificate"></div>
 <script>
 (function(){
- const viewer=document.getElementById("certificate-viewer");
- const full=document.getElementById("certificate-full-image");
+ const categories={
+  outreach:{title:"OUTREACH",items:[
+   {src:"./portfolio-assets/outreach-sequences.png",alt:"Outreach sequences dashboard",label:"Outreach sequences"},
+   {src:"./portfolio-assets/coldemail21.png",alt:"Cold email sample one",label:"Cold email 01"},
+   {src:"./portfolio-assets/coldemail23.jpg",alt:"Cold email sample two",label:"Cold email 02"},
+   {src:"./portfolio-assets/coldemail24.png",alt:"Cold email sample three",label:"Cold email 03"}
+  ]},
+  social:{title:"SOCIAL MEDIA",items:[
+   {src:"./portfolio-assets/content1.PNG",alt:"Social media content sample one",label:"Social media 01"},
+   {src:"./portfolio-assets/content2.png",alt:"Social media content sample two",label:"Social media 02"},
+   {src:"./portfolio-assets/content4.png",alt:"Social media content sample three",label:"Social media 03"}
+  ]}
+ };
+ let category="outreach",index=0;
+ const image=document.getElementById("marketing-slide-image"),title=document.getElementById("slide-category");
+ const count=document.getElementById("slide-counter"),label=document.getElementById("slide-label");
+ const render=()=>{
+  const data=categories[category],item=data.items[index];
+  image.src=item.src;image.alt=item.alt;title.textContent=data.title;
+  count.textContent=String(index+1).padStart(2,"0")+" / "+String(data.items.length).padStart(2,"0");
+  label.textContent=item.label;
+  document.querySelectorAll("[data-category]").forEach(tab=>tab.setAttribute("aria-selected",String(tab.dataset.category===category)));
+ };
+ document.querySelectorAll("[data-category]").forEach(tab=>tab.addEventListener("click",()=>{category=tab.dataset.category;index=0;render()}));
+ document.getElementById("slide-prev").addEventListener("click",()=>{const items=categories[category].items;index=(index+items.length-1)%items.length;render()});
+ document.getElementById("slide-next").addEventListener("click",()=>{const items=categories[category].items;index=(index+1)%items.length;render()});
+ document.addEventListener("keydown",event=>{
+  if(event.key==="ArrowLeft"){const items=categories[category].items;index=(index+items.length-1)%items.length;render()}
+  if(event.key==="ArrowRight"){const items=categories[category].items;index=(index+1)%items.length;render()}
+ });
+ const viewer=document.getElementById("certificate-viewer"),full=document.getElementById("certificate-full-image");
  const close=()=>{viewer.hidden=true;viewer.setAttribute("aria-hidden","true");full.src=""};
  document.querySelectorAll("[data-certificate-open]").forEach(button=>button.addEventListener("click",()=>{
   full.src=button.dataset.certificateOpen;full.alt=button.querySelector("img").alt+" full size";
@@ -70,6 +67,7 @@
  }));
  viewer.addEventListener("click",event=>{if(event.target===viewer||event.target.closest("[data-certificate-close]"))close()});
  document.addEventListener("keydown",event=>{if(event.key==="Escape")close()});
+ render();
 })();
 </script>
 </body>

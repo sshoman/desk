@@ -31,55 +31,33 @@ scene.innerHTML=`
  </div>
 
  
- <div class="award-objects" aria-label="Awards">
-  <div class="award-cube-award first-award" role="img" aria-label="First place, Rehoboth pitch competition">
-   <svg viewBox="0 0 180 235" aria-hidden="true" focusable="false">
-    <defs>
-     <linearGradient id="award1-front" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#506454"/><stop offset=".35" stop-color="#263b2d"/><stop offset="1" stop-color="#101d16"/></linearGradient>
-     <linearGradient id="award1-side" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9c7949"/><stop offset=".45" stop-color="#4e3823"/><stop offset="1" stop-color="#21180f"/></linearGradient>
-     <linearGradient id="award1-top" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0d69f"/><stop offset="1" stop-color="#987344"/></linearGradient>
-     <linearGradient id="award1-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e0c184"/><stop offset=".5" stop-color="#99703d"/><stop offset="1" stop-color="#49301a"/></linearGradient>
-    </defs>
-    <polygon points="13,194 31,179 149,179 130,194" fill="url(#award1-top)" stroke="#604522" stroke-width="1"/>
-    <polygon points="130,194 149,179 149,199 130,216" fill="#57391f" stroke="#352313" stroke-width="1"/>
-    <polygon points="13,194 130,194 130,216 13,216" fill="url(#award1-base)" stroke="#563b22" stroke-width="1"/>
-    <polygon points="130,43 162,15 162,166 130,194" fill="url(#award1-side)" stroke="#2b2117" stroke-width="1.5"/>
-    <polygon points="13,43 45,15 162,15 130,43" fill="url(#award1-top)" stroke="#806039" stroke-width="1.5"/>
-    <polygon points="13,43 130,43 130,194 13,194" fill="url(#award1-front)" stroke="#d5b67a" stroke-width="2.5"/>
-    <polygon points="20,51 123,51 123,186 20,186" fill="none" stroke="#e6d09c" stroke-opacity=".82" stroke-width="1.3"/>
-    <path d="M25 57 H118" stroke="#ffffff" stroke-opacity=".18" stroke-width="1"/>
-    <text x="71" y="83" text-anchor="middle" fill="#d7c18f" font-family="Arial,sans-serif" font-size="7" letter-spacing="1.1">REHOBOTH</text>
-    <text x="71" y="96" text-anchor="middle" fill="#c8b17e" font-family="Arial,sans-serif" font-size="6" letter-spacing=".7">PITCH COMPETITION</text>
-    <text x="71" y="139" text-anchor="middle" fill="#f0dfb3" font-family="Georgia,serif" font-size="23" font-weight="bold">1st Place</text>
-    <path d="M41 149 H101" stroke="#d2b77d" stroke-width="1"/>
-    <text x="71" y="163" text-anchor="middle" fill="#d9c89e" font-family="Arial,sans-serif" font-size="8" letter-spacing=".8">STARTUP PITCH</text>
-    <circle cx="71" cy="175" r="5" fill="#c8a56b" stroke="#f0d9a5" stroke-width="1"/>
-   </svg>
-  </div>
-  <div class="award-cube-award second-award" role="img" aria-label="Top three, Arab Bank financial technology startup competition, 2019">
-   <svg viewBox="0 0 180 235" aria-hidden="true" focusable="false">
-    <defs>
-     <linearGradient id="award2-front" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#785b37"/><stop offset=".35" stop-color="#43301e"/><stop offset="1" stop-color="#20160f"/></linearGradient>
-     <linearGradient id="award2-side" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#bd985e"/><stop offset=".45" stop-color="#664523"/><stop offset="1" stop-color="#28190d"/></linearGradient>
-     <linearGradient id="award2-top" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2d9a4"/><stop offset="1" stop-color="#a47b46"/></linearGradient>
-     <linearGradient id="award2-base" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e0c184"/><stop offset=".5" stop-color="#99703d"/><stop offset="1" stop-color="#49301a"/></linearGradient>
-    </defs>
-    <polygon points="13,194 31,179 149,179 130,194" fill="url(#award2-top)" stroke="#604522" stroke-width="1"/>
-    <polygon points="130,194 149,179 149,199 130,216" fill="#57391f" stroke="#352313" stroke-width="1"/>
-    <polygon points="13,194 130,194 130,216 13,216" fill="url(#award2-base)" stroke="#563b22" stroke-width="1"/>
-    <polygon points="130,43 162,15 162,166 130,194" fill="url(#award2-side)" stroke="#302014" stroke-width="1.5"/>
-    <polygon points="13,43 45,15 162,15 130,43" fill="url(#award2-top)" stroke="#806039" stroke-width="1.5"/>
-    <polygon points="13,43 130,43 130,194 13,194" fill="url(#award2-front)" stroke="#d4b477" stroke-width="2.5"/>
-    <polygon points="20,51 123,51 123,186 20,186" fill="none" stroke="#ead19b" stroke-opacity=".82" stroke-width="1.3"/>
-    <path d="M25 57 H118" stroke="#ffffff" stroke-opacity=".18" stroke-width="1"/>
-    <text x="71" y="83" text-anchor="middle" fill="#ddc18a" font-family="Arial,sans-serif" font-size="7" letter-spacing="1">ARAB BANK</text>
-    <text x="71" y="96" text-anchor="middle" fill="#c9aa72" font-family="Arial,sans-serif" font-size="7" letter-spacing=".8">2019</text>
-    <text x="71" y="139" text-anchor="middle" fill="#f0dfb3" font-family="Georgia,serif" font-size="27" font-weight="bold">Top 3</text>
-    <path d="M41 149 H101" stroke="#d2b77d" stroke-width="1"/>
-    <text x="71" y="163" text-anchor="middle" fill="#d9c89e" font-family="Arial,sans-serif" font-size="7" letter-spacing=".2">FINTECH STARTUPS</text>
-    <circle cx="71" cy="175" r="5" fill="#c8a56b" stroke="#f0d9a5" stroke-width="1"/>
-   </svg>
-  </div>
+ <div class="award-display" aria-label="Awards">
+  <article class="award-piece award-rehoboth" role="img" aria-label="First place, Rehoboth pitch competition">
+   <div class="award-shadow"></div>
+   <div class="award-plinth"><span class="plinth-face plinth-front"></span><span class="plinth-face plinth-side"></span><span class="plinth-face plinth-top"></span></div>
+   <div class="award-solid">
+    <div class="award-face award-face-front"><div class="award-engraving">
+     <span class="award-kicker">REHOBOTH</span><span class="award-subtitle">PITCH COMPETITION</span>
+     <span class="award-main">1st</span><span class="award-rank">PLACE</span><span class="award-rule"></span>
+     <span class="award-detail">STARTUP PITCH</span><span class="award-seal">✦</span>
+    </div></div>
+    <div class="award-face award-face-right"></div><div class="award-face award-face-top"></div>
+    <div class="award-face award-face-back"></div><div class="award-face award-face-left"></div><div class="award-face award-face-bottom"></div>
+   </div>
+  </article>
+  <article class="award-piece award-arab" role="img" aria-label="Top three, Arab Bank FinTech startups competition, 2019">
+   <div class="award-shadow"></div>
+   <div class="award-plinth"><span class="plinth-face plinth-front"></span><span class="plinth-face plinth-side"></span><span class="plinth-face plinth-top"></span></div>
+   <div class="award-solid">
+    <div class="award-face award-face-front"><div class="award-engraving">
+     <span class="award-kicker">ARAB BANK</span><span class="award-subtitle">2019 · FINTECH</span>
+     <span class="award-main">Top 3</span><span class="award-rank">FINALISTS</span><span class="award-rule"></span>
+     <span class="award-detail">STARTUP CHALLENGE</span><span class="award-seal">✦</span>
+    </div></div>
+    <div class="award-face award-face-right"></div><div class="award-face award-face-top"></div>
+    <div class="award-face award-face-back"></div><div class="award-face award-face-left"></div><div class="award-face award-face-bottom"></div>
+   </div>
+  </article>
  </div>
 
  <section class="laptop" aria-label="Portfolio on the laptop">
@@ -90,9 +68,9 @@ scene.innerHTML=`
     <h1 class="screen-title">A few things I've built.</h1>
    </div>
    <nav class="screen-links" aria-label="Open a portfolio">
-    <button type="button" data-portfolio="./design-portfolio.html" data-title="Design Portfolio">
+    <button type="button" data-portfolio="./ux-portfolio.html" data-title="UX Portfolio">
      <span class="screen-number">01</span>
-     <span class="screen-copy"><b>Design Portfolio</b><small>Selected design work</small></span>
+     <span class="screen-copy"><b>UX Portfolio</b><small>Selected live projects</small></span>
      <span class="screen-arrow">↗</span>
     </button>
     <button type="button" data-portfolio="./marketing-portfolio.html" data-title="Marketing Portfolio">
@@ -102,7 +80,7 @@ scene.innerHTML=`
     </button>
    </nav>
   </div></div>
-  <div class="laptop-hinge"></div><div class="laptop-base"></div><div class="keyboard" aria-hidden="true"><div class="keyboard-bed"><div class="key-grid"><div class="key-row row-1"><span class="keycap" style="flex:1">esc</span><span class="keycap" style="flex:1">1</span><span class="keycap" style="flex:1">2</span><span class="keycap" style="flex:1">3</span><span class="keycap" style="flex:1">4</span><span class="keycap" style="flex:1">5</span><span class="keycap" style="flex:1">6</span><span class="keycap" style="flex:1">7</span><span class="keycap" style="flex:1">8</span><span class="keycap" style="flex:1">9</span><span class="keycap" style="flex:1">0</span><span class="keycap" style="flex:1">-</span><span class="keycap" style="flex:1">=</span><span class="keycap" style="flex:1">⌫</span></div><div class="key-row row-2"><span class="keycap key-wide" style="flex:1.35">tab</span><span class="keycap" style="flex:1">Q</span><span class="keycap" style="flex:1">W</span><span class="keycap" style="flex:1">E</span><span class="keycap" style="flex:1">R</span><span class="keycap" style="flex:1">T</span><span class="keycap" style="flex:1">Y</span><span class="keycap" style="flex:1">U</span><span class="keycap" style="flex:1">I</span><span class="keycap" style="flex:1">O</span><span class="keycap" style="flex:1">P</span><span class="keycap" style="flex:1">[</span><span class="keycap" style="flex:1">]</span><span class="keycap" style="flex:1">\</span></div><div class="key-row row-3"><span class="keycap key-wide" style="flex:1.6">caps</span><span class="keycap" style="flex:1">A</span><span class="keycap" style="flex:1">S</span><span class="keycap" style="flex:1">D</span><span class="keycap" style="flex:1">F</span><span class="keycap" style="flex:1">G</span><span class="keycap" style="flex:1">H</span><span class="keycap" style="flex:1">J</span><span class="keycap" style="flex:1">K</span><span class="keycap" style="flex:1">L</span><span class="keycap" style="flex:1">;</span><span class="keycap" style="flex:1">'</span><span class="keycap key-wide" style="flex:1.5">enter</span></div><div class="key-row row-4"><span class="keycap key-wide" style="flex:1.95">shift</span><span class="keycap" style="flex:1">Z</span><span class="keycap" style="flex:1">X</span><span class="keycap" style="flex:1">C</span><span class="keycap" style="flex:1">V</span><span class="keycap" style="flex:1">B</span><span class="keycap" style="flex:1">N</span><span class="keycap" style="flex:1">M</span><span class="keycap" style="flex:1">,</span><span class="keycap" style="flex:1">.</span><span class="keycap" style="flex:1">/</span><span class="keycap key-wide" style="flex:1.95">shift</span></div><div class="key-row row-5"><span class="keycap" style="flex:1.05">fn</span><span class="keycap" style="flex:1.1">ctrl</span><span class="keycap" style="flex:1.1">⌘</span><span class="keycap" style="flex:1.05">alt</span><span class="keycap key-wide key-space" style="flex:4.8"></span><span class="keycap" style="flex:1.05">alt</span><span class="keycap" style="flex:1.1">⌘</span><span class="keycap" style="flex:1">←</span><span class="keycap" style="flex:1">↓</span><span class="keycap" style="flex:1">→</span></div></div></div></div><div class="trackpad"></div>
+  <div class="laptop-hinge"></div><div class="laptop-base"></div><div class="keyboard" aria-hidden="true"><div class="keyboard-bed"><div class="key-grid"><div class="key-row row-1"><span class="keycap" style="flex:1">esc</span><span class="keycap" style="flex:1">1</span><span class="keycap" style="flex:1">2</span><span class="keycap" style="flex:1">3</span><span class="keycap" style="flex:1">4</span><span class="keycap" style="flex:1">5</span><span class="keycap" style="flex:1">6</span><span class="keycap" style="flex:1">7</span><span class="keycap" style="flex:1">8</span><span class="keycap" style="flex:1">9</span><span class="keycap" style="flex:1">0</span><span class="keycap" style="flex:1">-</span><span class="keycap" style="flex:1">=</span><span class="keycap" style="flex:1">⌫</span></div><div class="key-row row-2"><span class="keycap key-wide" style="flex:1.35">tab</span><span class="keycap" style="flex:1">Q</span><span class="keycap" style="flex:1">W</span><span class="keycap" style="flex:1">E</span><span class="keycap" style="flex:1">R</span><span class="keycap" style="flex:1">T</span><span class="keycap" style="flex:1">Y</span><span class="keycap" style="flex:1">U</span><span class="keycap" style="flex:1">I</span><span class="keycap" style="flex:1">O</span><span class="keycap" style="flex:1">P</span><span class="keycap" style="flex:1">[</span><span class="keycap" style="flex:1">]</span><span class="keycap" style="flex:1">\</span></div><div class="key-row row-3"><span class="keycap key-wide" style="flex:1.6">caps</span><span class="keycap" style="flex:1">A</span><span class="keycap" style="flex:1">S</span><span class="keycap" style="flex:1">D</span><span class="keycap" style="flex:1">F</span><span class="keycap" style="flex:1">G</span><span class="keycap" style="flex:1">H</span><span class="keycap" style="flex:1">J</span><span class="keycap" style="flex:1">K</span><span class="keycap" style="flex:1">L</span><span class="keycap" style="flex:1">;</span><span class="keycap" style="flex:1">'</span><span class="keycap key-wide" style="flex:1.5">enter</span></div><div class="key-row row-4"><span class="keycap key-wide" style="flex:1.95">shift</span><span class="keycap" style="flex:1">Z</span><span class="keycap" style="flex:1">X</span><span class="keycap" style="flex:1">C</span><span class="keycap" style="flex:1">V</span><span class="keycap" style="flex:1">B</span><span class="keycap" style="flex:1">N</span><span class="keycap" style="flex:1">M</span><span class="keycap" style="flex:1">,</span><span class="keycap" style="flex:1">.</span><span class="keycap" style="flex:1">/</span><span class="keycap key-wide" style="flex:1.95">shift</span></div><div class="key-row row-5"><span class="keycap" style="flex:1.05">fn</span><span class="keycap" style="flex:1.1">ctrl</span><span class="keycap" style="flex:1.1">⌘</span><span class="keycap" style="flex:1.05">alt</span><span class="keycap key-wide key-space" style="flex:4.8"></span><span class="keycap" style="flex:1.05">alt</span><span class="keycap" style="flex:1.1">⌘</span><span class="keycap" style="flex:1">←</span><span class="keycap" style="flex:1">↓</span><span class="keycap" style="flex:1">→</span></div></div></div></div><div class="trackpad" aria-hidden="true"><span class="trackpad-surface"></span><span class="trackpad-edge"></span></div>
  </section>
 
  <a class="paper" href="./paper.html" target="_blank" rel="noopener" aria-label="Open Agentic Learning Without Retention research paper">
