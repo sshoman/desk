@@ -31,31 +31,39 @@ scene.innerHTML=`
  </div>
 
  
- <div class="award-display" aria-label="Awards">
-  <article class="award-piece award-rehoboth" role="img" aria-label="First place, Rehoboth pitch competition">
-   <div class="award-shadow"></div>
-   <div class="award-plinth"><span class="plinth-face plinth-front"></span><span class="plinth-face plinth-side"></span><span class="plinth-face plinth-top"></span></div>
-   <div class="award-solid">
-    <div class="award-face award-face-front"><div class="award-engraving">
-     <span class="award-kicker">REHOBOTH</span><span class="award-subtitle">PITCH COMPETITION</span>
-     <span class="award-main">1st</span><span class="award-rank">PLACE</span><span class="award-rule"></span>
-     <span class="award-detail">STARTUP PITCH</span><span class="award-seal">✦</span>
-    </div></div>
-    <div class="award-face award-face-right"></div><div class="award-face award-face-top"></div>
-    <div class="award-face award-face-back"></div><div class="award-face award-face-left"></div><div class="award-face award-face-bottom"></div>
+ <div class="award-glass-display" aria-label="Awards">
+  <article class="glass-trophy glass-rehoboth" role="img" aria-label="First place, Rehoboth pitch competition">
+   <span class="glass-contact-shadow"></span>
+   <div class="glass-foot"><span class="glass-foot-front"></span><span class="glass-foot-side"></span></div>
+   <div class="glass-prism">
+    <div class="glass-face-front">
+     <div class="glass-engraving">
+      <span class="glass-brand">REHOBOTH</span>
+      <span class="glass-small">PITCH COMPETITION</span>
+      <span class="glass-rank">1st</span>
+      <span class="glass-placing">PLACE</span>
+      <span class="glass-line"></span>
+      <span class="glass-detail">STARTUP PITCH</span>
+     </div>
+    </div>
+    <span class="glass-face-right"></span><span class="glass-face-top"></span>
    </div>
   </article>
-  <article class="award-piece award-arab" role="img" aria-label="Top three, Arab Bank FinTech startups competition, 2019">
-   <div class="award-shadow"></div>
-   <div class="award-plinth"><span class="plinth-face plinth-front"></span><span class="plinth-face plinth-side"></span><span class="plinth-face plinth-top"></span></div>
-   <div class="award-solid">
-    <div class="award-face award-face-front"><div class="award-engraving">
-     <span class="award-kicker">ARAB BANK</span><span class="award-subtitle">2019 · FINTECH</span>
-     <span class="award-main">Top 3</span><span class="award-rank">FINALISTS</span><span class="award-rule"></span>
-     <span class="award-detail">STARTUP CHALLENGE</span><span class="award-seal">✦</span>
-    </div></div>
-    <div class="award-face award-face-right"></div><div class="award-face award-face-top"></div>
-    <div class="award-face award-face-back"></div><div class="award-face award-face-left"></div><div class="award-face award-face-bottom"></div>
+  <article class="glass-trophy glass-arab" role="img" aria-label="Top three, Arab Bank FinTech startups competition, 2019">
+   <span class="glass-contact-shadow"></span>
+   <div class="glass-foot"><span class="glass-foot-front"></span><span class="glass-foot-side"></span></div>
+   <div class="glass-prism">
+    <div class="glass-face-front">
+     <div class="glass-engraving">
+      <span class="glass-brand">ARAB BANK</span>
+      <span class="glass-small">2019 · FINTECH</span>
+      <span class="glass-rank">Top 3</span>
+      <span class="glass-placing">FINALISTS</span>
+      <span class="glass-line"></span>
+      <span class="glass-detail">STARTUP CHALLENGE</span>
+     </div>
+    </div>
+    <span class="glass-face-right"></span><span class="glass-face-top"></span>
    </div>
   </article>
  </div>
@@ -80,7 +88,7 @@ scene.innerHTML=`
     </button>
    </nav>
   </div></div>
-  <div class="laptop-hinge"></div><div class="laptop-base"></div><div class="keyboard" aria-hidden="true"><div class="keyboard-bed"><div class="key-grid"><div class="key-row row-1"><span class="keycap" style="flex:1">esc</span><span class="keycap" style="flex:1">1</span><span class="keycap" style="flex:1">2</span><span class="keycap" style="flex:1">3</span><span class="keycap" style="flex:1">4</span><span class="keycap" style="flex:1">5</span><span class="keycap" style="flex:1">6</span><span class="keycap" style="flex:1">7</span><span class="keycap" style="flex:1">8</span><span class="keycap" style="flex:1">9</span><span class="keycap" style="flex:1">0</span><span class="keycap" style="flex:1">-</span><span class="keycap" style="flex:1">=</span><span class="keycap" style="flex:1">⌫</span></div><div class="key-row row-2"><span class="keycap key-wide" style="flex:1.35">tab</span><span class="keycap" style="flex:1">Q</span><span class="keycap" style="flex:1">W</span><span class="keycap" style="flex:1">E</span><span class="keycap" style="flex:1">R</span><span class="keycap" style="flex:1">T</span><span class="keycap" style="flex:1">Y</span><span class="keycap" style="flex:1">U</span><span class="keycap" style="flex:1">I</span><span class="keycap" style="flex:1">O</span><span class="keycap" style="flex:1">P</span><span class="keycap" style="flex:1">[</span><span class="keycap" style="flex:1">]</span><span class="keycap" style="flex:1">\</span></div><div class="key-row row-3"><span class="keycap key-wide" style="flex:1.6">caps</span><span class="keycap" style="flex:1">A</span><span class="keycap" style="flex:1">S</span><span class="keycap" style="flex:1">D</span><span class="keycap" style="flex:1">F</span><span class="keycap" style="flex:1">G</span><span class="keycap" style="flex:1">H</span><span class="keycap" style="flex:1">J</span><span class="keycap" style="flex:1">K</span><span class="keycap" style="flex:1">L</span><span class="keycap" style="flex:1">;</span><span class="keycap" style="flex:1">'</span><span class="keycap key-wide" style="flex:1.5">enter</span></div><div class="key-row row-4"><span class="keycap key-wide" style="flex:1.95">shift</span><span class="keycap" style="flex:1">Z</span><span class="keycap" style="flex:1">X</span><span class="keycap" style="flex:1">C</span><span class="keycap" style="flex:1">V</span><span class="keycap" style="flex:1">B</span><span class="keycap" style="flex:1">N</span><span class="keycap" style="flex:1">M</span><span class="keycap" style="flex:1">,</span><span class="keycap" style="flex:1">.</span><span class="keycap" style="flex:1">/</span><span class="keycap key-wide" style="flex:1.95">shift</span></div><div class="key-row row-5"><span class="keycap" style="flex:1.05">fn</span><span class="keycap" style="flex:1.1">ctrl</span><span class="keycap" style="flex:1.1">⌘</span><span class="keycap" style="flex:1.05">alt</span><span class="keycap key-wide key-space" style="flex:4.8"></span><span class="keycap" style="flex:1.05">alt</span><span class="keycap" style="flex:1.1">⌘</span><span class="keycap" style="flex:1">←</span><span class="keycap" style="flex:1">↓</span><span class="keycap" style="flex:1">→</span></div></div></div></div><div class="trackpad" aria-hidden="true"><span class="trackpad-surface"></span><span class="trackpad-edge"></span></div>
+  <div class="laptop-hinge"></div><div class="laptop-base"></div><div class="keyboard" aria-hidden="true"><div class="keyboard-bed"><div class="key-grid"><div class="key-row row-1"><span class="keycap" style="flex:1">esc</span><span class="keycap" style="flex:1">1</span><span class="keycap" style="flex:1">2</span><span class="keycap" style="flex:1">3</span><span class="keycap" style="flex:1">4</span><span class="keycap" style="flex:1">5</span><span class="keycap" style="flex:1">6</span><span class="keycap" style="flex:1">7</span><span class="keycap" style="flex:1">8</span><span class="keycap" style="flex:1">9</span><span class="keycap" style="flex:1">0</span><span class="keycap" style="flex:1">-</span><span class="keycap" style="flex:1">=</span><span class="keycap" style="flex:1">⌫</span></div><div class="key-row row-2"><span class="keycap key-wide" style="flex:1.35">tab</span><span class="keycap" style="flex:1">Q</span><span class="keycap" style="flex:1">W</span><span class="keycap" style="flex:1">E</span><span class="keycap" style="flex:1">R</span><span class="keycap" style="flex:1">T</span><span class="keycap" style="flex:1">Y</span><span class="keycap" style="flex:1">U</span><span class="keycap" style="flex:1">I</span><span class="keycap" style="flex:1">O</span><span class="keycap" style="flex:1">P</span><span class="keycap" style="flex:1">[</span><span class="keycap" style="flex:1">]</span><span class="keycap" style="flex:1">\</span></div><div class="key-row row-3"><span class="keycap key-wide" style="flex:1.6">caps</span><span class="keycap" style="flex:1">A</span><span class="keycap" style="flex:1">S</span><span class="keycap" style="flex:1">D</span><span class="keycap" style="flex:1">F</span><span class="keycap" style="flex:1">G</span><span class="keycap" style="flex:1">H</span><span class="keycap" style="flex:1">J</span><span class="keycap" style="flex:1">K</span><span class="keycap" style="flex:1">L</span><span class="keycap" style="flex:1">;</span><span class="keycap" style="flex:1">'</span><span class="keycap key-wide" style="flex:1.5">enter</span></div><div class="key-row row-4"><span class="keycap key-wide" style="flex:1.95">shift</span><span class="keycap" style="flex:1">Z</span><span class="keycap" style="flex:1">X</span><span class="keycap" style="flex:1">C</span><span class="keycap" style="flex:1">V</span><span class="keycap" style="flex:1">B</span><span class="keycap" style="flex:1">N</span><span class="keycap" style="flex:1">M</span><span class="keycap" style="flex:1">,</span><span class="keycap" style="flex:1">.</span><span class="keycap" style="flex:1">/</span><span class="keycap key-wide" style="flex:1.95">shift</span></div><div class="key-row row-5"><span class="keycap" style="flex:1.05">fn</span><span class="keycap" style="flex:1.1">ctrl</span><span class="keycap" style="flex:1.1">⌘</span><span class="keycap" style="flex:1.05">alt</span><span class="keycap key-wide key-space" style="flex:4.8"></span><span class="keycap" style="flex:1.05">alt</span><span class="keycap" style="flex:1.1">⌘</span><span class="keycap" style="flex:1">←</span><span class="keycap" style="flex:1">↓</span><span class="keycap" style="flex:1">→</span></div></div></div></div><div class="trackpad" aria-hidden="true"></div>
  </section>
 
  <a class="paper" href="./paper.html" target="_blank" rel="noopener" aria-label="Open Agentic Learning Without Retention research paper">

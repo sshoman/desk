@@ -84,3 +84,15 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",Ari
  .slider-image-wrap{min-height:140px}.slider-image-wrap img{max-height:68vh}
  .slider-control{padding:8px 10px;font-size:9px}
 }
+
+
+/* Certificate image stays clean: no surrounding box, border, glow or hover zoom. */
+.certificate-preview{
+ border:0!important;border-radius:0!important;background:transparent!important;
+ box-shadow:none!important;padding:0!important;overflow:visible!important;transition:none!important;
+}
+.certificate-preview img{background:transparent!important;object-fit:contain!important}
+.certificate-preview:hover,.certificate-preview:focus-visible{
+ transform:none!important;box-shadow:none!important;outline:none!important;
+}
+.certificate-zoom{display:none!important}
