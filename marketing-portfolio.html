@@ -42,9 +42,13 @@
    {src:"./portfolio-assets/content4.png",alt:"Social media content sample three",label:"Social media 03"}
   ]}
  };
+ const categoryOrder=["outreach","social"];
  let category="outreach",index=0;
  const image=document.getElementById("marketing-slide-image"),title=document.getElementById("slide-category");
  const count=document.getElementById("slide-counter"),label=document.getElementById("slide-label");
+ const previous=document.getElementById("slide-prev"),next=document.getElementById("slide-next");
+ const slide=document.getElementById("marketing-slide");
+ const viewer=document.getElementById("certificate-viewer"),full=document.getElementById("certificate-full-image");
  const allSamples=Object.values(categories).flatMap(group=>group.items);
  allSamples.forEach(item=>{const preload=new Image();preload.src=item.src});
  const render=()=>{
@@ -53,27 +57,48 @@
   count.textContent=String(index+1).padStart(2,"0")+" / "+String(data.items.length).padStart(2,"0");
   label.textContent=item.label;
   document.querySelectorAll("[data-category]").forEach(tab=>tab.setAttribute("aria-selected",String(tab.dataset.category===category)));
+  const position=categoryOrder.indexOf(category);
+  previous.disabled=position===0&&index===0;
+  next.disabled=position===categoryOrder.length-1&&index===data.items.length-1;
  };
- document.querySelectorAll("[data-category]").forEach(tab=>tab.addEventListener("click",()=>{category=tab.dataset.category;index=0;render()}));
- document.getElementById("slide-prev").addEventListener("click",()=>{const items=categories[category].items;index=(index+items.length-1)%items.length;render()});
- document.getElementById("slide-next").addEventListener("click",()=>{const items=categories[category].items;index=(index+1)%items.length;render()});
+ const move=(direction)=>{
+  const sequence=categoryOrder.flatMap(key=>categories[key].items.map((item,itemIndex)=>({category:key,index:itemIndex})));
+  const current=sequence.findIndex(item=>item.category===category&&item.index===index);
+  const target=Math.max(0,Math.min(sequence.length-1,current+direction));
+  category=sequence[target].category;index=sequence[target].index;render();
+ };
+ document.querySelectorAll("[data-category]").forEach(tab=>tab.addEventListener("click",()=>{
+  category=tab.dataset.category;index=0;render();
+ }));
+ previous.addEventListener("click",()=>move(-1));
+ next.addEventListener("click",()=>move(1));
  document.addEventListener("keydown",event=>{
   if(!viewer.hidden)return;
-  if(event.key==="ArrowLeft"){const items=categories[category].items;index=(index+items.length-1)%items.length;render()}
-  if(event.key==="ArrowRight"){const items=categories[category].items;index=(index+1)%items.length;render()}
+  if(event.key==="ArrowLeft"){event.preventDefault();move(-1)}
+  if(event.key==="ArrowRight"){event.preventDefault();move(1)}
  });
  let swipeStartX=null;
- const slide=document.getElementById("marketing-slide");
  slide.addEventListener("pointerdown",event=>{swipeStartX=event.clientX});
  slide.addEventListener("pointerup",event=>{
   if(swipeStartX===null)return;
   const delta=event.clientX-swipeStartX;swipeStartX=null;
   if(Math.abs(delta)<45)return;
-  const items=categories[category].items;
-  index=(index+(delta<0?1:items.length-1))%items.length;render();
+  move(delta<0?1:-1);
  });
  slide.addEventListener("pointercancel",()=>{swipeStartX=null});
- const viewer=document.getElementById("certificate-viewer"),full=document.getElementById("certificate-full-image");
+ let wheelTotal=0,wheelLocked=false,wheelTimer=null;
+ document.querySelector(".marketing-slider").addEventListener("wheel",event=>{
+  if(!viewer.hidden)return;
+  event.preventDefault();
+  if(Math.abs(event.deltaY)<2)return;
+  wheelTotal+=event.deltaY;
+  clearTimeout(wheelTimer);
+  if(!wheelLocked&&Math.abs(wheelTotal)>=38){
+   move(wheelTotal>0?1:-1);
+   wheelTotal=0;wheelLocked=true;
+  }
+  wheelTimer=setTimeout(()=>{wheelTotal=0;wheelLocked=false},380);
+ },{passive:false});
  const close=()=>{viewer.hidden=true;viewer.setAttribute("aria-hidden","true");full.src=""};
  document.querySelectorAll("[data-certificate-open]").forEach(button=>button.addEventListener("click",()=>{
   full.src=button.dataset.certificateOpen;full.alt=button.querySelector("img").alt+" full size";
