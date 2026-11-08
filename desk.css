@@ -2043,3 +2043,23 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .scene-footer{left:3%!important;right:3%!important;bottom:1.2%!important;font-size:clamp(7px,.62vw,10px)!important}
  .scene-footer nav{gap:clamp(20px,3vw,42px)!important}
 }
+
+
+@media (min-width:1201px){
+ .travel-frame{display:flex!important;flex-direction:column!important;align-items:stretch!important}
+ .travel-photo{
+  display:block!important;flex:1 1 auto!important;min-height:0!important;
+  width:100%!important;height:calc(100% - 19px)!important;
+  object-fit:cover!important;object-position:center!important;
+ }
+ .travel-frame figcaption{
+  position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;
+  display:flex!important;flex:0 0 19px!important;width:100%!important;height:19px!important;min-height:19px!important;
+  flex-direction:column!important;align-items:center!important;justify-content:center!important;
+  background:linear-gradient(180deg,#e0cca2,#b48e58)!important;
+  border-top:1px solid #f3dfb8!important;color:#46321f!important;
+  opacity:1!important;visibility:visible!important;transform:none!important;
+ }
+ .travel-frame figcaption b{font:700 clamp(5px,.4vw,6px)/1 "DM Sans",sans-serif!important;letter-spacing:.08em!important;text-transform:uppercase!important}
+ .travel-frame figcaption small{display:none!important}
+}
