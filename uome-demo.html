@@ -158,6 +158,80 @@ button{cursor:pointer}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 @media(max-width:430px){.demo-stage{padding:0}.device{width:100%;height:100%;padding:0;border:0;border-radius:0;box-shadow:none;background:transparent}.screen{border-radius:0}.notch{top:0}}
 @media(max-height:710px){.device{height:100%;border-radius:25px}.screen{border-radius:19px}.notch{height:18px}}
+
+/* UoMe visual refresh: money management first, with chat as one supporting tool. */
+:root{--blue:#2869ed;--blue2:#164db6;--blue-soft:#edf3ff;--ink:#182638;--muted:#7c8998;--line:#e4eaf0;--surface:#fff;--canvas:#f4f7f8;--green:#1a9c76;--green-soft:#e7f6ef;--orange:#de8a3b;--orange-soft:#fff2e4;--red:#d75d5d;--shadow:0 10px 28px #162a3c0d}
+.screen{background:var(--canvas)!important}.statusbar,.appbar{background:#fff!important}.statusbar{color:#1d2a3a!important}
+.appbar{height:56px!important;flex-basis:56px!important;border-bottom:1px solid #eaf0f3!important;padding:0 18px!important}
+.brand{font-size:22px!important;letter-spacing:-.09em!important;color:#12253a!important}.brand span{color:#2a70ed!important}
+.icon-btn{border-color:#edf1f4!important;background:#f8fafb!important;color:#4b5e71!important}
+.user-avatar{background:#142b43!important;color:#e9f1fb!important;border:2px solid #e7edf2!important}
+.content{background:var(--canvas)!important}.view{padding:17px 16px 27px!important}
+.greeting{font-size:9px!important;letter-spacing:.12em!important;text-transform:uppercase!important;color:#8593a1!important}
+.page-head{margin:5px 0 14px!important}.page-head h1{font-size:25px!important;letter-spacing:-.06em!important;color:#17283a!important}
+.page-head p{font-size:9px!important;color:#8d9aa7!important}
+.date-chip{border:1px solid #e1e9ef!important;background:#fff!important;color:#586b7d!important;box-shadow:0 2px 6px #172a3d08!important}
+.hero-card{position:relative!important;overflow:hidden!important;padding:17px 16px 13px!important;border:0!important;border-radius:21px!important;background:linear-gradient(132deg,#102b40 0%,#16445b 56%,#1b6a65 100%)!important;color:#fff!important;box-shadow:0 12px 26px #102c431f!important}
+.hero-card:before{content:"";position:absolute;pointer-events:none;width:240px;height:240px;right:-88px;top:-126px;border:1px solid #ffffff20;border-radius:50%;box-shadow:0 0 0 23px #ffffff08,0 0 0 48px #ffffff06}
+.hero-card:after{content:"";position:absolute;pointer-events:none;right:20px;bottom:38px;width:72px;height:72px;border:1px solid #ffffff17;border-radius:50%;box-shadow:0 0 0 12px #ffffff08}
+.hero-top{position:relative;z-index:1;color:#b8d0dc!important;font-size:8px!important;letter-spacing:.12em!important}
+.hero-top .more{color:#dce8ed!important;border-radius:9px;background:#ffffff16!important;width:29px;height:25px;font-size:13px!important}
+.balance-value{position:relative;z-index:1;margin-top:9px!important;color:#fff!important;font-size:36px!important;letter-spacing:-.07em!important}
+.balance-change{position:relative;z-index:1;margin-top:7px!important;color:#b6ced7!important;font-size:8px!important}
+.balance-change .positive{color:#c7ed7b!important;background:#c7ed7b1c;padding:4px 7px;border-radius:12px}
+.balance-chart{position:relative;z-index:1;height:82px!important;margin-top:9px!important}
+.balance-chart path:nth-of-type(1){fill:#a9e36a1c!important}.balance-chart path:nth-of-type(2){stroke:#c4ed79!important;stroke-width:3!important}
+.balance-chart path:nth-of-type(3){stroke:#8eb6c5!important;opacity:.7!important}.balance-chart circle{fill:#c4ed79!important;stroke:#fff!important}
+.balance-chart rect{fill:#c4ed79!important}.balance-chart text{fill:#19354a!important}
+.chart-labels{position:relative;z-index:1;color:#a7c4cf!important;font-size:7px!important;letter-spacing:.08em}
+.chart-toggle{position:relative;z-index:1;margin-top:9px!important}.chart-toggle button{height:23px!important;padding:0 10px!important;border:1px solid #ffffff28!important;background:#ffffff10!important;color:#c4d7df!important}
+.chart-toggle button.active{border-color:#c4ed79!important;background:#c4ed7922!important;color:#e3f5c2!important}
+.stat-grid{gap:8px!important;margin-top:10px!important}.stat-card{min-height:76px!important;padding:12px!important;border:1px solid #e8edf2!important;border-radius:15px!important;background:#fff!important;box-shadow:0 4px 13px #172c4209!important}
+.stat-card:first-child{background:linear-gradient(145deg,#fff,#f2faf6)!important}.stat-card:last-child{background:linear-gradient(145deg,#fff,#f4f7ff)!important}
+.stat-label{font-size:7px!important;letter-spacing:.1em!important;color:#8695a2!important}.stat-value{font-size:22px!important;color:#193148!important}.stat-foot{font-size:7px!important}
+.section-head{margin:18px 1px 9px!important}.section-head h2{font-size:12px!important;color:#1e3043!important;letter-spacing:-.025em!important}
+.text-action{font-size:8px!important;color:#2869ed!important}.contacts-strip{gap:13px!important;padding:3px 1px 7px!important}
+.contact-mini{min-width:51px!important;color:#667889!important;font-size:8px!important;font-weight:650!important}
+.contact-avatar{width:39px!important;height:39px!important;border:2px solid #fff!important;box-shadow:0 2px 9px #1e35491a!important}
+.contact-mini:nth-child(1) .contact-avatar{background:linear-gradient(145deg,#c8dff8,#eaf3ff)!important;color:#2664a8!important}
+.contact-mini:nth-child(2) .contact-avatar{background:linear-gradient(145deg,#f6ddce,#fff2e9)!important;color:#ac6544!important}
+.contact-mini:nth-child(3) .contact-avatar{background:linear-gradient(145deg,#dfe3ff,#f0efff)!important;color:#6259a9!important}
+.contact-mini:nth-child(4) .contact-avatar{background:linear-gradient(145deg,#ccebdc,#eaf8f1)!important;color:#287d5e!important}
+.contact-mini:nth-child(5) .contact-avatar{background:linear-gradient(145deg,#f2dce9,#fff0f7)!important;color:#a05a7d!important}
+.quick-grid{gap:7px!important}.quick-btn{height:72px!important;padding:8px 4px!important;border:1px solid #e7edf2!important;border-radius:14px!important;background:#fff!important;color:#526579!important;gap:7px!important;font-size:7px!important;box-shadow:0 3px 10px #182f4308!important}
+.quick-icon{width:30px!important;height:30px!important;border-radius:10px!important;font-size:15px!important;background:#eaf1ff!important;color:#2869ed!important}
+.quick-btn:nth-child(2) .quick-icon{background:#eaf7f0!important;color:#23966e!important}.quick-btn:nth-child(3) .quick-icon{background:#fff2e3!important;color:#c47b35!important}.quick-btn:nth-child(4) .quick-icon{background:#f1edff!important;color:#7866bc!important}
+.collection-card{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(94px,.85fr);gap:8px;align-items:center;margin-top:16px;padding:13px 12px;overflow:hidden;border-radius:18px;background:linear-gradient(135deg,#195dc2 0%,#174a9d 58%,#102c66 100%);color:#fff;box-shadow:0 10px 22px #174c9c25}
+.collection-card:before{content:"";position:absolute;right:-42px;top:-80px;width:190px;height:190px;border:1px solid #ffffff20;border-radius:50%;box-shadow:0 0 0 22px #ffffff08,0 0 0 47px #ffffff06;pointer-events:none}
+.collect-copy{position:relative;z-index:1;min-width:0}.collect-eyebrow{display:inline-flex;padding:4px 6px;border:1px solid #ffffff35;border-radius:7px;color:#d8e8ff;font-size:6px;font-weight:850;letter-spacing:.11em}
+.collect-copy h3{margin:8px 0 4px;font-size:17px;line-height:1.05;letter-spacing:-.05em}.collect-copy p{margin:0;color:#c9dcf5;font-size:7px;line-height:1.45;max-width:180px}
+.collect-action{display:flex;align-items:center;gap:12px;margin-top:9px;padding:7px 9px;border:0;border-radius:9px;background:#c9ed78;color:#1c3960;font-size:7px;font-weight:850;box-shadow:0 3px 8px #061f4d33}
+.collect-action b{font-size:11px}.collect-visual{position:relative;min-height:107px;display:grid;place-items:center}
+.collect-ticket{position:relative;z-index:2;width:100%;padding:10px 9px 9px;border-radius:12px;background:linear-gradient(145deg,#fff 0%,#edf4f8 100%);color:#19324b;box-shadow:0 8px 16px #051b3c45;transform:rotate(3deg)}
+.collect-ticket:before,.collect-ticket:after{content:"";position:absolute;top:50%;width:10px;height:10px;border-radius:50%;background:#194a9e;transform:translateY(-50%)}
+.collect-ticket:before{left:-5px}.collect-ticket:after{right:-5px}.ticket-brand{display:block;font-size:6px;font-weight:900;letter-spacing:.1em}.ticket-brand i{font-style:normal;color:#2b71e9}
+.collect-ticket strong{display:block;margin-top:7px;font-size:22px;line-height:1;letter-spacing:-.06em}.collect-ticket small{display:block;margin-top:3px;color:#8393a3;font-size:6px}
+.ticket-status{display:flex;align-items:center;gap:4px;margin-top:8px;padding-top:6px;border-top:1px dashed #cbd6df;color:#55708a;font-size:5px;font-weight:900;letter-spacing:.09em}
+.ticket-status i{width:5px;height:5px;border-radius:50%;background:#25b581;box-shadow:0 0 0 3px #25b58122}
+.collect-orbit{position:absolute;border:1px solid #ffffff34;border-radius:50%;pointer-events:none}.orbit-one{width:104px;height:104px}.orbit-two{width:78px;height:78px}
+.collect-spark{position:absolute;z-index:3;right:0;top:1px;color:#d8f6a1;font-size:17px;text-shadow:0 2px 8px #183d7a}
+.activity-list{gap:7px!important}.activity-row{padding:10px 11px!important;border:1px solid #e7edf2!important;border-radius:13px!important;background:#fff!important;box-shadow:0 2px 8px #19324a06!important}
+.activity-icon{border-radius:10px!important;background:#edf3ff!important;color:#2869ed!important}
+.activity-copy b{font-size:9px!important;color:#2a3d50!important}.activity-copy small{font-size:7px!important;color:#8e9ca9!important}
+.activity-right b{font-size:9px!important;color:#23394e!important}
+.bottom-nav{height:64px!important;flex-basis:64px!important;background:#fff!important;border-top:1px solid #e5ebf0!important;box-shadow:0 -4px 18px #162e4308!important}
+.nav-btn{color:#98a6b2!important;font-size:7px!important}.nav-icon{font-size:17px!important}.nav-btn.active{color:#2869ed!important}
+.nav-btn.active .nav-icon{display:grid;place-items:center;width:32px;height:24px;border-radius:9px;background:#eaf1ff}
+.detail-hero{border:0!important;border-radius:18px!important;background:linear-gradient(135deg,#102b40,#1d6370)!important;color:#fff!important;box-shadow:0 10px 22px #102c431b!important}
+.detail-hero small,.detail-hero p{color:#c4d9e1!important}.detail-hero h2{color:#fff!important}
+.detail-section,.form-card,.metric-mini{border:1px solid #e6edf2!important;border-radius:15px!important;background:#fff!important;box-shadow:0 3px 11px #19324a08!important}
+.primary-btn{background:linear-gradient(135deg,#2869ed,#174db6)!important;border-radius:10px!important;box-shadow:0 5px 12px #2869ed30!important}
+.secondary-btn{border-radius:10px!important;background:#f8fafb!important}.back-btn{border:1px solid #e3eaf0!important;background:#fff!important;color:#35536b!important}
+.form-card .field input,.form-card .field select,.field textarea{border-color:#e1e8ef!important;background:#fbfcfd!important}
+.toast{background:#142d43!important;box-shadow:0 8px 22px #142d4344!important}
+@media(max-width:430px){.collection-card{grid-template-columns:minmax(0,1.1fr) minmax(88px,.8fr);padding:11px 10px}.collect-copy h3{font-size:15px}.collect-visual{min-height:98px}.collect-ticket strong{font-size:19px}}
+@media(max-height:710px){.collection-card{margin-top:12px}.collect-visual{min-height:88px}}
+
 </style>
 </head>
 <body>
@@ -213,6 +287,25 @@ button{cursor:pointer}
       <button class="quick-btn" data-action="payment"><span class="quick-icon">↗</span>Take payment</button>
       <button class="quick-btn" data-action="expense"><span class="quick-icon">⌑</span>Expense</button>
      </div>
+     <article class="collection-card">
+      <div class="collect-copy">
+       <span class="collect-eyebrow">UOME PAY · INSTANT COLLECTION</span>
+       <h3>Get paid, your way.</h3>
+       <p>Send a link or take a card payment. Your client chooses how to pay.</p>
+       <button class="collect-action" type="button" data-action="payment">Create payment link <b>↗</b></button>
+      </div>
+      <div class="collect-visual" aria-hidden="true">
+       <div class="collect-ticket">
+        <span class="ticket-brand">UOME <i>PAY</i></span>
+        <strong>£140.00</strong>
+        <small>Payment request</small>
+        <span class="ticket-status"><i></i> READY TO SEND</span>
+       </div>
+       <span class="collect-orbit orbit-one"></span>
+       <span class="collect-orbit orbit-two"></span>
+       <span class="collect-spark">✦</span>
+      </div>
+     </article>
      <div class="section-head"><h2>Recent activity</h2><button class="text-action" data-nav="invoices">See all ↗</button></div>
      <div class="activity-list" id="homeActivity"></div>
     </section>
