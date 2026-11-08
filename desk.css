@@ -1388,3 +1388,161 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  box-shadow:inset 0 1px 0 #d5d9cf44!important;
 }
 @media(max-width:760px){.trackpad{left:40.5%!important;top:87.1%!important;width:18%!important;height:3.2%!important}}
+
+
+/* Cut crystal awards based on the original desk reference. Angular plaques, polished edges, small metal feet. */
+.award-glass-display{
+ left:3.4%!important;top:65.4%!important;width:17.2%!important;height:17.2%!important;
+ gap:3.8%!important;align-items:flex-end!important;
+}
+.glass-trophy:first-child{transform:rotate(-.35deg)!important}
+.glass-trophy:last-child{transform:rotate(.45deg) translateY(1px)!important}
+.glass-contact-shadow{
+ left:4%!important;right:-4%!important;bottom:1%!important;height:9%!important;
+ background:radial-gradient(ellipse,rgba(5,3,2,.72) 0%,rgba(9,5,3,.28) 52%,transparent 80%)!important;
+ filter:blur(2.5px)!important;
+}
+.glass-prism{
+ left:50%!important;bottom:7%!important;width:76px!important;height:150px!important;
+ border:0!important;border-radius:0!important;background:transparent!important;
+ box-shadow:none!important;overflow:visible!important;
+ transform:translateX(-50%) perspective(900px) rotateY(-8deg) rotateX(1deg)!important;
+ filter:drop-shadow(1px 3px 3px rgba(0,0,0,.44))!important;
+}
+.glass-prism:before{
+ content:""!important;position:absolute!important;z-index:1!important;
+ top:2px!important;right:-9px!important;width:12px!important;height:calc(100% - 3px)!important;
+ transform:skewY(-9deg)!important;transform-origin:left center!important;
+ clip-path:polygon(0 13%,100% 0,100% 100%,0 100%)!important;
+ border:1px solid rgba(223,239,226,.78)!important;border-left:0!important;
+ background:linear-gradient(90deg,rgba(221,241,228,.48),rgba(109,139,124,.26) 38%,rgba(40,66,55,.58))!important;
+ box-shadow:2px 2px 3px rgba(0,0,0,.32)!important;
+}
+.glass-prism:after{
+ content:""!important;position:absolute!important;z-index:3!important;
+ top:-7px!important;left:1px!important;right:-6px!important;height:15px!important;
+ transform:skewX(-27deg)!important;transform-origin:bottom left!important;
+ clip-path:polygon(0 100%,72% 0,100% 1%,28% 100%)!important;
+ border:1px solid rgba(244,252,242,.8)!important;border-bottom:0!important;
+ background:linear-gradient(180deg,rgba(255,255,255,.84),rgba(207,227,212,.55) 48%,rgba(113,145,129,.36))!important;
+}
+.glass-face-front{
+ position:absolute!important;inset:0!important;z-index:2!important;
+ clip-path:polygon(0 100%,0 25%,73% 0,100% 100%)!important;
+ border:0!important;border-radius:0!important;
+ background:
+  linear-gradient(112deg,rgba(255,255,255,.66) 0%,rgba(255,255,255,.17) 2.5%,transparent 15%,rgba(247,255,248,.08) 33%,transparent 49%,rgba(219,243,226,.13) 73%,rgba(255,255,255,.54) 98%),
+  linear-gradient(155deg,rgba(215,239,224,.17),rgba(115,151,132,.07) 54%,rgba(239,249,237,.17))!important;
+ box-shadow:none!important;
+}
+.glass-face-front:before{
+ content:""!important;position:absolute!important;inset:2px!important;
+ clip-path:polygon(0 100%,0 25%,73% 0,100% 100%)!important;
+ border:0!important;
+ background:
+  linear-gradient(90deg,rgba(255,255,255,.68),transparent 2.2%,transparent 95%,rgba(255,255,255,.42)),
+  linear-gradient(180deg,rgba(255,255,255,.19),transparent 20%,rgba(183,214,193,.08) 78%,rgba(255,255,255,.13))!important;
+ box-shadow:none!important;
+}
+.glass-face-front:after{
+ content:""!important;position:absolute!important;top:8%!important;right:18%!important;
+ width:1px!important;height:88%!important;
+ background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,.08) 45%,rgba(255,255,255,.5))!important;
+ transform:rotate(-4deg)!important;box-shadow:0 0 2px rgba(255,255,255,.4)!important;
+}
+.glass-engraving{
+ padding:42px 4px 7px!important;opacity:.66!important;
+ color:#dce9df!important;text-shadow:0 1px 1px rgba(53,76,62,.42)!important;
+}
+.glass-brand{font-size:5px!important;letter-spacing:.12em!important;color:#f0f5e9!important}
+.glass-small{margin-top:4px!important;font-size:3.7px!important;letter-spacing:.08em!important;color:#d9e6da!important}
+.glass-rank{
+ margin-top:15px!important;font-size:17px!important;font-weight:500!important;
+ color:#f4f1e6!important;text-shadow:0 1px 1px rgba(59,81,65,.72),0 0 2px rgba(255,255,255,.42)!important;
+}
+.glass-placing{margin-top:3px!important;font-size:4.2px!important;letter-spacing:.16em!important;color:#e7eee3!important}
+.glass-line{margin-top:7px!important;width:39%!important;background:linear-gradient(90deg,transparent,rgba(241,248,236,.7),transparent)!important}
+.glass-detail{margin-top:5px!important;font-size:3.4px!important;letter-spacing:.07em!important;color:#d7e3d7!important}
+.glass-foot{
+ left:50%!important;bottom:2.2%!important;width:84px!important;height:8px!important;
+ transform:translateX(-50%) perspective(520px) rotateX(8deg)!important;
+ border:1px solid #92774f!important;border-radius:1px!important;
+ background:linear-gradient(180deg,#d8c49c 0%,#a68a5d 35%,#59452c 100%)!important;
+ box-shadow:0 3px 5px rgba(0,0,0,.72),inset 0 1px 0 rgba(255,255,255,.8),inset 0 -2px 2px rgba(44,29,14,.46)!important;
+}
+.glass-foot:before{
+ right:-5px!important;top:1px!important;width:5px!important;height:100%!important;
+ transform:skewY(-8deg)!important;
+ background:linear-gradient(90deg,#94794e,#47351f)!important;
+ border:1px solid #554126!important;border-left:0!important;
+}
+.glass-foot:after{
+ left:3px!important;right:-3px!important;top:-4px!important;height:4px!important;
+ transform:skewX(-28deg)!important;
+ background:linear-gradient(180deg,#f0dfbb,#b99b6c)!important;
+ border:1px solid #80613a!important;border-bottom:0!important;
+}
+.glass-arab .glass-prism{
+ width:69px!important;height:128px!important;
+ transform:translateX(-50%) perspective(900px) rotateY(-10deg) rotateX(1deg)!important;
+}
+.glass-arab .glass-rank{font-size:16px!important;margin-top:13px!important}
+.glass-arab .glass-foot{width:77px!important}
+@media(max-width:760px){
+ .award-glass-display{left:1.2%!important;top:64.5%!important;width:34%!important;height:18%!important;gap:1%!important}
+ .glass-prism{width:53px!important;height:112px!important;bottom:7%!important}
+ .glass-arab .glass-prism{width:48px!important;height:96px!important}
+ .glass-foot{width:62px!important;height:6px!important;bottom:2.2%!important}
+ .glass-arab .glass-foot{width:58px!important}
+ .glass-engraving{padding-top:30px!important}
+ .glass-brand{font-size:4px!important}.glass-small{font-size:3.2px!important}
+ .glass-rank{font-size:14px!important;margin-top:10px!important}
+ .glass-arab .glass-rank{font-size:13px!important}
+ .glass-placing{font-size:3.4px!important}.glass-detail{font-size:2.8px!important}
+}
+
+/* Antique walnut finish: old dark timber, worn polish, knots and restrained edge wear. */
+.desk-top{
+ background:
+  radial-gradient(ellipse at 8% 18%,rgba(190,143,96,.16) 0%,rgba(190,143,96,.035) 13%,transparent 26%),
+  radial-gradient(ellipse at 43% 65%,rgba(5,3,2,.30) 0%,transparent 28%),
+  radial-gradient(ellipse at 82% 35%,rgba(170,118,76,.12) 0%,transparent 20%),
+  repeating-linear-gradient(1.1deg,transparent 0 7px,rgba(10,5,3,.32) 8px,rgba(167,117,77,.11) 9px,transparent 13px),
+  repeating-linear-gradient(-.25deg,transparent 0 23px,rgba(7,4,2,.24) 24px,rgba(171,119,78,.08) 26px,transparent 31px),
+  linear-gradient(180deg,#49301f 0%,#392619 17%,#2d1e14 42%,#281a11 73%,#392518 100%)!important;
+ border-top:4px solid #806044!important;border-bottom:2px solid #160d08!important;
+ box-shadow:0 16px 25px rgba(0,0,0,.78),inset 0 2px 4px rgba(212,171,125,.25),inset 0 -8px 13px rgba(5,3,2,.78)!important;
+}
+.desk-top:before{
+ opacity:.92!important;mix-blend-mode:soft-light!important;
+ background:
+  radial-gradient(ellipse 48px 12px at 17% 43%,transparent 0 31%,rgba(9,5,3,.62) 34% 38%,rgba(177,127,83,.16) 41%,transparent 45%),
+  radial-gradient(ellipse 72px 16px at 72% 34%,transparent 0 32%,rgba(8,4,2,.54) 35% 38%,rgba(177,127,83,.13) 41%,transparent 46%),
+  radial-gradient(ellipse 42px 10px at 91% 72%,transparent 0 32%,rgba(7,4,2,.46) 35% 38%,transparent 44%),
+  repeating-linear-gradient(.7deg,transparent 0 17px,rgba(224,183,132,.08) 18px,rgba(12,6,3,.22) 19px,transparent 23px),
+  repeating-linear-gradient(90deg,transparent 0 221px,rgba(8,4,2,.11) 222px,transparent 225px)!important;
+}
+.desk-top:after{
+ background:linear-gradient(180deg,#382518 0%,#27190f 44%,#170e08 100%)!important;
+ border-top:1px solid rgba(183,137,94,.62)!important;
+ border-bottom:2px solid #120a06!important;
+ box-shadow:0 9px 13px rgba(0,0,0,.74),inset 0 1px 0 rgba(228,188,143,.30)!important;
+}
+.desk-front{
+ background:
+  repeating-linear-gradient(1deg,transparent 0 9px,rgba(7,4,2,.29) 10px,rgba(150,101,65,.08) 11px,transparent 15px),
+  repeating-linear-gradient(.2deg,transparent 0 25px,rgba(8,4,2,.22) 26px,rgba(153,104,67,.07) 28px,transparent 33px),
+  linear-gradient(180deg,#302014 0%,#28190f 27%,#20140d 66%,#190f09 100%)!important;
+ border-top:4px solid #49301e!important;
+ box-shadow:inset 0 3px 5px rgba(196,145,100,.20),inset 0 -10px 18px rgba(5,3,2,.82),0 9px 16px rgba(0,0,0,.78)!important;
+}
+.desk-front:before{
+ border-top-color:rgba(175,132,92,.28)!important;
+ background:
+  repeating-linear-gradient(.7deg,transparent 0 10px,rgba(8,4,2,.22) 11px,rgba(153,103,67,.07) 12px,transparent 16px),
+  linear-gradient(180deg,#382417 0%,#2a1a10 48%,#20140c 100%)!important;
+}
+.desk-front:after{
+ background:linear-gradient(180deg,#97704d 0%,#68482e 42%,#24170e 100%)!important;
+ border-color:#24170e!important;
+}

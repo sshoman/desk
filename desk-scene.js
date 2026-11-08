@@ -114,7 +114,7 @@ scene.innerHTML=`
      <strong id="portfolio-modal-title">Portfolio</strong>
      <button class="portfolio-close" type="button" aria-label="Close portfolio" data-modal-close>×</button>
     </header>
-    <iframe class="portfolio-frame" title="Portfolio content" src="about:blank" loading="lazy"></iframe>
+    <iframe class="portfolio-frame" title="Portfolio content" src="about:blank" loading="eager"></iframe>
    </section>
   </div>
  </div>
@@ -148,7 +148,7 @@ function openPortfolio(trigger){
  modalWindow.classList.remove("portfolio-opening");
  void modalWindow.offsetWidth;
  modalWindow.classList.add("portfolio-opening");
- modalFrame.src=trigger.dataset.portfolio;
+ modalFrame.src=new URL(trigger.dataset.portfolio,window.location.href).href;
  requestAnimationFrame(()=>scene.querySelector(".portfolio-close")?.focus());
 }
 function closePortfolio(){
