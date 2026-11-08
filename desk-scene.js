@@ -32,36 +32,36 @@ scene.innerHTML=`
 
  
  <div class="award-glass-display" aria-label="Awards">
-  <article class="glass-trophy glass-rehoboth" tabindex="0" aria-label="First place, Rehoboth pitch competition" aria-describedby="award-rehoboth-details">
+  <article class="glass-trophy glass-rehoboth" tabindex="0" aria-label="AI Week 2019 award, South Korea" aria-describedby="award-rehoboth-details">
    <span class="glass-contact-shadow"></span>
    <div class="glass-foot"><span class="glass-foot-front"></span><span class="glass-foot-side"></span></div>
    <div class="glass-prism">
     <div class="glass-face-front">
      <div class="glass-engraving">
-      <span class="glass-brand">REHOBOTH</span>
-      <span class="glass-small">PITCH COMPETITION</span>
+      <span class="glass-brand">KOREA</span>
+      <span class="glass-small">AI WEEK 2019</span>
       <span class="glass-rank">1st</span>
       <span class="glass-placing">PLACE</span>
       <span class="glass-line"></span>
-      <span class="glass-detail">STARTUP PITCH</span>
+      <span class="glass-detail">AWARD</span>
      </div>
     </div>
     <span class="glass-face-right"></span><span class="glass-face-top"></span>
    </div>
    <div class="award-hover" id="award-rehoboth-details">
-    <span class="award-hover-kicker">REHOBOTH · SOUTH KOREA</span>
-    <strong>1st Place</strong>
-    <small>Pitch Competition</small>
+    <span class="award-hover-kicker">KOREA · 2019</span>
+    <strong>AI Week 2019</strong>
+    <small>South Korea</small>
    </div>
   </article>
-  <article class="glass-trophy glass-arab" tabindex="0" aria-label="Top three, Arab Bank Financial Technology Startups, 2019" aria-describedby="award-arab-details">
+  <article class="glass-trophy glass-arab" tabindex="0" aria-label="Arab Bank award, Amman" aria-describedby="award-arab-details">
    <span class="glass-contact-shadow"></span>
    <div class="glass-foot"><span class="glass-foot-front"></span><span class="glass-foot-side"></span></div>
    <div class="glass-prism">
     <div class="glass-face-front">
      <div class="glass-engraving">
       <span class="glass-brand">ARAB BANK</span>
-      <span class="glass-small">2019 · FINTECH</span>
+      <span class="glass-small">AMMAN</span>
       <span class="glass-rank">Top 3</span>
       <span class="glass-placing">FINALISTS</span>
       <span class="glass-line"></span>
@@ -71,7 +71,7 @@ scene.innerHTML=`
     <span class="glass-face-right"></span><span class="glass-face-top"></span>
    </div>
    <div class="award-hover" id="award-arab-details">
-    <span class="award-hover-kicker">ARAB BANK · 2019</span>
+    <span class="award-hover-kicker">ARAB BANK · AMMAN</span>
     <strong>Top 3</strong>
     <small>Financial Technology Startups</small>
    </div>
@@ -134,9 +134,8 @@ scene.innerHTML=`
 
  <div class="portfolio-modal" id="portfolio-modal" hidden aria-hidden="true">
   <div class="modal-shade">
-   <section class="portfolio-window" role="dialog" aria-modal="true" aria-labelledby="portfolio-modal-title">
+   <section class="portfolio-window" role="dialog" aria-modal="true" aria-labelledby="portfolio-modal-title" tabindex="-1">
     <span id="portfolio-modal-title" class="portfolio-modal-title">Portfolio</span>
-    <button class="portfolio-close" type="button" aria-label="Close portfolio" data-modal-close>×</button>
     <iframe class="portfolio-frame" title="Portfolio content" src="about:blank" loading="eager"></iframe>
    </section>
   </div>
@@ -146,7 +145,7 @@ scene.innerHTML=`
   <nav aria-label="Personal links">
    <a href="https://linkedin.com/in/shoman" target="_blank" rel="noopener noreferrer">LinkedIn</a>
    <a href="https://github.com/sshoman" target="_blank" rel="noopener noreferrer">GitHub</a>
-   <a href="mailto:shoman@outlook.co.il">Contact</a>
+   <a href="mailto:sh0man@outlook.com">Contact</a>
   </nav>
  </footer>
 `;
@@ -172,7 +171,7 @@ function openPortfolio(trigger){
  void modalWindow.offsetWidth;
  modalWindow.classList.add("portfolio-opening");
  modalFrame.src=new URL(trigger.dataset.portfolio,window.location.href).href;
- requestAnimationFrame(()=>scene.querySelector(".portfolio-close")?.focus());
+ requestAnimationFrame(()=>modalWindow.focus());
 }
 function closePortfolio(){
  if(modal.hidden)return;
@@ -195,7 +194,7 @@ scene.querySelector("[data-paper-link]")?.addEventListener("click",event=>{
 scene.addEventListener("click",event=>{
  const trigger=event.target.closest("[data-portfolio]");
  if(trigger){event.preventDefault();openPortfolio(trigger);return;}
- if(event.target.closest(".portfolio-close")||event.target.classList.contains("modal-shade"))closePortfolio();
+ if(event.target.classList.contains("modal-shade"))closePortfolio();
 });
 document.addEventListener("keydown",event=>{
  if(event.key==="Escape")closePortfolio();
