@@ -2185,3 +2185,74 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .keyboard{top:73.5%!important;height:9.5%!important}
  .trackpad{left:40.5%!important;top:85.5%!important;width:18%!important;height:3.2%!important}
 }
+
+
+/* TRAVEL PHOTOS. No zoom, lift, fade or hover reveal on any device. */
+.travel-frame,.travel-photo,.travel-frame figcaption{
+ transition:none!important;filter:none!important;
+}
+.travel-frame:hover,.travel-frame:focus-visible{
+ z-index:auto!important;transform:none!important;box-shadow:0 4px 8px #0008,0 0 0 1px #d4b78255!important;
+ cursor:default!important;
+}
+.travel-frame:hover .travel-photo,.travel-frame:focus-visible .travel-photo{
+ transform:none!important;filter:none!important;
+}
+.travel-frame:hover figcaption,.travel-frame:focus-visible figcaption{
+ opacity:1!important;visibility:visible!important;transform:none!important;
+}
+
+/* DESKTOP ONLY. Real laptop proportions: compact chiclet keys, a broad palmrest,
+   and one simple centered trackpad with space around it. */
+@media (min-width:1201px){
+ .keyboard{
+  left:12%!important;top:73.5%!important;width:76%!important;height:10.5%!important;
+  padding:2px 3px 3px!important;border:1px solid #41463e!important;border-radius:4px!important;
+  background:linear-gradient(180deg,#c0c2b9 0%,#777d73 7%,#454b43 20%,#20261f 100%)!important;
+  box-shadow:inset 0 1px 0 #fff8,inset 0 -2px 3px #131813,0 2px 3px #0006!important;
+  transform:perspective(650px) rotateX(7deg)!important;transform-origin:center top!important;
+ }
+ .keyboard-bed{
+  width:100%!important;height:100%!important;padding:3px 4px 4px!important;border-radius:2px!important;
+  background:linear-gradient(180deg,#20251f 0%,#31372f 100%)!important;
+  box-shadow:inset 0 1px 2px #000b,inset 0 -1px 0 #a1a79744!important;
+  transform:none!important;
+ }
+ .key-grid{
+  display:flex!important;flex-direction:column!important;gap:2px!important;
+  width:100%!important;height:100%!important;perspective:none!important;transform:none!important;
+ }
+ .key-row{
+  display:flex!important;flex:1 1 0!important;min-height:0!important;min-width:0!important;
+  gap:2px!important;margin:0!important;align-self:stretch!important;transform:none!important;
+ }
+ .keycap{
+  display:flex!important;flex:1 1 0!important;min-width:0!important;height:100%!important;
+  align-items:center!important;justify-content:center!important;overflow:hidden!important;
+  clip-path:none!important;border:1px solid #121712!important;border-radius:2px!important;
+  background:linear-gradient(180deg,#3e443d 0%,#252b25 100%)!important;
+  box-shadow:inset 0 1px 0 #858b7f66,0 1px 1px #080b08!important;
+  transform:none!important;color:#c2c7b9!important;
+  font:500 clamp(2px,.23vw,3.2px)/1 "DM Sans",sans-serif!important;
+  text-shadow:0 1px 1px #000!important;
+ }
+ .trackpad{
+  left:37.5%!important;top:85.2%!important;width:25%!important;height:5.2%!important;
+  display:block!important;overflow:hidden!important;clip-path:none!important;
+  border:1px solid #666d63!important;border-radius:3px!important;
+  transform:none!important;
+  background:linear-gradient(180deg,#9ca196 0%,#858b80 48%,#747b70 100%)!important;
+  box-shadow:inset 0 1px 0 #e7e9dfaa,inset 0 -1px 1px #4c534a66,0 1px 1px #0005!important;
+ }
+ .trackpad:before,.trackpad:after{display:none!important}
+}
+
+/* TABLET ONLY. Move the book away from the lamp without shrinking the object. */
+@media (min-width:601px) and (max-width:1200px){
+ .book-mockup{left:65%!important;top:68%!important;width:20%!important;height:20%!important}
+ .book-mockup img{transform:scale(1.2)!important;transform-origin:center bottom!important}
+ .book-mockup:hover img,.book-mockup:focus-visible img{transform:translateY(-4px) scale(1.24)!important}
+}
+@media (min-width:601px) and (max-width:1200px) and (orientation:landscape){
+ .book-mockup{left:66%!important;top:59%!important;width:19%!important;height:22%!important}
+}
