@@ -96,3 +96,25 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",Ari
  transform:none!important;box-shadow:none!important;outline:none!important;
 }
 .certificate-zoom{display:none!important}
+
+
+/* Certificate image only. No card edge, border, shadow or hover highlight. */
+.certificate-dock{max-width:43%!important;gap:0!important}
+.certificate-preview{
+ width:clamp(150px,15vw,205px)!important;height:clamp(96px,11vh,132px)!important;
+ padding:0!important;overflow:visible!important;border:0!important;border-radius:0!important;
+ background:transparent!important;box-shadow:none!important;cursor:zoom-in!important;transition:none!important;
+}
+.certificate-preview img{
+ display:block!important;width:100%!important;height:100%!important;
+ max-width:100%!important;max-height:100%!important;object-fit:contain!important;background:transparent!important;
+}
+.certificate-preview:hover,.certificate-preview:focus,.certificate-preview:focus-visible{
+ transform:none!important;box-shadow:none!important;outline:none!important;border:0!important;
+}
+.certificate-zoom{display:none!important}
+.portfolio-masthead{gap:14px!important;padding-bottom:12px!important}
+@media(max-width:760px){
+ .certificate-preview{width:clamp(125px,35vw,155px)!important;height:clamp(80px,22vw,105px)!important}
+ .certificate-dock{max-width:100%!important}
+}

@@ -1205,3 +1205,84 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .certificate-preview{width:clamp(140px,42vw,190px)!important;height:clamp(90px,24vw,120px)!important}
  .certificate-dock{max-width:100%!important}
 }
+
+
+/* Aged walnut desk finish. Darker tobacco brown, less orange, with restrained wear grain. */
+.desk-top{
+ top:67.7%!important;height:17.2%!important;
+ border-top:4px solid #76563b!important;border-bottom:2px solid #1c120c!important;
+ background:
+  radial-gradient(ellipse at 16% 40%,rgba(188,143,103,.12) 0 1%,transparent 20%),
+  radial-gradient(ellipse at 68% 63%,rgba(10,6,4,.32) 0 1%,transparent 27%),
+  repeating-linear-gradient(1.2deg,transparent 0 12px,rgba(15,8,5,.30) 13px,rgba(177,126,87,.10) 14px,transparent 18px),
+  repeating-linear-gradient(-.35deg,transparent 0 29px,rgba(17,9,5,.23) 30px,rgba(167,116,77,.09) 32px,transparent 37px),
+  linear-gradient(180deg,#63452f 0%,#4f3626 16%,#402b1e 42%,#352318 73%,#49301f 100%)!important;
+ box-shadow:0 15px 24px #000c,inset 0 3px 5px rgba(201,158,117,.30),inset 0 -7px 11px rgba(12,7,4,.70)!important;
+}
+.desk-top:before{
+ content:"";position:absolute;inset:0;pointer-events:none;opacity:.9;
+ background:
+  radial-gradient(ellipse 50px 13px at 19% 47%,transparent 0 34%,rgba(14,7,4,.40) 36% 38%,transparent 41%),
+  radial-gradient(ellipse 74px 17px at 70% 31%,transparent 0 34%,rgba(14,7,4,.34) 36% 38%,transparent 41%),
+  radial-gradient(ellipse 48px 13px at 89% 70%,transparent 0 34%,rgba(177,127,87,.13) 36% 38%,transparent 41%),
+  repeating-linear-gradient(2deg,transparent 0 7px,rgba(18,9,5,.23) 8px,rgba(174,124,85,.09) 9px,transparent 13px);
+ mix-blend-mode:multiply;
+}
+.desk-top:after{
+ content:"";position:absolute;z-index:2;left:0;right:0;bottom:-10px;height:14px;
+ background:linear-gradient(180deg,#503522 0%,#3b271a 40%,#21150e 100%);
+ border-top:1px solid #96704d;border-bottom:2px solid #160d08;
+ box-shadow:0 8px 12px #000b,inset 0 1px 0 rgba(200,158,117,.35);
+}
+.desk-front{
+ top:84.1%!important;height:15.9%!important;
+ border-top:4px solid #533822!important;
+ background:
+  repeating-linear-gradient(1deg,transparent 0 10px,rgba(13,7,4,.26) 11px,rgba(161,111,73,.08) 12px,transparent 16px),
+  repeating-linear-gradient(.3deg,transparent 0 27px,rgba(13,7,4,.24) 28px,rgba(163,111,74,.08) 30px,transparent 35px),
+  linear-gradient(180deg,#412b1e 0%,#352318 22%,#2f1e14 58%,#24170f 100%)!important;
+ box-shadow:inset 0 3px 5px rgba(192,145,104,.25),inset 0 -10px 18px rgba(8,5,3,.72),0 9px 16px #000b!important;
+}
+.desk-front:before{
+ border-color:rgba(12,7,4,.62)!important;border-top-color:rgba(157,111,76,.38)!important;border-bottom-color:rgba(8,5,3,.72)!important;
+ background:
+  repeating-linear-gradient(1deg,transparent 0 9px,rgba(13,7,4,.22) 10px,rgba(153,106,71,.08) 11px,transparent 15px),
+  linear-gradient(180deg,#3e291d 0%,#332116 46%,#2a1b12 100%)!important;
+ box-shadow:inset 0 2px 3px rgba(7,4,2,.7),inset 0 1px 0 rgba(188,145,106,.18),0 2px 4px rgba(5,3,2,.55)!important;
+}
+.desk-front:after{
+ background:linear-gradient(180deg,#b28d64 0%,#765437 50%,#2c1b10 100%)!important;
+ border-color:#2c1b11!important;box-shadow:0 2px 4px #000a,inset 0 1px 0 #f4e1c188!important;
+}
+
+/* Keep the travel frames quiet and narrow, with only the city name visible. */
+.travel-frame{width:35.2%!important}
+.travel-frame figcaption small{display:none!important}
+.travel-frame:hover,.travel-frame:focus-visible{
+ transform:none!important;box-shadow:0 4px 8px #0008,0 0 0 1px #d4b78255!important;outline:none!important
+}
+.travel-frame:hover .travel-photo,.travel-frame:focus-visible .travel-photo{transform:none!important;filter:none!important}
+@media(max-width:760px){
+ .travel-frame{width:41.6%!important}
+}
+
+/* Move the paper inward on the wall, away from the left-side awards. */
+.paper{left:20%!important;top:30.8%!important;width:8.8%!important;height:21%!important}
+@media(max-width:760px){
+ .paper{left:3.2%!important;top:29%!important;width:13.5%!important;height:19.5%!important}
+}
+
+/* Simple laptop trackpad, narrow, recessed and visually quiet. */
+.trackpad{
+ left:40.5%!important;top:87.1%!important;width:18%!important;height:3.6%!important;
+ display:block!important;position:absolute!important;overflow:hidden!important;
+ clip-path:polygon(3% 0,97% 0,100% 100%,0 100%)!important;
+ border:1px solid #555b53!important;border-radius:2px!important;
+ transform:perspective(480px) rotateX(8deg)!important;transform-origin:center top!important;
+ background:linear-gradient(180deg,#858c82 0%,#6e756b 100%)!important;
+ box-shadow:inset 0 1px 0 #e3e6db66,0 1px 1px #0005!important;
+}
+.trackpad:before,.trackpad:after,.trackpad-surface,.trackpad-edge{display:none!important}
+@media(max-width:760px){
+ .trackpad{left:40.5%!important;top:87.1%!important;width:18%!important;height:3.6%!important}
+}
