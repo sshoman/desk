@@ -423,3 +423,17 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 .key-row.row-5 .keycap{font-size:clamp(1.8px,.19vw,2.8px)}
 .trackpad{z-index:5;left:39%;top:86.2%;width:22%;height:4.8%;border:1px solid #454943;border-radius:2px;background:linear-gradient(145deg,#b4b5ad 0%,#898d84 55%,#696e66 100%);box-shadow:inset 0 1px 0 #fff8,inset 0 -1px 1px #30342f55,0 1px 2px #0006}
 .laptop-base{background:linear-gradient(180deg,#d0d0c8 0%,#8d9189 9%,#b9bbb2 27%,#777b73 56%,#545950 100%);box-shadow:inset 0 2px 2px #fff9,inset 0 -3px 3px #25292355,0 4px 8px #0006}
+
+
+/* On phones, use two rows of three photos instead of squeezing all six into one row. */
+@media(max-width:760px){
+ .wall-gallery{
+  left:1.8%!important;right:1.8%!important;top:4.5%!important;height:21%!important;
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:repeat(2,minmax(0,1fr))!important;
+  column-gap:1.6%!important;row-gap:2.5%!important;
+ }
+ .travel-frame{width:70%!important;height:100%!important;margin:0 auto!important}
+ .travel-photo{height:100%!important;width:100%!important;object-fit:cover!important}
+}
