@@ -77,7 +77,7 @@ button,input{font:inherit}button{cursor:pointer}
  <header class="chat-header">
   <button class="back" aria-label="Back">‹</button><div class="avatar">V&amp;J</div>
   <div class="contact"><strong>V&amp;J Advertising</strong><span>last seen: today at 01:45</span></div>
-  <button class="head-action" aria-label="Video call">▣</button><button class="head-action" aria-label="Call">☎</button><button class="head-action" aria-label="More">⋮</button>
+  <button class="head-action word-action" aria-label="Video call">Video</button><button class="head-action word-action" aria-label="Call">Call</button><button class="head-action word-action" aria-label="More">More</button>
  </header>
  <main class="chat-feed" id="chatFeed">
   <div class="date-chip">29 June 2019</div>
@@ -98,10 +98,10 @@ button,input{font:inherit}button{cursor:pointer}
    <button class="pay-now" id="payNow">Pay Now</button>
    <div class="invoice-foot"><span id="invoiceNumber">UoME #1847</span><span id="invoiceStatus"></span><button class="text-button" id="editInvoice">EDIT</button></div>
   </article>
-  <div class="message outgoing" id="thanksMessage">Okay, thank you guys 😁<time>02:48 ✓✓</time></div>
+  <div class="message outgoing" id="thanksMessage">Okay, thank you guys.<time>02:48 ✓✓</time></div>
  </main>
- <div class="chat-actions"><button class="create-invoice" id="makeInvoice">＋ Create invoice</button><span class="demo-hint">Try editing or paying this invoice</span></div>
- <form class="composer" id="chatForm"><button type="button" class="head-action" aria-label="Add attachment">＋</button><input id="chatInput" placeholder="Type a message" autocomplete="off"><button type="submit" aria-label="Send message">➤</button></form>
+ <div class="chat-actions"><button class="create-invoice" id="makeInvoice">+ Create invoice</button><span class="demo-hint">Try editing or paying this invoice</span></div>
+ <form class="composer" id="chatForm"><button type="button" class="head-action" aria-label="Add attachment">+</button><input id="chatInput" placeholder="Type a message" autocomplete="off"><button type="submit" aria-label="Send message">Send</button></form>
  <div class="home-indicator"></div>
 
  <section class="overlay" id="invoiceOverlay" hidden>
@@ -182,3 +182,7 @@ button,input{font:inherit}button{cursor:pointer}
 </script>
 </body>
 </html>
+<style>
+.word-action{font-size:9px!important;letter-spacing:0!important;padding:4px!important;color:#666!important}
+.composer button[type="submit"]{width:auto!important;min-width:45px!important;padding:0 10px!important;border-radius:18px!important;font-size:10px!important}
+</style>

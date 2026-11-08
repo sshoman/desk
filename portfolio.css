@@ -127,7 +127,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",Ari
 }
 .sample-media.uome-media>.uome-frame{
  display:block!important;flex:0 0 auto!important;width:min(100%,410px)!important;
- height:min(870px,92vh)!important;min-height:0!important;max-height:870px!important;
+ height:min(870px,88vh)!important;min-height:0!important;max-height:870px!important;
  border:0!important;border-radius:44px!important;background:#e9e6df!important;
  box-shadow:0 22px 44px rgba(0,0,0,.24),0 2px 6px rgba(0,0,0,.22)!important;
 }
