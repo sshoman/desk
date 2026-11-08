@@ -2173,3 +2173,15 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .scene-footer{left:3%!important;right:3%!important;bottom:3.8%!important;font-size:clamp(9px,2.5vw,11px)!important}
  .scene-footer nav{gap:clamp(18px,5vw,24px)!important}
 }
+
+
+/* Desktop laptop clearance. The hinge is separate, with a visible gap before
+   the keyboard and a lower, uncluttered trackpad. */
+@media (min-width:1201px){
+ .travel-frame{width:43%!important}
+ .laptop-display{height:66%!important}
+ .laptop-hinge{top:65%!important;height:3%!important}
+ .laptop-base{top:68%!important;height:23%!important}
+ .keyboard{top:73.5%!important;height:9.5%!important}
+ .trackpad{left:40.5%!important;top:85.5%!important;width:18%!important;height:3.2%!important}
+}
