@@ -1747,3 +1747,25 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .desk-front{top:84%!important;height:16%!important}
  .scene-footer{bottom:1%!important}
 }
+
+
+/* Refine travel frames on phones and portrait tablets: slimmer frames with
+   more vertical image area, while keeping the complete six-photo gallery. */
+@media (max-width:900px) and (orientation:portrait){
+ .wall-gallery{top:3.2%!important;height:26.5%!important;row-gap:1.6%!important}
+ .travel-frame{width:clamp(68px,11vw,100px)!important;height:96%!important}
+ .laptop{left:18%!important;top:33%!important;width:64%!important;height:31.5%!important}
+ .paper{left:1.8%!important;top:34%!important;width:12%!important;height:18%!important;z-index:12!important}
+ .book-mockup{left:79%!important;top:68.5%!important;width:19%!important;height:14.5%!important}
+}
+@media (max-width:600px) and (orientation:portrait){
+ .wall-gallery{top:3%!important;height:27%!important;row-gap:1.8%!important}
+ .travel-frame{width:clamp(66px,18vw,76px)!important;height:96%!important}
+ .laptop{left:17%!important;top:33.5%!important;width:66%!important;height:31%!important}
+ .paper{left:1.5%!important;top:34.5%!important;width:13%!important;height:17.5%!important;z-index:12!important}
+ .book-mockup{left:78%!important;top:68.5%!important;width:20%!important;height:14.5%!important}
+}
+@media (min-width:601px) and (max-width:1100px) and (orientation:landscape){
+ .paper{z-index:12!important;left:22%!important;top:31%!important}
+ .book-mockup{left:78%!important;top:68%!important;width:18%!important;height:17%!important}
+}
