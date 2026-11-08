@@ -1776,3 +1776,21 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 @media (min-width:601px) and (max-width:900px) and (orientation:portrait){
  .book-mockup{left:78%!important;top:72.5%!important;width:18%!important;height:13.5%!important}
 }
+
+
+/* Tablet-only correction: make the wall photos distinctly portrait and keep
+   the research sheet on the wall plane, behind the laptop rather than in front. */
+@media (min-width:601px) and (max-width:900px) and (orientation:portrait){
+ .wall-gallery{top:3.2%!important;height:28%!important;row-gap:1.8%!important}
+ .travel-frame{width:clamp(56px,7.8vw,68px)!important;height:97%!important}
+ .travel-photo{object-fit:cover!important;object-position:center!important}
+ .paper{
+  left:2.2%!important;top:30.5%!important;width:11.5%!important;height:18%!important;
+  z-index:4!important;
+ }
+ .laptop{left:18%!important;top:33%!important;width:64%!important;height:31.5%!important}
+ .book-mockup{left:79%!important;top:72.5%!important;width:18%!important;height:13.5%!important}
+}
+@media (min-width:601px) and (max-width:1100px) and (orientation:landscape){
+ .paper{left:21%!important;top:28%!important;width:9.5%!important;height:18%!important;z-index:4!important}
+}
