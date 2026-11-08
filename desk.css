@@ -726,3 +726,30 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 }
 
 /* No movement on the desk objects. Only the book and research sheet keep their detail reveal. */
+
+
+/* Mobile travel frames use a strict two-row grid so every source image gets
+   a real painted box above its permanent city label. */
+@media(max-width:760px){
+ .travel-frame{
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:minmax(0,1fr) 15px!important;
+  align-content:stretch!important;overflow:hidden!important;
+  width:52%!important;height:75%!important;padding:3px 3px 0!important;
+ }
+ .travel-photo{
+  display:block!important;grid-column:1!important;grid-row:1!important;
+  width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;
+  max-width:none!important;max-height:none!important;flex:none!important;
+  object-fit:cover!important;object-position:center!important;
+  opacity:1!important;visibility:visible!important;
+ }
+ .travel-frame figcaption{
+  grid-column:1!important;grid-row:2!important;position:relative!important;
+  left:auto!important;right:auto!important;bottom:auto!important;
+  display:flex!important;width:100%!important;height:15px!important;
+  min-height:15px!important;flex:none!important;opacity:1!important;
+  visibility:visible!important;transform:none!important;
+ }
+ .travel-frame figcaption small{display:none!important}
+}
