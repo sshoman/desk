@@ -1598,3 +1598,10 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .award-hover-kicker{font-size:7px!important}.award-hover strong{font-size:14px!important}
  .award-hover small{font-size:9px!important}
 }
+
+
+/* The hover card's cover is a preview, not part of the desk book's lift animation. */
+.book-mockup:hover .book-hover-cover,
+.book-mockup:focus-visible .book-hover-cover{
+ transform:none!important;filter:drop-shadow(0 3px 5px #0005)!important;
+}
