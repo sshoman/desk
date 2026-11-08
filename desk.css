@@ -1923,3 +1923,15 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 @media (min-width:601px) and (max-width:1400px) and (orientation:landscape){
  .paper{left:.2%!important;width:7.2%!important;z-index:4!important}
 }
+
+
+/* Landscape tablets were still inheriting the square-image "contain" rule.
+   Crop the sides in the frame so the actual photo fills its taller portrait slot. */
+@media (min-width:601px) and (max-width:1400px) and (orientation:landscape){
+ .travel-photo{
+  display:block!important;grid-column:1!important;grid-row:1!important;
+  width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;
+  max-width:none!important;max-height:none!important;object-fit:cover!important;object-position:center!important;
+ }
+ .paper{left:.2%!important;width:7.2%!important;z-index:4!important}
+}
