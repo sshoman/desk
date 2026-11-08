@@ -1913,3 +1913,13 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .laptop{left:36.7%!important;top:43.5%!important;width:29.5%!important;height:40%!important;z-index:7!important}
  .book-mockup{left:77%!important;top:60%!important;width:17%!important;height:23%!important}
 }
+
+
+/* Final tablet placement: paper stays at the wall's far-left edge, with a clear
+   horizontal gap from the laptop at both tablet orientations. */
+@media (min-width:601px) and (max-width:1400px) and (orientation:portrait){
+ .paper{left:.2%!important;width:7.2%!important;z-index:4!important}
+}
+@media (min-width:601px) and (max-width:1400px) and (orientation:landscape){
+ .paper{left:.2%!important;width:7.2%!important;z-index:4!important}
+}
