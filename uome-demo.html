@@ -3,450 +3,491 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>UOME | Tabs, receipts and settling</title>
+<title>UoMe | Business App Prototype</title>
 <style>
 :root{
- --paper:#faf8f2;--paper-2:#f2efe7;--ink:#262822;--muted:#8a887f;
- --line:#e8e3d8;--coral:#dd8068;--coral-soft:#f7e7df;--teal:#43887d;
- --teal-dark:#2f6e64;--teal-soft:#e4efea;--sand:#e8dfcf;--white:#fffefa;
- --shadow:0 10px 28px #312c2112;
+ --blue:#0788ef;--blue2:#0878da;--blue-soft:#e9f4ff;--ink:#20242a;--muted:#818995;
+ --line:#e9edf1;--surface:#fff;--canvas:#f6f8fa;--green:#168a65;--green-soft:#e8f6ef;
+ --orange:#dd8739;--orange-soft:#fff3e5;--red:#d75d5d;--shadow:0 10px 28px #162a3c12;
 }
 *{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:transparent;color:var(--ink)}
-button{font:inherit;cursor:pointer}
-.demo-stage{width:100%;height:100%;min-height:0;display:flex;align-items:center;justify-content:center;padding:8px;background:transparent}
-.phone{width:min(410px,100%);height:min(860px,calc(100vh - 18px));min-height:0;padding:7px;border-radius:43px;background:linear-gradient(145deg,#51514b,#1c211e 42%,#42463e 75%,#171a17);border:1px solid #55584f;box-shadow:0 22px 50px #15140f35,0 3px 7px #0004,inset 0 0 0 2px #77796c}
-.phone-screen{position:relative;width:100%;height:100%;overflow:hidden;border-radius:35px;background:var(--paper);display:flex;flex-direction:column}
-.statusbar{height:27px;flex:0 0 27px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:var(--paper);font-size:10px;font-weight:750;letter-spacing:.01em}
-.status-right{display:flex;align-items:center;gap:5px;color:#45483f;font-size:9px}
-.signal{letter-spacing:-2px}
-.app-top{height:52px;flex:0 0 52px;display:flex;align-items:center;justify-content:space-between;padding:0 17px;border-bottom:1px solid #ede8dd;background:var(--paper)}
-.wordmark{font-size:17px;font-weight:850;letter-spacing:-.08em}
-.wordmark i{font-style:normal;color:var(--coral)}
-.top-actions{display:flex;align-items:center;gap:9px}
-.icon-btn{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:var(--white);color:#55584f;font-size:17px}
-.profile-bubble{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--teal);color:white;font-size:12px;font-weight:800}
-.app-scroll{flex:1;min-height:0;overflow:auto;scrollbar-width:none;background:var(--paper)}
-.app-scroll::-webkit-scrollbar{display:none}
-.view{padding:17px 17px 25px}
+html,body{width:100%;height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:transparent;color:var(--ink)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.demo-stage{height:100%;width:100%;display:flex;align-items:center;justify-content:center;padding:8px}
+.device{position:relative;width:min(410px,100%);height:min(846px,calc(100vh - 16px));padding:7px;border:1px solid #393e44;border-radius:39px;background:linear-gradient(145deg,#444b52,#14181d 42%,#515963 74%,#181b20);box-shadow:0 24px 55px #18212a35,inset 0 0 0 1px #8f989f}
+.screen{position:relative;width:100%;height:100%;overflow:hidden;border-radius:31px;background:var(--canvas);display:flex;flex-direction:column}
+.notch{position:absolute;z-index:30;top:7px;left:50%;width:112px;height:23px;transform:translateX(-50%);border-radius:0 0 15px 15px;background:#171b20}
+.statusbar{height:27px;flex:0 0 27px;display:flex;justify-content:space-between;align-items:center;padding:0 18px;background:#fff;font-size:10px;font-weight:750;letter-spacing:.02em}
+.status-right{display:flex;align-items:center;gap:6px;font-size:9px;color:#303943}
+.appbar{height:53px;flex:0 0 53px;display:flex;align-items:center;justify-content:space-between;padding:0 17px;background:#fff;border-bottom:1px solid #eef0f2}
+.brand{font-size:20px;font-weight:850;letter-spacing:-.085em;color:#151a20}
+.brand span{color:var(--blue)}
+.appbar-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{width:33px;height:33px;display:grid;place-items:center;border:1px solid #e5e9ed;border-radius:50%;background:#fff;color:#424b55;font-size:16px}
+.user-avatar{width:31px;height:31px;display:grid;place-items:center;border-radius:50%;background:#d8e9f9;color:#23679e;font-size:11px;font-weight:800}
+.content{flex:1;min-height:0;overflow:auto;scrollbar-width:none;background:var(--canvas)}
+.content::-webkit-scrollbar{display:none}
+.view{padding:17px 16px 24px}
 .view[hidden]{display:none!important}
-.page-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
-.eyebrow{font-size:9px;line-height:1.2;font-weight:800;letter-spacing:.14em;color:#989286}
-.page-head h1{margin:4px 0 0;font-size:27px;line-height:1.05;letter-spacing:-.055em;font-weight:780}
-.page-head p{margin:5px 0 0;color:var(--muted);font-size:10px}
-.add-btn{width:39px;height:39px;border:0;border-radius:50%;background:var(--coral);color:white;font-size:24px;line-height:1;box-shadow:0 4px 8px #d87b6533}
-.balance-card{padding:15px 16px 13px;border:1px solid #e5ded0;border-radius:21px;background:linear-gradient(135deg,#fffefa 0%,#f8f4ea 100%);box-shadow:0 5px 15px #30291c0d}
-.balance-top{display:flex;align-items:center;justify-content:space-between;color:#77756d;font-size:10px;font-weight:650}
-.period-chip{padding:5px 8px;border:1px solid #e4dfd5;border-radius:20px;background:#fffdf8;font-size:9px}
-.balance-main{display:flex;align-items:center;justify-content:space-between;padding:10px 1px 12px}
-.balance-main small{display:block;margin-bottom:3px;color:#979084;font-size:9px;font-weight:800;letter-spacing:.13em}
-.balance-main strong{font-size:41px;line-height:1;font-weight:780;letter-spacing:-.065em;color:#cb6f58}
-.progress-ring{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--teal) 0 53%,#ead9cf 53% 100%);position:relative}
-.progress-ring:before{content:"";position:absolute;inset:7px;border-radius:50%;background:#fbf8f0}
-.progress-ring b{position:relative;font-size:12px;letter-spacing:-.04em}
-.balance-bottom{display:flex;align-items:center;gap:0;border-top:1px solid #ebe5d9;padding-top:10px;color:#77736a;font-size:9px;white-space:nowrap}
-.balance-bottom span{flex:1;text-align:center}
-.balance-bottom span:first-child{text-align:left;color:var(--teal-dark);font-weight:750}
-.balance-bottom span+span{border-left:1px solid #e9e2d6}
-.filter-row{display:flex;align-items:center;gap:7px;margin:17px 0 12px;overflow-x:auto;scrollbar-width:none}
-.filter-row::-webkit-scrollbar{display:none}
-.filter{height:32px;padding:0 12px;border:1px solid transparent;border-radius:20px;background:transparent;color:#77746b;font-size:10px;font-weight:650;white-space:nowrap}
-.filter.active{background:var(--coral);color:white}
-.filter-tools{margin-left:auto;width:31px;height:31px;border:1px solid var(--line);border-radius:50%;background:#fffdf8;color:#77746b;flex:0 0 auto}
-.tab-list{display:flex;flex-direction:column;gap:8px}
-.tab-card{width:100%;border:1px solid #e8e2d7;border-radius:17px;background:#fffefa;padding:13px 14px;text-align:left;box-shadow:0 2px 5px #3e342011;transition:transform .16s,border-color .16s}
-.tab-card:active{transform:scale(.99)}
-.tab-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
-.tab-name{font-size:12px;font-weight:760;letter-spacing:-.02em}
-.tab-amount{font-size:13px;font-weight:780;color:#c96f59;white-space:nowrap}
-.tab-meta{display:flex;align-items:center;justify-content:space-between;margin-top:8px;color:#918b80;font-size:9px}
-.meta-left{display:flex;align-items:center;gap:6px}
-.live-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block}
-.avatar-stack{display:flex;align-items:center;padding-left:2px}
-.avatar-stack i,.mini-avatar{width:22px;height:22px;border:2px solid #fffefa;border-radius:50%;display:grid;place-items:center;margin-left:-3px;font-size:7px;font-weight:800;font-style:normal;color:white;background:#8f79b9}
-.avatar-stack i:nth-child(2),.mini-avatar.teal{background:#488c80}
-.avatar-stack i:nth-child(3),.mini-avatar.orange{background:#c17a5d}
-.avatar-stack i:nth-child(4),.mini-avatar.blue{background:#6b91a7}
-.card-extra{display:flex;align-items:center;justify-content:space-between;margin-top:11px;padding-top:9px;border-top:1px solid #f0ece4;color:#9a9285;font-size:9px}
-.card-extra b{color:var(--teal-dark);font-size:9px}
-.scan-cta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding:13px 14px;border-radius:15px;background:var(--teal-soft);color:var(--teal-dark);border:1px solid #d7e7df}
-.scan-cta strong{display:block;font-size:11px}.scan-cta small{display:block;margin-top:3px;font-size:9px;color:#66857b}
-.scan-cta button{border:0;border-radius:18px;background:var(--teal);color:white;padding:8px 12px;font-size:10px;font-weight:750}
-.bottom-nav{height:62px;flex:0 0 62px;display:flex;align-items:center;justify-content:space-around;padding:5px 18px 0;background:#fffdf8;border-top:1px solid #e9e4da}
-.bottom-nav[hidden]{display:none}
-.nav-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 13px;border:0;background:transparent;color:#8f8b80;font-size:8px;font-weight:650}
-.nav-btn .nav-symbol{font-size:18px;line-height:1}
-.nav-btn.active{color:var(--coral)}
-.home-indicator{height:13px;flex:0 0 13px;background:#fffdf8;display:flex;align-items:center;justify-content:center}
-.home-indicator:after{content:"";height:4px;width:90px;border-radius:3px;background:#252720}
-
-/* Detail, item assignment and guest claim */
-.back-head{display:flex;align-items:center;gap:10px;margin:-2px 0 15px}
-.back-btn{width:32px;height:32px;border:1px solid var(--line);border-radius:50%;background:#fffefa;color:#4d5048;font-size:18px}
-.back-copy{min-width:0;flex:1}
-.back-copy small{display:block;color:#969083;font-size:8px;font-weight:800;letter-spacing:.13em}
-.back-copy strong{display:block;margin-top:3px;font-size:16px;letter-spacing:-.035em}
-.more-btn{border:0;background:transparent;color:#777;font-size:18px}
-.detail-card{padding:15px;border:1px solid #e8e1d5;border-radius:18px;background:#fffefa;box-shadow:var(--shadow)}
-.detail-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.detail-card h2{margin:0;font-size:15px;letter-spacing:-.035em}
-.detail-card p{margin:4px 0 0;color:#8f897e;font-size:9px}
-.detail-total{text-align:right;font-size:22px;font-weight:800;letter-spacing:-.06em;color:var(--teal-dark)}
-.detail-people{display:flex;align-items:center;gap:7px;margin-top:14px}
-.detail-people .avatar-stack{margin-right:4px}
-.detail-people span{color:#8e897e;font-size:9px}
-.assign-progress{margin-top:12px}
-.progress-caption{display:flex;justify-content:space-between;margin-bottom:5px;color:#8f897d;font-size:9px}
-.progress-track{height:5px;border-radius:5px;background:#eee8dd;overflow:hidden}
-.progress-track i{display:block;width:25%;height:100%;border-radius:5px;background:var(--teal)}
-.segmented{display:flex;gap:4px;margin:15px 0 13px;padding:4px;background:#efede6;border-radius:11px}
-.segmented button{flex:1;height:30px;border:0;border-radius:8px;background:transparent;color:#8a867e;font-size:10px;font-weight:650}
-.segmented button.active{background:#fffefa;color:#34382f;box-shadow:0 1px 4px #00000012}
-.section-title{display:flex;align-items:center;justify-content:space-between;margin:16px 1px 9px}
-.section-title h3{margin:0;font-size:12px;letter-spacing:-.02em}
-.section-title span{color:#928c80;font-size:9px}
-.receipt-note{display:flex;align-items:center;gap:8px;margin-bottom:9px;padding:9px 11px;border-radius:11px;background:#eaf1ec;color:#4c786e;font-size:9px}
-.receipt-note b{font-size:10px}
-.item-list{display:flex;flex-direction:column;gap:7px}
-.item-row{padding:10px 11px;border:1px solid #e9e4da;border-radius:13px;background:#fffefa}
-.item-row-main{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
-.item-title{font-size:10px;font-weight:720;line-height:1.25}
-.item-price{font-size:10px;font-weight:780;white-space:nowrap}
-.item-sub{margin-top:3px;color:#979083;font-size:8px}
-.assign-row{display:flex;align-items:center;gap:5px;margin-top:8px;flex-wrap:wrap}
-.assign-label{margin-right:2px;color:#a09a8f;font-size:8px}
-.assign-chip{width:25px;height:25px;border:1px solid #e4e0d8;border-radius:50%;display:grid;place-items:center;background:#f2f0ea;color:#9a968d;font-size:8px;font-weight:800}
-.assign-chip.active{border:2px solid #fffefa;background:var(--teal);color:white;box-shadow:0 0 0 1px var(--teal)}
-.assign-chip[data-person="ben"].active{background:#8c78b4;box-shadow:0 0 0 1px #8c78b4}
-.assign-chip[data-person="ava"].active{background:#ca8568;box-shadow:0 0 0 1px #ca8568}
-.assign-chip[data-person="jess"].active{background:#7196a8;box-shadow:0 0 0 1px #7196a8}
-.hidden-items{margin-top:8px;padding:9px 11px;border-radius:11px;background:#f5f2eb;color:#77736a;font-size:9px;display:flex;justify-content:space-between}
-.your-share{margin-top:13px;padding:13px 14px;border:1px solid #dce7df;border-radius:15px;background:#f0f5ef}
-.your-share-top{display:flex;align-items:center;justify-content:space-between}
-.your-share small{display:block;color:#668278;font-size:8px;font-weight:800;letter-spacing:.1em}
-.your-share strong{display:block;margin-top:3px;color:#286d61;font-size:23px;letter-spacing:-.06em}
-.your-share .share-breakdown{color:#8b9389;font-size:8px;text-align:right;line-height:1.6}
-.detail-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}
-.btn-secondary,.btn-primary{height:41px;border-radius:12px;font-size:10px;font-weight:760}
-.btn-secondary{border:1px solid #ded9cf;background:#fffefa;color:#66645a}
-.btn-primary{border:1px solid var(--coral);background:var(--coral);color:white}
-.btn-primary:active,.btn-secondary:active{transform:translateY(1px)}
-.footer-note{margin:10px 2px 0;text-align:center;color:#a39d91;font-size:8px}
-
-/* Guest link view */
-.guest-banner{padding:14px;border-radius:17px;background:#edf3ed;border:1px solid #dce9dd}
-.guest-banner small{color:#6c8879;font-size:8px;font-weight:800;letter-spacing:.12em}
-.guest-banner h2{margin:5px 0 4px;font-size:18px;letter-spacing:-.05em}
-.guest-banner p{margin:0;color:#788278;font-size:9px}
-.guest-progress{display:flex;align-items:center;justify-content:space-between;margin:14px 0 8px;color:#807b71;font-size:9px}
-.guest-item{display:flex;align-items:center;gap:9px;width:100%;padding:11px;border:1px solid #e8e2d8;border-radius:13px;background:#fffefa;text-align:left;margin-bottom:7px}
-.guest-item.active{border-color:#8cb5a4;background:#edf5ef}
-.check-box{width:20px;height:20px;border:1px solid #d7d2c8;border-radius:6px;display:grid;place-items:center;color:white;font-size:12px;flex:0 0 auto}
-.guest-item.active .check-box{border-color:var(--teal);background:var(--teal)}
-.guest-item-copy{flex:1;min-width:0}
-.guest-item-copy b{display:block;font-size:10px}
-.guest-item-copy small{display:block;margin-top:3px;color:#968f83;font-size:8px}
-.guest-item strong{font-size:10px}
-.guest-total{display:flex;align-items:center;justify-content:space-between;margin:12px 0;padding:13px;border-radius:13px;background:#f4eee3;color:#5d594e;font-size:10px}
-.guest-total strong{font-size:18px;color:#2f7166;letter-spacing:-.04em}
-.full-btn{width:100%;height:43px;border:0;border-radius:12px;background:var(--coral);color:#fff;font-size:11px;font-weight:780}
-.link-card{margin-top:13px;padding:11px 12px;border:1px solid #e7e1d6;border-radius:12px;background:#fffefa}
-.link-card small{color:#989185;font-size:8px}
-.link-card strong{display:block;margin-top:5px;color:#548378;font-size:10px}
-.success-wrap{padding:44px 18px;text-align:center}
-.success-mark{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:#e1efe8;color:var(--teal);font-size:26px;font-weight:800}
-.success-wrap h2{margin:0;font-size:22px;letter-spacing:-.05em}
-.success-wrap p{color:#8d887d;font-size:10px;line-height:1.5}
-.success-amount{margin:18px 0;color:var(--teal-dark);font-size:32px;font-weight:820;letter-spacing:-.07em}
-
-/* Scan and settle */
-.scan-panel{padding:14px;border-radius:17px;background:#f0eee6;border:1px solid #e4dfd3}
-.scan-frame{height:265px;border-radius:13px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#3b403a,#1f2420);padding:18px}
-.receipt-paper{width:75%;height:100%;padding:18px 14px;background:#fffdf5;transform:rotate(-2deg);box-shadow:0 6px 18px #0004;color:#3c3b34;font-family:Georgia,serif}
-.receipt-paper h4{margin:0 0 8px;text-align:center;font-size:13px;letter-spacing:.05em}
-.receipt-paper p{margin:0 0 8px;text-align:center;color:#888;font-size:7px}
-.receipt-line{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed #e0dbcf;font:8px/1.2 monospace}
-.receipt-total{display:flex;justify-content:space-between;margin-top:8px;font:bold 10px monospace}
-.scan-corner{position:absolute;inset:18px;border:1px solid #a8d0bc;border-radius:8px;box-shadow:0 0 0 1px #5b9b8266}
-.scan-status{display:flex;align-items:center;gap:7px;margin:12px 0;color:var(--teal-dark);font-size:9px;font-weight:700}
-.scan-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:13px 0}
-.scan-stat{padding:9px 6px;border-radius:10px;background:#fffefa;text-align:center;border:1px solid #e8e2d7}
-.scan-stat strong{display:block;font-size:14px}.scan-stat small{color:#9a9387;font-size:8px}
-.settle-person{display:flex;align-items:center;gap:10px;padding:12px 3px;border-bottom:1px solid #eee9e0}
-.person-avatar{width:34px;height:34px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;background:#8f79b9;color:#fff;font-size:10px;font-weight:800}
-.person-avatar.ava{background:#c17c62}.person-avatar.jess{background:#7196a8}.person-avatar.you{background:var(--teal)}
-.person-copy{flex:1;min-width:0}
-.person-copy b{display:block;font-size:10px}.person-copy small{display:block;margin-top:3px;color:#989184;font-size:8px}
-.person-due{text-align:right}.person-due b{display:block;font-size:12px}.person-due small{display:block;margin-top:3px;color:#9a9488;font-size:8px}
-.remind-btn{height:28px;padding:0 10px;border:1px solid #e6ded2;border-radius:16px;background:#fffefa;color:#8e725e;font-size:8px;font-weight:750}
-.remind-btn.sent{border-color:#d4e5db;background:#e9f2eb;color:#4d8878}
-.settle-total{display:flex;justify-content:space-between;padding:14px;border-radius:13px;background:#f0f4ec;margin:13px 0;color:#62776b;font-size:10px}
-.settle-total strong{color:#347568;font-size:17px}
-.toast{position:absolute;z-index:20;left:50%;bottom:83px;transform:translate(-50%,12px);opacity:0;pointer-events:none;padding:9px 13px;border-radius:22px;background:#28352f;color:#fff;font-size:9px;white-space:nowrap;transition:opacity .18s,transform .18s;box-shadow:0 5px 15px #0003}
+.greeting{color:#737d89;font-size:10px;font-weight:650}
+.page-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:4px 0 13px}
+.page-head h1{margin:0;font-size:24px;line-height:1.1;letter-spacing:-.055em;font-weight:820;color:#1e252d}
+.page-head p{margin:4px 0 0;color:#8a929c;font-size:9px}
+.date-chip{height:29px;padding:0 10px;border:1px solid #e7ebef;border-radius:18px;background:#fff;color:#626d79;font-size:9px;font-weight:700}
+.hero-card{position:relative;overflow:hidden;padding:15px 15px 12px;border:1px solid #e6edf3;border-radius:18px;background:linear-gradient(135deg,#fff 0%,#f2f8ff 100%);box-shadow:var(--shadow)}
+.hero-top{display:flex;align-items:center;justify-content:space-between;color:#667382;font-size:9px;font-weight:700}
+.hero-top .more{border:0;background:transparent;color:#89939d;font-size:15px}
+.balance-value{margin-top:7px;font-size:33px;font-weight:850;line-height:1;letter-spacing:-.065em;color:#172b3e}
+.balance-change{display:flex;align-items:center;gap:5px;margin-top:7px;color:#6f8a9f;font-size:8px}
+.positive{color:var(--green);font-weight:800}
+.balance-chart{display:block;width:100%;height:87px;margin-top:7px;overflow:visible}
+.chart-labels{display:flex;justify-content:space-between;margin:0 1px;color:#a4adb7;font-size:7px}
+.chart-toggle{display:flex;gap:5px;margin-top:10px}
+.chart-toggle button{height:24px;padding:0 9px;border:1px solid #e8edf2;border-radius:14px;background:#fff;color:#77828e;font-size:8px;font-weight:750}
+.chart-toggle button.active{border-color:#d4e8fa;background:#eaf5ff;color:#147bd0}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
+.stat-card{padding:12px;border:1px solid #eaedf0;border-radius:14px;background:#fff;box-shadow:0 3px 10px #15263808}
+.stat-label{color:#87919c;font-size:8px;font-weight:750;letter-spacing:.07em;text-transform:uppercase}
+.stat-row{display:flex;align-items:end;justify-content:space-between;margin-top:5px}
+.stat-value{font-size:22px;font-weight:830;letter-spacing:-.06em;color:#25313c}
+.stat-foot{color:#9ba4ad;font-size:8px}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:18px 1px 9px}
+.section-head h2{margin:0;font-size:12px;letter-spacing:-.025em}
+.text-action{border:0;background:transparent;color:var(--blue);font-size:9px;font-weight:800}
+.contacts-strip{display:flex;gap:12px;overflow:auto;padding:3px 1px 5px;scrollbar-width:none}
+.contacts-strip::-webkit-scrollbar{display:none}
+.contact-mini{min-width:54px;display:flex;flex-direction:column;align-items:center;gap:5px;border:0;background:transparent;color:#65717c;font-size:8px}
+.contact-avatar{width:37px;height:37px;display:grid;place-items:center;border-radius:50%;background:#e3eef8;color:#286d9f;font-size:11px;font-weight:820;border:2px solid #fff;box-shadow:0 2px 7px #20364b12}
+.contact-mini:nth-child(2) .contact-avatar{background:#f4e3d9;color:#a75e3d}
+.contact-mini:nth-child(3) .contact-avatar{background:#e4e8fb;color:#5e68aa}
+.contact-mini:nth-child(4) .contact-avatar{background:#e1f1e9;color:#398363}
+.contact-mini:nth-child(5) .contact-avatar{background:#f5e8f0;color:#a05a81}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.quick-btn{min-width:0;height:66px;padding:8px 4px 7px;border:1px solid #e8edf1;border-radius:13px;background:#fff;color:#66717c;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:7px;font-weight:750}
+.quick-icon{width:25px;height:25px;display:grid;place-items:center;border-radius:8px;background:#eaf4ff;color:#1684df;font-size:14px;font-weight:800}
+.quick-btn:nth-child(2) .quick-icon{background:#eef7f1;color:#22916a}
+.quick-btn:nth-child(3) .quick-icon{background:#fff3e5;color:#ce8135}
+.quick-btn:nth-child(4) .quick-icon{background:#f0eefb;color:#786bb6}
+.activity-list{display:flex;flex-direction:column;gap:7px}
+.activity-row{width:100%;display:flex;align-items:center;gap:9px;padding:10px 11px;border:1px solid #e9edf0;border-radius:13px;background:#fff;text-align:left}
+.activity-icon{width:32px;height:32px;display:grid;place-items:center;flex:0 0 auto;border-radius:10px;background:#eaf4ff;color:#2887d4;font-size:13px;font-weight:850}
+.activity-copy{flex:1;min-width:0}
+.activity-copy b{display:block;font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.activity-copy small{display:block;margin-top:3px;color:#939ca6;font-size:7px}
+.activity-right{text-align:right;white-space:nowrap}
+.activity-right b{display:block;font-size:9px}
+.activity-right small{display:block;margin-top:3px;color:#9ba4ac;font-size:7px}
+.bottom-nav{height:62px;flex:0 0 62px;display:flex;align-items:center;justify-content:space-around;padding:5px 9px 2px;background:#fff;border-top:1px solid #e9edf1}
+.bottom-nav[hidden]{display:none!important}
+.nav-btn{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:54px;border:0;background:transparent;color:#9aa3ad;font-size:7px;font-weight:750}
+.nav-icon{font-size:17px;line-height:1}
+.nav-btn.active{color:var(--blue)}
+.nav-btn.active .nav-icon{transform:translateY(-1px)}
+.list-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:13px}
+.metric-mini{padding:11px 12px;border:1px solid #e8edf1;border-radius:13px;background:#fff}
+.metric-mini small{display:block;color:#8d97a1;font-size:8px;font-weight:750;text-transform:uppercase;letter-spacing:.07em}
+.metric-mini strong{display:block;margin-top:4px;font-size:19px;letter-spacing:-.05em}
+.filters{display:flex;gap:6px;margin:7px 0 10px;overflow:auto;scrollbar-width:none}
+.filters button{height:28px;padding:0 10px;border:1px solid #e5ebef;border-radius:16px;background:#fff;color:#7c8792;font-size:8px;font-weight:750;white-space:nowrap}
+.filters button.active{border-color:#cde4f8;background:#eaf5ff;color:#1179cf}
+.invoice-list{display:flex;flex-direction:column;gap:7px}
+.invoice-card{display:flex;align-items:center;gap:9px;width:100%;padding:11px;border:1px solid #e9edf1;border-radius:14px;background:#fff;text-align:left}
+.invoice-mark{width:34px;height:34px;display:grid;place-items:center;flex:0 0 auto;border-radius:11px;background:#edf5ff;color:#277fca;font-size:13px}
+.invoice-copy{flex:1;min-width:0}
+.invoice-copy b{display:block;font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.invoice-copy small{display:block;margin-top:3px;color:#97a0aa;font-size:7px}
+.invoice-side{text-align:right;white-space:nowrap}
+.invoice-side b{display:block;font-size:10px}
+.status-pill{display:inline-block;margin-top:4px;padding:3px 6px;border-radius:9px;background:#e8f6ef;color:#208260;font-size:7px;font-weight:800}
+.status-pill.pending{background:#fff3e4;color:#b8782e}
+.status-pill.overdue{background:#fdeeee;color:#c05252}
+.status-pill.draft{background:#f0f2f5;color:#77818d}
+.primary-btn{height:36px;padding:0 13px;border:0;border-radius:11px;background:var(--blue);color:#fff;font-size:9px;font-weight:800;box-shadow:0 4px 10px #0788ef28}
+.secondary-btn{height:36px;padding:0 13px;border:1px solid #e2e8ed;border-radius:11px;background:#fff;color:#56616d;font-size:9px;font-weight:800}
+.back-row{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.back-btn{width:30px;height:30px;border:1px solid #e3e9ee;border-radius:50%;background:#fff;color:#52606d;font-size:17px}
+.back-row strong{font-size:12px}
+.detail-hero{padding:15px;border:1px solid #e6ecf1;border-radius:17px;background:linear-gradient(140deg,#fff,#f3f8fc)}
+.detail-hero small{color:#8a95a1;font-size:8px;font-weight:800;letter-spacing:.1em}
+.detail-hero h2{margin:7px 0 4px;font-size:28px;letter-spacing:-.06em}
+.detail-hero p{margin:0;color:#8a949f;font-size:8px}
+.detail-row{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid #edf0f3;font-size:9px}
+.detail-row span{color:#8d97a1}
+.detail-section{margin-top:15px;padding:13px;border:1px solid #e9edf1;border-radius:14px;background:#fff}
+.detail-section h3{margin:0 0 9px;font-size:10px}
+.action-row{display:flex;gap:7px;margin-top:13px}
+.action-row button{flex:1}
+.form-card{padding:13px;border:1px solid #e8edf1;border-radius:15px;background:#fff}
+.field{display:block;margin-top:11px}
+.field:first-child{margin-top:0}
+.field span{display:block;margin-bottom:5px;color:#798490;font-size:8px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.field input,.field select,.field textarea{width:100%;height:37px;padding:0 10px;border:1px solid #e5eaef;border-radius:10px;background:#fbfcfd;color:#303943;font-size:10px;outline:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#8cc9f5;box-shadow:0 0 0 3px #e9f5ff}
+.field textarea{height:58px;padding:9px;resize:vertical}
+.form-split{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.total-box{display:flex;align-items:center;justify-content:space-between;margin-top:13px;padding:12px;border-radius:12px;background:#f1f7fc}
+.total-box small{color:#758493;font-size:8px;font-weight:800}
+.total-box strong{font-size:20px;letter-spacing:-.05em}
+.form-actions{display:flex;gap:7px;margin-top:13px}
+.form-actions button{flex:1}
+.client-list{display:flex;flex-direction:column;gap:7px}
+.client-card{display:flex;align-items:center;gap:9px;padding:11px;border:1px solid #e9edf1;border-radius:14px;background:#fff;text-align:left}
+.client-card .contact-avatar{width:36px;height:36px;box-shadow:none;flex:0 0 auto}
+.client-main{flex:1;min-width:0}
+.client-main b{display:block;font-size:9px}
+.client-main small{display:block;margin-top:3px;color:#96a0aa;font-size:7px}
+.client-balance{text-align:right;font-size:9px;font-weight:800}
+.client-balance small{display:block;margin-top:3px;color:#9ca5af;font-size:7px;font-weight:600}
+.chat-thread{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.message{max-width:82%;padding:9px 10px;border-radius:13px;background:#eef1f4;color:#515c67;font-size:8px;line-height:1.45}
+.message.mine{margin-left:auto;background:#e5f3ff;color:#2d668f;border-bottom-right-radius:4px}
+.message small{display:block;margin-top:4px;color:#98a3ad;font-size:6px;text-align:right}
+.chat-compose{display:flex;gap:6px;margin-top:12px}
+.chat-compose input{flex:1;min-width:0;height:36px;padding:0 10px;border:1px solid #e5eaef;border-radius:18px;background:#fff;font-size:9px}
+.more-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.more-tile{height:86px;padding:12px;border:1px solid #e9edf1;border-radius:14px;background:#fff;text-align:left}
+.more-tile .quick-icon{margin-bottom:8px}
+.more-tile b{display:block;font-size:9px}
+.more-tile small{display:block;margin-top:3px;color:#95a0aa;font-size:7px}
+.payment-card{padding:14px;border-radius:16px;background:linear-gradient(135deg,#1b2b3b,#2e5a78);color:#fff;box-shadow:0 12px 24px #1b355026}
+.payment-card small{color:#c1d4e2;font-size:8px;font-weight:750;letter-spacing:.1em}
+.payment-card strong{display:block;margin-top:13px;font-size:22px;letter-spacing:.05em}
+.payment-card span{display:block;margin-top:17px;color:#d2e0ea;font-size:8px}
+.toast{position:absolute;z-index:50;left:50%;bottom:72px;transform:translate(-50%,8px);padding:9px 13px;border-radius:18px;background:#202a34;color:#fff;font-size:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;box-shadow:0 5px 14px #0003}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:430px){
- .demo-stage{padding:0}
- .phone{width:100%;height:100%;min-height:0;padding:0;border:0;border-radius:0;box-shadow:none;background:transparent}
- .phone-screen{border-radius:0}
-}
+@media(max-width:430px){.demo-stage{padding:0}.device{width:100%;height:100%;padding:0;border:0;border-radius:0;box-shadow:none;background:transparent}.screen{border-radius:0}.notch{top:0}}
+@media(max-height:710px){.device{height:100%;border-radius:25px}.screen{border-radius:19px}.notch{height:18px}}
 </style>
 </head>
 <body>
 <div class="demo-stage">
- <div class="phone">
-  <div class="phone-screen">
-   <div class="statusbar"><span>9:41</span><span class="status-right"><span class="signal">▮▮▮</span><span>◉</span><span>▰</span></span></div>
-   <header class="app-top">
-    <div class="wordmark">UOME<i>.</i></div>
-    <div class="top-actions">
+ <div class="device">
+  <div class="screen">
+   <div class="notch"></div>
+   <div class="statusbar"><span>9:41</span><span class="status-right">▮▮▮  ◉  ▰</span></div>
+   <header class="appbar">
+    <div class="brand">Uome<span>.</span></div>
+    <div class="appbar-actions">
      <button class="icon-btn" id="topSearch" aria-label="Search">⌕</button>
-     <button class="icon-btn" id="topAdd" aria-label="Add a tab">＋</button>
-     <div class="profile-bubble">J</div>
+     <button class="icon-btn" id="topAdd" aria-label="Create invoice">＋</button>
+     <div class="user-avatar">JL</div>
     </div>
    </header>
-   <main class="app-scroll" id="appScroll">
+   <main class="content" id="content">
     <section class="view" id="homeView">
-     <div class="page-head">
-      <div><div class="eyebrow">YOUR TAB WALLET</div><h1>Tabs</h1><p>Keep every table, crew and trip together.</p></div>
-      <button class="add-btn" id="newTab">＋</button>
-     </div>
-     <article class="balance-card">
-      <div class="balance-top"><span>7 owe you · 7 mo open</span><span class="period-chip">This month⌄</span></div>
-      <div class="balance-main">
-       <div><small>OUTSTANDING</small><strong>$768</strong></div>
-       <div class="progress-ring"><b>53%</b></div>
-      </div>
-      <div class="balance-bottom"><span>● $995 paid</span><span>$110 unassigned</span><span>2 tabs</span></div>
+     <div class="greeting">Good morning, Jordan</div>
+     <div class="page-head"><div><h1>Overview</h1><p>Your business at a glance</p></div><button class="date-chip" id="rangeButton">Jan – Aug 2026⌄</button></div>
+     <article class="hero-card">
+      <div class="hero-top"><span>BUSINESS BALANCE</span><button class="more" id="balanceMore">•••</button></div>
+      <div class="balance-value" id="balanceValue">£20,739.59</div>
+      <div class="balance-change"><span class="positive">↗ 12.8%</span><span>compared with last period</span></div>
+      <svg class="balance-chart" viewBox="0 0 340 86" preserveAspectRatio="none" aria-label="Income and expenses chart">
+       <defs><linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#0b8bf2" stop-opacity=".18"/><stop offset="1" stop-color="#0b8bf2" stop-opacity="0"/></linearGradient></defs>
+       <path d="M0 72 C22 60 34 72 52 57 S88 62 108 45 S143 52 162 38 S197 55 218 30 S250 46 271 23 S312 30 340 9 L340 86 L0 86Z" fill="url(#chartFill)"/>
+       <path d="M0 72 C22 60 34 72 52 57 S88 62 108 45 S143 52 162 38 S197 55 218 30 S250 46 271 23 S312 30 340 9" fill="none" stroke="#0788ef" stroke-width="2.6" stroke-linecap="round"/>
+       <path d="M0 80 C25 73 37 78 52 70 S83 77 108 62 S144 71 162 59 S197 71 218 55 S252 68 271 52 S313 62 340 43" fill="none" stroke="#b9c7d4" stroke-width="1.7" stroke-linecap="round"/>
+       <circle cx="218" cy="30" r="4.2" fill="#0788ef" stroke="white" stroke-width="2"/>
+       <rect x="194" y="3" width="48" height="18" rx="7" fill="#0788ef"/>
+       <text x="218" y="15" fill="white" font-size="8" font-weight="800" text-anchor="middle">£8.6K</text>
+      </svg>
+      <div class="chart-labels"><span>JAN</span><span>MAR</span><span>MAY</span><span>JUL</span><span>AUG</span></div>
+      <div class="chart-toggle" id="chartToggle"><button class="active" data-period="6">6M</button><button data-period="3">3M</button><button data-period="1">1M</button></div>
      </article>
-     <div class="filter-row" id="filters">
-      <button class="filter active" data-filter="open">Open · 6</button>
-      <button class="filter" data-filter="settling">Settling · 2</button>
-      <button class="filter" data-filter="closed">Closed · 2</button>
-      <button class="filter-tools" aria-label="Filter tabs">☷</button>
+     <div class="stat-grid">
+      <div class="stat-card"><div class="stat-label">Pending transactions</div><div class="stat-row"><strong class="stat-value">£450.44</strong><span class="stat-foot positive">↗ 8.2%</span></div></div>
+      <div class="stat-card"><div class="stat-label">Contacts</div><div class="stat-row"><strong class="stat-value">52</strong><span class="stat-foot">23 leads</span></div></div>
      </div>
-     <div class="tab-list" id="tabList">
-      <button class="tab-card" data-open-tab>
-       <div class="tab-card-top"><span class="tab-name">Tacos El Riconsito</span><span class="tab-amount">$57.38</span></div>
-       <div class="tab-meta"><span class="meta-left"><span class="live-dot"></span> Add people</span><span>☷ Jan 15</span></div>
-      </button>
-      <button class="tab-card" data-open-tab>
-       <div class="tab-card-top"><span class="tab-name">Daily Grind Coffee</span><span class="tab-amount">$52.47</span></div>
-       <div class="tab-meta"><span class="meta-left"><span class="live-dot"></span> Live · 3 people</span><span>☷ Sep 12</span></div>
-      </button>
-      <button class="tab-card" data-open-tab>
-       <div class="tab-card-top"><span class="tab-name">Isarn Thai Soul Kitchen</span><span class="tab-amount">$213.16</span></div>
-       <div class="tab-meta"><span class="meta-left avatar-stack"><i>BB</i><i>AH</i><i>JJ</i></span><span>☷ May 31</span></div>
-       <div class="card-extra"><span>4 people · 16 items</span><b>OPEN TAB →</b></div>
-      </button>
-      <button class="tab-card" data-open-tab>
-       <div class="tab-card-top"><span class="tab-name">Daily Grind Coffee</span><span class="tab-amount">$39.35</span></div>
-       <div class="tab-meta"><span class="meta-left avatar-stack"><i>DT</i><i>HH</i><i>JD</i></span><span>☷ Sep 11</span></div>
-      </button>
-      <button class="tab-card" data-open-tab>
-       <div class="tab-card-top"><span class="tab-name">Weekend brunch</span><span class="tab-amount">$325.69</span></div>
-       <div class="tab-meta"><span class="meta-left avatar-stack"><i>BB</i><i>AH</i><i>JJ</i></span><span>☷ Oct 14</span></div>
-      </button>
+     <div class="section-head"><h2>People</h2><button class="text-action" data-nav="clients">All contacts ↗</button></div>
+     <div class="contacts-strip">
+      <button class="contact-mini" data-client="Jason Halstead"><span class="contact-avatar">JH</span><span>Jason</span></button>
+      <button class="contact-mini" data-client="Sarah Evans"><span class="contact-avatar">SE</span><span>Sarah</span></button>
+      <button class="contact-mini" data-client="Jen Aoki"><span class="contact-avatar">JA</span><span>Jen</span></button>
+      <button class="contact-mini" data-client="Jake Fryer Limited"><span class="contact-avatar">JF</span><span>Jake</span></button>
+      <button class="contact-mini" data-client="Monique Studio"><span class="contact-avatar">MS</span><span>Monique</span></button>
      </div>
-     <div class="scan-cta"><div><strong>Got a receipt?</strong><small>Scan it and let UOME do the math.</small></div><button id="scanShortcut">Scan receipt ↗</button></div>
+     <div class="section-head"><h2>Quick actions</h2><span class="stat-foot">Do more in less time</span></div>
+     <div class="quick-grid">
+      <button class="quick-btn" data-action="invoice"><span class="quick-icon">＋</span>Invoice</button>
+      <button class="quick-btn" data-action="quote"><span class="quick-icon">▤</span>Quote</button>
+      <button class="quick-btn" data-action="payment"><span class="quick-icon">↗</span>Take payment</button>
+      <button class="quick-btn" data-action="expense"><span class="quick-icon">⌑</span>Expense</button>
+     </div>
+     <div class="section-head"><h2>Recent activity</h2><button class="text-action" data-nav="invoices">See all ↗</button></div>
+     <div class="activity-list" id="homeActivity"></div>
     </section>
 
-    <section class="view" id="groupsView" hidden>
-     <div class="page-head"><div><div class="eyebrow">YOUR PEOPLE</div><h1>Groups</h1><p>Regular crews and trips, all in one place.</p></div><button class="add-btn" id="addGroup">＋</button></div>
-     <button class="tab-card" data-open-tab><div class="tab-card-top"><span class="tab-name">Kuala Lumpur crew</span><span class="tab-amount">4 people</span></div><div class="tab-meta"><span class="avatar-stack"><i>JJ</i><i>BB</i><i>AH</i></span><span>6 open tabs</span></div></button>
-     <button class="tab-card" data-open-tab style="margin-top:9px"><div class="tab-card-top"><span class="tab-name">Friday lunch table</span><span class="tab-amount">5 people</span></div><div class="tab-meta"><span class="avatar-stack"><i>JJ</i><i>DT</i><i>HH</i></span><span>2 open tabs</span></div></button>
-     <button class="tab-card" data-open-tab style="margin-top:9px"><div class="tab-card-top"><span class="tab-name">Roommates</span><span class="tab-amount">3 people</span></div><div class="tab-meta"><span class="avatar-stack"><i>JJ</i><i>AH</i><i>JD</i></span><span>4 open tabs</span></div></button>
-    </section>
-
-    <section class="view" id="profileView" hidden>
-     <div class="page-head"><div><div class="eyebrow">ACCOUNT</div><h1>Profile</h1><p>Your preferences and payment links.</p></div><div class="profile-bubble">J</div></div>
-     <div class="detail-card"><h2>Jordan Lee</h2><p>Home currency · USD</p><div class="card-extra"><span>Payment links</span><b>EDIT →</b></div></div>
-     <div class="item-row" style="margin-top:9px"><b class="item-title">Venmo</b><div class="item-sub">@jordan-lee</div></div>
-     <div class="item-row" style="margin-top:8px"><b class="item-title">PayPal</b><div class="item-sub">jordanlee</div></div>
-     <div class="item-row" style="margin-top:8px"><b class="item-title">Notifications</b><div class="item-sub">Payment updates · Daily digest</div></div>
-     <p class="footer-note">Prototype profile. No account data is saved.</p>
-    </section>
-
-    <section class="view" id="detailView" hidden>
-     <div class="back-head">
-      <button class="back-btn" data-back="homeView" aria-label="Back">‹</button>
-      <div class="back-copy"><small>GROUP TAB · 31 MAY</small><strong>Thai dinner</strong></div>
-      <button class="more-btn" aria-label="More options">•••</button>
+    <section class="view" id="invoicesView" hidden>
+     <div class="greeting">BILLING & COLLECTIONS</div>
+     <div class="page-head"><div><h1>Invoices</h1><p>Create, send and track every bill</p></div><button class="primary-btn" data-action="invoice">＋ New</button></div>
+     <div class="list-metrics">
+      <div class="metric-mini"><small>Outstanding</small><strong id="outstandingValue">£2,580</strong></div>
+      <div class="metric-mini"><small>Paid this month</small><strong>£4,820</strong></div>
      </div>
-     <article class="detail-card">
-      <div class="detail-card-top"><div><h2>Isarn Thai Soul Kitchen</h2><p>Paid by you · Kuala Lumpur</p></div><div class="detail-total">$237.92</div></div>
-      <div class="detail-people"><div class="avatar-stack"><i>JJ</i><i>BB</i><i>AH</i><i>SR</i></div><span>You + 3 at the table</span></div>
-      <div class="assign-progress"><div class="progress-caption"><span>Items assigned</span><b id="assignedCount">4 of 16</b></div><div class="progress-track"><i id="assignedBar"></i></div></div>
-     </article>
-     <div class="segmented" id="detailSegments"><button class="active" data-mode="items">Items</button><button data-mode="board">Board</button></div>
-     <div id="itemsMode">
-      <div class="receipt-note"><b>✓</b><span>Receipt scanned · Items, tax and tip checked</span></div>
-      <div class="section-title"><h3>Who had what?</h3><span>Tap people to assign</span></div>
-      <div class="item-list" id="assignmentList">
-       <div class="item-row" data-item-row data-price="12.75"><div class="item-row-main"><div><div class="item-title">Deep Fried Salted Beef</div><div class="item-sub">1 × $12.75</div></div><span class="item-price">$12.75</span></div><div class="assign-row"><span class="assign-label">Split with</span><button class="assign-chip active" data-person="you">JJ</button><button class="assign-chip active" data-person="ben">BB</button><button class="assign-chip" data-person="ava">AH</button><button class="assign-chip active" data-person="jess">SR</button></div></div>
-       <div class="item-row" data-item-row data-price="14.25"><div class="item-row-main"><div><div class="item-title">Salty Crab Papaya Salad*</div><div class="item-sub">1 × $14.25</div></div><span class="item-price">$14.25</span></div><div class="assign-row"><span class="assign-label">Split with</span><button class="assign-chip active" data-person="you">JJ</button><button class="assign-chip" data-person="ben">BB</button><button class="assign-chip active" data-person="ava">AH</button><button class="assign-chip active" data-person="jess">SR</button></div></div>
-       <div class="item-row" data-item-row data-price="24.25"><div class="item-row-main"><div><div class="item-title">Seafood Curry Custard</div><div class="item-sub">1 × $24.25</div></div><span class="item-price">$24.25</span></div><div class="assign-row"><span class="assign-label">Split with</span><button class="assign-chip" data-person="you">JJ</button><button class="assign-chip" data-person="ben">BB</button><button class="assign-chip" data-person="ava">AH</button><button class="assign-chip active" data-person="jess">SR</button></div></div>
-       <div class="item-row" data-item-row data-price="2.75"><div class="item-row-main"><div><div class="item-title">Jasmine Rice</div><div class="item-sub">1 × $2.75 · Shared plate</div></div><span class="item-price">$2.75</span></div><div class="assign-row"><span class="assign-label">Split with</span><button class="assign-chip active" data-person="you">JJ</button><button class="assign-chip" data-person="ben">BB</button><button class="assign-chip" data-person="ava">AH</button><button class="assign-chip active" data-person="jess">SR</button></div></div>
-       <div class="item-row" data-item-row data-price="16.50"><div class="item-row-main"><div><div class="item-title">Minced Lamb with Thai Basil</div><div class="item-sub">1 × $16.50</div></div><span class="item-price">$16.50</span></div><div class="assign-row"><span class="assign-label">Split with</span><button class="assign-chip" data-person="you">JJ</button><button class="assign-chip active" data-person="ben">BB</button><button class="assign-chip" data-person="ava">AH</button><button class="assign-chip" data-person="jess">SR</button></div></div>
-       <div class="item-row" data-item-row data-price="8.50"><div class="item-row-main"><div><div class="item-title">Mango Sticky Rice</div><div class="item-sub">1 × $8.50</div></div><span class="item-price">$8.50</span></div><div class="assign-row"><span class="assign-label">Split with</span><button class="assign-chip active" data-person="you">JJ</button><button class="assign-chip" data-person="ben">BB</button><button class="assign-chip active" data-person="ava">AH</button><button class="assign-chip" data-person="jess">SR</button></div></div>
+     <div class="filters" id="invoiceFilters"><button class="active" data-filter="all">All</button><button data-filter="sent">Sent</button><button data-filter="overdue">Overdue</button><button data-filter="paid">Paid</button><button data-filter="draft">Drafts</button></div>
+     <div class="invoice-list" id="invoiceList"></div>
+    </section>
+
+    <section class="view" id="clientsView" hidden>
+     <div class="greeting">YOUR BUSINESS NETWORK</div>
+     <div class="page-head"><div><h1>Clients</h1><p>Keep every relationship moving</p></div><button class="icon-btn" id="addClient" aria-label="Add client">＋</button></div>
+     <div class="list-metrics"><div class="metric-mini"><small>Total contacts</small><strong>52</strong></div><div class="metric-mini"><small>Active leads</small><strong>23</strong></div></div>
+     <div class="client-list" id="clientList"></div>
+    </section>
+
+    <section class="view" id="moreView" hidden>
+     <div class="greeting">TOOLS FOR YOUR BUSINESS</div>
+     <div class="page-head"><div><h1>More</h1><p>Everything else in one place</p></div></div>
+     <div class="payment-card"><small>UOME BUSINESS CARD</small><strong>••••  ••••  ••••  2841</strong><span>JORDAN LEE <i style="float:right;font-style:normal">VISA</i></span></div>
+     <div class="section-head"><h2>Business tools</h2><span class="stat-foot">Explore the platform</span></div>
+     <div class="more-grid">
+      <button class="more-tile" data-tool="catalogue"><span class="quick-icon">▦</span><b>Catalogue</b><small>Services & products</small></button>
+      <button class="more-tile" data-tool="expenses"><span class="quick-icon">⌑</span><b>Expenses</b><small>Track business costs</small></button>
+      <button class="more-tile" data-tool="reports"><span class="quick-icon">⌁</span><b>Reporting</b><small>Income and cash flow</small></button>
+      <button class="more-tile" data-tool="scheduler"><span class="quick-icon">▣</span><b>Scheduler</b><small>Appointments & reminders</small></button>
+      <button class="more-tile" data-tool="shopfront"><span class="quick-icon">◇</span><b>Shopfront</b><small>Sell online</small></button>
+      <button class="more-tile" data-tool="team"><span class="quick-icon">♙</span><b>Teams</b><small>Work together</small></button>
+     </div>
+     <div class="section-head"><h2>Get paid faster</h2></div>
+     <div class="activity-list">
+      <button class="activity-row" data-action="payment"><span class="activity-icon">▣</span><span class="activity-copy"><b>Tap to Pay</b><small>Accept in-person payments from your phone</small></span><span class="activity-right"><b>↗</b></span></button>
+      <button class="activity-row" data-action="payment"><span class="activity-icon">⌗</span><span class="activity-copy"><b>Payment links</b><small>Share a secure way to pay</small></span><span class="activity-right"><b>↗</b></span></button>
+     </div>
+    </section>
+
+    <section class="view" id="invoiceDetailView" hidden>
+     <div class="back-row"><button class="back-btn" data-back="invoicesView">‹</button><strong>Invoice details</strong><button class="text-action" id="editInvoice" style="margin-left:auto">Edit</button></div>
+     <article class="detail-hero"><small id="detailInvoiceId">INVOICE · INV-1238</small><h2 id="detailAmount">£1,400.00</h2><p id="detailStatus">Awaiting payment · Due 18 Nov 2026</p></article>
+     <div class="detail-section"><h3>Bill to</h3><strong id="detailClient">Jake Fryer Limited</strong><p style="margin:4px 0 0;color:#87919c;font-size:8px">jake@fryer.example</p></div>
+     <div class="detail-section"><h3>Invoice items</h3><div class="detail-row"><span id="detailDescription">Kitchen fitout</span><b id="detailLine">£1,400.00</b></div><div class="detail-row"><span>Subtotal</span><b id="detailSubtotal">£1,400.00</b></div><div class="detail-row"><span>VAT</span><b>£0.00</b></div><div class="detail-row" style="border:0"><strong>Total due</strong><strong id="detailTotal">£1,400.00</strong></div></div>
+     <div class="action-row"><button class="secondary-btn" id="sendReminder">Send reminder</button><button class="primary-btn" id="markPaid">Mark as paid</button></div>
+     <p class="stat-foot" style="text-align:center;margin-top:12px">Prototype only. No real invoice is sent or payment collected.</p>
+    </section>
+
+    <section class="view" id="invoiceFormView" hidden>
+     <div class="back-row"><button class="back-btn" data-back="invoicesView">‹</button><strong id="formTitle">New invoice</strong></div>
+     <div class="form-card">
+      <label class="field"><span>Client</span><select id="formClient"><option>Jake Fryer Limited</option><option>Jason Halstead</option><option>Sarah Evans</option><option>Jen Aoki</option><option>Monique Studio</option></select></label>
+      <label class="field"><span>Description</span><input id="formDescription" value="Kitchen fitout"></label>
+      <div class="form-split">
+       <label class="field"><span>Quantity</span><input id="formQuantity" type="number" min="1" step="1" value="1"></label>
+       <label class="field"><span>Rate (£)</span><input id="formRate" type="number" min="0" step="0.01" value="1400"></label>
       </div>
-      <div class="hidden-items"><span>＋ 10 more items on receipt</span><b>$106.01</b></div>
-      <div class="your-share"><div class="your-share-top"><div><small>YOUR SHARE · WITH TAX & TIP</small><strong id="yourShare">$18.80</strong></div><div class="share-breakdown">Items <b id="myItems">$14.63</b><br>Tax + tip <b id="myTaxTip">$4.17</b></div></div></div>
-      <div class="detail-actions"><button class="btn-secondary" id="openGuest">Share guest link ↗</button><button class="btn-primary" id="openSettle">Settle up</button></div>
+      <label class="field"><span>Due date</span><input id="formDue" type="date" value="2026-11-18"></label>
+      <label class="field"><span>Note for client</span><textarea id="formNote" placeholder="Add a short note">Thanks for choosing us. Let me know if you have any questions.</textarea></label>
+      <div class="total-box"><div><small>INVOICE TOTAL</small><div class="stat-foot">Excluding VAT</div></div><strong id="formTotal">£1,400.00</strong></div>
+      <div class="form-actions"><button class="secondary-btn" id="saveDraft">Save draft</button><button class="primary-btn" id="sendInvoice">Send invoice ↗</button></div>
      </div>
-     <div id="boardMode" hidden>
-      <div class="section-title"><h3>Split board</h3><span>Everyone's share</span></div>
-      <div class="item-row"><div class="item-row-main"><b class="item-title">Jordan · You</b><strong id="boardYou">$18.80</strong></div><div class="item-sub">Your assigned dishes + tax and tip</div></div>
-      <div class="item-row" style="margin-top:7px"><div class="item-row-main"><b class="item-title">Ben</b><strong>$46.60</strong></div><div class="item-sub">5 items assigned</div></div>
-      <div class="item-row" style="margin-top:7px"><div class="item-row-main"><b class="item-title">Ava</b><strong>$27.38</strong></div><div class="item-sub">3 items assigned</div></div>
-      <div class="item-row" style="margin-top:7px"><div class="item-row-main"><b class="item-title">Jess</b><strong>$58.50</strong></div><div class="item-sub">6 items assigned</div></div>
-      <p class="footer-note">10 additional receipt items are included in the tab total.</p>
-      <button class="full-btn" id="boardGuest" style="margin-top:12px">Open guest view ↗</button>
-     </div>
+     <p class="stat-foot" style="text-align:center;margin-top:10px">This is a working prototype. No message or payment is sent.</p>
     </section>
 
-    <section class="view" id="guestView" hidden>
-     <div class="back-head"><button class="back-btn" data-back="detailView" aria-label="Back">‹</button><div class="back-copy"><small>SHARED SPLIT · GUEST LINK</small><strong>Thai dinner</strong></div><span class="mini-avatar teal">JJ</span></div>
-     <div class="guest-banner"><small>SPLIT · SHARED BY JORDAN</small><h2>Claim what you had.</h2><p>Tap your dishes. Tax and tip follow your share automatically.</p></div>
-     <div class="guest-progress"><span>16 items on this receipt</span><b id="guestPicked">3 selected</b></div>
-     <div id="guestItems">
-      <button class="guest-item active" data-guest-item="0"><span class="check-box">✓</span><span class="guest-item-copy"><b>Deep Fried Salted Beef</b><small>1 × $12.75 · Shared plate</small></span><strong>$6.38</strong></button>
-      <button class="guest-item active" data-guest-item="1"><span class="check-box">✓</span><span class="guest-item-copy"><b>Salty Crab Papaya Salad*</b><small>1 × $14.25 · Shared plate</small></span><strong>$4.75</strong></button>
-      <button class="guest-item" data-guest-item="2"><span class="check-box"></span><span class="guest-item-copy"><b>Seafood Curry Custard</b><small>1 × $24.25</small></span><strong>$24.25</strong></button>
-      <button class="guest-item active" data-guest-item="3"><span class="check-box">✓</span><span class="guest-item-copy"><b>Jasmine Rice</b><small>1 × $2.75 · Shared plate</small></span><strong>$1.38</strong></button>
-      <button class="guest-item" data-guest-item="4"><span class="check-box"></span><span class="guest-item-copy"><b>Minced Lamb with Thai Basil</b><small>1 × $16.50</small></span><strong>$16.50</strong></button>
-      <button class="guest-item" data-guest-item="5"><span class="check-box"></span><span class="guest-item-copy"><b>Mango Sticky Rice</b><small>1 × $8.50 · Shared plate</small></span><strong>$4.25</strong></button>
+    <section class="view" id="clientDetailView" hidden>
+     <div class="back-row"><button class="back-btn" data-back="clientsView">‹</button><strong>Client profile</strong></div>
+     <div class="detail-section" style="text-align:center;padding:18px"><div class="contact-avatar" id="profileAvatar" style="width:52px;height:52px;margin:0 auto 8px;font-size:15px">JF</div><h2 id="profileName" style="margin:0;font-size:15px">Jake Fryer Limited</h2><p style="color:#8d97a1;font-size:8px;margin:5px 0">Client since March 2025</p><div class="action-row"><button class="secondary-btn" id="profileInvoice">New invoice</button><button class="primary-btn" id="profileChat">Message</button></div></div>
+     <div class="section-head"><h2>Account summary</h2></div>
+     <div class="list-metrics"><div class="metric-mini"><small>Lifetime billed</small><strong>£8,420</strong></div><div class="metric-mini"><small>Outstanding</small><strong id="clientDue">£1,400</strong></div></div>
+     <div class="section-head"><h2>Recent activity</h2><button class="text-action" id="clientAllInvoices">Invoices ↗</button></div>
+     <div class="activity-list" id="clientActivity"></div>
+    </section>
+
+    <section class="view" id="chatView" hidden>
+     <div class="back-row"><button class="back-btn" data-back="clientDetailView">‹</button><strong id="chatTitle">Client messages</strong></div>
+     <div class="detail-section"><small class="stat-foot">CLIENT CONVERSATION</small><div class="chat-thread" id="chatThread">
+      <div class="message">Hi Jordan, all done on the shelves. Just about to send you the invoice.<small>10:42</small></div>
+      <div class="message mine">Looks great. I’ll send the invoice now.<small>10:46</small></div>
+      <div class="message">Perfect, thanks!<small>10:48</small></div>
+     </div></div>
+     <div class="chat-compose"><input id="chatInput" placeholder="Write a message"><button class="primary-btn" id="sendMessage">Send</button></div>
+    </section>
+
+    <section class="view" id="paymentView" hidden>
+     <div class="back-row"><button class="back-btn" data-back="homeView">‹</button><strong>Take a payment</strong></div>
+     <article class="detail-hero"><small>PAYMENT REQUEST</small><h2 id="paymentAmountLabel">£140.00</h2><p>Choose how your client can pay</p></article>
+     <label class="field" style="margin-top:14px"><span>Amount (£)</span><input id="paymentAmount" type="number" step=".01" value="140"></label>
+     <div class="section-head"><h2>Payment methods</h2></div>
+     <div class="detail-section" id="paymentMethods">
+      <button class="activity-row" data-method="Card" style="border:0;padding:8px 0"><span class="activity-icon">▣</span><span class="activity-copy"><b>Card payment</b><small>Visa, Mastercard, Apple Pay</small></span><span class="activity-right"><b>○</b></span></button>
+      <button class="activity-row" data-method="Bank transfer" style="border:0;padding:8px 0"><span class="activity-icon">⇄</span><span class="activity-copy"><b>Bank transfer</b><small>Instant open banking</small></span><span class="activity-right"><b>○</b></span></button>
+      <button class="activity-row" data-method="Payment link" style="border:0;padding:8px 0"><span class="activity-icon">↗</span><span class="activity-copy"><b>Payment link</b><small>Share a link with your client</small></span><span class="activity-right"><b>○</b></span></button>
      </div>
-     <div class="guest-total"><span>Your subtotal + tax & tip</span><strong id="guestTotal">$27.38</strong></div>
-     <button class="full-btn" id="confirmGuest">Confirm my items →</button>
-     <div class="link-card"><small>SHARED VIA UOME</small><strong>split.uomeapp.com / thai-dinner</strong></div>
-     <p class="footer-note">No UOME account or app needed to claim items.</p>
+     <button class="primary-btn" id="requestPayment" style="width:100%;margin-top:14px">Create payment request</button>
+     <p class="stat-foot" style="text-align:center;margin-top:11px">Simulated only. No payment is processed.</p>
     </section>
 
-    <section class="view" id="guestSuccessView" hidden>
-     <div class="back-head"><button class="back-btn" data-back="guestView" aria-label="Back">‹</button><div class="back-copy"><small>THAI DINNER · MAY 31</small><strong>Share confirmed</strong></div></div>
-     <div class="success-wrap"><div class="success-mark">✓</div><h2>You're all set.</h2><p>Your items have been added to Jordan's split. This is a prototype, no payment has been sent.</p><div class="success-amount" id="guestSuccessAmount">$27.38</div><button class="full-btn" id="guestDone">Done</button></div>
+    <section class="view" id="reportsView" hidden>
+     <div class="back-row"><button class="back-btn" data-back="moreView">‹</button><strong>Financial reports</strong></div>
+     <div class="greeting">BUSINESS PERFORMANCE</div><div class="page-head"><div><h1>Cash flow</h1><p>Income and expenses over time</p></div></div>
+     <article class="hero-card"><div class="hero-top"><span>NET INCOME · LAST 6 MONTHS</span><span class="positive">↗ 12.8%</span></div><div class="balance-value">£12,460</div><svg class="balance-chart" viewBox="0 0 340 86" preserveAspectRatio="none"><path d="M0 73 C22 60 42 70 60 52 S93 60 115 48 S151 42 173 48 S203 23 224 32 S270 22 290 27 S319 8 340 14" fill="none" stroke="#0788ef" stroke-width="2.7" stroke-linecap="round"/><path d="M0 78 C24 75 44 69 60 72 S93 63 115 64 S151 72 173 61 S203 64 224 58 S270 59 290 55 S319 47 340 49" fill="none" stroke="#b9c7d4" stroke-width="1.8"/></svg><div class="chart-labels"><span>MAR</span><span>APR</span><span>MAY</span><span>JUN</span><span>JUL</span><span>AUG</span></div></article>
+     <div class="stat-grid"><div class="stat-card"><div class="stat-label">Income</div><div class="stat-row"><strong class="stat-value">£18.2k</strong></div></div><div class="stat-card"><div class="stat-label">Expenses</div><div class="stat-row"><strong class="stat-value">£5.7k</strong></div></div></div>
+     <div class="section-head"><h2>Top expense categories</h2></div>
+     <div class="detail-section"><div class="detail-row"><span>Materials</span><b>£2,450</b></div><div class="detail-row"><span>Travel</span><b>£1,240</b></div><div class="detail-row"><span>Software</span><b>£680</b></div><div class="detail-row" style="border:0"><span>Other</span><b>£1,330</b></div></div>
     </section>
 
-    <section class="view" id="settleView" hidden>
-     <div class="back-head"><button class="back-btn" data-back="detailView" aria-label="Back">‹</button><div class="back-copy"><small>THAI DINNER · MAY 31</small><strong>Settle the tab</strong></div></div>
-     <div class="detail-card"><div class="detail-card-top"><div><h2>Who's still to pay?</h2><p>Payment links go straight to you.</p></div><div class="detail-total">$132.48</div></div><div class="detail-people"><div class="avatar-stack"><i>BB</i><i>AH</i><i>SR</i></div><span>3 people · 1 confirmed</span></div></div>
-     <div class="section-title"><h3>Outstanding balances</h3><span>3 friends</span></div>
-     <div class="settle-person"><div class="person-avatar">BB</div><div class="person-copy"><b>Ben Brown</b><small>5 items · Reminder ready</small></div><div class="person-due"><b>$46.60</b><small>Due</small></div><button class="remind-btn" data-remind>Remind</button></div>
-     <div class="settle-person"><div class="person-avatar ava">AH</div><div class="person-copy"><b>Ava Hassan</b><small>3 items · Venmo linked</small></div><div class="person-due"><b>$27.38</b><small>Due</small></div><button class="remind-btn" data-remind>Remind</button></div>
-     <div class="settle-person"><div class="person-avatar jess">SR</div><div class="person-copy"><b>Sam Reed</b><small>6 items · PayPal linked</small></div><div class="person-due"><b>$58.50</b><small>Due</small></div><button class="remind-btn" data-remind>Remind</button></div>
-     <div class="settle-total"><span>Collected so far</span><strong>$105.44</strong></div>
-     <button class="full-btn" id="markPaid">Mark a cash payment</button>
-     <p class="footer-note">UOME never holds the money. This is a simulated portfolio flow.</p>
-    </section>
-
-    <section class="view" id="scanView" hidden>
-     <div class="back-head"><button class="back-btn" data-back="homeView" aria-label="Back">‹</button><div class="back-copy"><small>NEW TAB</small><strong>Scan a receipt</strong></div></div>
-     <div class="scan-panel">
-      <div class="scan-frame">
-       <div class="receipt-paper"><h4>ISARN THAI</h4><p>31 MAY · TABLE 8 · KUALA LUMPUR</p>
-        <div class="receipt-line"><span>Salted beef</span><b>12.75</b></div><div class="receipt-line"><span>Papaya salad</span><b>14.25</b></div><div class="receipt-line"><span>Seafood curry</span><b>24.25</b></div><div class="receipt-line"><span>Jasmine rice</span><b>2.75</b></div><div class="receipt-line"><span>Thai basil lamb</span><b>16.50</b></div><div class="receipt-line"><span>10 more items</span><b>106.01</b></div><div class="receipt-total"><span>TOTAL</span><b>237.92</b></div>
-       </div><div class="scan-corner"></div>
-      </div>
-      <div class="scan-status"><span>✓</span><span>Sample receipt ready · 16 items detected</span></div>
-      <div class="scan-stats"><div class="scan-stat"><strong>16</strong><small>Items</small></div><div class="scan-stat"><strong>$19.61</strong><small>Tax</small></div><div class="scan-stat"><strong>$33.30</strong><small>Tip</small></div></div>
-      <button class="full-btn" id="reviewReceipt">Review items · $237.92</button>
-      <p class="footer-note">Demo scan. No camera access or upload is used.</p>
-     </div>
+    <section class="view" id="toolView" hidden>
+     <div class="back-row"><button class="back-btn" data-back="moreView">‹</button><strong id="toolTitle">Catalogue</strong></div>
+     <div class="detail-section" id="toolContent"></div>
     </section>
    </main>
-   <nav class="bottom-nav" id="bottomNav">
-    <button class="nav-btn active" data-nav="homeView"><span class="nav-symbol">▣</span>Tabs</button>
-    <button class="nav-btn" data-nav="groupsView"><span class="nav-symbol">♧</span>Groups</button>
-    <button class="nav-btn" data-nav="profileView"><span class="nav-symbol">♙</span>Profile</button>
+   <nav class="bottom-nav" id="bottomNav" aria-label="Main navigation">
+    <button class="nav-btn active" data-nav="homeView"><span class="nav-icon">⌂</span>Home</button>
+    <button class="nav-btn" data-nav="invoicesView"><span class="nav-icon">▤</span>Invoices</button>
+    <button class="nav-btn" data-nav="clientsView"><span class="nav-icon">♙</span>Clients</button>
+    <button class="nav-btn" data-nav="moreView"><span class="nav-icon">•••</span>More</button>
    </nav>
-   <div class="home-indicator"></div>
-   <div class="toast" id="toast">Reminder sent</div>
+   <div class="toast" id="toast"></div>
   </div>
  </div>
 </div>
 <script>
 (function(){
  const $=id=>document.getElementById(id);
- const views=["homeView","groupsView","profileView","detailView","guestView","guestSuccessView","settleView","scanView"];
- const show=id=>{
-  views.forEach(v=>$(v).hidden=v!==id);
-  $("bottomNav").hidden=!["homeView","groupsView","profileView"].includes(id);
+ const views=[...document.querySelectorAll(".view")];
+ const baseViews=["homeView","invoicesView","clientsView","moreView"];
+ let selectedInvoice=null,selectedClient="Jake Fryer Limited",filter="all",editingId=null,selectedPaymentMethod="Card";
+ let invoices=[
+  {id:"INV-1238",client:"Jake Fryer Limited",description:"Kitchen fitout",qty:1,rate:1400,due:"2026-11-18",status:"sent",date:"Today"},
+  {id:"INV-1237",client:"Sarah Evans",description:"Design consultation",qty:4,rate:120,status:"paid",due:"2026-11-12",date:"Yesterday"},
+  {id:"INV-1236",client:"Jason Halstead",description:"Site survey",qty:2,rate:160,status:"overdue",due:"2026-11-03",date:"3 Nov"},
+  {id:"INV-1235",client:"Monique Studio",description:"Photo and styling work",qty:1,rate:860,status:"sent",due:"2026-11-21",date:"2 Nov"}
+ ];
+ const clients=[
+  {name:"Jake Fryer Limited",initials:"JF",role:"Kitchen installation",email:"jake@fryer.example",balance:1400},
+  {name:"Jason Halstead",initials:"JH",role:"Property services",email:"jason@halstead.example",balance:320},
+  {name:"Sarah Evans",initials:"SE",role:"Consultant",email:"sarah@evans.example",balance:0},
+  {name:"Jen Aoki",initials:"JA",role:"Creative studio",email:"jen@aoki.example",balance:0},
+  {name:"Monique Studio",initials:"MS",role:"Photography",email:"hello@monique.example",balance:860}
+ ];
+ const money=n=>"£"+Number(n||0).toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2});
+ const toast=msg=>{const el=$("toast");el.textContent=msg;el.classList.add("show");clearTimeout(window.__uomeToast);window.__uomeToast=setTimeout(()=>el.classList.remove("show"),1850)};
+ function show(id){
+  views.forEach(v=>v.hidden=v.id!==id);
+  $("bottomNav").hidden=!baseViews.includes(id);
   document.querySelectorAll("[data-nav]").forEach(b=>b.classList.toggle("active",b.dataset.nav===id));
-  $("appScroll").scrollTop=0;
- };
- const toast=message=>{
-  const el=$("toast");el.textContent=message;el.classList.add("show");
-  clearTimeout(window.__uomeToast);window.__uomeToast=setTimeout(()=>el.classList.remove("show"),1700);
- };
- document.querySelectorAll("[data-open-tab]").forEach(b=>b.addEventListener("click",()=>{show("detailView");updateAssignments()}));
+  $("content").scrollTop=0;
+ }
+ function statusText(status){return status==="sent"?"Awaiting payment":status==="paid"?"Paid":status==="overdue"?"Overdue":"Draft"}
+ function statusClass(status){return status==="paid"?"":status==="overdue"?"overdue":status==="draft"?"draft":"pending"}
+ function invoiceCard(i){
+  return '<button class="invoice-card" data-invoice="'+i.id+'"><span class="invoice-mark">▤</span><span class="invoice-copy"><b>'+i.client+'</b><small>'+i.id+' · '+i.description+'</small></span><span class="invoice-side"><b>'+money(i.qty*i.rate)+'</b><span class="status-pill '+statusClass(i.status)+'">'+statusText(i.status)+'</span></span></button>';
+ }
+ function renderInvoices(){
+  const arr=invoices.filter(i=>filter==="all"||i.status===filter);
+  $("invoiceList").innerHTML=arr.length?arr.map(invoiceCard).join(""):'<div class="detail-section"><b style="font-size:10px">No invoices in this view</b><p class="stat-foot">Create a new invoice to get started.</p></div>';
+  $("invoiceList").querySelectorAll("[data-invoice]").forEach(b=>b.addEventListener("click",()=>openInvoice(b.dataset.invoice)));
+  const outstanding=invoices.filter(i=>["sent","overdue"].includes(i.status)).reduce((s,i)=>s+i.qty*i.rate,0);
+  $("outstandingValue").textContent=money(outstanding);
+  renderHomeActivity();
+ }
+ function renderHomeActivity(){
+  $("homeActivity").innerHTML=invoices.slice(0,3).map(i=>'<button class="activity-row" data-invoice="'+i.id+'"><span class="activity-icon">'+(i.status==="paid"?"✓":"↗")+'</span><span class="activity-copy"><b>'+i.client+'</b><small>'+i.id+' · '+statusText(i.status)+'</small></span><span class="activity-right"><b>'+money(i.qty*i.rate)+'</b><small>'+i.date+'</small></span></button>').join("");
+  $("homeActivity").querySelectorAll("[data-invoice]").forEach(b=>b.addEventListener("click",()=>openInvoice(b.dataset.invoice)));
+ }
+ function renderClients(){
+  $("clientList").innerHTML=clients.map(c=>'<button class="client-card" data-client="'+c.name+'"><span class="contact-avatar">'+c.initials+'</span><span class="client-main"><b>'+c.name+'</b><small>'+c.role+'</small></span><span class="client-balance">'+money(c.balance)+'<small>'+(c.balance?"Outstanding":"Up to date")+'</small></span></button>').join("");
+  $("clientList").querySelectorAll("[data-client]").forEach(b=>b.addEventListener("click",()=>openClient(b.dataset.client)));
+ }
+ function openInvoice(id){
+  selectedInvoice=invoices.find(i=>i.id===id);if(!selectedInvoice)return;
+  $("detailInvoiceId").textContent="INVOICE · "+selectedInvoice.id;
+  $("detailAmount").textContent=money(selectedInvoice.qty*selectedInvoice.rate);
+  $("detailStatus").textContent=statusText(selectedInvoice.status)+" · Due "+new Date(selectedInvoice.due+"T12:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+  $("detailClient").textContent=selectedInvoice.client;
+  $("detailDescription").textContent=selectedInvoice.description+" · "+selectedInvoice.qty+" × "+money(selectedInvoice.rate);
+  $("detailLine").textContent=money(selectedInvoice.qty*selectedInvoice.rate);
+  $("detailSubtotal").textContent=money(selectedInvoice.qty*selectedInvoice.rate);
+  $("detailTotal").textContent=money(selectedInvoice.qty*selectedInvoice.rate);
+  $("markPaid").textContent=selectedInvoice.status==="paid"?"Paid ✓":"Mark as paid";
+  $("markPaid").disabled=selectedInvoice.status==="paid";
+  show("invoiceDetailView");
+ }
+ function openClient(name){
+  const c=clients.find(x=>x.name===name);if(!c)return;selectedClient=name;
+  $("profileName").textContent=c.name;$("profileAvatar").textContent=c.initials;$("clientDue").textContent=money(c.balance);
+  const related=invoices.filter(i=>i.client===name);
+  $("clientActivity").innerHTML=related.length?related.map(i=>'<button class="activity-row" data-invoice="'+i.id+'"><span class="activity-icon">▤</span><span class="activity-copy"><b>'+i.description+'</b><small>'+i.id+' · '+statusText(i.status)+'</small></span><span class="activity-right"><b>'+money(i.qty*i.rate)+'</b></span></button>').join(""):'<div class="stat-foot">No invoices yet.</div>';
+  $("clientActivity").querySelectorAll("[data-invoice]").forEach(b=>b.addEventListener("click",()=>openInvoice(b.dataset.invoice)));
+  $("chatTitle").textContent=c.name;
+  show("clientDetailView");
+ }
+ function openForm(type,invoice){
+  editingId=invoice?.id||null;
+  $("formTitle").textContent=type==="quote"?"New quote":invoice?"Edit invoice":"New invoice";
+  $("formClient").value=invoice?.client||selectedClient||"Jake Fryer Limited";
+  $("formDescription").value=invoice?.description||"Kitchen fitout";
+  $("formQuantity").value=invoice?.qty||1;
+  $("formRate").value=invoice?.rate||1400;
+  $("formDue").value=invoice?.due||"2026-11-18";
+  $("formNote").value="Thanks for choosing us. Let me know if you have any questions.";
+  updateFormTotal();show("invoiceFormView");
+ }
+ function updateFormTotal(){
+  const q=Math.max(0,Number($("formQuantity").value)||0),r=Math.max(0,Number($("formRate").value)||0);
+  $("formTotal").textContent=money(q*r);
+ }
+ function saveInvoice(status){
+  const q=Math.max(1,Number($("formQuantity").value)||1),r=Math.max(0,Number($("formRate").value)||0);
+  const item={id:editingId||"INV-"+(1239+invoices.length),client:$("formClient").value,description:$("formDescription").value||"Service",qty:q,rate:r,due:$("formDue").value||"2026-11-18",status,date:"Just now"};
+  if(editingId){const at=invoices.findIndex(i=>i.id===editingId);if(at>=0)invoices[at]=item}else invoices.unshift(item);
+  selectedInvoice=item;renderInvoices();toast(status==="draft"?"Draft saved":"Invoice sent in this prototype");
+  if(status==="sent")openInvoice(item.id);else show("invoicesView");
+ }
+ function sendReminder(){
+  if(!selectedInvoice)return;
+  toast("Reminder prepared for "+selectedInvoice.client);
+ }
  document.querySelectorAll("[data-nav]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.nav)));
+ document.querySelectorAll("[data-action]").forEach(b=>b.addEventListener("click",()=>{
+  const a=b.dataset.action;
+  if(a==="invoice"||a==="quote")openForm(a);
+  if(a==="payment"){show("paymentView");$("paymentAmount").value="140";$("paymentAmountLabel").textContent="£140.00"}
+  if(a==="expense")toast("Expense capture opened in this prototype");
+ }));
+ document.querySelectorAll("[data-tool]").forEach(b=>b.addEventListener("click",()=>{
+  const tool=b.dataset.tool;$("toolTitle").textContent=tool.charAt(0).toUpperCase()+tool.slice(1);
+  const copy={catalogue:"<h3>Service catalogue</h3><div class='detail-row'><span>Kitchen installation</span><b>£1,400</b></div><div class='detail-row'><span>Consultation</span><b>£120 / hr</b></div><div class='detail-row'><span>Site survey</span><b>£160</b></div>",expenses:"<h3>Recent expenses</h3><div class='detail-row'><span>Materials</span><b>£245.00</b></div><div class='detail-row'><span>Travel</span><b>£86.40</b></div><div class='detail-row'><span>Software</span><b>£39.00</b></div>",reports:"<h3>Reporting</h3><p class='stat-foot'>View income, expenses and cash flow.</p><button class='primary-btn' id='openReports'>Open financial reports ↗</button>",scheduler:"<h3>Upcoming appointments</h3><div class='detail-row'><span>Site visit · Jake Fryer</span><b>10:30</b></div><div class='detail-row'><span>Call · Sarah Evans</span><b>14:00</b></div>",shopfront:"<h3>Online shopfront</h3><p class='stat-foot'>Your catalogue can be shared as a public storefront.</p><button class='secondary-btn' id='copyShopLink'>Copy shop link ↗</button>",team:"<h3>Team activity</h3><div class='detail-row'><span>Jordan Lee</span><b>Owner</b></div><div class='detail-row'><span>Sarah Evans</span><b>Admin</b></div>"};
+  $("toolContent").innerHTML=copy[tool]||"<h3>"+tool+"</h3>";show("toolView");
+  $("openReports")?.addEventListener("click",()=>show("reportsView"));
+  $("copyShopLink")?.addEventListener("click",()=>toast("Shop link copied in this prototype"));
+ }));
  document.querySelectorAll("[data-back]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.back)));
- $("newTab").addEventListener("click",()=>show("scanView"));
- $("topAdd").addEventListener("click",()=>show("scanView"));
- $("scanShortcut").addEventListener("click",()=>show("scanView"));
- $("reviewReceipt").addEventListener("click",()=>{show("detailView");updateAssignments();toast("Receipt reviewed. Assign the items.")});
- $("topSearch").addEventListener("click",()=>toast("Search tabs and people"));
- $("addGroup").addEventListener("click",()=>toast("New group created in this demo"));
  document.querySelectorAll("[data-filter]").forEach(b=>b.addEventListener("click",()=>{
-  document.querySelectorAll("[data-filter]").forEach(x=>x.classList.toggle("active",x===b));
-  toast(b.textContent.trim()+" tabs");
+  filter=b.dataset.filter;document.querySelectorAll("[data-filter]").forEach(x=>x.classList.toggle("active",x===b));renderInvoices();
  }));
- document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>{
-  document.querySelectorAll("[data-mode]").forEach(x=>x.classList.toggle("active",x===b));
-  const board=b.dataset.mode==="board";$("itemsMode").hidden=board;$("boardMode").hidden=!board;
+ $("topAdd").addEventListener("click",()=>openForm("invoice"));
+ $("topSearch").addEventListener("click",()=>{show("clientsView");toast("Search your business contacts")});
+ $("balanceMore").addEventListener("click",()=>show("reportsView"));
+ document.querySelectorAll("[data-client]").forEach(b=>b.addEventListener("click",()=>openClient(b.dataset.client)));
+ $("profileInvoice").addEventListener("click",()=>openForm("invoice"));
+ $("profileChat").addEventListener("click",()=>show("chatView"));
+ $("clientAllInvoices").addEventListener("click",()=>{filter="all";show("invoicesView");renderInvoices()});
+ $("editInvoice").addEventListener("click",()=>selectedInvoice&&openForm("invoice",selectedInvoice));
+ $("sendReminder").addEventListener("click",sendReminder);
+ $("markPaid").addEventListener("click",()=>{
+  if(!selectedInvoice)return;selectedInvoice.status="paid";renderInvoices();openInvoice(selectedInvoice.id);toast("Invoice marked as paid");
+ });
+ ["formQuantity","formRate"].forEach(id=>$(id).addEventListener("input",updateFormTotal));
+ $("saveDraft").addEventListener("click",()=>saveInvoice("draft"));
+ $("sendInvoice").addEventListener("click",()=>saveInvoice("sent"));
+ $("paymentAmount").addEventListener("input",()=>{$("paymentAmountLabel").textContent=money($("paymentAmount").value)});
+ document.querySelectorAll("[data-method]").forEach(b=>b.addEventListener("click",()=>{
+  selectedPaymentMethod=b.dataset.method;document.querySelectorAll("[data-method]").forEach(x=>x.querySelector(".activity-right b").textContent=x===b?"●":"○");
  }));
- const allSubtotal=185.01,taxTip=52.91;
- function calcAssigned(){
-  let mine=0,assigned=0;
-  document.querySelectorAll("[data-item-row]").forEach(row=>{
-   const chips=[...row.querySelectorAll(".assign-chip.active")];
-   if(chips.length)assigned++;
-   if(chips.some(c=>c.dataset.person==="you"))mine+=Number(row.dataset.price)/chips.length;
-  });
-  const extras=mine/allSubtotal*taxTip;
-  const fmt=n=>"$"+n.toFixed(2);
-  $("myItems").textContent=fmt(mine);
-  $("myTaxTip").textContent=fmt(extras);
-  $("yourShare").textContent=fmt(mine+extras);
-  $("boardYou").textContent=fmt(mine+extras);
-  $("assignedCount").textContent=(assigned+10)+" of 16";
-  $("assignedBar").style.width=Math.min(100,((assigned+10)/16)*100)+"%";
- }
- function updateAssignments(){
-  document.querySelectorAll("[data-item-row]").forEach(row=>{
-   row.querySelectorAll(".assign-chip").forEach(chip=>{
-    chip.onclick=()=>{chip.classList.toggle("active");calcAssigned()};
-   });
-  });
-  calcAssigned();
- }
- updateAssignments();
- $("openGuest").addEventListener("click",()=>{show("guestView");calcGuest()});
- $("boardGuest").addEventListener("click",()=>{show("guestView");calcGuest()});
- $("openSettle").addEventListener("click",()=>show("settleView"));
- let guestSelected=new Set([0,1,3]);
- const guestShares=[6.38,4.75,24.25,1.38,16.50,4.25];
- function calcGuest(){
-  let amount=0;
-  document.querySelectorAll("[data-guest-item]").forEach(b=>{
-   const index=Number(b.dataset.guestItem),active=guestSelected.has(index);
-   b.classList.toggle("active",active);b.querySelector(".check-box").textContent=active?"✓":"";
-   if(active)amount+=guestShares[index];
-  });
-  const fmt=n=>"$"+n.toFixed(2);
-  $("guestPicked").textContent=guestSelected.size+" selected";
-  $("guestTotal").textContent=fmt(amount);
-  $("guestSuccessAmount").textContent=fmt(amount);
- }
- document.querySelectorAll("[data-guest-item]").forEach(b=>b.addEventListener("click",()=>{
-  const i=Number(b.dataset.guestItem);guestSelected.has(i)?guestSelected.delete(i):guestSelected.add(i);calcGuest();
+ $("requestPayment").addEventListener("click",()=>{toast("Payment request created · "+selectedPaymentMethod);show("homeView")});
+ document.querySelectorAll("[data-client]").forEach(b=>b.addEventListener("click",()=>openClient(b.dataset.client)));
+ $("sendMessage").addEventListener("click",()=>{
+  const val=$("chatInput").value.trim();if(!val)return;
+  const bubble=document.createElement("div");bubble.className="message mine";bubble.textContent=val;
+  const time=document.createElement("small");time.textContent="Just now";bubble.appendChild(time);$("chatThread").appendChild(bubble);$("chatInput").value="";
+  toast("Message added to prototype conversation");
+ });
+ $("chatInput").addEventListener("keydown",e=>{if(e.key==="Enter")$("sendMessage").click()});
+ document.querySelectorAll("[data-period]").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll("[data-period]").forEach(x=>x.classList.toggle("active",x===b));
+  const label=b.dataset.period==="6"?"Jan – Aug 2026":b.dataset.period==="3"?"Jun – Aug 2026":"Aug 2026";
+  $("rangeButton").textContent=label+"⌄";toast(label+" overview");
  }));
- $("confirmGuest").addEventListener("click",()=>{calcGuest();show("guestSuccessView");toast("Your items were added to the split")});
- $("guestDone").addEventListener("click",()=>show("homeView"));
- document.querySelectorAll("[data-remind]").forEach(b=>b.addEventListener("click",()=>{
-  b.textContent="Sent ✓";b.classList.add("sent");toast("Reminder sent with the exact amount");
- }));
- $("markPaid").addEventListener("click",()=>toast("Cash payment marked as received"));
+ $("rangeButton").addEventListener("click",()=>toast("Choose a chart range below"));
+ renderInvoices();renderClients();renderHomeActivity();updateFormTotal();
 })();
 </script>
 </body>
