@@ -121,7 +121,7 @@ body{display:grid;place-items:center;height:100svh;min-height:100svh}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 
 /* Portrait is rearranged as a tall scene. The desktop canvas is never cropped. */
-@media(max-width:760px){
+@media(max-width:600px){
  html,body{width:100%;height:100%;min-height:0;overflow:hidden}
  body{display:block;height:100svh;min-height:100svh}
  .desk-scene{width:100vw;height:100svh;max-height:100svh;min-height:0;aspect-ratio:auto;margin:0}
@@ -291,7 +291,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 @media(min-width:761px){
  .desk-scene{width:100vw!important;height:100svh!important}
 }
-@media(max-width:760px){
+@media(max-width:600px){
  .desk-scene{width:100vw!important;height:100svh!important}
  .shelf,.shelf-books{display:none!important}
  .paper{left:3.5%!important;top:30%!important;width:16%!important;height:16%!important}
@@ -322,7 +322,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 
 /* Give the original hardback mockup its own clear spot beside the new lamp. */
 .book-mockup{left:70.4%;width:18.5%;height:25.4%}
-@media(max-width:760px){.book-mockup{left:65%;width:27%;height:17%}}
+@media(max-width:600px){.book-mockup{left:65%;width:27%;height:17%}}
 
 
 /* A single continuous brass lamp, rather than disconnected mechanical arms. */
@@ -365,7 +365,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 .desk-lamp-right .lamp-back-arm,
 .desk-lamp-right .lamp-joint,
 .desk-lamp-right .lamp-upper-arm{display:none!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .desk-lamp-right{left:86.5%;top:57%;width:10.5%;height:21%}
  .desk-lamp-right .lamp-stem{top:23%;height:72%}
  .desk-lamp-right .lamp-shade{left:8%;width:84%;height:32%}
@@ -426,7 +426,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 
 
 /* On phones, use two rows of three photos instead of squeezing all six into one row. */
-@media(max-width:760px){
+@media(max-width:600px){
  .wall-gallery{
   left:1.8%!important;right:1.8%!important;top:4.5%!important;height:21%!important;
   display:grid!important;
@@ -583,7 +583,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 .screen-arrow{font-size:clamp(7px,.72vw,10px)!important}
 
 /* Mobile keeps the same smaller frames and the angled award geometry. */
-@media(max-width:760px){
+@media(max-width:600px){
  .wall-gallery{
   left:1.8%!important;right:1.8%!important;top:4.5%!important;height:21%!important;
   grid-template-columns:repeat(3,minmax(0,1fr))!important;
@@ -614,14 +614,14 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 .travel-frame:hover .travel-photo,.travel-frame:focus-visible .travel-photo{transform:none!important;filter:none!important}
 .travel-frame figcaption small{display:none!important}
 .travel-frame:hover figcaption small,.travel-frame:focus-visible figcaption small{display:none!important;opacity:0!important;visibility:hidden!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .travel-frame{width:52%!important;height:75%!important;transform:none!important}
  .travel-frame:hover,.travel-frame:focus-visible{transform:none!important;box-shadow:0 4px 8px #0008,0 0 0 1px #d4b78255!important}
 }
 
 /* Hang the paper lower and make it a taller, narrower sheet. */
 .paper{left:4.6%!important;top:36.5%!important;width:8.4%!important;height:22.5%!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .paper{left:3.5%!important;top:33%!important;width:13%!important;height:19%!important}
 }
 
@@ -646,7 +646,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 .key-row.row-4{width:100%!important}
 .key-row.row-5{width:96%!important}
 .trackpad{left:39%!important;width:22%!important;top:87.1%!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .keyboard{left:9%!important;top:75.6%!important;width:82%!important;height:10.8%!important}
 }
 
@@ -720,7 +720,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 }
 .award-cube-award polygon{vector-effect:non-scaling-stroke}
 .award-plaque,.award-depth,.award-side-right,.award-side-top,.award-hover{display:none!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .award-objects{left:1.5%!important;top:63.5%!important;width:30%!important;height:17.5%!important;gap:1%!important}
  .award-cube-award{height:100%!important}
 }
@@ -730,7 +730,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 
 /* Mobile travel frames use a strict two-row grid so every source image gets
    a real painted box above its permanent city label. */
-@media(max-width:760px){
+@media(max-width:600px){
  .travel-frame{
   display:grid!important;grid-template-columns:minmax(0,1fr)!important;
   grid-template-rows:minmax(0,1fr) 15px!important;
@@ -757,7 +757,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 
 /* Travel frames narrowed by 20 percent from the previous revision. */
 .travel-frame{width:35.2%!important}
-@media(max-width:760px){.travel-frame{width:41.6%!important}}
+@media(max-width:600px){.travel-frame{width:41.6%!important}}
 
 /* Broad, recessed touchpad with machined perspective edges. */
 .trackpad{
@@ -781,7 +781,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  box-shadow:inset 0 1px 0 #fff9,inset 0 -2px 3px #333a3344,0 1px 1px #0008;
 }
 .trackpad-edge{position:absolute;z-index:2;left:8%;right:8%;bottom:3%;height:1px;background:#eff1e899;pointer-events:none}
-@media(max-width:760px){.trackpad{left:38%!important;top:86.2%!important;width:24%!important;height:6%!important}}
+@media(max-width:600px){.trackpad{left:38%!important;top:86.2%!important;width:24%!important;height:6%!important}}
 
 /* Classier 3D awards: cast-metal edges, enamel faces and weighted bases. */
 .award-display{
@@ -872,7 +872,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 .award-arab .award-solid{--award-width:86px;--award-height:113px;--award-depth:21px}
 .award-rehoboth .award-plinth{--base-width:104px}
 .award-arab .award-plinth{--base-width:98px}
-@media(max-width:760px){
+@media(max-width:600px){
  .award-display{left:1.2%!important;top:64.8%!important;width:34%!important;height:18%!important;gap:1%!important}
  .award-piece{transform:scale(.78);transform-origin:center bottom}
  .award-rehoboth .award-solid{--award-width:74px;--award-height:96px;--award-depth:16px}
@@ -905,7 +905,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 }
 .slider-control:hover,.slider-control:focus-visible{background:#efe7d9;outline:2px solid #bda77e;outline-offset:2px}
 .slider-current{font:600 10px "DM Sans",Arial,sans-serif;color:#8a7a64;text-align:center}
-@media(max-width:760px){
+@media(max-width:600px){
  .category-tabs{gap:6px}.category-tab{padding:9px 13px;font-size:10px}
  .slider-image-wrap{min-height:140px}.slider-image-wrap img{max-height:68vh}
  .slider-control{padding:8px 10px;font-size:9px}
@@ -1011,7 +1011,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 .award-arab .award-solid{--award-width:86px;--award-height:113px;--award-depth:21px}
 .award-rehoboth .award-plinth{width:104px!important}
 .award-arab .award-plinth{width:98px!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .award-display{top:64.8%!important}
  .award-piece{transform:scale(.78);transform-origin:center bottom}
  .award-rehoboth .award-solid{--award-width:74px;--award-height:96px;--award-depth:16px}
@@ -1076,7 +1076,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 
 /* The paper sits higher, with more wall space between it and the awards. */
 .paper{left:3.7%!important;top:30.8%!important;width:8.8%!important;height:21%!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .paper{left:3.2%!important;top:29%!important;width:13.5%!important;height:19.5%!important}
 }
 
@@ -1092,7 +1092,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 }
 .trackpad:before{content:none!important}
 .trackpad-surface,.trackpad-edge{display:none!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .trackpad{left:39%!important;top:87.1%!important;width:22%!important;height:4.2%!important}
 }
 
@@ -1177,7 +1177,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  background:linear-gradient(180deg,#f0dfbb,#ae9064);border:1px solid #795b36;border-bottom:0;
 }
 .glass-foot-front,.glass-foot-side{display:none!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .award-glass-display{left:1.2%!important;top:64.5%!important;width:34%!important;height:18%!important;gap:1%!important}
  .glass-prism{width:58px;height:83px}
  .glass-arab .glass-prism{width:54px;height:78px}
@@ -1201,7 +1201,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  transform:none!important;box-shadow:none!important;outline:none!important;
 }
 .certificate-preview:hover .certificate-zoom,.certificate-preview:focus-visible .certificate-zoom{display:none!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .certificate-preview{width:clamp(140px,42vw,190px)!important;height:clamp(90px,24vw,120px)!important}
  .certificate-dock{max-width:100%!important}
 }
@@ -1262,13 +1262,13 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  transform:none!important;box-shadow:0 4px 8px #0008,0 0 0 1px #d4b78255!important;outline:none!important
 }
 .travel-frame:hover .travel-photo,.travel-frame:focus-visible .travel-photo{transform:none!important;filter:none!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .travel-frame{width:41.6%!important}
 }
 
 /* Move the paper inward on the wall, away from the left-side awards. */
 .paper{left:20%!important;top:30.8%!important;width:8.8%!important;height:21%!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .paper{left:3.2%!important;top:29%!important;width:13.5%!important;height:19.5%!important}
 }
 
@@ -1283,7 +1283,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  box-shadow:inset 0 1px 0 #e3e6db66,0 1px 1px #0005!important;
 }
 .trackpad:before,.trackpad:after,.trackpad-surface,.trackpad-edge{display:none!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .trackpad{left:40.5%!important;top:87.1%!important;width:18%!important;height:3.6%!important}
 }
 
@@ -1365,7 +1365,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 .glass-foot:after{right:-3px!important;height:3px!important;top:-3px!important}
 .glass-arab .glass-prism{width:62px!important;height:89px!important}
 .glass-arab .glass-rank{font-size:19px!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .award-glass-display{left:1.2%!important;top:64.5%!important;width:34%!important;height:18%!important;gap:1%!important}
  .glass-prism{width:52px!important;height:75px!important}
  .glass-arab .glass-prism{width:49px!important;height:70px!important}
@@ -1378,7 +1378,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 
 /* Keep the research paper comfortably separate from the awards. */
 .paper{left:25.5%!important;top:31.8%!important;width:8.8%!important;height:21%!important}
-@media(max-width:760px){.paper{left:23%!important;top:29%!important;width:13.5%!important;height:19.5%!important}}
+@media(max-width:600px){.paper{left:23%!important;top:29%!important;width:13.5%!important;height:19.5%!important}}
 
 /* Trackpad: a simple inset panel, no exaggerated shine or layered edge. */
 .trackpad{
@@ -1387,7 +1387,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  background:linear-gradient(180deg,#777e75 0%,#6c7269 100%)!important;
  box-shadow:inset 0 1px 0 #d5d9cf44!important;
 }
-@media(max-width:760px){.trackpad{left:40.5%!important;top:87.1%!important;width:18%!important;height:3.2%!important}}
+@media(max-width:600px){.trackpad{left:40.5%!important;top:87.1%!important;width:18%!important;height:3.2%!important}}
 
 
 /* Cut crystal awards based on the original desk reference. Angular plaques, polished edges, small metal feet. */
@@ -1488,7 +1488,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 }
 .glass-arab .glass-rank{font-size:16px!important;margin-top:13px!important}
 .glass-arab .glass-foot{width:77px!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .award-glass-display{left:1.2%!important;top:64.5%!important;width:34%!important;height:18%!important;gap:1%!important}
  .glass-prism{width:53px!important;height:112px!important;bottom:7%!important}
  .glass-arab .glass-prism{width:48px!important;height:96px!important}
@@ -1563,7 +1563,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 .book-hover-copy b{font:600 13px "Playfair Display",Georgia,serif!important}
 .book-hover-copy strong{font:600 10px/1.3 "DM Sans",sans-serif!important;color:#55432f!important}
 .book-hover-copy small{margin-top:3px!important;color:#735b3e!important;font-weight:700!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .book-hover{width:min(270px,78vw)!important;max-width:78vw!important;right:0!important}
  .book-hover-cover{width:48px!important;height:78px!important;flex-basis:48px!important}
 }
@@ -1593,7 +1593,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 .glass-trophy:hover .award-hover,.glass-trophy:focus-visible .award-hover{
  opacity:1!important;visibility:visible!important;transform:translate(-50%,0)!important;
 }
-@media(max-width:760px){
+@media(max-width:600px){
  .award-hover{width:clamp(135px,38vw,175px)!important;padding:9px 10px!important;bottom:calc(100% + 8px)!important}
  .award-hover-kicker{font-size:7px!important}.award-hover strong{font-size:14px!important}
  .award-hover small{font-size:9px!important}
@@ -1643,7 +1643,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 .book-hover-copy{gap:5px!important}
 .book-hover-copy strong{color:#dfc79f!important;font:700 10px/1.35 "DM Sans",sans-serif!important}
 .book-hover-cover{border:1px solid #b99a67!important}
-@media(max-width:760px){
+@media(max-width:600px){
  .paper-hover{width:clamp(150px,44vw,190px)!important;padding:9px 10px!important}
  .book-hover{width:min(270px,78vw)!important;max-width:78vw!important;padding:9px 10px!important}
  .hover-card-kicker{font-size:7px!important}
@@ -1656,7 +1656,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 .portfolio-header{display:none!important}
 
 
-@media(max-width:760px){
+@media(max-width:600px){
  
 }
 
@@ -1673,7 +1673,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 
 /* Portrait layout for both phones and portrait tablets. Use the full height intentionally,
    rather than letting a wide desktop composition collapse into a narrow column. */
-@media (max-width:900px) and (orientation:portrait){
+@media (max-width:600px) and (orientation:portrait){
  html,body{width:100%;height:100%;min-height:0;overflow:hidden}
  body{display:block;width:100vw;height:100svh;min-height:100svh}
  .desk-scene{width:100vw!important;height:100svh!important;max-width:none!important;max-height:none!important;aspect-ratio:auto!important;margin:0!important;overflow:hidden}
@@ -1735,12 +1735,12 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .desk-lamp-right{display:none!important}
  .scene-footer{bottom:1.5%!important}
 }
-@media (max-width:900px) and (orientation:landscape){
+@media (max-width:600px) and (orientation:landscape){
  .desk-scene{width:100vw!important;height:100svh!important}
  .portfolio-window{width:97vw!important;height:94svh!important}
  .modal-shade{padding:1.5%!important}
 }
-@media (max-height:650px) and (max-width:900px) and (orientation:landscape){
+@media (max-height:650px) and (max-width:600px) and (orientation:landscape){
  .wall-gallery{top:5%!important;height:21%!important}
  .laptop{top:32%!important;height:42%!important}
  .desk-top{top:67%!important;height:17%!important}
@@ -1751,7 +1751,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 
 /* Refine travel frames on phones and portrait tablets: slimmer frames with
    more vertical image area, while keeping the complete six-photo gallery. */
-@media (max-width:900px) and (orientation:portrait){
+@media (max-width:600px) and (orientation:portrait){
  .wall-gallery{top:3.2%!important;height:26.5%!important;row-gap:1.6%!important}
  .travel-frame{width:clamp(68px,11vw,100px)!important;height:96%!important}
  .laptop{left:18%!important;top:33%!important;width:64%!important;height:31.5%!important}
@@ -1765,7 +1765,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .paper{left:1.5%!important;top:34.5%!important;width:13%!important;height:17.5%!important;z-index:12!important}
  .book-mockup{left:78%!important;top:68.5%!important;width:20%!important;height:14.5%!important}
 }
-@media (min-width:601px) and (max-width:1100px) and (orientation:landscape){
+@media (min-width:601px) and (max-width:1200px) and (orientation:landscape){
  .paper{z-index:12!important;left:22%!important;top:31%!important}
  .book-mockup{left:78%!important;top:68%!important;width:18%!important;height:17%!important}
 }
@@ -1773,14 +1773,14 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 
 /* On portrait tablets, keep the book lower on the desk and give it a little
    more breathing room from the laptop base. */
-@media (min-width:601px) and (max-width:900px) and (orientation:portrait){
+@media (min-width:601px) and (max-width:600px) and (orientation:portrait){
  .book-mockup{left:78%!important;top:72.5%!important;width:18%!important;height:13.5%!important}
 }
 
 
 /* Tablet-only correction: make the wall photos distinctly portrait and keep
    the research sheet on the wall plane, behind the laptop rather than in front. */
-@media (min-width:601px) and (max-width:900px) and (orientation:portrait){
+@media (min-width:601px) and (max-width:600px) and (orientation:portrait){
  .wall-gallery{top:3.2%!important;height:28%!important;row-gap:1.8%!important}
  .travel-frame{width:clamp(56px,7.8vw,68px)!important;height:97%!important}
  .travel-photo{object-fit:cover!important;object-position:center!important}
@@ -1791,14 +1791,14 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .laptop{left:18%!important;top:33%!important;width:64%!important;height:31.5%!important}
  .book-mockup{left:79%!important;top:72.5%!important;width:18%!important;height:13.5%!important}
 }
-@media (min-width:601px) and (max-width:1100px) and (orientation:landscape){
+@media (min-width:601px) and (max-width:1200px) and (orientation:landscape){
  .paper{left:21%!important;top:28%!important;width:9.5%!important;height:18%!important;z-index:4!important}
 }
 
 
 /* Portrait tablets need a tighter, taller gallery than the phone layout.
    Keep the paper on the far-left wall plane behind the laptop. */
-@media (min-width:601px) and (max-width:1100px) and (orientation:portrait){
+@media (min-width:601px) and (max-width:1200px) and (orientation:portrait){
  .wall-gallery{
   left:2%!important;right:2%!important;top:3.2%!important;height:28.5%!important;
   display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
@@ -1899,14 +1899,14 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 
 /* Extend tablet treatment to large iPad viewports (including landscape widths).
    The three-column photo wall creates real vertical room instead of wide thumbnails. */
-@media (min-width:601px) and (max-width:1400px) and (orientation:portrait){
+@media (min-width:601px) and (max-width:1200px) and (orientation:portrait){
  .wall-gallery{left:2%!important;right:2%!important;top:2.8%!important;height:37%!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;column-gap:2%!important;row-gap:2%!important}
  .travel-frame{width:clamp(44px,5.5vw,58px)!important;height:98%!important}
  .paper{left:.5%!important;top:42%!important;width:7.5%!important;height:18%!important;z-index:4!important}
  .laptop{left:18%!important;top:42.5%!important;width:64%!important;height:29.5%!important;z-index:7!important}
  .book-mockup{left:82%!important;top:73%!important;width:16%!important;height:12%!important}
 }
-@media (min-width:601px) and (max-width:1400px) and (orientation:landscape){
+@media (min-width:601px) and (max-width:1200px) and (orientation:landscape){
  .wall-gallery{left:2%!important;right:2%!important;top:2.8%!important;height:38%!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;column-gap:2%!important;row-gap:2%!important}
  .travel-frame{width:clamp(46px,5.8vw,70px)!important;height:98%!important}
  .paper{left:.6%!important;top:42.5%!important;width:7.5%!important;height:18%!important;z-index:4!important}
@@ -1917,17 +1917,17 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 
 /* Final tablet placement: paper stays at the wall's far-left edge, with a clear
    horizontal gap from the laptop at both tablet orientations. */
-@media (min-width:601px) and (max-width:1400px) and (orientation:portrait){
+@media (min-width:601px) and (max-width:1200px) and (orientation:portrait){
  .paper{left:.2%!important;width:7.2%!important;z-index:4!important}
 }
-@media (min-width:601px) and (max-width:1400px) and (orientation:landscape){
+@media (min-width:601px) and (max-width:1200px) and (orientation:landscape){
  .paper{left:.2%!important;width:7.2%!important;z-index:4!important}
 }
 
 
 /* Landscape tablets were still inheriting the square-image "contain" rule.
    Crop the sides in the frame so the actual photo fills its taller portrait slot. */
-@media (min-width:601px) and (max-width:1400px) and (orientation:landscape){
+@media (min-width:601px) and (max-width:1200px) and (orientation:landscape){
  .travel-photo{
   display:block!important;grid-column:1!important;grid-row:1!important;
   width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;
@@ -1939,7 +1939,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 
 /* Final tablet and phone proportions. Shorter photo frames, a less tall laptop
    display, a larger book, and footer links lifted safely into the visible scene. */
-@media (min-width:601px) and (max-width:1400px) and (orientation:portrait){
+@media (min-width:601px) and (max-width:1200px) and (orientation:portrait){
  .wall-gallery{top:3%!important;height:25%!important;row-gap:2%!important}
  .travel-frame{width:clamp(64px,7vw,76px)!important;height:95%!important}
  .laptop{left:18%!important;top:39%!important;width:64%!important;height:32%!important}
@@ -1952,7 +1952,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .scene-footer{bottom:3.6%!important;font-size:clamp(9px,1vw,12px)!important}
  .scene-footer nav{gap:clamp(20px,3vw,30px)!important}
 }
-@media (min-width:601px) and (max-width:1400px) and (orientation:landscape){
+@media (min-width:601px) and (max-width:1200px) and (orientation:landscape){
  .wall-gallery{top:3%!important;height:29%!important;row-gap:2%!important}
  .travel-frame{width:clamp(62px,6.2vw,82px)!important;height:95%!important}
  .laptop{left:36.7%!important;top:39.5%!important;width:29.5%!important;height:40%!important}
@@ -1982,7 +1982,7 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 
 /* The physical book art has transparent margins, so enlarge the actual image
    within its desk position rather than only enlarging the invisible container. */
-@media (min-width:601px) and (max-width:1400px){
+@media (min-width:601px) and (max-width:1200px){
  .book-mockup{width:25%!important;height:23%!important}
  .book-mockup img{transform:scale(1.32)!important;transform-origin:center bottom!important}
  .book-mockup:hover img,.book-mockup:focus-visible img{transform:translateY(-4px) scale(1.36)!important}
@@ -2062,4 +2062,114 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  }
  .travel-frame figcaption b{font:700 clamp(5px,.4vw,6px)/1 "DM Sans",sans-serif!important;letter-spacing:.08em!important;text-transform:uppercase!important}
  .travel-frame figcaption small{display:none!important}
+}
+
+
+/* DESKTOP ONLY. Keep the original six-across wall, restore the book and paper,
+   and put real separation between the laptop display, hinge, keyboard and pad. */
+@media (min-width:1201px){
+ .wall-gallery{
+  left:1.4%!important;right:1.4%!important;top:11.2%!important;height:18.8%!important;
+  display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  grid-template-rows:minmax(0,1fr)!important;gap:.45%!important;align-items:center!important;
+ }
+ .travel-frame{
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;
+  width:46%!important;height:100%!important;margin:0 auto!important;padding:3px!important;overflow:hidden!important;
+ }
+ .travel-photo{
+  display:block!important;flex:1 1 auto!important;min-height:0!important;width:100%!important;
+  height:calc(100% - 19px)!important;object-fit:cover!important;object-position:center!important;
+ }
+ .travel-frame figcaption{
+  position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;
+  display:flex!important;flex:0 0 19px!important;width:100%!important;height:19px!important;min-height:19px!important;
+  flex-direction:column!important;align-items:center!important;justify-content:center!important;
+  background:linear-gradient(180deg,#e0cca2,#b48e58)!important;border-top:1px solid #f3dfb8!important;
+  color:#46321f!important;opacity:1!important;visibility:visible!important;transform:none!important;
+ }
+ .travel-frame figcaption b{font:700 clamp(5px,.4vw,6px)/1 "DM Sans",sans-serif!important;letter-spacing:.08em!important;text-transform:uppercase!important}
+ .travel-frame figcaption small{display:none!important}
+ .travel-frame:hover,.travel-frame:focus-visible{z-index:15!important;transform:translateY(-4px) scale(1.04)!important}
+ .paper{left:25.5%!important;top:31.8%!important;width:8.8%!important;height:21%!important;z-index:5!important}
+ .book-mockup{left:70.4%!important;top:58.7%!important;width:18.5%!important;height:25.4%!important}
+ .book-mockup img{transform:none!important}
+ .book-mockup:hover img,.book-mockup:focus-visible img{transform:translateY(-5px) scale(1.025)!important}
+ .laptop{left:36.7%!important;top:40.6%!important;width:29.5%!important;height:43%!important;z-index:7!important}
+ .laptop-display{height:72%!important}
+ .laptop-hinge{top:71%!important;height:3%!important}
+ .laptop-base{top:74%!important;height:17%!important}
+ .keyboard{top:76.2%!important;height:9.6%!important}
+ .trackpad{left:40.5%!important;top:87.2%!important;width:18%!important;height:3.2%!important}
+ .scene-footer{left:3%!important;right:3%!important;bottom:1.2%!important;font-size:clamp(7px,.62vw,10px)!important}
+ .scene-footer nav{gap:clamp(20px,3vw,42px)!important}
+}
+
+/* TABLET ONLY. A purpose-built two-row gallery and separate desk-object layout. */
+@media (min-width:601px) and (max-width:1200px){
+ .wall-gallery{
+  left:2%!important;right:2%!important;top:3%!important;height:27%!important;
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-template-rows:repeat(2,minmax(0,1fr))!important;column-gap:2%!important;row-gap:2%!important;
+ }
+ .travel-frame{
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr) 15px!important;
+  width:clamp(54px,6.5vw,76px)!important;height:95%!important;margin:0 auto!important;
+  padding:3px 3px 0!important;overflow:hidden!important;transform:none!important;
+ }
+ .travel-photo{
+  display:block!important;grid-column:1!important;grid-row:1!important;width:100%!important;height:100%!important;
+  min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;
+  object-fit:cover!important;object-position:center!important;
+ }
+ .travel-frame figcaption{
+  position:relative!important;grid-column:1!important;grid-row:2!important;left:auto!important;right:auto!important;bottom:auto!important;
+  display:flex!important;width:100%!important;height:15px!important;min-height:15px!important;
+  opacity:1!important;visibility:visible!important;transform:none!important;
+ }
+ .travel-frame figcaption small{display:none!important}
+ .paper{left:.5%!important;top:41%!important;width:7.5%!important;height:18%!important;z-index:4!important}
+ .laptop{left:18%!important;top:39%!important;width:64%!important;height:32%!important;z-index:7!important}
+ .laptop-display{height:64%!important}
+ .laptop-hinge{top:63%!important;height:3%!important}
+ .laptop-base{top:66%!important;height:25%!important}
+ .keyboard{top:68%!important;height:11%!important}
+ .trackpad{top:83.5%!important;height:4.5%!important}
+ .book-mockup{left:76%!important;top:67%!important;width:25%!important;height:23%!important}
+ .book-mockup img{transform:scale(1.32)!important;transform-origin:center bottom!important}
+ .book-mockup:hover img,.book-mockup:focus-visible img{transform:translateY(-4px) scale(1.36)!important}
+ .scene-footer{left:3%!important;right:3%!important;bottom:3.6%!important;font-size:clamp(9px,1vw,12px)!important}
+ .scene-footer nav{gap:clamp(20px,3vw,30px)!important}
+}
+@media (min-width:601px) and (max-width:1200px) and (orientation:landscape){
+ .wall-gallery{height:29%!important}
+ .laptop{left:36.7%!important;top:39.5%!important;width:29.5%!important;height:40%!important}
+ .laptop-display{height:62%!important}
+ .laptop-hinge{top:61%!important;height:3%!important}
+ .laptop-base{top:64%!important;height:26%!important}
+ .keyboard{top:66%!important;height:11%!important}
+ .trackpad{top:81.5%!important;height:5%!important}
+ .paper{left:.5%!important;top:41%!important;width:7.5%!important;height:18%!important}
+ .book-mockup{left:74%!important;top:59%!important;width:25%!important;height:23%!important}
+}
+
+/* MOBILE ONLY. Its own compact layout, independent of the tablet and desktop rules. */
+@media (max-width:600px){
+ .wall-gallery{left:2%!important;right:2%!important;top:3%!important;height:22%!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;row-gap:2%!important}
+ .travel-frame{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr) 15px!important;width:clamp(60px,17vw,70px)!important;height:95%!important;padding:3px 3px 0!important;overflow:hidden!important}
+ .travel-photo{grid-column:1!important;grid-row:1!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}
+ .travel-frame figcaption{position:relative!important;grid-column:1!important;grid-row:2!important;left:auto!important;right:auto!important;bottom:auto!important;height:15px!important;min-height:15px!important;opacity:1!important;visibility:visible!important;transform:none!important}
+ .travel-frame figcaption small{display:none!important}
+ .laptop{left:17%!important;top:32%!important;width:66%!important;height:32%!important}
+ .laptop-display{height:64%!important}
+ .laptop-hinge{top:63%!important;height:3%!important}
+ .laptop-base{top:66%!important;height:25%!important}
+ .keyboard{top:68%!important;height:11%!important}
+ .trackpad{left:40.5%!important;top:83.5%!important;width:18%!important;height:4.5%!important}
+ .paper{left:1.5%!important;top:34.5%!important;width:13%!important;height:17.5%!important;z-index:4!important}
+ .book-mockup{left:70%!important;top:65%!important;width:28%!important;height:22%!important}
+ .book-mockup img{transform:scale(1.52)!important;transform-origin:center bottom!important}
+ .book-mockup:hover img,.book-mockup:focus-visible img{transform:translateY(-4px) scale(1.58)!important}
+ .scene-footer{left:3%!important;right:3%!important;bottom:3.8%!important;font-size:clamp(9px,2.5vw,11px)!important}
+ .scene-footer nav{gap:clamp(18px,5vw,24px)!important}
 }
