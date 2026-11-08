@@ -1895,3 +1895,21 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .laptop{left:36.7%!important;top:40.6%!important;width:29.5%!important;height:43%!important;z-index:7!important}
  .book-mockup{left:77%!important;top:59%!important;width:17%!important;height:24%!important}
 }
+
+
+/* Extend tablet treatment to large iPad viewports (including landscape widths).
+   The three-column photo wall creates real vertical room instead of wide thumbnails. */
+@media (min-width:601px) and (max-width:1400px) and (orientation:portrait){
+ .wall-gallery{left:2%!important;right:2%!important;top:2.8%!important;height:37%!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;column-gap:2%!important;row-gap:2%!important}
+ .travel-frame{width:clamp(44px,5.5vw,58px)!important;height:98%!important}
+ .paper{left:.5%!important;top:42%!important;width:7.5%!important;height:18%!important;z-index:4!important}
+ .laptop{left:18%!important;top:42.5%!important;width:64%!important;height:29.5%!important;z-index:7!important}
+ .book-mockup{left:82%!important;top:73%!important;width:16%!important;height:12%!important}
+}
+@media (min-width:601px) and (max-width:1400px) and (orientation:landscape){
+ .wall-gallery{left:2%!important;right:2%!important;top:2.8%!important;height:38%!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;column-gap:2%!important;row-gap:2%!important}
+ .travel-frame{width:clamp(46px,5.8vw,70px)!important;height:98%!important}
+ .paper{left:.6%!important;top:42.5%!important;width:7.5%!important;height:18%!important;z-index:4!important}
+ .laptop{left:36.7%!important;top:43.5%!important;width:29.5%!important;height:40%!important;z-index:7!important}
+ .book-mockup{left:77%!important;top:60%!important;width:17%!important;height:23%!important}
+}
