@@ -2256,3 +2256,18 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 @media (min-width:601px) and (max-width:1200px) and (orientation:landscape){
  .book-mockup{left:66%!important;top:59%!important;width:19%!important;height:22%!important}
 }
+
+
+/* Tel Aviv is kept wider so the original image can breathe while its right edge is cut. */
+@media (min-width:1201px){
+ .travel-frame:nth-child(5){width:74%!important}
+ .travel-frame:nth-child(5) .travel-photo{object-position:left center!important}
+}
+@media (min-width:601px) and (max-width:1200px){
+ .travel-frame:nth-child(5){width:clamp(88px,10vw,106px)!important}
+ .travel-frame:nth-child(5) .travel-photo{object-position:left center!important}
+}
+@media (max-width:600px){
+ .travel-frame:nth-child(5){width:clamp(78px,22vw,88px)!important}
+ .travel-frame:nth-child(5) .travel-photo{object-position:left center!important}
+}

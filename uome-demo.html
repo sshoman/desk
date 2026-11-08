@@ -3,186 +3,451 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>UoMe | Informal Billing Demo</title>
+<title>UOME | Tabs, receipts and settling</title>
 <style>
-:root{--gold:#d7b43d;--ink:#252525;--muted:#77746d}
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#e9e6df}
-button,input{font:inherit}button{cursor:pointer}
-.demo-stage{width:100%;height:100%;min-height:620px;display:flex;align-items:center;justify-content:center;padding:12px;background:radial-gradient(ellipse at center,#fff 0%,#ece8df 56%,#d9d3c8 100%)}
-.phone{position:relative;width:min(390px,100%);height:min(835px,calc(100vh - 24px));min-height:610px;padding:7px;border-radius:43px;background:linear-gradient(140deg,#4d4d4d,#181818 40%,#3b3b3b 70%,#111);border:1px solid #777;box-shadow:0 24px 48px #0003,0 3px 7px #0005,inset 0 0 0 2px #5e5e5e}
-.phone-screen{position:relative;width:100%;height:100%;overflow:hidden;border-radius:34px;background:#f0ece4;display:flex;flex-direction:column}
-.statusbar{height:25px;flex:0 0 25px;display:flex;align-items:center;justify-content:space-between;padding:0 17px;background:#f8f8f8;font-size:11px;font-weight:700;color:#222}
-.status-icons{letter-spacing:2px;font-size:10px}
-.chat-header{height:61px;flex:0 0 61px;display:flex;align-items:center;gap:10px;padding:0 11px;background:#fbfbfb;border-bottom:1px solid #e4e4e4}
-.back{border:0;background:transparent;font-size:25px;color:#555;padding:0 2px}
-.avatar{width:37px;height:37px;border-radius:50%;display:grid;place-items:center;background:#efefef;border:1px solid #ddd;color:#4b4030;font-size:10px;font-weight:800;letter-spacing:-.5px}
-.contact{flex:1;min-width:0}.contact strong{display:block;font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.contact span{display:block;margin-top:3px;color:#888;font-size:10px}
-.head-action{border:0;background:transparent;color:#555;font-size:17px;padding:5px}
-.chat-feed{flex:1;min-height:0;overflow:auto;padding:13px 11px 12px;background-color:#e9e5dc;background-image:radial-gradient(#d5d0c6 .65px,transparent .65px);background-size:11px 11px;display:flex;flex-direction:column;gap:10px}
-.date-chip{align-self:center;padding:5px 10px;border-radius:8px;background:#f7f4ec;color:#777;font-size:9px;box-shadow:0 1px 1px #0001}
-.message{position:relative;max-width:88%;padding:10px 11px 17px;border-radius:10px;box-shadow:0 1px 1px #0001;font-size:12px;line-height:1.42}
-.message.incoming{align-self:flex-start;background:#fff;border-top-left-radius:3px}.message.outgoing{align-self:flex-end;background:#d8f4c7;border-top-right-radius:3px}
-.message time{position:absolute;right:8px;bottom:4px;color:#999;font-size:9px}
-.invoice-card{align-self:flex-start;width:min(91%,330px);border-radius:9px;background:#fff;overflow:hidden;box-shadow:0 2px 5px #0002;border:1px solid #e7e1d6}
-.invoice-head{padding:12px 13px 7px;border-bottom:2px solid #bdb7aa}
-.brand-row{display:flex;align-items:center;justify-content:space-between}.brand-word{font:700 35px/1 Georgia,serif;letter-spacing:-2px;color:var(--gold)}
-.invoice-tag{font-size:8px;font-weight:700;letter-spacing:1px;color:#9e8124}
-.invoice-to{display:flex;justify-content:space-between;gap:10px;padding:12px 13px 7px}
-.invoice-to label,.invoice-date label{display:block;color:#be9e31;font-size:9px;font-weight:700;margin-bottom:4px}
-.invoice-to strong{display:block;font-size:15px}.invoice-date{text-align:right;white-space:nowrap}.invoice-date strong{display:block;font-size:11px;margin-bottom:6px}
-.invoice-lines{padding:5px 12px 0}.invoice-table-head,.invoice-item{display:grid;grid-template-columns:1.35fr .55fr .65fr;gap:6px;align-items:center}
-.invoice-table-head{padding:4px 6px;color:#777;font-size:9px;font-weight:700;border-bottom:1px solid #eee}
-.invoice-item{padding:10px 6px;background:#f2f2f2;font-size:10px}.invoice-item strong{font-size:10px}.invoice-item span{text-align:right;color:#555}.invoice-item b{text-align:right;font-size:11px}
-.tax-row{display:flex;justify-content:space-between;padding:9px 6px;font-size:10px;color:#555}
-.total-row{display:flex;justify-content:space-between;align-items:center;padding:10px 13px;background:var(--gold);color:#fff;font-size:14px;font-weight:700}
-.thanks-note{padding:14px 12px 11px;text-align:center;color:#9a978e;font:italic 13px/1.3 Georgia,serif}
-.pay-now{width:100%;border:0;border-top:1px solid #c5a42b;background:var(--gold);color:white;font-size:22px;font-weight:800;letter-spacing:.1px;padding:13px 10px;transition:background .2s}
-.pay-now:hover{background:#c7a32c}.invoice-foot{display:flex;align-items:center;justify-content:space-between;padding:7px 11px;color:#999;font-size:9px}
-.text-button{border:0;background:transparent;color:#9a7a1d;font-size:9px;font-weight:700;padding:3px}.invoice-status{font-size:9px;color:#16834e;font-weight:800;letter-spacing:.08em}
-.chat-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 11px;background:#f8f8f8;border-top:1px solid #e8e5df}
-.demo-hint{font-size:9px;color:#918b7f}.create-invoice{border:1px solid #c9a83b;border-radius:20px;background:#fffaf0;color:#8e721c;padding:7px 12px;font-size:10px;font-weight:700}
-.composer{height:51px;flex:0 0 51px;display:flex;align-items:center;gap:7px;padding:7px 10px;background:#f7f7f7;border-top:1px solid #eee}
-.composer input{flex:1;min-width:0;height:34px;border:1px solid #e4e4e4;border-radius:18px;padding:0 12px;background:#fff;font-size:11px;outline:none}
-.composer input:focus{border-color:#d4b13b}.composer button{width:34px;height:34px;border:0;border-radius:50%;background:var(--gold);color:#fff;font-size:15px;font-weight:700}
-.home-indicator{height:13px;flex:0 0 13px;background:#f7f7f7;display:flex;justify-content:center;align-items:center}.home-indicator:after{content:"";width:94px;height:4px;border-radius:3px;background:#222}
-.overlay{position:absolute;z-index:10;inset:25px 0 13px;background:#f8f6f1;display:flex;flex-direction:column}.overlay[hidden]{display:none}
-.overlay-head{height:55px;display:flex;align-items:center;gap:12px;padding:0 15px;border-bottom:1px solid #e4dfd4;background:white}
-.overlay-head button{border:0;background:transparent;font-size:22px;color:#59554c}.overlay-head strong{font-size:14px}
-.overlay-body{flex:1;overflow:auto;padding:16px 16px 22px}
-.field{display:block;margin:0 0 13px}.field label{display:block;font-size:10px;font-weight:700;color:#8c7a50;margin-bottom:5px}
-.field input{width:100%;height:39px;border:1px solid #ded8ca;border-radius:8px;background:#fff;padding:0 11px;font-size:12px;color:#333;outline:none}
-.field input:focus{border-color:#d0ab32;box-shadow:0 0 0 2px #d7b43d22}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.live-total{display:flex;justify-content:space-between;align-items:center;margin:16px 0;padding:13px;border-radius:9px;background:#f0eadb;color:#65552d;font-size:12px;font-weight:700}
-.primary-action{width:100%;height:45px;border:0;border-radius:8px;background:var(--gold);color:white;font-size:12px;font-weight:800;box-shadow:0 2px 5px #aa8b2933}
-.primary-action:hover{background:#bd9a2d}.form-note{margin:10px 0 0;color:#999184;font-size:9px;line-height:1.45}
-.payment-overlay{background:#faf9f6}.payment-brand{font:700 38px/1 Georgia,serif;letter-spacing:-2px;color:var(--gold);text-align:center;margin:22px 0 7px}
-.payment-sub{text-align:center;color:#888;font-size:10px}.payment-summary{margin:22px 0 18px;padding:16px;border:1px solid #e4dfd4;border-radius:10px;background:white;text-align:center}
-.payment-summary span{display:block;color:#9a884f;font-size:9px;font-weight:700;letter-spacing:.12em}
-.payment-summary strong{display:block;margin-top:7px;font-size:29px;color:#28251e}.payment-summary small{display:block;margin-top:6px;color:#8d887d;font-size:10px}
-.sign-box{padding:14px;border:1px solid #ddd7ca;border-radius:10px;background:#fff}.sign-box label{display:block;margin-bottom:7px;color:#8a7849;font-size:10px;font-weight:700}
-#signature{display:block;width:100%;height:126px;border:1px dashed #c8c0ae;border-radius:5px;background:#fff;touch-action:none}
-.signature-tools{display:flex;align-items:center;justify-content:space-between;margin-top:7px}.signature-tools span{color:#a19b8e;font-size:9px}
-.signature-tools button{border:0;background:transparent;color:#9d7b1b;font-size:10px;font-weight:700}
-.signature-required{margin:12px 0;color:#aaa394;font-size:9px;line-height:1.4}
-.payment-success{display:none;text-align:center;padding:36px 15px}.payment-success.show{display:block}
-.success-mark{width:54px;height:54px;margin:10px auto 15px;display:grid;place-items:center;border-radius:50%;background:#e3f3e7;color:#23824e;font-size:25px}
-.payment-success h2{font:600 21px Georgia,serif;margin:0 0 7px}.payment-success p{font-size:11px;color:#777}
-.payment-success button{margin-top:16px}.demo-disclaimer{margin-top:13px;text-align:center;color:#a19b90;font-size:8px;letter-spacing:.08em}
-@media(max-width:430px){.demo-stage{padding:0;background:#f0ede7}.phone{width:100%;height:100%;min-height:0;border:0;border-radius:0;padding:0;box-shadow:none;background:none}.phone-screen{border-radius:0}.statusbar{padding-top:2px}}
+:root{
+ --paper:#faf8f2;--paper-2:#f2efe7;--ink:#262822;--muted:#8a887f;
+ --line:#e8e3d8;--coral:#dd8068;--coral-soft:#f7e7df;--teal:#43887d;
+ --teal-dark:#2f6e64;--teal-soft:#e4efea;--sand:#e8dfcf;--white:#fffefa;
+ --shadow:0 10px 28px #312c2112;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:transparent;color:var(--ink)}
+button{font:inherit;cursor:pointer}
+.demo-stage{width:100%;height:100%;min-height:0;display:flex;align-items:center;justify-content:center;padding:8px;background:transparent}
+.phone{width:min(410px,100%);height:min(860px,calc(100vh - 18px));min-height:0;padding:7px;border-radius:43px;background:linear-gradient(145deg,#51514b,#1c211e 42%,#42463e 75%,#171a17);border:1px solid #55584f;box-shadow:0 22px 50px #15140f35,0 3px 7px #0004,inset 0 0 0 2px #77796c}
+.phone-screen{position:relative;width:100%;height:100%;overflow:hidden;border-radius:35px;background:var(--paper);display:flex;flex-direction:column}
+.statusbar{height:27px;flex:0 0 27px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:var(--paper);font-size:10px;font-weight:750;letter-spacing:.01em}
+.status-right{display:flex;align-items:center;gap:5px;color:#45483f;font-size:9px}
+.signal{letter-spacing:-2px}
+.app-top{height:52px;flex:0 0 52px;display:flex;align-items:center;justify-content:space-between;padding:0 17px;border-bottom:1px solid #ede8dd;background:var(--paper)}
+.wordmark{font-size:17px;font-weight:850;letter-spacing:-.08em}
+.wordmark i{font-style:normal;color:var(--coral)}
+.top-actions{display:flex;align-items:center;gap:9px}
+.icon-btn{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:var(--white);color:#55584f;font-size:17px}
+.profile-bubble{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--teal);color:white;font-size:12px;font-weight:800}
+.app-scroll{flex:1;min-height:0;overflow:auto;scrollbar-width:none;background:var(--paper)}
+.app-scroll::-webkit-scrollbar{display:none}
+.view{padding:17px 17px 25px}
+.view[hidden]{display:none!important}
+.page-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+.eyebrow{font-size:9px;line-height:1.2;font-weight:800;letter-spacing:.14em;color:#989286}
+.page-head h1{margin:4px 0 0;font-size:27px;line-height:1.05;letter-spacing:-.055em;font-weight:780}
+.page-head p{margin:5px 0 0;color:var(--muted);font-size:10px}
+.add-btn{width:39px;height:39px;border:0;border-radius:50%;background:var(--coral);color:white;font-size:24px;line-height:1;box-shadow:0 4px 8px #d87b6533}
+.balance-card{padding:15px 16px 13px;border:1px solid #e5ded0;border-radius:21px;background:linear-gradient(135deg,#fffefa 0%,#f8f4ea 100%);box-shadow:0 5px 15px #30291c0d}
+.balance-top{display:flex;align-items:center;justify-content:space-between;color:#77756d;font-size:10px;font-weight:650}
+.period-chip{padding:5px 8px;border:1px solid #e4dfd5;border-radius:20px;background:#fffdf8;font-size:9px}
+.balance-main{display:flex;align-items:center;justify-content:space-between;padding:10px 1px 12px}
+.balance-main small{display:block;margin-bottom:3px;color:#979084;font-size:9px;font-weight:800;letter-spacing:.13em}
+.balance-main strong{font-size:41px;line-height:1;font-weight:780;letter-spacing:-.065em;color:#cb6f58}
+.progress-ring{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--teal) 0 53%,#ead9cf 53% 100%);position:relative}
+.progress-ring:before{content:"";position:absolute;inset:7px;border-radius:50%;background:#fbf8f0}
+.progress-ring b{position:relative;font-size:12px;letter-spacing:-.04em}
+.balance-bottom{display:flex;align-items:center;gap:0;border-top:1px solid #ebe5d9;padding-top:10px;color:#77736a;font-size:9px;white-space:nowrap}
+.balance-bottom span{flex:1;text-align:center}
+.balance-bottom span:first-child{text-align:left;color:var(--teal-dark);font-weight:750}
+.balance-bottom span+span{border-left:1px solid #e9e2d6}
+.filter-row{display:flex;align-items:center;gap:7px;margin:17px 0 12px;overflow-x:auto;scrollbar-width:none}
+.filter-row::-webkit-scrollbar{display:none}
+.filter{height:32px;padding:0 12px;border:1px solid transparent;border-radius:20px;background:transparent;color:#77746b;font-size:10px;font-weight:650;white-space:nowrap}
+.filter.active{background:var(--coral);color:white}
+.filter-tools{margin-left:auto;width:31px;height:31px;border:1px solid var(--line);border-radius:50%;background:#fffdf8;color:#77746b;flex:0 0 auto}
+.tab-list{display:flex;flex-direction:column;gap:8px}
+.tab-card{width:100%;border:1px solid #e8e2d7;border-radius:17px;background:#fffefa;padding:13px 14px;text-align:left;box-shadow:0 2px 5px #3e342011;transition:transform .16s,border-color .16s}
+.tab-card:active{transform:scale(.99)}
+.tab-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.tab-name{font-size:12px;font-weight:760;letter-spacing:-.02em}
+.tab-amount{font-size:13px;font-weight:780;color:#c96f59;white-space:nowrap}
+.tab-meta{display:flex;align-items:center;justify-content:space-between;margin-top:8px;color:#918b80;font-size:9px}
+.meta-left{display:flex;align-items:center;gap:6px}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);display:inline-block}
+.avatar-stack{display:flex;align-items:center;padding-left:2px}
+.avatar-stack i,.mini-avatar{width:22px;height:22px;border:2px solid #fffefa;border-radius:50%;display:grid;place-items:center;margin-left:-3px;font-size:7px;font-weight:800;font-style:normal;color:white;background:#8f79b9}
+.avatar-stack i:nth-child(2),.mini-avatar.teal{background:#488c80}
+.avatar-stack i:nth-child(3),.mini-avatar.orange{background:#c17a5d}
+.avatar-stack i:nth-child(4),.mini-avatar.blue{background:#6b91a7}
+.card-extra{display:flex;align-items:center;justify-content:space-between;margin-top:11px;padding-top:9px;border-top:1px solid #f0ece4;color:#9a9285;font-size:9px}
+.card-extra b{color:var(--teal-dark);font-size:9px}
+.scan-cta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding:13px 14px;border-radius:15px;background:var(--teal-soft);color:var(--teal-dark);border:1px solid #d7e7df}
+.scan-cta strong{display:block;font-size:11px}.scan-cta small{display:block;margin-top:3px;font-size:9px;color:#66857b}
+.scan-cta button{border:0;border-radius:18px;background:var(--teal);color:white;padding:8px 12px;font-size:10px;font-weight:750}
+.bottom-nav{height:62px;flex:0 0 62px;display:flex;align-items:center;justify-content:space-around;padding:5px 18px 0;background:#fffdf8;border-top:1px solid #e9e4da}
+.bottom-nav[hidden]{display:none}
+.nav-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 13px;border:0;background:transparent;color:#8f8b80;font-size:8px;font-weight:650}
+.nav-btn .nav-symbol{font-size:18px;line-height:1}
+.nav-btn.active{color:var(--coral)}
+.home-indicator{height:13px;flex:0 0 13px;background:#fffdf8;display:flex;align-items:center;justify-content:center}
+.home-indicator:after{content:"";height:4px;width:90px;border-radius:3px;background:#252720}
+
+/* Detail, item assignment and guest claim */
+.back-head{display:flex;align-items:center;gap:10px;margin:-2px 0 15px}
+.back-btn{width:32px;height:32px;border:1px solid var(--line);border-radius:50%;background:#fffefa;color:#4d5048;font-size:18px}
+.back-copy{min-width:0;flex:1}
+.back-copy small{display:block;color:#969083;font-size:8px;font-weight:800;letter-spacing:.13em}
+.back-copy strong{display:block;margin-top:3px;font-size:16px;letter-spacing:-.035em}
+.more-btn{border:0;background:transparent;color:#777;font-size:18px}
+.detail-card{padding:15px;border:1px solid #e8e1d5;border-radius:18px;background:#fffefa;box-shadow:var(--shadow)}
+.detail-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.detail-card h2{margin:0;font-size:15px;letter-spacing:-.035em}
+.detail-card p{margin:4px 0 0;color:#8f897e;font-size:9px}
+.detail-total{text-align:right;font-size:22px;font-weight:800;letter-spacing:-.06em;color:var(--teal-dark)}
+.detail-people{display:flex;align-items:center;gap:7px;margin-top:14px}
+.detail-people .avatar-stack{margin-right:4px}
+.detail-people span{color:#8e897e;font-size:9px}
+.assign-progress{margin-top:12px}
+.progress-caption{display:flex;justify-content:space-between;margin-bottom:5px;color:#8f897d;font-size:9px}
+.progress-track{height:5px;border-radius:5px;background:#eee8dd;overflow:hidden}
+.progress-track i{display:block;width:25%;height:100%;border-radius:5px;background:var(--teal)}
+.segmented{display:flex;gap:4px;margin:15px 0 13px;padding:4px;background:#efede6;border-radius:11px}
+.segmented button{flex:1;height:30px;border:0;border-radius:8px;background:transparent;color:#8a867e;font-size:10px;font-weight:650}
+.segmented button.active{background:#fffefa;color:#34382f;box-shadow:0 1px 4px #00000012}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin:16px 1px 9px}
+.section-title h3{margin:0;font-size:12px;letter-spacing:-.02em}
+.section-title span{color:#928c80;font-size:9px}
+.receipt-note{display:flex;align-items:center;gap:8px;margin-bottom:9px;padding:9px 11px;border-radius:11px;background:#eaf1ec;color:#4c786e;font-size:9px}
+.receipt-note b{font-size:10px}
+.item-list{display:flex;flex-direction:column;gap:7px}
+.item-row{padding:10px 11px;border:1px solid #e9e4da;border-radius:13px;background:#fffefa}
+.item-row-main{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.item-title{font-size:10px;font-weight:720;line-height:1.25}
+.item-price{font-size:10px;font-weight:780;white-space:nowrap}
+.item-sub{margin-top:3px;color:#979083;font-size:8px}
+.assign-row{display:flex;align-items:center;gap:5px;margin-top:8px;flex-wrap:wrap}
+.assign-label{margin-right:2px;color:#a09a8f;font-size:8px}
+.assign-chip{width:25px;height:25px;border:1px solid #e4e0d8;border-radius:50%;display:grid;place-items:center;background:#f2f0ea;color:#9a968d;font-size:8px;font-weight:800}
+.assign-chip.active{border:2px solid #fffefa;background:var(--teal);color:white;box-shadow:0 0 0 1px var(--teal)}
+.assign-chip[data-person="ben"].active{background:#8c78b4;box-shadow:0 0 0 1px #8c78b4}
+.assign-chip[data-person="ava"].active{background:#ca8568;box-shadow:0 0 0 1px #ca8568}
+.assign-chip[data-person="jess"].active{background:#7196a8;box-shadow:0 0 0 1px #7196a8}
+.hidden-items{margin-top:8px;padding:9px 11px;border-radius:11px;background:#f5f2eb;color:#77736a;font-size:9px;display:flex;justify-content:space-between}
+.your-share{margin-top:13px;padding:13px 14px;border:1px solid #dce7df;border-radius:15px;background:#f0f5ef}
+.your-share-top{display:flex;align-items:center;justify-content:space-between}
+.your-share small{display:block;color:#668278;font-size:8px;font-weight:800;letter-spacing:.1em}
+.your-share strong{display:block;margin-top:3px;color:#286d61;font-size:23px;letter-spacing:-.06em}
+.your-share .share-breakdown{color:#8b9389;font-size:8px;text-align:right;line-height:1.6}
+.detail-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}
+.btn-secondary,.btn-primary{height:41px;border-radius:12px;font-size:10px;font-weight:760}
+.btn-secondary{border:1px solid #ded9cf;background:#fffefa;color:#66645a}
+.btn-primary{border:1px solid var(--coral);background:var(--coral);color:white}
+.btn-primary:active,.btn-secondary:active{transform:translateY(1px)}
+.footer-note{margin:10px 2px 0;text-align:center;color:#a39d91;font-size:8px}
+
+/* Guest link view */
+.guest-banner{padding:14px;border-radius:17px;background:#edf3ed;border:1px solid #dce9dd}
+.guest-banner small{color:#6c8879;font-size:8px;font-weight:800;letter-spacing:.12em}
+.guest-banner h2{margin:5px 0 4px;font-size:18px;letter-spacing:-.05em}
+.guest-banner p{margin:0;color:#788278;font-size:9px}
+.guest-progress{display:flex;align-items:center;justify-content:space-between;margin:14px 0 8px;color:#807b71;font-size:9px}
+.guest-item{display:flex;align-items:center;gap:9px;width:100%;padding:11px;border:1px solid #e8e2d8;border-radius:13px;background:#fffefa;text-align:left;margin-bottom:7px}
+.guest-item.active{border-color:#8cb5a4;background:#edf5ef}
+.check-box{width:20px;height:20px;border:1px solid #d7d2c8;border-radius:6px;display:grid;place-items:center;color:white;font-size:12px;flex:0 0 auto}
+.guest-item.active .check-box{border-color:var(--teal);background:var(--teal)}
+.guest-item-copy{flex:1;min-width:0}
+.guest-item-copy b{display:block;font-size:10px}
+.guest-item-copy small{display:block;margin-top:3px;color:#968f83;font-size:8px}
+.guest-item strong{font-size:10px}
+.guest-total{display:flex;align-items:center;justify-content:space-between;margin:12px 0;padding:13px;border-radius:13px;background:#f4eee3;color:#5d594e;font-size:10px}
+.guest-total strong{font-size:18px;color:#2f7166;letter-spacing:-.04em}
+.full-btn{width:100%;height:43px;border:0;border-radius:12px;background:var(--coral);color:#fff;font-size:11px;font-weight:780}
+.link-card{margin-top:13px;padding:11px 12px;border:1px solid #e7e1d6;border-radius:12px;background:#fffefa}
+.link-card small{color:#989185;font-size:8px}
+.link-card strong{display:block;margin-top:5px;color:#548378;font-size:10px}
+.success-wrap{padding:44px 18px;text-align:center}
+.success-mark{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:#e1efe8;color:var(--teal);font-size:26px;font-weight:800}
+.success-wrap h2{margin:0;font-size:22px;letter-spacing:-.05em}
+.success-wrap p{color:#8d887d;font-size:10px;line-height:1.5}
+.success-amount{margin:18px 0;color:var(--teal-dark);font-size:32px;font-weight:820;letter-spacing:-.07em}
+
+/* Scan and settle */
+.scan-panel{padding:14px;border-radius:17px;background:#f0eee6;border:1px solid #e4dfd3}
+.scan-frame{height:265px;border-radius:13px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:linear-gradient(135deg,#3b403a,#1f2420);padding:18px}
+.receipt-paper{width:75%;height:100%;padding:18px 14px;background:#fffdf5;transform:rotate(-2deg);box-shadow:0 6px 18px #0004;color:#3c3b34;font-family:Georgia,serif}
+.receipt-paper h4{margin:0 0 8px;text-align:center;font-size:13px;letter-spacing:.05em}
+.receipt-paper p{margin:0 0 8px;text-align:center;color:#888;font-size:7px}
+.receipt-line{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed #e0dbcf;font:8px/1.2 monospace}
+.receipt-total{display:flex;justify-content:space-between;margin-top:8px;font:bold 10px monospace}
+.scan-corner{position:absolute;inset:18px;border:1px solid #a8d0bc;border-radius:8px;box-shadow:0 0 0 1px #5b9b8266}
+.scan-status{display:flex;align-items:center;gap:7px;margin:12px 0;color:var(--teal-dark);font-size:9px;font-weight:700}
+.scan-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:13px 0}
+.scan-stat{padding:9px 6px;border-radius:10px;background:#fffefa;text-align:center;border:1px solid #e8e2d7}
+.scan-stat strong{display:block;font-size:14px}.scan-stat small{color:#9a9387;font-size:8px}
+.settle-person{display:flex;align-items:center;gap:10px;padding:12px 3px;border-bottom:1px solid #eee9e0}
+.person-avatar{width:34px;height:34px;flex:0 0 auto;display:grid;place-items:center;border-radius:50%;background:#8f79b9;color:#fff;font-size:10px;font-weight:800}
+.person-avatar.ava{background:#c17c62}.person-avatar.jess{background:#7196a8}.person-avatar.you{background:var(--teal)}
+.person-copy{flex:1;min-width:0}
+.person-copy b{display:block;font-size:10px}.person-copy small{display:block;margin-top:3px;color:#989184;font-size:8px}
+.person-due{text-align:right}.person-due b{display:block;font-size:12px}.person-due small{display:block;margin-top:3px;color:#9a9488;font-size:8px}
+.remind-btn{height:28px;padding:0 10px;border:1px solid #e6ded2;border-radius:16px;background:#fffefa;color:#8e725e;font-size:8px;font-weight:750}
+.remind-btn.sent{border-color:#d4e5db;background:#e9f2eb;color:#4d8878}
+.settle-total{display:flex;justify-content:space-between;padding:14px;border-radius:13px;background:#f0f4ec;margin:13px 0;color:#62776b;font-size:10px}
+.settle-total strong{color:#347568;font-size:17px}
+.toast{position:absolute;z-index:20;left:50%;bottom:83px;transform:translate(-50%,12px);opacity:0;pointer-events:none;padding:9px 13px;border-radius:22px;background:#28352f;color:#fff;font-size:9px;white-space:nowrap;transition:opacity .18s,transform .18s;box-shadow:0 5px 15px #0003}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:430px){
+ .demo-stage{padding:0}
+ .phone{width:100%;height:100%;min-height:0;padding:0;border:0;border-radius:0;box-shadow:none;background:transparent}
+ .phone-screen{border-radius:0}
+}
 </style>
 </head>
 <body>
-<div class="demo-stage"><div class="phone"><div class="phone-screen">
- <div class="statusbar"><span>9:41</span><span class="status-icons">● ● ▰</span></div>
- <header class="chat-header">
-  <button class="back" aria-label="Back">‹</button><div class="avatar">V&amp;J</div>
-  <div class="contact"><strong>V&amp;J Advertising</strong><span>last seen: today at 01:45</span></div>
-  <button class="head-action word-action" aria-label="Video call">Video</button><button class="head-action word-action" aria-label="Call">Call</button><button class="head-action word-action" aria-label="More">More</button>
- </header>
- <main class="chat-feed" id="chatFeed">
-  <div class="date-chip">29 June 2019</div>
-  <div class="message incoming" id="invoiceRequest">UoME $6000 for 10 hours consultation fees on the ManUpStairs campaign<time>01:44</time></div>
-  <article class="invoice-card">
-   <div class="invoice-head"><div class="brand-row"><div class="brand-word">UoME</div><div class="invoice-tag">INFORMAL INVOICE</div></div></div>
-   <div class="invoice-to">
-    <div><label>Invoice to</label><strong id="clientDisplay">George Carlin</strong></div>
-    <div class="invoice-date"><label>Invoice date</label><strong>29/06/2019</strong><label>Due date</label><strong id="dueDisplay">1/07/2019</strong></div>
-   </div>
-   <div class="invoice-lines">
-    <div class="invoice-table-head"><span>Item</span><span>Qty × Price</span><span>Amount</span></div>
-    <div class="invoice-item"><strong id="itemDisplay">Consultation Fees</strong><span id="qtyPriceDisplay">10 × $600</span><b id="amountDisplay">$6,000</b></div>
-    <div class="tax-row"><span>Tax</span><b id="taxDisplay">$0</b></div>
-   </div>
-   <div class="total-row"><span>Total</span><strong id="totalDisplay">$6,000</strong></div>
-   <div class="thanks-note">Thank you for working<br>with our agency</div>
-   <button class="pay-now" id="payNow">Pay Now</button>
-   <div class="invoice-foot"><span id="invoiceNumber">UoME #1847</span><span id="invoiceStatus"></span><button class="text-button" id="editInvoice">EDIT</button></div>
-  </article>
-  <div class="message outgoing" id="thanksMessage">Okay, thank you guys.<time>02:48 ✓✓</time></div>
- </main>
- <div class="chat-actions"><button class="create-invoice" id="makeInvoice">+ Create invoice</button><span class="demo-hint">Try editing or paying this invoice</span></div>
- <form class="composer" id="chatForm"><button type="button" class="head-action" aria-label="Add attachment">+</button><input id="chatInput" placeholder="Type a message" autocomplete="off"><button type="submit" aria-label="Send message">Send</button></form>
- <div class="home-indicator"></div>
+<div class="demo-stage">
+ <div class="phone">
+  <div class="phone-screen">
+   <div class="statusbar"><span>9:41</span><span class="status-right"><span class="signal">▮▮▮</span><span>◉</span><span>▰</span></span></div>
+   <header class="app-top">
+    <div class="wordmark">UOME<i>.</i></div>
+    <div class="top-actions">
+     <button class="icon-btn" id="topSearch" aria-label="Search">⌕</button>
+     <button class="icon-btn" id="topAdd" aria-label="Add a tab">＋</button>
+     <div class="profile-bubble">J</div>
+    </div>
+   </header>
+   <main class="app-scroll" id="appScroll">
+    <section class="view" id="homeView">
+     <div class="page-head">
+      <div><div class="eyebrow">YOUR TAB WALLET</div><h1>Tabs</h1><p>Keep every table, crew and trip together.</p></div>
+      <button class="add-btn" id="newTab">＋</button>
+     </div>
+     <article class="balance-card">
+      <div class="balance-top"><span>7 owe you · 7 mo open</span><span class="period-chip">This month⌄</span></div>
+      <div class="balance-main">
+       <div><small>OUTSTANDING</small><strong>$768</strong></div>
+       <div class="progress-ring"><b>53%</b></div>
+      </div>
+      <div class="balance-bottom"><span>● $995 paid</span><span>$110 unassigned</span><span>2 tabs</span></div>
+     </article>
+     <div class="filter-row" id="filters">
+      <button class="filter active" data-filter="open">Open · 6</button>
+      <button class="filter" data-filter="settling">Settling · 2</button>
+      <button class="filter" data-filter="closed">Closed · 2</button>
+      <button class="filter-tools" aria-label="Filter tabs">☷</button>
+     </div>
+     <div class="tab-list" id="tabList">
+      <button class="tab-card" data-open-tab>
+       <div class="tab-card-top"><span class="tab-name">Tacos El Riconsito</span><span class="tab-amount">$57.38</span></div>
+       <div class="tab-meta"><span class="meta-left"><span class="live-dot"></span> Add people</span><span>☷ Jan 15</span></div>
+      </button>
+      <button class="tab-card" data-open-tab>
+       <div class="tab-card-top"><span class="tab-name">Daily Grind Coffee</span><span class="tab-amount">$52.47</span></div>
+       <div class="tab-meta"><span class="meta-left"><span class="live-dot"></span> Live · 3 people</span><span>☷ Sep 12</span></div>
+      </button>
+      <button class="tab-card" data-open-tab>
+       <div class="tab-card-top"><span class="tab-name">Isarn Thai Soul Kitchen</span><span class="tab-amount">$213.16</span></div>
+       <div class="tab-meta"><span class="meta-left avatar-stack"><i>BB</i><i>AH</i><i>JJ</i></span><span>☷ May 31</span></div>
+       <div class="card-extra"><span>4 people · 16 items</span><b>OPEN TAB →</b></div>
+      </button>
+      <button class="tab-card" data-open-tab>
+       <div class="tab-card-top"><span class="tab-name">Daily Grind Coffee</span><span class="tab-amount">$39.35</span></div>
+       <div class="tab-meta"><span class="meta-left avatar-stack"><i>DT</i><i>HH</i><i>JD</i></span><span>☷ Sep 11</span></div>
+      </button>
+      <button class="tab-card" data-open-tab>
+       <div class="tab-card-top"><span class="tab-name">Weekend brunch</span><span class="tab-amount">$325.69</span></div>
+       <div class="tab-meta"><span class="meta-left avatar-stack"><i>BB</i><i>AH</i><i>JJ</i></span><span>☷ Oct 14</span></div>
+      </button>
+     </div>
+     <div class="scan-cta"><div><strong>Got a receipt?</strong><small>Scan it and let UOME do the math.</small></div><button id="scanShortcut">Scan receipt ↗</button></div>
+    </section>
 
- <section class="overlay" id="invoiceOverlay" hidden>
-  <div class="overlay-head"><button type="button" id="closeInvoice" aria-label="Back">‹</button><strong>Edit invoice</strong></div>
-  <div class="overlay-body">
-   <div class="field"><label for="clientInput">Invoice to</label><input id="clientInput" value="George Carlin"></div>
-   <div class="field"><label for="itemInput">Description</label><input id="itemInput" value="Consultation Fees"></div>
-   <div class="field-grid"><div class="field"><label for="qtyInput">Quantity / hours</label><input id="qtyInput" type="number" min="1" step="1" value="10"></div><div class="field"><label for="rateInput">Price per hour ($)</label><input id="rateInput" type="number" min="0" step="1" value="600"></div></div>
-   <div class="field"><label for="dueInput">Due date</label><input id="dueInput" value="1/07/2019"></div>
-   <div class="live-total"><span>Invoice total</span><strong id="liveTotal">$6,000</strong></div>
-   <button class="primary-action" id="saveInvoice" type="button">Update and send invoice</button>
-   <p class="form-note">This is a working portfolio prototype. Values update the invoice in the chat. No real invoice or payment is sent.</p>
-  </div>
- </section>
+    <section class="view" id="groupsView" hidden>
+     <div class="page-head"><div><div class="eyebrow">YOUR PEOPLE</div><h1>Groups</h1><p>Regular crews and trips, all in one place.</p></div><button class="add-btn" id="addGroup">＋</button></div>
+     <button class="tab-card" data-open-tab><div class="tab-card-top"><span class="tab-name">Kuala Lumpur crew</span><span class="tab-amount">4 people</span></div><div class="tab-meta"><span class="avatar-stack"><i>JJ</i><i>BB</i><i>AH</i></span><span>6 open tabs</span></div></button>
+     <button class="tab-card" data-open-tab style="margin-top:9px"><div class="tab-card-top"><span class="tab-name">Friday lunch table</span><span class="tab-amount">5 people</span></div><div class="tab-meta"><span class="avatar-stack"><i>JJ</i><i>DT</i><i>HH</i></span><span>2 open tabs</span></div></button>
+     <button class="tab-card" data-open-tab style="margin-top:9px"><div class="tab-card-top"><span class="tab-name">Roommates</span><span class="tab-amount">3 people</span></div><div class="tab-meta"><span class="avatar-stack"><i>JJ</i><i>AH</i><i>JD</i></span><span>4 open tabs</span></div></button>
+    </section>
 
- <section class="overlay payment-overlay" id="paymentOverlay" hidden>
-  <div class="overlay-head"><button type="button" id="backToInvoice" aria-label="Back">‹</button><strong>UoME secure payment</strong></div>
-  <div class="overlay-body" id="paymentBody">
-   <div class="payment-brand">UoME</div><div class="payment-sub">Simple billing. Easier payments.</div>
-   <div class="payment-summary"><span>INVOICE #1847 · PAYMENT REQUEST</span><strong id="paymentTotal">$6,000</strong><small>Payment to <b id="paymentClient">George Carlin</b></small></div>
-   <div class="sign-box"><label for="signature">E-sign to pay</label><canvas id="signature" width="650" height="250"></canvas><div class="signature-tools"><span>Sign inside the box</span><button type="button" id="clearSignature">Clear signature</button></div></div>
-   <p class="signature-required">Your signature confirms this demo invoice. This prototype does not collect payment details or process a real transaction.</p>
-   <button class="primary-action" id="confirmPayment" type="button" disabled>Sign and pay $6,000</button>
-   <div class="demo-disclaimer">INTERACTIVE DEMO · NO REAL PAYMENT</div>
+    <section class="view" id="profileView" hidden>
+     <div class="page-head"><div><div class="eyebrow">ACCOUNT</div><h1>Profile</h1><p>Your preferences and payment links.</p></div><div class="profile-bubble">J</div></div>
+     <div class="detail-card"><h2>Jordan Lee</h2><p>Home currency · USD</p><div class="card-extra"><span>Payment links</span><b>EDIT →</b></div></div>
+     <div class="item-row" style="margin-top:9px"><b class="item-title">Venmo</b><div class="item-sub">@jordan-lee</div></div>
+     <div class="item-row" style="margin-top:8px"><b class="item-title">PayPal</b><div class="item-sub">jordanlee</div></div>
+     <div class="item-row" style="margin-top:8px"><b class="item-title">Notifications</b><div class="item-sub">Payment updates · Daily digest</div></div>
+     <p class="footer-note">Prototype profile. No account data is saved.</p>
+    </section>
+
+    <section class="view" id="detailView" hidden>
+     <div class="back-head">
+      <button class="back-btn" data-back="homeView" aria-label="Back">‹</button>
+      <div class="back-copy"><small>GROUP TAB · 31 MAY</small><strong>Thai dinner</strong></div>
+      <button class="more-btn" aria-label="More options">•••</button>
+     </div>
+     <article class="detail-card">
+      <div class="detail-card-top"><div><h2>Isarn Thai Soul Kitchen</h2><p>Paid by you · Kuala Lumpur</p></div><div class="detail-total">$237.92</div></div>
+      <div class="detail-people"><div class="avatar-stack"><i>JJ</i><i>BB</i><i>AH</i><i>SR</i></div><span>You + 3 at the table</span></div>
+      <div class="assign-progress"><div class="progress-caption"><span>Items assigned</span><b id="assignedCount">4 of 16</b></div><div class="progress-track"><i id="assignedBar"></i></div></div>
+     </article>
+     <div class="segmented" id="detailSegments"><button class="active" data-mode="items">Items</button><button data-mode="board">Board</button></div>
+     <div id="itemsMode">
+      <div class="receipt-note"><b>✓</b><span>Receipt scanned · Items, tax and tip checked</span></div>
+      <div class="section-title"><h3>Who had what?</h3><span>Tap people to assign</span></div>
+      <div class="item-list" id="assignmentList">
+       <div class="item-row" data-item-row data-price="12.75"><div class="item-row-main"><div><div class="item-title">Deep Fried Salted Beef</div><div class="item-sub">1 × $12.75</div></div><span class="item-price">$12.75</span></div><div class="assign-row"><span class="assign-label">Split with</span><button class="assign-chip active" data-person="you">JJ</button><button class="assign-chip active" data-person="ben">BB</button><button class="assign-chip" data-person="ava">AH</button><button class="assign-chip active" data-person="jess">SR</button></div></div>
+       <div class="item-row" data-item-row data-price="14.25"><div class="item-row-main"><div><div class="item-title">Salty Crab Papaya Salad*</div><div class="item-sub">1 × $14.25</div></div><span class="item-price">$14.25</span></div><div class="assign-row"><span class="assign-label">Split with</span><button class="assign-chip active" data-person="you">JJ</button><button class="assign-chip" data-person="ben">BB</button><button class="assign-chip active" data-person="ava">AH</button><button class="assign-chip active" data-person="jess">SR</button></div></div>
+       <div class="item-row" data-item-row data-price="24.25"><div class="item-row-main"><div><div class="item-title">Seafood Curry Custard</div><div class="item-sub">1 × $24.25</div></div><span class="item-price">$24.25</span></div><div class="assign-row"><span class="assign-label">Split with</span><button class="assign-chip" data-person="you">JJ</button><button class="assign-chip" data-person="ben">BB</button><button class="assign-chip" data-person="ava">AH</button><button class="assign-chip active" data-person="jess">SR</button></div></div>
+       <div class="item-row" data-item-row data-price="2.75"><div class="item-row-main"><div><div class="item-title">Jasmine Rice</div><div class="item-sub">1 × $2.75 · Shared plate</div></div><span class="item-price">$2.75</span></div><div class="assign-row"><span class="assign-label">Split with</span><button class="assign-chip active" data-person="you">JJ</button><button class="assign-chip" data-person="ben">BB</button><button class="assign-chip" data-person="ava">AH</button><button class="assign-chip active" data-person="jess">SR</button></div></div>
+       <div class="item-row" data-item-row data-price="16.50"><div class="item-row-main"><div><div class="item-title">Minced Lamb with Thai Basil</div><div class="item-sub">1 × $16.50</div></div><span class="item-price">$16.50</span></div><div class="assign-row"><span class="assign-label">Split with</span><button class="assign-chip" data-person="you">JJ</button><button class="assign-chip active" data-person="ben">BB</button><button class="assign-chip" data-person="ava">AH</button><button class="assign-chip" data-person="jess">SR</button></div></div>
+       <div class="item-row" data-item-row data-price="8.50"><div class="item-row-main"><div><div class="item-title">Mango Sticky Rice</div><div class="item-sub">1 × $8.50</div></div><span class="item-price">$8.50</span></div><div class="assign-row"><span class="assign-label">Split with</span><button class="assign-chip active" data-person="you">JJ</button><button class="assign-chip" data-person="ben">BB</button><button class="assign-chip active" data-person="ava">AH</button><button class="assign-chip" data-person="jess">SR</button></div></div>
+      </div>
+      <div class="hidden-items"><span>＋ 10 more items on receipt</span><b>$106.01</b></div>
+      <div class="your-share"><div class="your-share-top"><div><small>YOUR SHARE · WITH TAX & TIP</small><strong id="yourShare">$18.80</strong></div><div class="share-breakdown">Items <b id="myItems">$14.63</b><br>Tax + tip <b id="myTaxTip">$4.17</b></div></div></div>
+      <div class="detail-actions"><button class="btn-secondary" id="openGuest">Share guest link ↗</button><button class="btn-primary" id="openSettle">Settle up</button></div>
+     </div>
+     <div id="boardMode" hidden>
+      <div class="section-title"><h3>Split board</h3><span>Everyone's share</span></div>
+      <div class="item-row"><div class="item-row-main"><b class="item-title">Jordan · You</b><strong id="boardYou">$18.80</strong></div><div class="item-sub">Your assigned dishes + tax and tip</div></div>
+      <div class="item-row" style="margin-top:7px"><div class="item-row-main"><b class="item-title">Ben</b><strong>$46.60</strong></div><div class="item-sub">5 items assigned</div></div>
+      <div class="item-row" style="margin-top:7px"><div class="item-row-main"><b class="item-title">Ava</b><strong>$27.38</strong></div><div class="item-sub">3 items assigned</div></div>
+      <div class="item-row" style="margin-top:7px"><div class="item-row-main"><b class="item-title">Jess</b><strong>$58.50</strong></div><div class="item-sub">6 items assigned</div></div>
+      <p class="footer-note">10 additional receipt items are included in the tab total.</p>
+      <button class="full-btn" id="boardGuest" style="margin-top:12px">Open guest view ↗</button>
+     </div>
+    </section>
+
+    <section class="view" id="guestView" hidden>
+     <div class="back-head"><button class="back-btn" data-back="detailView" aria-label="Back">‹</button><div class="back-copy"><small>SHARED SPLIT · GUEST LINK</small><strong>Thai dinner</strong></div><span class="mini-avatar teal">JJ</span></div>
+     <div class="guest-banner"><small>SPLIT · SHARED BY JORDAN</small><h2>Claim what you had.</h2><p>Tap your dishes. Tax and tip follow your share automatically.</p></div>
+     <div class="guest-progress"><span>16 items on this receipt</span><b id="guestPicked">3 selected</b></div>
+     <div id="guestItems">
+      <button class="guest-item active" data-guest-item="0"><span class="check-box">✓</span><span class="guest-item-copy"><b>Deep Fried Salted Beef</b><small>1 × $12.75 · Shared plate</small></span><strong>$6.38</strong></button>
+      <button class="guest-item active" data-guest-item="1"><span class="check-box">✓</span><span class="guest-item-copy"><b>Salty Crab Papaya Salad*</b><small>1 × $14.25 · Shared plate</small></span><strong>$4.75</strong></button>
+      <button class="guest-item" data-guest-item="2"><span class="check-box"></span><span class="guest-item-copy"><b>Seafood Curry Custard</b><small>1 × $24.25</small></span><strong>$24.25</strong></button>
+      <button class="guest-item active" data-guest-item="3"><span class="check-box">✓</span><span class="guest-item-copy"><b>Jasmine Rice</b><small>1 × $2.75 · Shared plate</small></span><strong>$1.38</strong></button>
+      <button class="guest-item" data-guest-item="4"><span class="check-box"></span><span class="guest-item-copy"><b>Minced Lamb with Thai Basil</b><small>1 × $16.50</small></span><strong>$16.50</strong></button>
+      <button class="guest-item" data-guest-item="5"><span class="check-box"></span><span class="guest-item-copy"><b>Mango Sticky Rice</b><small>1 × $8.50 · Shared plate</small></span><strong>$4.25</strong></button>
+     </div>
+     <div class="guest-total"><span>Your subtotal + tax & tip</span><strong id="guestTotal">$27.38</strong></div>
+     <button class="full-btn" id="confirmGuest">Confirm my items →</button>
+     <div class="link-card"><small>SHARED VIA UOME</small><strong>split.uomeapp.com / thai-dinner</strong></div>
+     <p class="footer-note">No UOME account or app needed to claim items.</p>
+    </section>
+
+    <section class="view" id="guestSuccessView" hidden>
+     <div class="back-head"><button class="back-btn" data-back="guestView" aria-label="Back">‹</button><div class="back-copy"><small>THAI DINNER · MAY 31</small><strong>Share confirmed</strong></div></div>
+     <div class="success-wrap"><div class="success-mark">✓</div><h2>You're all set.</h2><p>Your items have been added to Jordan's split. This is a prototype, no payment has been sent.</p><div class="success-amount" id="guestSuccessAmount">$27.38</div><button class="full-btn" id="guestDone">Done</button></div>
+    </section>
+
+    <section class="view" id="settleView" hidden>
+     <div class="back-head"><button class="back-btn" data-back="detailView" aria-label="Back">‹</button><div class="back-copy"><small>THAI DINNER · MAY 31</small><strong>Settle the tab</strong></div></div>
+     <div class="detail-card"><div class="detail-card-top"><div><h2>Who's still to pay?</h2><p>Payment links go straight to you.</p></div><div class="detail-total">$132.48</div></div><div class="detail-people"><div class="avatar-stack"><i>BB</i><i>AH</i><i>SR</i></div><span>3 people · 1 confirmed</span></div></div>
+     <div class="section-title"><h3>Outstanding balances</h3><span>3 friends</span></div>
+     <div class="settle-person"><div class="person-avatar">BB</div><div class="person-copy"><b>Ben Brown</b><small>5 items · Reminder ready</small></div><div class="person-due"><b>$46.60</b><small>Due</small></div><button class="remind-btn" data-remind>Remind</button></div>
+     <div class="settle-person"><div class="person-avatar ava">AH</div><div class="person-copy"><b>Ava Hassan</b><small>3 items · Venmo linked</small></div><div class="person-due"><b>$27.38</b><small>Due</small></div><button class="remind-btn" data-remind>Remind</button></div>
+     <div class="settle-person"><div class="person-avatar jess">SR</div><div class="person-copy"><b>Sam Reed</b><small>6 items · PayPal linked</small></div><div class="person-due"><b>$58.50</b><small>Due</small></div><button class="remind-btn" data-remind>Remind</button></div>
+     <div class="settle-total"><span>Collected so far</span><strong>$105.44</strong></div>
+     <button class="full-btn" id="markPaid">Mark a cash payment</button>
+     <p class="footer-note">UOME never holds the money. This is a simulated portfolio flow.</p>
+    </section>
+
+    <section class="view" id="scanView" hidden>
+     <div class="back-head"><button class="back-btn" data-back="homeView" aria-label="Back">‹</button><div class="back-copy"><small>NEW TAB</small><strong>Scan a receipt</strong></div></div>
+     <div class="scan-panel">
+      <div class="scan-frame">
+       <div class="receipt-paper"><h4>ISARN THAI</h4><p>31 MAY · TABLE 8 · KUALA LUMPUR</p>
+        <div class="receipt-line"><span>Salted beef</span><b>12.75</b></div><div class="receipt-line"><span>Papaya salad</span><b>14.25</b></div><div class="receipt-line"><span>Seafood curry</span><b>24.25</b></div><div class="receipt-line"><span>Jasmine rice</span><b>2.75</b></div><div class="receipt-line"><span>Thai basil lamb</span><b>16.50</b></div><div class="receipt-line"><span>10 more items</span><b>106.01</b></div><div class="receipt-total"><span>TOTAL</span><b>237.92</b></div>
+       </div><div class="scan-corner"></div>
+      </div>
+      <div class="scan-status"><span>✓</span><span>Sample receipt ready · 16 items detected</span></div>
+      <div class="scan-stats"><div class="scan-stat"><strong>16</strong><small>Items</small></div><div class="scan-stat"><strong>$19.61</strong><small>Tax</small></div><div class="scan-stat"><strong>$33.30</strong><small>Tip</small></div></div>
+      <button class="full-btn" id="reviewReceipt">Review items · $237.92</button>
+      <p class="footer-note">Demo scan. No camera access or upload is used.</p>
+     </div>
+    </section>
+   </main>
+   <nav class="bottom-nav" id="bottomNav">
+    <button class="nav-btn active" data-nav="homeView"><span class="nav-symbol">▣</span>Tabs</button>
+    <button class="nav-btn" data-nav="groupsView"><span class="nav-symbol">♧</span>Groups</button>
+    <button class="nav-btn" data-nav="profileView"><span class="nav-symbol">♙</span>Profile</button>
+   </nav>
+   <div class="home-indicator"></div>
+   <div class="toast" id="toast">Reminder sent</div>
   </div>
-  <div class="payment-success" id="paymentSuccess"><div class="success-mark">✓</div><h2>Payment confirmed</h2><p id="successCopy">George Carlin’s invoice has been marked as paid.</p><button class="primary-action" id="returnToChat" type="button">Back to conversation</button></div>
- </section>
-</div></div>
+ </div>
+</div>
 <script>
 (function(){
  const $=id=>document.getElementById(id);
- const state={client:"George Carlin",item:"Consultation Fees",qty:10,rate:600,due:"1/07/2019",paid:false,signed:false};
- const money=n=>"$"+Number(n||0).toLocaleString("en-US",{maximumFractionDigits:2});
- const total=()=>Math.max(0,Number(state.qty)||0)*Math.max(0,Number(state.rate)||0);
- function render(){
-  $("clientDisplay").textContent=state.client;$("itemDisplay").textContent=state.item;
-  $("qtyPriceDisplay").textContent=(Number(state.qty)||0)+" × "+money(state.rate);
-  $("amountDisplay").textContent=money(total());$("totalDisplay").textContent=money(total());
-  $("dueDisplay").textContent=state.due;$("paymentTotal").textContent=money(total());
-  $("paymentClient").textContent=state.client;$("liveTotal").textContent=money(total());
-  $("confirmPayment").textContent="Sign and pay "+money(total());
-  $("payNow").textContent=state.paid?"Paid ✓":"Pay Now";$("payNow").disabled=state.paid;
-  $("payNow").style.opacity=state.paid?".72":"1";
-  $("invoiceStatus").textContent=state.paid?"PAID":"";
-  $("invoiceRequest").firstChild.textContent="UoME "+money(total())+" for "+state.qty+" hours "+(state.item||"services")+" on the ManUpStairs campaign";
+ const views=["homeView","groupsView","profileView","detailView","guestView","guestSuccessView","settleView","scanView"];
+ const show=id=>{
+  views.forEach(v=>$(v).hidden=v!==id);
+  $("bottomNav").hidden=!["homeView","groupsView","profileView"].includes(id);
+  document.querySelectorAll("[data-nav]").forEach(b=>b.classList.toggle("active",b.dataset.nav===id));
+  $("appScroll").scrollTop=0;
+ };
+ const toast=message=>{
+  const el=$("toast");el.textContent=message;el.classList.add("show");
+  clearTimeout(window.__uomeToast);window.__uomeToast=setTimeout(()=>el.classList.remove("show"),1700);
+ };
+ document.querySelectorAll("[data-open-tab]").forEach(b=>b.addEventListener("click",()=>{show("detailView");updateAssignments()}));
+ document.querySelectorAll("[data-nav]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.nav)));
+ document.querySelectorAll("[data-back]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.back)));
+ $("newTab").addEventListener("click",()=>show("scanView"));
+ $("topAdd").addEventListener("click",()=>show("scanView"));
+ $("scanShortcut").addEventListener("click",()=>show("scanView"));
+ $("reviewReceipt").addEventListener("click",()=>{show("detailView");updateAssignments();toast("Receipt reviewed. Assign the items.")});
+ $("topSearch").addEventListener("click",()=>toast("Search tabs and people"));
+ $("addGroup").addEventListener("click",()=>toast("New group created in this demo"));
+ document.querySelectorAll("[data-filter]").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll("[data-filter]").forEach(x=>x.classList.toggle("active",x===b));
+  toast(b.textContent.trim()+" tabs");
+ }));
+ document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll("[data-mode]").forEach(x=>x.classList.toggle("active",x===b));
+  const board=b.dataset.mode==="board";$("itemsMode").hidden=board;$("boardMode").hidden=!board;
+ }));
+ const allSubtotal=185.01,taxTip=52.91;
+ function calcAssigned(){
+  let mine=0,assigned=0;
+  document.querySelectorAll("[data-item-row]").forEach(row=>{
+   const chips=[...row.querySelectorAll(".assign-chip.active")];
+   if(chips.length)assigned++;
+   if(chips.some(c=>c.dataset.person==="you"))mine+=Number(row.dataset.price)/chips.length;
+  });
+  const extras=mine/allSubtotal*taxTip;
+  const fmt=n=>"$"+n.toFixed(2);
+  $("myItems").textContent=fmt(mine);
+  $("myTaxTip").textContent=fmt(extras);
+  $("yourShare").textContent=fmt(mine+extras);
+  $("boardYou").textContent=fmt(mine+extras);
+  $("assignedCount").textContent=(assigned+10)+" of 16";
+  $("assignedBar").style.width=Math.min(100,((assigned+10)/16)*100)+"%";
  }
- function openEditor(){
-  $("clientInput").value=state.client;$("itemInput").value=state.item;$("qtyInput").value=state.qty;
-  $("rateInput").value=state.rate;$("dueInput").value=state.due;$("invoiceOverlay").hidden=false;liveTotal();
+ function updateAssignments(){
+  document.querySelectorAll("[data-item-row]").forEach(row=>{
+   row.querySelectorAll(".assign-chip").forEach(chip=>{
+    chip.onclick=()=>{chip.classList.toggle("active");calcAssigned()};
+   });
+  });
+  calcAssigned();
  }
- function liveTotal(){$("liveTotal").textContent=money((Number($("qtyInput").value)||0)*(Number($("rateInput").value)||0))}
- function closeEditor(){$("invoiceOverlay").hidden=true}
- $("makeInvoice").addEventListener("click",openEditor);$("editInvoice").addEventListener("click",openEditor);
- $("closeInvoice").addEventListener("click",closeEditor);
- ["qtyInput","rateInput"].forEach(id=>$(id).addEventListener("input",liveTotal));
- $("saveInvoice").addEventListener("click",()=>{
-  state.client=$("clientInput").value.trim()||"Client";state.item=$("itemInput").value.trim()||"Service";
-  state.qty=Math.max(1,Number($("qtyInput").value)||1);state.rate=Math.max(0,Number($("rateInput").value)||0);
-  state.due=$("dueInput").value.trim()||state.due;state.paid=false;render();closeEditor();
-  const note=document.createElement("div");note.className="message outgoing";note.textContent="Updated invoice sent to "+state.client;
-  const time=document.createElement("time");time.textContent="Just now ✓✓";note.appendChild(time);
-  $("chatFeed").appendChild(note);$("chatFeed").scrollTop=$("chatFeed").scrollHeight;
- });
- function clearSignature(){const c=$("signature"),ctx=c.getContext("2d");ctx.clearRect(0,0,c.width,c.height);state.signed=false;$("confirmPayment").disabled=true}
- $("payNow").addEventListener("click",()=>{$("paymentOverlay").hidden=false;$("paymentBody").style.display="block";$("paymentSuccess").classList.remove("show");clearSignature()});
- $("backToInvoice").addEventListener("click",()=>$("paymentOverlay").hidden=true);
- $("returnToChat").addEventListener("click",()=>{$("paymentOverlay").hidden=true;$("thanksMessage").firstChild.textContent="Payment confirmed. Thank you!";render()});
- $("clearSignature").addEventListener("click",clearSignature);
- const canvas=$("signature"),ctx=canvas.getContext("2d");let drawing=false;
- function point(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height}}
- canvas.addEventListener("pointerdown",e=>{drawing=true;canvas.setPointerCapture(e.pointerId);const p=point(e);ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineWidth=4;ctx.lineCap="round";ctx.lineJoin="round";ctx.strokeStyle="#27251e"});
- canvas.addEventListener("pointermove",e=>{if(!drawing)return;const p=point(e);ctx.lineTo(p.x,p.y);ctx.stroke();state.signed=true;$("confirmPayment").disabled=false});
- const stop=()=>{drawing=false};canvas.addEventListener("pointerup",stop);canvas.addEventListener("pointercancel",stop);
- $("confirmPayment").addEventListener("click",()=>{if(!state.signed)return;state.paid=true;render();$("paymentBody").style.display="none";$("paymentSuccess").classList.add("show");$("successCopy").textContent=state.client+"'s "+money(total())+" invoice has been marked as paid."});
- $("chatForm").addEventListener("submit",e=>{e.preventDefault();const input=$("chatInput"),text=input.value.trim();if(!text)return;const bubble=document.createElement("div");bubble.className="message outgoing";bubble.textContent=text;const time=document.createElement("time");time.textContent="Now ✓";bubble.appendChild(time);$("chatFeed").appendChild(bubble);$("chatFeed").scrollTop=$("chatFeed").scrollHeight;input.value=""});
- render();
+ updateAssignments();
+ $("openGuest").addEventListener("click",()=>{show("guestView");calcGuest()});
+ $("boardGuest").addEventListener("click",()=>{show("guestView");calcGuest()});
+ $("openSettle").addEventListener("click",()=>show("settleView"));
+ let guestSelected=new Set([0,1,3]);
+ const guestShares=[6.38,4.75,24.25,1.38,16.50,4.25];
+ function calcGuest(){
+  let amount=0;
+  document.querySelectorAll("[data-guest-item]").forEach(b=>{
+   const index=Number(b.dataset.guestItem),active=guestSelected.has(index);
+   b.classList.toggle("active",active);b.querySelector(".check-box").textContent=active?"✓":"";
+   if(active)amount+=guestShares[index];
+  });
+  const fmt=n=>"$"+n.toFixed(2);
+  $("guestPicked").textContent=guestSelected.size+" selected";
+  $("guestTotal").textContent=fmt(amount);
+  $("guestSuccessAmount").textContent=fmt(amount);
+ }
+ document.querySelectorAll("[data-guest-item]").forEach(b=>b.addEventListener("click",()=>{
+  const i=Number(b.dataset.guestItem);guestSelected.has(i)?guestSelected.delete(i):guestSelected.add(i);calcGuest();
+ }));
+ $("confirmGuest").addEventListener("click",()=>{calcGuest();show("guestSuccessView");toast("Your items were added to the split")});
+ $("guestDone").addEventListener("click",()=>show("homeView"));
+ document.querySelectorAll("[data-remind]").forEach(b=>b.addEventListener("click",()=>{
+  b.textContent="Sent ✓";b.classList.add("sent");toast("Reminder sent with the exact amount");
+ }));
+ $("markPaid").addEventListener("click",()=>toast("Cash payment marked as received"));
 })();
 </script>
 </body>
 </html>
-<style>
-.word-action{font-size:9px!important;letter-spacing:0!important;padding:4px!important;color:#666!important}
-.composer button[type="submit"]{width:auto!important;min-width:45px!important;padding:0 10px!important;border-radius:18px!important;font-size:10px!important}
-</style>
