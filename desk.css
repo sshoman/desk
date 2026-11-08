@@ -1769,3 +1769,10 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
  .paper{z-index:12!important;left:22%!important;top:31%!important}
  .book-mockup{left:78%!important;top:68%!important;width:18%!important;height:17%!important}
 }
+
+
+/* On portrait tablets, keep the book lower on the desk and give it a little
+   more breathing room from the laptop base. */
+@media (min-width:601px) and (max-width:900px) and (orientation:portrait){
+ .book-mockup{left:78%!important;top:72.5%!important;width:18%!important;height:13.5%!important}
+}
