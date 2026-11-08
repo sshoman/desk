@@ -2275,3 +2275,19 @@ body{display:block;width:100vw;height:100svh;min-height:100svh}
 
 /* KL is intentionally a low-resolution source image, not a blur filter. */
 img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
+
+
+/* Keep Tel Aviv aligned with the other frames. Show the original scene and
+   let the right edge trim the face, instead of widening the whole frame. */
+@media (min-width:1201px){
+ .travel-frame:nth-child(5){width:43%!important}
+ .travel-frame:nth-child(5) .travel-photo{object-position:right center!important}
+}
+@media (min-width:601px) and (max-width:1200px){
+ .travel-frame:nth-child(5){width:clamp(54px,6.5vw,76px)!important}
+ .travel-frame:nth-child(5) .travel-photo{object-position:right center!important}
+}
+@media (max-width:600px){
+ .travel-frame:nth-child(5){width:clamp(60px,17vw,70px)!important}
+ .travel-frame:nth-child(5) .travel-photo{object-position:right center!important}
+}
