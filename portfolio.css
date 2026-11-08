@@ -7,7 +7,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",Ari
 .portfolio-masthead{display:flex;align-items:flex-start;justify-content:space-between;gap:28px;padding:0 0 22px;border-bottom:1px solid var(--line)}
 .portfolio-masthead h1{margin:7px 0 0;font:600 clamp(30px,4vw,56px)/1.08 "Playfair Display",Georgia,serif;letter-spacing:-.025em}
 .certificate-dock{display:flex;align-items:flex-start;justify-content:flex-end;gap:14px;flex:0 0 auto;max-width:58%}
-.certificate-preview{position:relative;display:flex;align-items:center;justify-content:center;width:clamp(160px,18vw,250px);height:clamp(105px,13vh,155px);padding:7px;overflow:hidden;border:1px solid #bda77e;border-radius:3px;background:linear-gradient(145deg,#fffdf8,#e9dfcd);box-shadow:0 4px 13px #47372225,0 1px 0 #fff inset;cursor:zoom-in;transition:transform .2s ease,box-shadow .2s ease}
+.certificate-preview{position:relative;display:flex;align-items:center;justify-content:center;width:clamp(220px,22vw,330px);height:clamp(150px,19vh,215px);padding:7px;overflow:hidden;border:1px solid #bda77e;border-radius:3px;background:linear-gradient(145deg,#fffdf8,#e9dfcd);box-shadow:0 4px 13px #47372225,0 1px 0 #fff inset;cursor:zoom-in;transition:transform .2s ease,box-shadow .2s ease}
 .certificate-preview img{display:block;max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain;background:#fff}
 .certificate-zoom{position:absolute;right:8px;top:8px;width:25px;height:25px;display:grid;place-items:center;border:1px solid #d7c39b;border-radius:50%;background:#f7f0e2eF;color:#59462c;font:700 15px/1 "DM Sans",sans-serif;opacity:0;transform:scale(.85);transition:opacity .2s,transform .2s}
 .certificate-preview:hover,.certificate-preview:focus-visible{z-index:3;transform:scale(1.07);box-shadow:0 14px 26px #30241855,0 0 0 2px #c5a66e}
@@ -35,7 +35,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",Ari
  .portfolio-masthead{display:flex;flex-direction:column;gap:14px;padding-bottom:16px}
  .portfolio-masthead h1{font-size:clamp(27px,7vw,40px)}
  .certificate-dock{width:100%;max-width:100%;justify-content:flex-start;gap:9px;overflow-x:auto;padding:3px 4px 10px}
- .certificate-preview{flex:0 0 clamp(135px,42vw,190px);width:clamp(135px,42vw,190px);height:clamp(94px,25vw,130px)}
+ .certificate-preview{flex:0 0 clamp(165px,45vw,230px);width:clamp(165px,45vw,230px);height:clamp(118px,31vw,165px)}
  .samples{margin-top:20px}
  .sample{margin-bottom:25px}
  .sample-media{min-height:100px}
