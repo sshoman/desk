@@ -6,7 +6,7 @@
 <title>UX Portfolio | Shoman</title>
 <link rel="stylesheet" href="./portfolio.css">
 </head>
-<body>
+<body class="ux-portfolio-page">
 <main class="portfolio-shell">
  <header class="portfolio-masthead">
   <h1>UX Portfolio</h1>
@@ -17,30 +17,18 @@
    </button>
   </div>
  </header>
- <section class="samples" aria-label="Selected UX projects">
-  <article class="sample">
-   <h2>Junior</h2>
-   <p class="sample-load-note">Interactive dashboard showcase. Opens directly in the app.</p>
-   <div class="sample-media"><iframe src="./junior-showcase.html" title="Junior interactive product dashboard" loading="eager"></iframe></div>
-  </article>
-    <article class="sample uome-sample">
-   <h2>UoMe · Business Workspace</h2>
-   <p class="sample-load-note">A full business workspace, not a chat mockup. Move between cash flow, invoices, payments, customers, catalogue and shopfront, then try the interactive invoice tools.</p>
-   <div class="sample-media uome-media"><iframe class="uome-frame" src="./uome-demo.html" title="UoMe interactive business workspace with cash flow, invoices, payments, clients and shopfront" loading="eager"></iframe></div>
-   <div class="uome-project-links">
-    <a href="./uome-invoice-studio.html" target="_blank" rel="noopener noreferrer">Open invoice studio ↗</a>
-    <a href="https://www.myuome.com/app" target="_blank" rel="noopener noreferrer">Official UoMe app ↗</a>
-    <a href="https://www.myuome.com/app/invoicing" target="_blank" rel="noopener noreferrer">Invoicing overview ↗</a>
+ <section class="ux-project-viewer" aria-label="Selected UX projects">
+  <div class="ux-project-heading">
+   <div>
+    <div class="ux-project-kicker">SELECTED PRODUCT WORK</div>
+    <h2 id="ux-project-title">Junior</h2>
+    <p id="ux-project-description">Interactive product dashboard and workflow.</p>
    </div>
-  </article>
-<article class="sample">
-   <h2>Xntry</h2><p class="sample-load-note">Live site preview. Give it a moment to load.</p>
-   <div class="sample-media"><iframe src="https://xntry.pages.dev/" title="Xntry live website" loading="lazy"></iframe></div>
-  </article>
-  <article class="sample">
-   <h2>Outbound Fox</h2><p class="sample-load-note">Live site preview. Give it a moment to load.</p>
-   <div class="sample-media"><iframe src="https://outboundfox.pages.dev/" title="Outbound Fox live website" loading="lazy"></iframe></div>
-  </article>
+   <span class="ux-project-counter" id="ux-project-counter">01 / 04</span>
+  </div>
+  <div class="ux-project-media">
+   <iframe id="ux-project-frame" src="./junior-showcase.html" title="Junior interactive product dashboard" loading="eager"></iframe>
+  </div>
  </section>
 </main>
 <div class="certificate-viewer" id="certificate-viewer" hidden aria-hidden="true">
@@ -49,6 +37,43 @@
 </div>
 <script>
 (function(){
+ const projects=[
+  {title:"Junior",description:"An interactive product dashboard that makes everyday workflows easier to understand and use.",src:"./junior-showcase.html"},
+  {title:"UoMe · Personal Finance",description:"A desktop personal finance assistant. Ask about spending, bills and goals, then turn the answer into a clear next step.",src:"./uome-demo.html"},
+  {title:"Xntry",description:"A live product experience built around discovery and a clear path through the service.",src:"https://xntry.pages.dev/"},
+  {title:"Outbound Fox",description:"A focused sales workflow that brings prospecting and outreach into one place.",src:"https://outboundfox.pages.dev/"}
+ ];
+ let current=0;
+ const title=document.getElementById("ux-project-title");
+ const description=document.getElementById("ux-project-description");
+ const counter=document.getElementById("ux-project-counter");
+ const frame=document.getElementById("ux-project-frame");
+ const notify=()=>window.parent.postMessage({
+  type:"desk-portfolio:state",canPrev:current>0,canNext:current<projects.length-1,index:current,total:projects.length
+ },window.location.origin);
+ function render(){
+  const project=projects[current];
+  title.textContent=project.title;
+  description.textContent=project.description;
+  counter.textContent=String(current+1).padStart(2,"0")+" / "+String(projects.length).padStart(2,"0");
+  frame.title=project.title+" project preview";
+  frame.src=project.src;
+  notify();
+ }
+ function move(direction){
+  const target=Math.max(0,Math.min(projects.length-1,current+direction));
+  if(target===current)return;
+  current=target;render();
+ }
+ window.addEventListener("message",event=>{
+  if(event.source!==window.parent||event.origin!==window.location.origin)return;
+  if(event.data?.type==="desk-portfolio:navigate")move(Number(event.data.direction)||0);
+ });
+ document.addEventListener("keydown",event=>{
+  if(event.key==="ArrowLeft"){event.preventDefault();move(-1)}
+  if(event.key==="ArrowRight"){event.preventDefault();move(1)}
+ });
+ notify();
  const viewer=document.getElementById("certificate-viewer");
  const full=document.getElementById("certificate-full-image");
  const close=()=>{viewer.hidden=true;viewer.setAttribute("aria-hidden","true");full.src=""};

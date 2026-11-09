@@ -1,7 +1,12 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Marketing Portfolio | Shoman</title><link rel="stylesheet" href="./portfolio.css"></head>
-<body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marketing Portfolio | Shoman</title>
+<link rel="stylesheet" href="./portfolio.css">
+</head>
+<body class="marketing-portfolio-page">
 <main class="portfolio-shell">
  <header class="portfolio-masthead">
   <h1>Marketing Portfolio</h1>
@@ -17,16 +22,18 @@
    <button class="category-tab" type="button" role="tab" id="tab-outreach" aria-selected="true" aria-controls="marketing-slide" data-category="outreach">Outreach</button>
    <button class="category-tab" type="button" role="tab" id="tab-social" aria-selected="false" aria-controls="marketing-slide" data-category="social">Social Media</button>
   </div>
-  <div class="slider-toolbar"><span class="slider-caption" id="slide-category">OUTREACH</span><span class="slider-counter" id="slide-counter">01 / 04</span></div>
-  <div class="slider-image-wrap" id="marketing-slide"><img id="marketing-slide-image" src="./portfolio-assets/outreach-sequences.png" alt="Outreach sequence sample" loading="eager"></div>
-  <div class="slider-controls">
-   <button class="slider-control" type="button" id="slide-prev" aria-label="Previous sample">← Previous</button>
-   <span class="slider-current" id="slide-label">Outreach sequences</span>
-   <button class="slider-control" type="button" id="slide-next" aria-label="Next sample">Next →</button>
+  <div class="slider-toolbar">
+   <span class="slider-caption" id="slide-category">OUTREACH</span>
+   <span class="slider-label" id="slide-label">Outreach sequences</span>
+   <span class="slider-counter" id="slide-counter">01 / 04</span>
   </div>
+  <div class="slider-image-wrap" id="marketing-slide"><img id="marketing-slide-image" src="./portfolio-assets/outreach-sequences.png" alt="Outreach sequence sample" loading="eager" fetchpriority="high"></div>
  </section>
 </main>
-<div class="certificate-viewer" id="certificate-viewer" hidden aria-hidden="true"><button type="button" class="certificate-close" data-certificate-close aria-label="Close certificate">×</button><img id="certificate-full-image" alt="Full-size certificate"></div>
+<div class="certificate-viewer" id="certificate-viewer" hidden aria-hidden="true">
+ <button type="button" class="certificate-close" data-certificate-close aria-label="Close certificate">×</button>
+ <img id="certificate-full-image" alt="Full-size certificate">
+</div>
 <script>
 (function(){
  const categories={
@@ -44,34 +51,42 @@
  };
  const categoryOrder=["outreach","social"];
  let category="outreach",index=0;
- const image=document.getElementById("marketing-slide-image"),title=document.getElementById("slide-category");
- const count=document.getElementById("slide-counter"),label=document.getElementById("slide-label");
- const previous=document.getElementById("slide-prev"),next=document.getElementById("slide-next");
+ const image=document.getElementById("marketing-slide-image");
+ const title=document.getElementById("slide-category");
+ const label=document.getElementById("slide-label");
+ const countEl=document.getElementById("slide-counter");
  const slide=document.getElementById("marketing-slide");
- const viewer=document.getElementById("certificate-viewer"),full=document.getElementById("certificate-full-image");
- const allSamples=Object.values(categories).flatMap(group=>group.items);
- allSamples.forEach(item=>{const preload=new Image();preload.src=item.src});
- const render=()=>{
-  const data=categories[category],item=data.items[index];
-  image.src=item.src;image.alt=item.alt;title.textContent=data.title;
-  count.textContent=String(index+1).padStart(2,"0")+" / "+String(data.items.length).padStart(2,"0");
-  label.textContent=item.label;
-  document.querySelectorAll("[data-category]").forEach(tab=>tab.setAttribute("aria-selected",String(tab.dataset.category===category)));
+ const viewer=document.getElementById("certificate-viewer");
+ const full=document.getElementById("certificate-full-image");
+ const notify=()=>{
   const position=categoryOrder.indexOf(category);
-  previous.disabled=position===0&&index===0;
-  next.disabled=position===categoryOrder.length-1&&index===data.items.length-1;
+  const globalIndex=categoryOrder.slice(0,position).reduce((sum,key)=>sum+categories[key].items.length,0)+index;
+  const total=categoryOrder.reduce((sum,key)=>sum+categories[key].items.length,0);
+  window.parent.postMessage({
+   type:"desk-portfolio:state",canPrev:globalIndex>0,canNext:globalIndex<total-1,index:globalIndex,total
+  },window.location.origin);
  };
- const move=(direction)=>{
+ const render=()=>{
+  const group=categories[category],item=group.items[index];
+  image.src=item.src;image.alt=item.alt;title.textContent=group.title;label.textContent=item.label;
+  countEl.textContent=String(index+1).padStart(2,"0")+" / "+String(group.items.length).padStart(2,"0");
+  document.querySelectorAll("[data-category]").forEach(tab=>tab.setAttribute("aria-selected",String(tab.dataset.category===category)));
+  notify();
+ };
+ const move=direction=>{
   const sequence=categoryOrder.flatMap(key=>categories[key].items.map((item,itemIndex)=>({category:key,index:itemIndex})));
   const current=sequence.findIndex(item=>item.category===category&&item.index===index);
   const target=Math.max(0,Math.min(sequence.length-1,current+direction));
+  if(target===current)return;
   category=sequence[target].category;index=sequence[target].index;render();
  };
  document.querySelectorAll("[data-category]").forEach(tab=>tab.addEventListener("click",()=>{
   category=tab.dataset.category;index=0;render();
  }));
- previous.addEventListener("click",()=>move(-1));
- next.addEventListener("click",()=>move(1));
+ window.addEventListener("message",event=>{
+  if(event.source!==window.parent||event.origin!==window.location.origin)return;
+  if(event.data?.type==="desk-portfolio:navigate")move(Number(event.data.direction)||0);
+ });
  document.addEventListener("keydown",event=>{
   if(!viewer.hidden)return;
   if(event.key==="ArrowLeft"){event.preventDefault();move(-1)}
@@ -94,8 +109,7 @@
   wheelTotal+=event.deltaY;
   clearTimeout(wheelTimer);
   if(!wheelLocked&&Math.abs(wheelTotal)>=38){
-   move(wheelTotal>0?1:-1);
-   wheelTotal=0;wheelLocked=true;
+   move(wheelTotal>0?1:-1);wheelTotal=0;wheelLocked=true;
   }
   wheelTimer=setTimeout(()=>{wheelTotal=0;wheelLocked=false},380);
  },{passive:false});

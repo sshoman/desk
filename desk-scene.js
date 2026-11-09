@@ -49,19 +49,19 @@ scene.innerHTML=`
     <span class="glass-face-right"></span><span class="glass-face-top"></span>
    </div>
    <div class="award-hover" id="award-rehoboth-details">
-    <span class="award-hover-kicker">KOREA · 2019</span>
-    <strong>AI Week 2019</strong>
-    <small>South Korea</small>
-   </div>
+     <span class="award-hover-kicker">REHOBOTH, SOUTH KOREA</span>
+     <strong>1st Place</strong>
+     <small>Pitch Competition · AI Week 2019</small>
+    </div>
   </article>
-  <article class="glass-trophy glass-arab" tabindex="0" aria-label="Arab Bank award, Amman" aria-describedby="award-arab-details">
+  <article class="glass-trophy glass-arab" tabindex="0" aria-label="Arab Bank award" aria-describedby="award-arab-details">
    <span class="glass-contact-shadow"></span>
    <div class="glass-foot"><span class="glass-foot-front"></span><span class="glass-foot-side"></span></div>
    <div class="glass-prism">
     <div class="glass-face-front">
      <div class="glass-engraving">
       <span class="glass-brand">ARAB BANK</span>
-      <span class="glass-small">AMMAN</span>
+      <span class="glass-small"></span>
       <span class="glass-rank">Top 3</span>
       <span class="glass-placing">FINALISTS</span>
       <span class="glass-line"></span>
@@ -71,7 +71,7 @@ scene.innerHTML=`
     <span class="glass-face-right"></span><span class="glass-face-top"></span>
    </div>
    <div class="award-hover" id="award-arab-details">
-    <span class="award-hover-kicker">ARAB BANK · AMMAN</span>
+    <span class="award-hover-kicker">ARAB BANK</span>
     <strong>Top 3</strong>
     <small>Financial Technology Startups</small>
    </div>
@@ -132,13 +132,18 @@ scene.innerHTML=`
  </a>
 
  <div class="portfolio-modal" id="portfolio-modal" hidden aria-hidden="true">
-  <div class="modal-shade">
-   <section class="portfolio-window" role="dialog" aria-modal="true" aria-labelledby="portfolio-modal-title" tabindex="-1">
-    <span id="portfolio-modal-title" class="portfolio-modal-title">Portfolio</span>
-    <iframe class="portfolio-frame" title="Portfolio content" src="about:blank" loading="eager"></iframe>
-   </section>
+   <div class="modal-shade">
+    <section class="portfolio-window" role="dialog" aria-modal="true" aria-labelledby="portfolio-modal-title" tabindex="-1">
+     <div class="portfolio-toolbar" aria-label="Portfolio navigation">
+      <button class="portfolio-control" id="portfolio-prev" type="button" aria-label="Previous project" disabled>←</button>
+      <button class="portfolio-control" id="portfolio-next" type="button" aria-label="Next project" disabled>→</button>
+      <button class="portfolio-control portfolio-close" id="portfolio-close" type="button" aria-label="Close portfolio">×</button>
+     </div>
+     <span id="portfolio-modal-title" class="portfolio-modal-title">Portfolio</span>
+     <iframe class="portfolio-frame" title="Portfolio content" src="about:blank" loading="eager"></iframe>
+    </section>
+   </div>
   </div>
- </div>
 
  <footer class="scene-footer">
   <nav aria-label="Personal links">
@@ -153,7 +158,24 @@ const modal=scene.querySelector("#portfolio-modal");
 const modalTitle=scene.querySelector("#portfolio-modal-title");
 const modalFrame=scene.querySelector(".portfolio-frame");
 const modalWindow=scene.querySelector(".portfolio-window");
+const portfolioPrev=scene.querySelector("#portfolio-prev");
+const portfolioNext=scene.querySelector("#portfolio-next");
+const portfolioClose=scene.querySelector("#portfolio-close");
 let lastTrigger=null;
+
+function navigatePortfolio(direction){
+ if(modal.hidden)return;
+ modalFrame.contentWindow?.postMessage({type:"desk-portfolio:navigate",direction},window.location.origin);
+}
+portfolioPrev.addEventListener("click",()=>navigatePortfolio(-1));
+portfolioNext.addEventListener("click",()=>navigatePortfolio(1));
+portfolioClose.addEventListener("click",closePortfolio);
+window.addEventListener("message",event=>{
+ if(event.source!==modalFrame.contentWindow||event.origin!==window.location.origin)return;
+ if(event.data?.type!=="desk-portfolio:state")return;
+ portfolioPrev.disabled=!event.data.canPrev;
+ portfolioNext.disabled=!event.data.canNext;
+});
 
 function openPortfolio(trigger){
  lastTrigger=trigger;
@@ -169,6 +191,8 @@ function openPortfolio(trigger){
  modalWindow.classList.remove("portfolio-opening");
  void modalWindow.offsetWidth;
  modalWindow.classList.add("portfolio-opening");
+ portfolioPrev.disabled=true;
+ portfolioNext.disabled=true;
  modalFrame.src=new URL(trigger.dataset.portfolio,window.location.href).href;
  requestAnimationFrame(()=>modalWindow.focus());
 }
@@ -177,6 +201,8 @@ function closePortfolio(){
  modal.hidden=true;
  modal.setAttribute("aria-hidden","true");
  modalFrame.src="about:blank";
+ portfolioPrev.disabled=true;
+ portfolioNext.disabled=true;
  lastTrigger?.focus();
 }
 
@@ -196,7 +222,10 @@ scene.addEventListener("click",event=>{
  if(event.target.classList.contains("modal-shade"))closePortfolio();
 });
 document.addEventListener("keydown",event=>{
- if(event.key==="Escape")closePortfolio();
+ if(modal.hidden)return;
+ if(event.key==="Escape"){event.preventDefault();closePortfolio();return;}
+ if(event.key==="ArrowLeft"){event.preventDefault();navigatePortfolio(-1);return;}
+ if(event.key==="ArrowRight"){event.preventDefault();navigatePortfolio(1);}
 });
 document.addEventListener("contextmenu",event=>{
  if(event.target.closest(".desk-scene"))event.preventDefault();
