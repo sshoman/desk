@@ -8,7 +8,103 @@
 <section class="grid">
 <article class="card"><div class="card-body"><div class="card-kicker">01 / Social product</div><h3>Xntry</h3><p>A social product for small offline gatherings. House parties, social clubs and game nights come into one calendar, with invitation requests and host replies.</p><div class="actions"><a class="button" href="https://xntry.pages.dev/" target="_blank" rel="noopener">Open Xntry ↗</a><a class="button" href="https://xntry.pages.dev/calendar" target="_blank" rel="noopener">Calendar ↗</a><a class="button" href="https://github.com/sshoman/xntry" target="_blank" rel="noopener">Repository ↗</a></div></div><div class="preview-label">Live product / calendar</div><div class="preview"><iframe data-protected-src="https://xntry.pages.dev/calendar" title="Xntry live calendar" loading="lazy"></iframe></div></article>
 <article class="card"><div class="card-body"><div class="card-kicker">02 / Accounting product</div><h3>Junior / Accountant Jr.</h3><p>A desktop accounting product with voice and text workflows, a ledger, and a document factory for invoices, receipts, orders and other accounting documents. The showcase starts on the product dashboard, not the sign-in screen.</p><div class="feature-row"><div class="feature"><strong>Voice &amp; text</strong><span>Natural input for accounting tasks.</span></div><div class="feature"><strong>Ledger</strong><span>Structured records and account activity.</span></div><div class="feature"><strong>Document factory</strong><span>Invoices, receipts and orders.</span></div></div><div class="actions"><a class="button" href="./junior-showcase.html">Open full-screen showcase ↗</a><a class="button" href="https://github.com/accountantjr/juniorfront/tree/jrf4" target="_blank" rel="noopener">Repository ↗</a></div><p class="note">The preview uses the real deployed dashboard bundle with a showcase session, instead of sending visitors to login.</p></div><div class="preview-label">Live app dashboard / visitor showcase</div><div class="preview"><iframe data-protected-src="./junior-showcase.html" title="Junior product dashboard showcase" loading="lazy"></iframe></div></article>
-<article class="card"><div class="card-body"><div class="card-kicker">03 / Mobile product</div><h3>UoMe: Informal Billing</h3><p>A mobile billing product for issuing informal invoices from WhatsApp or email. The gallery uses the original screenshots from its Product Hunt listing.</p><div class="actions"><a class="button" href="https://www.producthunt.com/products/the-afterlife-sucks#launches" target="_blank" rel="noopener">Product Hunt listing ↗</a><a class="button" href="https://www.uomeapp.com/?ref=producthunt" target="_blank" rel="noopener">Product website ↗</a></div></div><div class="gallery"><button type="button" id="uome-prev" aria-label="Previous screenshot">‹</button><img id="uome-image" data-protected-src="https://ph-files.imgix.net/bd1d5891-2b9f-427d-9e8e-f1c7c913f74c.png?auto=format&amp;fit=max&amp;w=900" alt="UoMe original Product Hunt screenshot 1"><button type="button" id="uome-next" aria-label="Next screenshot">›</button></div><div class="gallery-caption" id="uome-caption">Original Product Hunt image 1 of 3</div></article>
+<article class="card uome-card">
+<div class="card-body uome-intro">
+  <div>
+    <div class="card-kicker">03 / Mobile billing product</div>
+    <h3>UoMe / Get the invoice out. Get paid.</h3>
+    <p>A mobile-first billing flow for freelancers and small businesses. Create a clear invoice, share it with a client, and keep the payment state in one place.</p>
+  </div>
+  <div class="uome-intro-meta"><span>LIVE INTERACTIVE PROTOTYPE</span><span>DEMO DATA / NO REAL PAYMENTS</span></div>
+</div>
+<div class="uome-window" id="uome-demo">
+  <div class="uome-topbar">
+    <div class="uome-brand"><span class="uome-mark">u</span><span>uome</span></div>
+    <div class="uome-top-label">YOUR BUSINESS <i>/</i> BILLING</div>
+    <div class="uome-top-right"><span class="uome-help">HELP CENTRE</span><span class="uome-avatar">OL</span></div>
+  </div>
+  <div class="uome-app">
+    <aside class="uome-sidebar">
+      <div class="uome-workspace-label">WORKSPACE</div>
+      <nav class="uome-nav" aria-label="UoMe demo navigation">
+        <button class="uome-nav-item is-active" type="button" data-uome-view="overview"><span class="uome-nav-icon">⌂</span>Overview</button>
+        <button class="uome-nav-item" type="button" data-uome-view="invoices"><span class="uome-nav-icon">▤</span>Invoices <span class="uome-nav-count">4</span></button>
+        <button class="uome-nav-item" type="button" data-uome-view="clients"><span class="uome-nav-icon">◉</span>Clients</button>
+        <button class="uome-nav-item" type="button" data-uome-view="payments"><span class="uome-nav-icon">↗</span>Payments</button>
+      </nav>
+      <div class="uome-sidebar-bottom">
+        <div class="uome-plan-card"><span>THIS MONTH</span><strong>£4,860</strong><div class="uome-plan-track"><i></i></div><small>12 invoices created</small></div>
+        <div class="uome-sidebar-user"><span class="uome-user-dot">OL</span><span><b>Olivia Lane</b><small>Business owner</small></span><span class="uome-more">···</span></div>
+      </div>
+    </aside>
+    <main class="uome-main">
+      <div class="uome-heading">
+        <div><div class="uome-date">MONDAY, 09 NOVEMBER 2026</div><h4 id="uome-page-title">Good morning, Olivia</h4><p id="uome-page-subtitle">A clear view of what you’ve billed and what’s still due.</p></div>
+        <button class="uome-create-btn" type="button" id="uome-create">＋ New invoice</button>
+      </div>
+      <div class="uome-stats">
+        <div class="uome-stat uome-stat-total"><span>INVOICED THIS MONTH</span><strong>£4,860.00</strong><small><b>↑ 12.8%</b> from last month</small><i class="uome-sparkline"></i></div>
+        <div class="uome-stat"><span>AWAITING PAYMENT</span><strong>£1,280.00</strong><small>3 invoices still open</small><i class="uome-stat-mark">↗</i></div>
+        <div class="uome-stat"><span>PAID</span><strong>£3,580.00</strong><small>9 invoices settled</small><i class="uome-stat-mark paid">✓</i></div>
+      </div>
+      <div class="uome-content-grid">
+        <section class="uome-list-panel">
+          <div class="uome-panel-heading"><div><span class="uome-panel-kicker">YOUR ACTIVITY</span><h5>Recent invoices</h5></div><button type="button" class="uome-text-btn" data-uome-view="invoices">View all ↗</button></div>
+          <div class="uome-filters"><button class="is-active" type="button">All <span>4</span></button><button type="button">Awaiting</button><button type="button">Paid</button></div>
+          <div class="uome-invoice-list" id="uome-invoice-list">
+            <button type="button" class="uome-invoice-row is-selected" data-invoice="1046">
+              <span class="uome-client-avatar tone-lilac">MK</span><span class="uome-invoice-person"><b>Mira Khan</b><small>INV-1046 · Brand consultation</small></span><span class="uome-invoice-amount"><b>£260.00</b><small class="uome-status status-awaiting">Awaiting</small></span>
+            </button>
+            <button type="button" class="uome-invoice-row" data-invoice="1047">
+              <span class="uome-client-avatar tone-peach">NS</span><span class="uome-invoice-person"><b>Northline Studio</b><small>INV-1047 · Website design</small></span><span class="uome-invoice-amount"><b>£920.00</b><small class="uome-status status-paid">Paid</small></span>
+            </button>
+            <button type="button" class="uome-invoice-row" data-invoice="1045">
+              <span class="uome-client-avatar tone-sky">AC</span><span class="uome-invoice-person"><b>Atlas Coffee Co.</b><small>INV-1045 · Product photography</small></span><span class="uome-invoice-amount"><b>£680.00</b><small class="uome-status status-overdue">Overdue</small></span>
+            </button>
+            <button type="button" class="uome-invoice-row" data-invoice="1044">
+              <span class="uome-client-avatar tone-sage">JH</span><span class="uome-invoice-person"><b>July House</b><small>INV-1044 · Brand direction</small></span><span class="uome-invoice-amount"><b>£1,450.00</b><small class="uome-status status-paid">Paid</small></span>
+            </button>
+          </div>
+          <div class="uome-list-foot"><span><i></i> Updated just now</span><span>Demo workspace</span></div>
+        </section>
+        <section class="uome-detail-panel" aria-label="Interactive invoice preview">
+          <div class="uome-detail-head"><div><span class="uome-panel-kicker">DOCUMENT PREVIEW</span><h5 id="uome-preview-heading">Invoice 1046</h5></div><span class="uome-status status-awaiting" id="uome-current-status">Awaiting</span></div>
+          <div class="uome-paper" id="uome-paper">
+            <div class="uome-paper-brand"><span class="uome-paper-logo">u</span><span>UOME</span><small>INVOICE</small></div>
+            <div class="uome-paper-meta"><span id="uome-paper-number">INV-1046</span><span id="uome-paper-date">ISSUED 02 NOV 2026</span></div>
+            <div class="uome-bill-to"><div><small>INVOICE FOR</small><b id="uome-client-preview">Mira Khan</b><span id="uome-email-preview">mira.khan@example.com</span></div><div><small>DUE DATE</small><b id="uome-due-preview">18 NOV 2026</b></div></div>
+            <div class="uome-paper-line uome-paper-head"><span>DESCRIPTION</span><span>QTY</span><span>RATE</span><span>AMOUNT</span></div>
+            <div class="uome-paper-line"><span id="uome-description-preview">Brand consultation</span><span id="uome-qty-preview">4h</span><span id="uome-rate-preview">£65</span><b id="uome-line-total">£260.00</b></div>
+            <div class="uome-paper-total"><span>SUBTOTAL</span><b id="uome-subtotal">£260.00</b></div>
+            <div class="uome-paper-total"><span>TAX</span><b>Not added</b></div>
+            <div class="uome-paper-grand"><span>TOTAL DUE</span><strong id="uome-total-preview">£260.00</strong></div>
+            <div class="uome-payment-strip"><span class="uome-payment-icon">↗</span><span><b>Payment link ready</b><small>Client can pay using their preferred method.</small></span><span class="uome-payment-arrow">↗</span></div>
+          </div>
+          <div class="uome-editor" id="uome-editor" hidden>
+            <div class="uome-editor-heading"><span>EDIT DOCUMENT</span><b>Make a change</b><small>Totals update as you type.</small></div>
+            <label>Client name<input id="uome-edit-client" type="text" value="Mira Khan"></label>
+            <label>Email address<input id="uome-edit-email" type="email" value="mira.khan@example.com"></label>
+            <label>What are you billing for?<input id="uome-edit-description" type="text" value="Brand consultation"></label>
+            <div class="uome-edit-grid"><label>Hours / quantity<input id="uome-edit-qty" type="number" min="1" step="1" value="4"></label><label>Rate (£)<input id="uome-edit-rate" type="number" min="0" step="0.01" value="65"></label></div>
+            <label>Due date<input id="uome-edit-due" type="date" value="2026-11-18"></label>
+            <div class="uome-editor-total"><span>UPDATED TOTAL</span><strong id="uome-live-total">£260.00</strong></div>
+            <div class="uome-editor-actions"><button type="button" class="uome-quiet-btn" id="uome-cancel-edit">Cancel</button><button type="button" class="uome-primary-btn" id="uome-save-edit">Save changes ↗</button></div>
+          </div>
+          <div class="uome-detail-actions" id="uome-detail-actions"><button type="button" class="uome-edit-btn" id="uome-edit">Edit invoice</button><button type="button" class="uome-send-btn" id="uome-send">Send invoice ↗</button><button type="button" class="uome-paid-btn" id="uome-paid">Mark as paid ✓</button></div>
+          <div class="uome-feedback" id="uome-feedback" role="status" aria-live="polite">Select an invoice or make a change to try the prototype.</div>
+        </section>
+      </div>
+      <div class="uome-demo-note"><span>INTERACTIVE SAMPLE</span><span>Try editing the invoice, sending it, or marking it as paid. Nothing is sent and no payment is processed.</span></div>
+    </main>
+  </div>
+</div>
+<div class="uome-source-row">
+  <div><span class="uome-source-kicker">ORIGINAL PRODUCT MATERIAL</span><b>Product Hunt screenshots</b><small>The original screens stay here as reference. The workspace above is the interactive portfolio build.</small></div>
+  <div class="uome-reference-gallery"><button type="button" id="uome-ref-prev" aria-label="Previous original screenshot">‹</button><img id="uome-ref-image" data-protected-src="https://ph-files.imgix.net/bd1d5891-2b9f-427d-9e8e-f1c7c913f74c.png?auto=format&amp;fit=max&amp;w=900" alt="Original UoMe Product Hunt screenshot 1"><button type="button" id="uome-ref-next" aria-label="Next original screenshot">›</button></div>
+  <div class="uome-ref-caption" id="uome-ref-caption">ORIGINAL SCREEN 1 / 3</div>
+</div>
+<div class="card-body uome-links"><div class="actions"><a class="button" href="https://www.producthunt.com/products/the-afterlife-sucks#launches" target="_blank" rel="noopener">Product Hunt listing ↗</a><a class="button" href="https://www.uomeapp.com/?ref=producthunt" target="_blank" rel="noopener">Product website ↗</a></div><p class="note">Portfolio prototype only. It does not issue real invoices, send messages, collect payment details or process payments.</p></div>
+</article>
 <article class="card"><div class="card-body"><div class="card-kicker">04 / AI calling product</div><h3>Outbound Fox</h3><p>An AI-assisted calling product and its customer-facing web experience. Shown here as one product example within the wider design work.</p><div class="actions"><a class="button" href="https://outboundfox.pages.dev/" target="_blank" rel="noopener">Open live product site ↗</a></div></div><div class="preview-label">Live product website</div><div class="preview"><iframe data-protected-src="https://outboundfox.pages.dev/" title="Outbound Fox live website" loading="lazy"></iframe></div></article>
 </section>
 <div class="section-heading"><h2>Graphics</h2><p>Original design samples and the original graphic-design certificate.</p></div>
@@ -16,5 +112,149 @@
 <div class="section-heading"><h2>Video</h2><p>The original video samples from the existing portfolio.</p></div>
 <article class="card"><div class="video-grid"><iframe data-protected-src="https://www.youtube-nocookie.com/embed/kjrx2ApRApg" title="Original video sample one" loading="lazy" allowfullscreen></iframe><iframe data-protected-src="https://www.youtube-nocookie.com/embed/oWfo5clc7Mw" title="Original video sample two" loading="lazy" allowfullscreen></iframe></div><div class="card-body"><div class="actions"><a class="button" href="https://youtu.be/kjrx2ApRApg" target="_blank" rel="noopener">Video 1 ↗</a><a class="button" href="https://youtu.be/oWfo5clc7Mw" target="_blank" rel="noopener">Video 2 ↗</a></div></div></article>
 </main><footer class="footer">Shoman / Design Portfolio</footer>
-<script>(function(){const a=["https://ph-files.imgix.net/bd1d5891-2b9f-427d-9e8e-f1c7c913f74c.png?auto=format&fit=max&w=900","https://ph-files.imgix.net/70fab33a-f197-4a2a-8c07-725057f725d5.png?auto=format&fit=max&w=900","https://ph-files.imgix.net/be78ff0f-e256-40e1-963e-4ea36285c7a6.png?auto=format&fit=max&w=900"];let n=0;const i=document.getElementById("uome-image"),c=document.getElementById("uome-caption");function r(){i.src=a[n];i.alt="UoMe original Product Hunt screenshot "+(n+1);c.textContent="Original Product Hunt image "+(n+1)+" of 3"}document.getElementById("uome-prev").addEventListener("click",()=>{n=(n+2)%3;r()});document.getElementById("uome-next").addEventListener("click",()=>{n=(n+1)%3;r()})})();</script>
+<script>
+(function(){
+  const referenceImages=[
+    "https://ph-files.imgix.net/bd1d5891-2b9f-427d-9e8e-f1c7c913f74c.png?auto=format&fit=max&w=900",
+    "https://ph-files.imgix.net/70fab33a-f197-4a2a-8c07-725057f725d5.png?auto=format&fit=max&w=900",
+    "https://ph-files.imgix.net/be78ff0f-e256-40e1-963e-4ea36285c7a6.png?auto=format&fit=max&w=900"
+  ];
+  let referenceIndex=0;
+  const refImage=document.getElementById("uome-ref-image");
+  const refCaption=document.getElementById("uome-ref-caption");
+  function renderReference(){
+    refImage.src=referenceImages[referenceIndex];
+    refImage.alt="Original UoMe Product Hunt screenshot "+(referenceIndex+1);
+    refCaption.textContent="ORIGINAL SCREEN "+(referenceIndex+1)+" / "+referenceImages.length;
+  }
+  document.getElementById("uome-ref-prev").addEventListener("click",()=>{referenceIndex=(referenceIndex+referenceImages.length-1)%referenceImages.length;renderReference()});
+  document.getElementById("uome-ref-next").addEventListener("click",()=>{referenceIndex=(referenceIndex+1)%referenceImages.length;renderReference()});
+
+  const money=n=>new Intl.NumberFormat("en-GB",{style:"currency",currency:"GBP"}).format(Number(n)||0);
+  const invoices={
+    "1046":{id:"1046",client:"Mira Khan",email:"mira.khan@example.com",description:"Brand consultation",qty:4,rate:65,due:"2026-11-18",status:"Awaiting",amount:260},
+    "1047":{id:"1047",client:"Northline Studio",email:"accounts@northline.studio",description:"Website design",qty:8,rate:115,due:"2026-11-12",status:"Paid",amount:920},
+    "1045":{id:"1045",client:"Atlas Coffee Co.",email:"hello@atlascoffee.co",description:"Product photography",qty:8,rate:85,due:"2026-10-29",status:"Overdue",amount:680},
+    "1044":{id:"1044",client:"July House",email:"studio@julyhouse.co",description:"Brand direction",qty:10,rate:145,due:"2026-11-06",status:"Paid",amount:1450}
+  };
+  let selectedId="1046";
+  const $=id=>document.getElementById(id);
+  const form=$("uome-editor");
+  const paper=$("uome-paper");
+  const actions=$("uome-detail-actions");
+  const feedback=$("uome-feedback");
+  const statusClass=s=>"status-"+s.toLowerCase().replace(/\s+/g,"-");
+  function updateStatus(){
+    const item=invoices[selectedId];
+    const cls=statusClass(item.status);
+    $("uome-current-status").className="uome-status "+cls;
+    $("uome-current-status").textContent=item.status;
+    $("uome-paid").disabled=item.status==="Paid";
+    $("uome-paid").textContent=item.status==="Paid"?"Paid ✓":"Mark as paid ✓";
+  }
+  function renderInvoice(){
+    const item=invoices[selectedId];
+    $("uome-preview-heading").textContent="Invoice "+item.id;
+    $("uome-paper-number").textContent="INV-"+item.id;
+    $("uome-client-preview").textContent=item.client;
+    $("uome-email-preview").textContent=item.email;
+    $("uome-description-preview").textContent=item.description;
+    $("uome-qty-preview").textContent=item.qty+"h";
+    $("uome-rate-preview").textContent=money(item.rate);
+    $("uome-line-total").textContent=money(item.qty*item.rate);
+    $("uome-subtotal").textContent=money(item.qty*item.rate);
+    $("uome-total-preview").textContent=money(item.qty*item.rate);
+    $("uome-due-preview").textContent=new Date(item.due+"T12:00:00").toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}).toUpperCase();
+    updateStatus();
+    document.querySelectorAll("[data-invoice]").forEach(row=>row.classList.toggle("is-selected",row.dataset.invoice===selectedId));
+  }
+  function showFeedback(message){feedback.textContent=message;feedback.classList.add("is-visible")}
+  function closeEditor(){form.hidden=true;paper.hidden=false;actions.hidden=false}
+  function openEditor(){
+    const item=invoices[selectedId];
+    $("uome-edit-client").value=item.client;
+    $("uome-edit-email").value=item.email;
+    $("uome-edit-description").value=item.description;
+    $("uome-edit-qty").value=item.qty;
+    $("uome-edit-rate").value=item.rate;
+    $("uome-edit-due").value=item.due;
+    $("uome-live-total").textContent=money(item.qty*item.rate);
+    paper.hidden=true;actions.hidden=true;form.hidden=false;
+    $("uome-edit-client").focus();
+  }
+  function liveTotal(){
+    const qty=Math.max(0,Number($("uome-edit-qty").value)||0);
+    const rate=Math.max(0,Number($("uome-edit-rate").value)||0);
+    $("uome-live-total").textContent=money(qty*rate);
+  }
+  ["uome-edit-qty","uome-edit-rate"].forEach(id=>$(id).addEventListener("input",liveTotal));
+  function addInvoiceRow(item){
+    const list=$("uome-invoice-list");
+    let row=list.querySelector('[data-invoice="'+item.id+'"]');
+    if(!row){
+      row=document.createElement("button");
+      row.type="button";row.className="uome-invoice-row";
+      row.dataset.invoice=item.id;
+      row.innerHTML='<span class="uome-client-avatar tone-lilac"></span><span class="uome-invoice-person"><b></b><small></small></span><span class="uome-invoice-amount"><b></b><small class="uome-status"></small></span>';
+      list.prepend(row);
+      row.addEventListener("click",()=>selectInvoice(row.dataset.invoice));
+    }
+    row.querySelector(".uome-client-avatar").textContent=item.client.split(/\s+/).map(x=>x[0]).join("").slice(0,2).toUpperCase();
+    row.querySelector(".uome-invoice-person b").textContent=item.client;
+    row.querySelector(".uome-invoice-person small").textContent="INV-"+item.id+" · "+item.description;
+    row.querySelector(".uome-invoice-amount b").textContent=money(item.qty*item.rate);
+    const badge=row.querySelector(".uome-invoice-amount small");
+    badge.className="uome-status "+statusClass(item.status);badge.textContent=item.status;
+  }
+  function selectInvoice(id){if(!invoices[id])return;selectedId=id;closeEditor();renderInvoice();showFeedback("Invoice "+id+" loaded. Edit it or update its payment state.");}
+  document.querySelectorAll("[data-invoice]").forEach(row=>row.addEventListener("click",()=>selectInvoice(row.dataset.invoice)));
+  document.querySelectorAll("[data-uome-view]").forEach(button=>button.addEventListener("click",()=>{
+    document.querySelectorAll(".uome-nav-item").forEach(x=>x.classList.toggle("is-active",x.dataset.uomeView===button.dataset.uomeView));
+    const view=button.dataset.uomeView;
+    $("uome-page-title").textContent=view==="invoices"?"Your invoices":view==="clients"?"Your clients":view==="payments"?"Payment activity":"Good morning, Olivia";
+    $("uome-page-subtitle").textContent=view==="invoices"?"Review each document and see what still needs attention.":view==="clients"?"The people and businesses you work with.":view==="payments"?"A running view of money received and still due.":"A clear view of what you’ve billed and what’s still due.";
+    if(view==="invoices")showFeedback("Invoice list selected. Choose a document to preview it.");
+    if(view==="clients")showFeedback("Client view selected. This portfolio demo keeps the billing workflow in focus.");
+    if(view==="payments")showFeedback("Payment activity selected. Try marking an open invoice as paid.");
+    if(view==="overview")showFeedback("Back to your business overview.");
+  }));
+  $("uome-edit").addEventListener("click",openEditor);
+  $("uome-cancel-edit").addEventListener("click",()=>{closeEditor();showFeedback("Changes discarded.");});
+  $("uome-save-edit").addEventListener("click",()=>{
+    const item=invoices[selectedId];
+    item.client=$("uome-edit-client").value.trim()||"New client";
+    item.email=$("uome-edit-email").value.trim();
+    item.description=$("uome-edit-description").value.trim()||"Service";
+    item.qty=Math.max(0,Number($("uome-edit-qty").value)||0);
+    item.rate=Math.max(0,Number($("uome-edit-rate").value)||0);
+    item.due=$("uome-edit-due").value||"2026-11-30";
+    item.amount=item.qty*item.rate;
+    if(item.status==="Paid")item.status="Awaiting";
+    closeEditor();addInvoiceRow(item);renderInvoice();showFeedback("Invoice updated. The preview and total now match your changes.");
+  });
+  $("uome-create").addEventListener("click",()=>{
+    const id="1048";
+    invoices[id]={id,client:"New client",email:"",description:"New service",qty:1,rate:100,due:"2026-11-30",status:"Draft",amount:100};
+    selectedId=id;closeEditor();renderInvoice();openEditor();showFeedback("New invoice started. Fill in the details, then save.");
+  });
+  $("uome-send").addEventListener("click",()=>{
+    const item=invoices[selectedId];
+    if(item.status==="Paid"){showFeedback("This invoice is already paid.");return;}
+    item.status="Sent";renderInvoice();addInvoiceRow(item);showFeedback("Invoice link prepared for "+item.client+". Demo only. Nothing was actually sent.");
+  });
+  $("uome-paid").addEventListener("click",()=>{
+    const item=invoices[selectedId];
+    item.status="Paid";renderInvoice();addInvoiceRow(item);showFeedback("Payment marked as received for "+item.client+". Demo state updated only.");
+  });
+  renderInvoice();
+  document.querySelectorAll(".uome-filters button").forEach(button=>button.addEventListener("click",()=>{
+    document.querySelectorAll(".uome-filters button").forEach(x=>x.classList.toggle("is-active",x===button));
+    const label=button.textContent.trim().toLowerCase();
+    document.querySelectorAll(".uome-invoice-row").forEach(row=>{
+      const item=invoices[row.dataset.invoice];
+      row.hidden=label==="paid"?item.status!=="Paid":label==="awaiting"?!(item.status==="Awaiting"||item.status==="Sent"):false;
+    });
+  }));
+})();
+</script>
 </body></html>
