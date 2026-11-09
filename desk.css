@@ -2421,3 +2421,37 @@ img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
 .portfolio-toolbar:hover,.portfolio-toolbar:focus-within{opacity:1!important}
 .portfolio-control{opacity:1!important}
 @media(max-width:600px){.portfolio-toolbar{top:10px!important;right:10px!important;left:auto!important}}
+
+
+/* Final interaction and image-fit refinements. */
+.wall-gallery .travel-frame--telaviv .travel-photo{
+ width:100%!important;
+ height:100%!important;
+ object-fit:cover!important;
+ object-position:center center!important;
+ transform:none!important;
+}
+.book-mockup>img{transition:none!important}
+.book-mockup:hover>img,
+.book-mockup:focus-visible>img{
+ animation:book-shake .42s ease-in-out 1!important;
+ filter:drop-shadow(5px 9px 7px #0008)!important;
+}
+.book-mockup .book-hover{
+ opacity:0!important;visibility:hidden!important;transform:none!important;transition:none!important;
+}
+.book-mockup:hover .book-hover,
+.book-mockup:focus-visible .book-hover{
+ opacity:1!important;visibility:visible!important;transform:none!important;
+}
+@keyframes book-shake{
+ 0%,100%{transform:translateX(0) rotate(0)}
+ 18%{transform:translateX(-2px) rotate(-1.25deg)}
+ 36%{transform:translateX(2px) rotate(1.25deg)}
+ 54%{transform:translateX(-1.5px) rotate(-.8deg)}
+ 72%{transform:translateX(1px) rotate(.55deg)}
+ 90%{transform:translateX(-.5px) rotate(-.25deg)}
+}
+@media(prefers-reduced-motion:reduce){
+ .book-mockup:hover>img,.book-mockup:focus-visible>img{animation:none!important}
+}
