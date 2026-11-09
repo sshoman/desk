@@ -209,17 +209,9 @@ h1,h2,h3,p{margin-top:0}
       <div class="quick-stat"><small>Money coming in</small><b style="color:#238b70">£2,450</b><span>Next 30 days</span></div>
       <div class="quick-stat"><small>Money going out</small><b style="color:#ce8b5b">£1,182</b><span>Next 30 days</span></div>
      </div>
-     <div class="calendar-top"><strong>November 2026</strong><div class="month-arrows"><button aria-label="Previous month">‹</button><button aria-label="Next month">›</button></div></div>
+     <div class="calendar-top"><strong id="calendarTitle">November 2026</strong><div class="month-arrows"><button id="prevMonth" aria-label="Previous month">‹</button><button id="nextMonth" aria-label="Next month">›</button></div></div>
      <div class="calendar-card">
-      <div class="calendar-grid">
-       <span class="weekday">SUN</span><span class="weekday">MON</span><span class="weekday">TUE</span><span class="weekday">WED</span><span class="weekday">THU</span><span class="weekday">FRI</span><span class="weekday">SAT</span>
-       <button class="day muted">25</button><button class="day muted">26</button><button class="day muted">27</button><button class="day muted">28</button><button class="day muted">29</button><button class="day muted">30</button><button class="day muted">31</button>
-       <button class="day" data-day="1">1</button><button class="day" data-day="2">2</button><button class="day" data-day="3">3</button><button class="day" data-day="4">4</button><button class="day" data-day="5">5</button><button class="day" data-day="6">6</button><button class="day" data-day="7">7</button>
-       <button class="day" data-day="8">8</button><button class="day today" data-day="9">9</button><button class="day" data-day="10">10<span class="dots"><i class="out"></i></span></button><button class="day" data-day="11">11</button><button class="day selected" data-day="12">12<span class="dots"><i></i><i class="out"></i></span></button><button class="day" data-day="13">13</button><button class="day" data-day="14">14</button>
-       <button class="day" data-day="15">15<span class="dots"><i class="out"></i></span></button><button class="day" data-day="16">16</button><button class="day" data-day="17">17</button><button class="day" data-day="18">18<span class="dots"><i class="out"></i></span></button><button class="day" data-day="19">19</button><button class="day" data-day="20">20</button><button class="day" data-day="21">21<span class="dots"><i></i></span></button>
-       <button class="day" data-day="22">22</button><button class="day" data-day="23">23</button><button class="day" data-day="24">24</button><button class="day" data-day="25">25<span class="dots"><i class="out"></i></span></button><button class="day" data-day="26">26</button><button class="day" data-day="27">27</button><button class="day" data-day="28">28<span class="dots"><i></i></span></button>
-       <button class="day" data-day="29">29</button><button class="day" data-day="30">30</button><button class="day muted">1</button><button class="day muted">2</button><button class="day muted">3</button><button class="day muted">4</button><button class="day muted">5</button>
-      </div>
+      <div class="calendar-grid" id="calendarGrid"></div>
       <div class="calendar-legend"><span><i class="legend-dot"></i>Money in</span><span><i class="legend-dot out"></i>Money out</span></div>
      </div>
      <div class="day-summary"><b id="selectedDate">Thursday, 12 November</b><small id="dayCount">2 events</small></div>
@@ -313,6 +305,7 @@ h1,h2,h3,p{margin-top:0}
   nav.forEach(n=>n.classList.toggle("active",n.dataset.nav===name));
   scroll.dataset.view=name;
   scroll.scrollTop=0;
+  if(name==="approval")window.requestAnimationFrame(resizeCanvas);
  }
  document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.go)));
  nav.forEach(b=>b.addEventListener("click",()=>show(b.dataset.nav)));
@@ -327,16 +320,59 @@ h1,h2,h3,p{margin-top:0}
   28:[["Salary","Northline Studio","+£1,120","in"]]
  };
  const dateNames=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
- document.querySelectorAll("[data-day]").forEach(day=>day.addEventListener("click",()=>{
-  const d=Number(day.dataset.day);
-  document.querySelectorAll(".day").forEach(x=>x.classList.remove("selected"));
-  day.classList.add("selected");
-  const date=new Date(2026,10,d);
-  document.getElementById("selectedDate").textContent=dateNames[date.getDay()]+", "+d+" November";
-  const data=dayEvents[d]||[];
+ const monthNames=["January","February","March","April","May","June","July","August","September","October","November","December"];
+ let calYear=2026,calMonth=10,selectedDay=12;
+ function renderSelectedDay(){
+  const d=new Date(calYear,calMonth,selectedDay);
+  document.getElementById("selectedDate").textContent=dateNames[d.getDay()]+", "+selectedDay+" "+monthNames[calMonth];
+  const data=(calYear===2026&&calMonth===10)?(dayEvents[selectedDay]||[]):[];
   document.getElementById("dayCount").textContent=data.length+" event"+(data.length===1?"":"s");
   document.getElementById("dayEvents").innerHTML=data.length?data.map(e=>'<div class="event"><span class="event-icon '+(e[3]==="out"?"orange":"")+'">'+(e[3]==="in"?"↗":"↘")+'</span><span class="event-copy"><b>'+e[0]+'</b><small>'+e[1]+'</small></span><span class="event-amount '+(e[3]==="in"?"in":"")+'">'+e[2]+'<small>'+(e[3]==="in"?"Expected":"Scheduled")+'</small></span></div>').join(""):'<div class="chat-bubble"><p>No payments scheduled. A nice quiet day.</p></div>';
- }));
+ }
+ function renderCalendar(){
+  const grid=document.getElementById("calendarGrid");
+  document.getElementById("calendarTitle").textContent=monthNames[calMonth]+" "+calYear;
+  const offset=new Date(calYear,calMonth,1).getDay();
+  const count=new Date(calYear,calMonth+1,0).getDate();
+  const cells=Math.ceil((offset+count)/7)*7;
+  let markup=["SUN","MON","TUE","WED","THU","FRI","SAT"].map(x=>'<span class="weekday">'+x+'</span>').join("");
+  for(let i=0;i<cells;i++){
+   const n=i-offset+1;
+   if(n<1||n>count){
+    const other=n<1?new Date(calYear,calMonth,0).getDate()+n:new Date(calYear,calMonth+1, n-count).getDate();
+    markup+='<span class="day muted">'+other+'</span>';
+    continue;
+   }
+   const events=(calYear===2026&&calMonth===10)?(dayEvents[n]||[]):[];
+   const dots=events.slice(0,3).map(e=>'<i class="'+(e[3]==="out"?"out":"")+'"></i>').join("");
+   const classes=["day",n===selectedDay?"selected":"",calYear===2026&&calMonth===10&&n===9?"today":""].filter(Boolean).join(" ");
+   markup+='<button class="'+classes+'" data-day="'+n+'" aria-label="'+dateNames[new Date(calYear,calMonth,n).getDay()]+' '+n+' '+monthNames[calMonth]+'">'+n+(dots?'<span class="dots">'+dots+'</span>':"")+'</button>';
+  }
+  grid.innerHTML=markup;
+  renderSelectedDay();
+ }
+ document.getElementById("calendarGrid").addEventListener("click",event=>{
+  const day=event.target.closest("[data-day]");
+  if(!day)return;
+  selectedDay=Number(day.dataset.day);renderCalendar();
+ });
+ document.getElementById("prevMonth").addEventListener("click",()=>{
+  calMonth--;if(calMonth<0){calMonth=11;calYear--}selectedDay=Math.min(selectedDay,new Date(calYear,calMonth+1,0).getDate());renderCalendar();
+ });
+ document.getElementById("nextMonth").addEventListener("click",()=>{
+  calMonth++;if(calMonth>11){calMonth=0;calYear++}selectedDay=Math.min(selectedDay,new Date(calYear,calMonth+1,0).getDate());renderCalendar();
+ });
+ renderCalendar();
+ function fillFromSpeech(text){
+  const nums=(text.match(/\d+(?:\.\d+)?/g)||[]);
+  if(nums.length>=4){
+   document.getElementById("qtyOne").value=nums[0];
+   document.getElementById("rateOne").value=nums[1];
+   document.getElementById("qtyTwo").value=nums[2];
+   document.getElementById("rateTwo").value=nums[3];
+   amount();
+  }
+ }
  const mic=document.getElementById("recordVoice");
  const transcript=document.getElementById("transcript");
  let recording=false;
@@ -347,7 +383,7 @@ h1,h2,h3,p{margin-top:0}
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   if(SR){
    const recognition=new SR();recognition.lang="en-GB";recognition.interimResults=false;recognition.maxAlternatives=1;
-   recognition.onresult=e=>{transcript.textContent="“"+e.results[0][0].transcript+"”";transcript.classList.add("visible");document.getElementById("voiceTitle").textContent="Got it. Here’s your draft.";document.getElementById("voiceHint").textContent="Check the details below, then review the invoice.";finish()};
+   recognition.onresult=e=>{const spoken=e.results[0][0].transcript;transcript.textContent="“"+spoken+"”";transcript.classList.add("visible");fillFromSpeech(spoken);document.getElementById("voiceTitle").textContent="Got it. Here’s your draft.";document.getElementById("voiceHint").textContent="Check the details below, then review the invoice.";finish()};
    recognition.onerror=()=>fallback();recognition.onend=()=>{if(recording)fallback()};
    try{recognition.start()}catch(_){fallback()}
    function finish(){recording=false;mic.classList.remove("listening");mic.textContent="✓"}
