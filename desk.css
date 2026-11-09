@@ -2315,3 +2315,17 @@ img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
 .travel-frame:hover figcaption,.travel-frame:focus-visible figcaption{
  opacity:1!important;visibility:visible!important;transform:none!important;
 }
+
+
+/* Keep the full-resolution Kuala Lumpur artwork crisp in its frame. */
+.wall-gallery .travel-frame[aria-label^="Kuala Lumpur"] .travel-photo{
+ filter:none!important;image-rendering:auto!important;
+ object-fit:contain!important;object-position:center!important;
+}
+
+/* Tel Aviv: show a little more of the original square shot while keeping
+   the half-face clipped by the right edge of the image. */
+.wall-gallery .travel-frame--telaviv .travel-photo{
+ filter:none!important;image-rendering:auto!important;
+ object-fit:contain!important;object-position:right center!important;
+}
