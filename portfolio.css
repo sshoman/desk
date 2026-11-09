@@ -18,14 +18,3 @@ h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-weight:500;line-he
 .video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:16px;background:#f1ece3}.video-grid iframe{width:100%;aspect-ratio:16/9;border:0;background:#171310;border-radius:8px}
 .footer{padding:20px 28px;text-align:center;border-top:1px solid var(--line);color:var(--muted);font:11px Arial,sans-serif}
 @media(max-width:760px){.site-header-inner{padding:11px 14px;align-items:flex-start}.header-links{gap:5px;justify-content:flex-end}.header-links a{font-size:9px;padding:7px 9px}main{padding:34px 15px 60px}.grid,.video-grid{grid-template-columns:1fr}.section-heading{display:block}.section-heading p{margin-top:8px}.preview iframe{height:320px}.image-grid{grid-template-columns:1fr 1fr;padding:9px}.image-grid a{min-height:165px}.feature-row{grid-template-columns:1fr}.gallery{grid-template-columns:30px 1fr 30px;padding:10px 5px}.gallery button{width:28px;height:28px}.certificate{gap:10px}.certificate img{width:60px;height:60px}}
-/* UoMe gets a full-width interactive case-study preview, not a narrow screenshot carousel. */
-.uome-card{grid-column:1/-1}
-.uome-card .card-body{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);gap:18px;align-items:center}
-.uome-card .card-body>div:first-child{min-width:0}
-.uome-card .feature-row{margin:0}
-.uome-preview iframe{height:720px;background:#f1edf3}
-.uome-card .gallery-caption{background:#fffdf8;border-top:1px solid var(--line)}
-@media(max-width:760px){
- .uome-card .card-body{grid-template-columns:1fr;gap:8px}
- .uome-preview iframe{height:1120px}
-}
