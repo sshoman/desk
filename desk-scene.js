@@ -85,7 +85,7 @@ scene.innerHTML=`
     <h1 class="screen-title">A few things I've built.</h1>
    </div>
    <nav class="screen-links" aria-label="Open a portfolio">
-    <button type="button" data-portfolio="./ux-portfolio.html" data-title="UX Portfolio">
+    <button type="button" data-portfolio="./ux-portfolio.html?v=ux-cover-folio-20261109" data-title="UX Portfolio">
      <span class="screen-number">01</span>
      <span class="screen-copy"><b>UX Portfolio</b><small>Selected live projects</small></span>
      <span class="screen-arrow">↗</span>
