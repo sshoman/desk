@@ -3,543 +3,484 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Uome | Business App Prototype</title>
+<title>Uome | Business workspace prototype</title>
 <style>
 :root{
- --blue:#1877ef;--blue-dark:#0d4eb7;--navy:#10283b;--ink:#182a3a;--muted:#82909d;
- --line:#e7edf1;--canvas:#f3f6f8;--surface:#fff;--green:#159c75;--lime:#c9f36a;
- --amber:#c98735;--red:#d85a60;--shadow:0 8px 24px #142d4210;
+ --navy:#102d43;--navy2:#173f57;--blue:#2678e7;--blue2:#eaf3ff;--mint:#d9f5e9;
+ --lime:#c9f36a;--ink:#1d3042;--muted:#7b8b99;--line:#e5edf1;--canvas:#f4f7f8;
+ --white:#fff;--green:#15845f;--orange:#b87931;--red:#bd555b;--shadow:0 10px 32px #17364d0b;
 }
 *{box-sizing:border-box}
-html,body{width:100%;height:100%;margin:0;background:transparent;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-button,input,select,textarea{font:inherit}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#edf1f3;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}
 button{cursor:pointer}
-.demo-stage{width:100%;height:100%;min-height:700px;padding:8px;display:flex;align-items:center;justify-content:center}
-.device{width:min(414px,100%);height:min(860px,calc(100vh - 16px));padding:7px;border-radius:40px;background:linear-gradient(145deg,#555d65,#111820 44%,#667079 78%,#161c23);border:1px solid #303942;box-shadow:0 25px 65px #10233638,inset 0 0 0 1px #aeb5ba;position:relative}
-.screen{height:100%;width:100%;border-radius:32px;overflow:hidden;background:var(--canvas);display:flex;flex-direction:column;position:relative}
-.notch{position:absolute;z-index:50;top:7px;left:50%;transform:translateX(-50%);height:22px;width:110px;background:#151a20;border-radius:0 0 15px 15px}
-.statusbar{height:26px;flex:0 0 26px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;font-size:10px;font-weight:800;color:#1b2b39}
-.status-icons{font-size:9px;letter-spacing:2px;color:#263b4c}
-.appbar{height:55px;flex:0 0 55px;padding:0 17px;background:#fff;border-bottom:1px solid #e9eef1;display:flex;align-items:center;justify-content:space-between}
-.brand{font-size:22px;font-weight:900;letter-spacing:-.09em;color:#10283b}
-.brand span{color:var(--blue)}
-.appbar-right{display:flex;align-items:center;gap:8px}
-.top-icon{width:32px;height:32px;border:1px solid #e9eef2;border-radius:50%;background:#f9fbfc;color:#455b6e;font-size:16px;display:grid;place-items:center}
-.avatar{width:31px;height:31px;border-radius:50%;background:#17334b;color:#e6f2fa;display:grid;place-items:center;font-size:10px;font-weight:850;border:2px solid #e6edf1}
-.content{flex:1;min-height:0;overflow:auto;scrollbar-width:none;background:var(--canvas)}
-.content::-webkit-scrollbar{display:none}
-.view{padding:16px 16px 25px;display:block}
-.view[hidden]{display:none!important}
-.eyebrow{font-size:8px;color:#8795a2;letter-spacing:.14em;font-weight:850;text-transform:uppercase}
-.page-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:5px 0 14px}
-.page-head h1{margin:0;color:#172b3d;font-size:25px;line-height:1.04;font-weight:880;letter-spacing:-.065em}
-.page-head p{margin:5px 0 0;color:#8b98a4;font-size:9px}
-.date-chip{height:29px;padding:0 10px;border:1px solid #e4ebf0;border-radius:18px;background:#fff;color:#5b6d7c;font-size:8px;font-weight:800}
-.primary{height:36px;padding:0 13px;border:0;border-radius:11px;background:var(--blue);color:#fff;font-size:9px;font-weight:850;box-shadow:0 5px 12px #1877ef30}
-.secondary{height:35px;padding:0 12px;border:1px solid #e1e8ed;border-radius:11px;background:#fff;color:#516272;font-size:9px;font-weight:800}
-.text-btn{border:0;background:transparent;color:var(--blue);font-size:9px;font-weight:850;padding:5px}
-.balance-card{position:relative;overflow:hidden;padding:17px 16px 13px;border-radius:20px;color:#fff;background:linear-gradient(132deg,#102b41 0%,#174e65 57%,#176b67 100%);box-shadow:0 13px 26px #12374a25}
-.balance-card:before{content:"";position:absolute;right:-80px;top:-122px;width:240px;height:240px;border:1px solid #ffffff20;border-radius:50%;box-shadow:0 0 0 24px #ffffff08,0 0 0 49px #ffffff06}
-.balance-card:after{content:"";position:absolute;right:17px;bottom:34px;width:76px;height:76px;border:1px solid #ffffff18;border-radius:50%;box-shadow:0 0 0 12px #ffffff08}
-.balance-top{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;color:#b9d0dc;font-size:8px;letter-spacing:.12em;font-weight:800}
-.balance-more{border:0;border-radius:9px;background:#ffffff19;color:#dce8ec;width:29px;height:24px}
-.balance-value{position:relative;z-index:1;margin-top:9px;font-size:36px;line-height:1;font-weight:900;letter-spacing:-.075em}
-.balance-change{position:relative;z-index:1;display:flex;gap:7px;align-items:center;margin-top:8px;font-size:8px;color:#bad0d9}
-.good-pill{padding:4px 7px;border-radius:12px;background:#c9f36a20;color:#d9f7a1;font-weight:850}
-.chart-wrap{position:relative;z-index:1;margin-top:10px}
-.chart{width:100%;height:86px;display:block;overflow:visible}
-.chart path.area{fill:rgba(201,243,106,.15)!important;stroke:none!important}
-.chart path.income{fill:none!important;stroke:#c9f36a!important;stroke-width:2.7!important;stroke-linecap:round!important}
-.chart path.expense{fill:none;stroke:#9cc9d4;stroke-width:1.7;stroke-linecap:round;opacity:.8}
-.chart circle{fill:#c9f36a;stroke:#fff;stroke-width:2}
-.chart-labels{position:relative;z-index:1;display:flex;justify-content:space-between;margin:0 1px;color:#abc6d0;font-size:7px;letter-spacing:.08em}
-.periods{position:relative;z-index:1;display:flex;gap:5px;margin-top:9px}
-.periods button{height:23px;padding:0 9px;border:1px solid #ffffff24;border-radius:14px;background:#ffffff12;color:#c8d9df;font-size:8px;font-weight:800}
-.periods button.active{background:#c9f36a22;border-color:#c9f36a;color:#e2f5bd}
-.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.metric{min-width:0;padding:11px 12px;border:1px solid #e8edf1;border-radius:14px;background:#fff;box-shadow:0 3px 12px #172c4008}
-.metric label{display:block;color:#8996a2;font-size:7px;letter-spacing:.1em;font-weight:850;text-transform:uppercase}
-.metric-line{display:flex;align-items:baseline;justify-content:space-between;gap:4px;margin-top:5px}
-.metric strong{font-size:21px;letter-spacing:-.06em;color:#1b3043}
-.metric small{font-size:7px;color:#96a2ad}
-.metric .up{color:var(--green);font-weight:850}
-.section-head{display:flex;align-items:center;justify-content:space-between;margin:18px 1px 9px}
-.section-head h2{margin:0;color:#21364a;font-size:12px;letter-spacing:-.03em}
-.section-meta{color:#8e9aa5;font-size:8px}
-.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
-.quick{min-width:0;height:67px;padding:7px 3px;border:1px solid #e7edf1;border-radius:13px;background:#fff;color:#607183;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:7px;font-weight:850}
-.quick i{width:26px;height:26px;border-radius:9px;background:#eaf3ff;color:#2478c9;display:grid;place-items:center;font-style:normal;font-size:14px}
-.quick:nth-child(2) i{background:#e8f7f0;color:#1b936e}
-.quick:nth-child(3) i{background:#fff1e3;color:#c57a2f}
-.quick:nth-child(4) i{background:#f0edfc;color:#7469b3}
-.pay-promo{display:flex;align-items:stretch;gap:8px;padding:13px 13px 12px;border:1px solid #dce8f5;border-radius:16px;background:linear-gradient(120deg,#e9f3ff 0%,#fff 72%);overflow:hidden;position:relative}
-.pay-promo-copy{position:relative;z-index:1;flex:1;min-width:0}
-.pay-promo small{font-size:7px;color:#6184a5;letter-spacing:.11em;font-weight:900}
-.pay-promo h3{margin:6px 0 4px;font-size:14px;line-height:1.05;letter-spacing:-.04em;color:#19334a}
-.pay-promo p{margin:0;color:#7f8e9b;font-size:8px;line-height:1.35;max-width:175px}
-.pay-promo .primary{margin-top:9px;height:30px;font-size:8px}
-.pay-illustration{width:115px;flex:0 0 115px;display:grid;place-items:center;position:relative}
-.pay-receipt{width:90px;padding:10px 9px;border-radius:11px;background:#fff;box-shadow:0 9px 20px #21476b20;transform:rotate(4deg);position:relative}
-.pay-receipt:after{content:"";position:absolute;right:8px;top:8px;width:8px;height:8px;background:#c9f36a;border-radius:50%}
-.pay-receipt b{font-size:7px;letter-spacing:.1em;color:#6c8396}
-.pay-receipt strong{display:block;margin-top:8px;font-size:20px;color:#152e45;letter-spacing:-.06em}
-.pay-receipt small{display:block;margin-top:4px;color:#8d9ba6;font-size:6px}
-.pay-receipt .receipt-line{height:1px;background:#e7edf1;margin:8px 0}
-.pay-receipt .receipt-status{font-size:6px;color:#1a966f;font-weight:900}
-.people-strip{display:flex;gap:12px;overflow:auto;padding:3px 1px 6px;scrollbar-width:none}
-.people-strip::-webkit-scrollbar{display:none}
-.person{min-width:50px;border:0;background:transparent;color:#66798a;font-size:8px;display:flex;flex-direction:column;align-items:center;gap:5px}
-.person-avatar{width:38px;height:38px;border-radius:50%;border:2px solid #fff;display:grid;place-items:center;background:linear-gradient(145deg,#d5e7fb,#edf5ff);box-shadow:0 2px 8px #1d36501a;color:#23639c;font-weight:850;font-size:10px}
-.person:nth-child(2) .person-avatar{background:linear-gradient(145deg,#f4dfd1,#fff3e9);color:#a55e40}
-.person:nth-child(3) .person-avatar{background:linear-gradient(145deg,#e0e4fb,#f2f1ff);color:#605eaa}
-.person:nth-child(4) .person-avatar{background:linear-gradient(145deg,#d3eddf,#effaf3);color:#318261}
-.activity-list,.invoice-list,.client-list{display:flex;flex-direction:column;gap:7px}
-.activity,.invoice-row,.client-row{width:100%;display:flex;align-items:center;gap:9px;padding:10px 11px;border:1px solid #e8edf1;border-radius:13px;background:#fff;text-align:left;color:inherit}
-.row-icon{width:33px;height:33px;flex:0 0 33px;border-radius:11px;background:#edf5ff;color:#2477c3;display:grid;place-items:center;font-size:13px;font-weight:850}
-.activity-copy,.invoice-copy,.client-copy{flex:1;min-width:0}
-.activity-copy b,.invoice-copy b,.client-copy b{display:block;font-size:9px;color:#26394a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.activity-copy small,.invoice-copy small,.client-copy small{display:block;margin-top:3px;font-size:7px;color:#92a0ac}
-.activity-value,.invoice-value,.client-value{text-align:right;white-space:nowrap}
-.activity-value b,.invoice-value b,.client-value b{display:block;font-size:9px;color:#1c3348}
-.activity-value small,.invoice-value small,.client-value small{display:block;margin-top:3px;font-size:7px;color:#98a4ad}
-.paid{color:#168e68!important}
-.pending{color:#ba833e!important}
-.overdue{color:#ca555c!important}
-.pill{display:inline-block;padding:3px 6px;border-radius:9px;background:#e7f6ef;color:#168760;font-size:7px;font-weight:900}
-.pill.wait{background:#fff4e7;color:#b47731}
-.pill.late{background:#feeeee;color:#c24b52}
-.pill.draft{background:#f0f2f5;color:#77828d}
-.bottom-nav{height:61px;flex:0 0 61px;background:#fff;border-top:1px solid #e8edf1;display:flex;align-items:center;justify-content:space-around;padding:5px 3px 2px}
-.bottom-nav[hidden]{display:none!important}
-.nav-btn{min-width:52px;border:0;background:transparent;color:#98a4af;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:7px;font-weight:850}
-.nav-btn i{font-style:normal;font-size:17px;line-height:1}
-.nav-btn.active{color:var(--blue)}
-.nav-btn.active i{transform:translateY(-1px)}
-.filters{display:flex;gap:6px;margin:8px 0 11px;overflow:auto;scrollbar-width:none}
-.filters button{height:27px;padding:0 10px;border:1px solid #e4ebf0;border-radius:15px;background:#fff;color:#7b8a97;font-size:8px;font-weight:850;white-space:nowrap}
-.filters button.active{background:#eaf3ff;border-color:#c9e0fb;color:#1767c0}
-.summary-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
-.summary{padding:11px;border:1px solid #e8edf1;border-radius:13px;background:#fff}
-.summary small{display:block;color:#8997a3;font-size:7px;font-weight:850;letter-spacing:.1em;text-transform:uppercase}
-.summary b{display:block;margin-top:5px;font-size:19px;letter-spacing:-.06em;color:#20364a}
-.detail-hero{padding:15px;border-radius:17px;background:linear-gradient(140deg,#102e45,#1b6370);color:#fff}
-.detail-hero small{font-size:7px;letter-spacing:.13em;color:#b8d4df;font-weight:850}
-.detail-hero h2{margin:8px 0 4px;font-size:27px;letter-spacing:-.06em}
-.detail-hero p{margin:0;color:#c2d7de;font-size:8px}
-.card{padding:13px;border:1px solid #e6edf1;border-radius:14px;background:#fff;box-shadow:0 3px 11px #172c4006}
-.detail-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #edf1f4;font-size:9px}
-.detail-row:last-child{border-bottom:0}
-.detail-row span{color:#81909d}
-.form-card{padding:13px;border:1px solid #e6edf1;border-radius:15px;background:#fff}
-.field{display:block;margin-top:11px}
-.field:first-child{margin-top:0}
-.field span{display:block;margin-bottom:5px;color:#7f8d99;font-size:7px;letter-spacing:.1em;text-transform:uppercase;font-weight:850}
-.field input,.field select,.field textarea{width:100%;height:37px;padding:0 10px;border:1px solid #e3eaf0;border-radius:10px;background:#fafcfd;color:#203448;font-size:10px;outline:none}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:#83baf0;box-shadow:0 0 0 3px #e9f4ff}
-.field textarea{height:60px;padding:9px;resize:vertical}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.total-strip{display:flex;align-items:center;justify-content:space-between;margin-top:13px;padding:11px 12px;border-radius:12px;background:#eff6fb}
-.total-strip small{color:#748595;font-size:7px;font-weight:850}
-.total-strip strong{font-size:19px;color:#193149}
-.form-actions{display:flex;gap:7px;margin-top:13px}
-.form-actions button{flex:1}
-.method-list{display:flex;flex-direction:column;gap:7px;margin-top:10px}
-.method{display:flex;align-items:center;gap:9px;width:100%;padding:10px 11px;border:1px solid #e7edf1;border-radius:12px;background:#fff;text-align:left}
-.method.active{border-color:#7ab5ed;background:#f0f7ff}
-.method-mark{width:31px;height:31px;display:grid;place-items:center;border-radius:9px;background:#edf4ff;color:#2072cb;font-weight:900}
-.method-copy{flex:1}
-.method-copy b{display:block;font-size:9px}
-.method-copy small{display:block;margin-top:3px;color:#929eaa;font-size:7px}
-.method-check{color:#8a99a6;font-size:12px}
-.method.active .method-check{color:var(--blue)}
-.success-card{padding:18px 14px;border:1px solid #d9eee5;border-radius:16px;background:linear-gradient(145deg,#f0faf4,#fff);text-align:center}
-.success-mark{width:46px;height:46px;margin:0 auto 9px;border-radius:50%;background:#dff5e9;color:#138a64;display:grid;place-items:center;font-size:22px;font-weight:900}
-.success-card h3{margin:0;color:#1a3847;font-size:14px}
-.success-card p{margin:5px 0 12px;color:#82939e;font-size:8px}
-.link-box{padding:10px;border:1px dashed #b8cbd7;border-radius:10px;background:#fff;color:#41627a;font-size:8px;overflow-wrap:anywhere}
-.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.tool-tile{min-height:94px;padding:12px;border:1px solid #e7edf1;border-radius:14px;background:#fff;text-align:left}
-.tool-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:10px;background:#edf5ff;color:#2377c3;font-size:15px;margin-bottom:8px}
-.tool-tile:nth-child(2) .tool-icon{background:#eaf7f0;color:#168b66}
-.tool-tile:nth-child(3) .tool-icon{background:#fff3e4;color:#c37a31}
-.tool-tile:nth-child(4) .tool-icon{background:#f0effb;color:#7167b5}
-.tool-tile b{display:block;font-size:9px;color:#2b4052}
-.tool-tile small{display:block;margin-top:3px;color:#8e9ba7;font-size:7px}
-.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.product{padding:8px;border:1px solid #e7edf1;border-radius:14px;background:#fff}
-.product-art{height:85px;border-radius:10px;background:linear-gradient(145deg,#e7eff8,#f5f7fa);display:grid;place-items:center;color:#2f678b;font-size:27px}
-.product:nth-child(2) .product-art{background:linear-gradient(145deg,#f5e5d6,#f8f3ec);color:#ae7048}
-.product:nth-child(3) .product-art{background:linear-gradient(145deg,#e0eee7,#f3f8f4);color:#387e61}
-.product:nth-child(4) .product-art{background:linear-gradient(145deg,#e4e7f8,#f6f5fc);color:#6568a9}
-.product b{display:block;margin-top:7px;font-size:8px}
-.product small{display:block;margin-top:3px;color:#919da7;font-size:7px}
-.product-foot{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
-.product-foot strong{font-size:10px;color:#18334a}
-.add-product{width:25px;height:25px;border:0;border-radius:8px;background:var(--blue);color:white;font-size:15px}
-.cart-bar{position:sticky;bottom:0;display:flex;align-items:center;justify-content:space-between;padding:10px 11px;border-radius:13px;background:#112f46;color:#fff;margin-top:10px}
-.cart-bar b{font-size:10px}
-.cart-bar small{display:block;color:#c0d2dc;font-size:7px;margin-top:3px}
-.cart-bar button{height:30px;padding:0 10px;border:0;border-radius:9px;background:var(--lime);color:#163047;font-weight:900;font-size:8px}
-.bar-chart{display:flex;align-items:end;gap:8px;height:120px;padding:12px 4px 0;border-bottom:1px solid #e6edf1}
-.bar-col{flex:1;height:100%;display:flex;align-items:end;gap:3px;position:relative}
-.bar-col i{display:block;flex:1;border-radius:5px 5px 0 0;background:#1b78df;height:var(--h)}
-.bar-col i:last-child{background:#b6d4e8;height:var(--e)}
-.bar-col small{position:absolute;left:0;right:0;bottom:-15px;text-align:center;color:#8e9ba6;font-size:6px}
-.chat-thread{display:flex;flex-direction:column;gap:8px;margin-top:11px}
-.message{max-width:83%;padding:9px 10px;border-radius:13px;background:#eef2f5;color:#546475;font-size:8px;line-height:1.45}
-.message.mine{margin-left:auto;background:#e5f1ff;color:#285f8e;border-bottom-right-radius:4px}
-.message small{display:block;margin-top:4px;color:#97a4af;font-size:6px;text-align:right}
-.chat-compose{display:flex;gap:6px;margin-top:10px}
-.chat-compose input{flex:1;min-width:0;height:35px;padding:0 10px;border:1px solid #e2eaf0;border-radius:18px;background:#fff;font-size:9px}
-.toast{position:absolute;z-index:70;left:50%;bottom:72px;transform:translate(-50%,8px);padding:9px 13px;border-radius:18px;background:#142d42;color:#fff;font-size:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;box-shadow:0 5px 15px #0003}
+.demo-stage{width:100%;height:100%;min-height:760px;padding:0;display:flex;align-items:stretch;justify-content:stretch;background:#eef2f4}
+.app-shell{width:100%;height:100%;min-height:760px;display:grid;grid-template-columns:205px minmax(0,1fr);grid-template-rows:62px minmax(0,1fr);background:var(--canvas);overflow:hidden}
+.sidebar{grid-column:1;grid-row:1/3;background:var(--navy);color:#fff;display:flex;flex-direction:column;padding:22px 14px 14px;min-width:0}
+.brand{display:flex;align-items:center;gap:7px;padding:0 11px 26px;font-size:25px;font-weight:900;letter-spacing:-.085em}
+.brand-dot{color:var(--lime)}
+.workspace-chip{display:flex;align-items:center;gap:9px;padding:10px;border:1px solid #ffffff20;border-radius:12px;background:#ffffff0c;margin:0 2px 23px}
+.workspace-mark{width:31px;height:31px;border-radius:9px;background:linear-gradient(145deg,#d5e9f2,#92c9d3);display:grid;place-items:center;color:#15364b;font-size:12px;font-weight:900}
+.workspace-copy{min-width:0;flex:1}
+.workspace-copy b{display:block;font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.workspace-copy small{display:block;margin-top:3px;color:#a9bfcc;font-size:7px}
+.side-label{padding:0 12px 8px;color:#7f9bac;font-size:7px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+.nav-list{display:flex;flex-direction:column;gap:4px}
+.nav-item{width:100%;height:39px;padding:0 11px;border:0;border-radius:10px;background:transparent;color:#b5c7d2;display:flex;align-items:center;gap:11px;text-align:left;font-size:9px;font-weight:750;transition:background .15s,color .15s}
+.nav-icon{width:20px;text-align:center;font-size:15px;font-weight:500}
+.nav-item:hover{background:#ffffff10;color:#fff}
+.nav-item.active{background:#ffffff18;color:#fff;box-shadow:inset 3px 0 0 var(--lime)}
+.nav-item.active .nav-icon{color:var(--lime)}
+.side-bottom{margin-top:auto;padding:14px 4px 0;border-top:1px solid #ffffff1b}
+.side-help{display:flex;align-items:center;gap:9px;padding:8px;color:#b7c8d2;font-size:8px}
+.help-icon{width:22px;height:22px;border:1px solid #ffffff2a;border-radius:50%;display:grid;place-items:center}
+.profile-mini{display:flex;align-items:center;gap:9px;padding:10px 7px 0}
+.avatar{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;background:#d4e8f0;color:#17384e;font-size:9px;font-weight:900;border:2px solid #ffffff25}
+.profile-mini b{display:block;font-size:8px}
+.profile-mini small{display:block;margin-top:3px;color:#91aeba;font-size:7px}
+.topbar{grid-column:2;grid-row:1;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:0 28px;background:#fff;border-bottom:1px solid var(--line)}
+.crumb{font-size:8px;color:#82919b;font-weight:800;letter-spacing:.08em}
+.top-actions{display:flex;align-items:center;gap:8px}
+.search-box{height:32px;width:200px;padding:0 10px;display:flex;align-items:center;gap:7px;border:1px solid #e5edf1;border-radius:9px;background:#f9fbfc;color:#8896a1;font-size:8px}
+.search-box input{width:100%;border:0;outline:0;background:transparent;font-size:8px;color:var(--ink)}
+.icon-button{height:31px;width:32px;border:1px solid #e7edf0;border-radius:9px;background:#fff;color:#627687;font-size:13px}
+.top-profile{display:flex;align-items:center;gap:8px;padding-left:6px}
+.top-profile .avatar{width:29px;height:29px;background:#173b54;color:#fff}
+.top-profile span{font-size:8px;font-weight:850}
+.content{grid-column:2;grid-row:2;min-width:0;overflow:auto;padding:24px 28px 34px;background:var(--canvas);scrollbar-width:thin;scrollbar-color:#c8d3da transparent}
+.view{display:none;max-width:1440px;margin:0 auto}
+.view.active{display:block}
+.page-top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px}
+.eyebrow{color:#8a9aa5;font-size:7px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+.page-top h1{margin:6px 0 4px;font-size:25px;line-height:1.05;letter-spacing:-.06em;color:#173147;font-weight:900}
+.page-top p{margin:0;color:#8796a2;font-size:9px}
+.page-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.button{height:34px;padding:0 13px;border:1px solid #e1e9ed;border-radius:9px;background:#fff;color:#526879;font-size:8px;font-weight:850;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.button.primary{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 5px 13px #2678e72a}
+.button.dark{background:var(--navy);border-color:var(--navy);color:#fff}
+.button.soft{background:var(--blue2);border-color:#d6e8fb;color:#236dbd}
+.button:hover{filter:brightness(.98);transform:translateY(-1px)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:13px}
+.stat-card{min-width:0;padding:14px 15px 13px;background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow)}
+.stat-top{display:flex;align-items:center;justify-content:space-between;gap:6px;color:#8796a1;font-size:7px;letter-spacing:.09em;font-weight:900;text-transform:uppercase}
+.stat-icon{width:24px;height:24px;border-radius:8px;background:#edf5ff;color:#347dc7;display:grid;place-items:center;font-size:12px;letter-spacing:0}
+.stat-value{margin-top:9px;color:#172f44;font-size:22px;line-height:1;font-weight:900;letter-spacing:-.06em;white-space:nowrap}
+.stat-foot{margin-top:7px;color:#96a2ab;font-size:7px}
+.up{color:#168760;font-weight:850}
+.stat-card.balance{background:linear-gradient(140deg,#102d43,#1c5d6b);border-color:#1a4b60;color:#fff}
+.stat-card.balance .stat-top{color:#b4cbd4}
+.stat-card.balance .stat-icon{background:#ffffff18;color:var(--lime)}
+.stat-card.balance .stat-value{color:#fff}
+.stat-card.balance .stat-foot{color:#b8ccd5}
+.dashboard-grid{display:grid;grid-template-columns:minmax(0,1.42fr) minmax(270px,.82fr);gap:12px;align-items:start}
+.panel{min-width:0;padding:16px;border:1px solid var(--line);border-radius:13px;background:#fff;box-shadow:var(--shadow)}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-bottom:14px}
+.panel-head h2{margin:0;color:#1c3348;font-size:11px;letter-spacing:-.025em}
+.panel-head p{margin:4px 0 0;color:#93a0a9;font-size:7px}
+.mini-select{height:27px;padding:0 9px;border:1px solid #e6edf1;border-radius:7px;background:#fff;color:#697d8d;font-size:7px;font-weight:800}
+.chart-total{display:flex;align-items:baseline;gap:8px;margin:-2px 0 8px}
+.chart-total strong{font-size:21px;letter-spacing:-.06em;color:#17364d}
+.chart-total span{color:#168760;font-size:7px;font-weight:900}
+.cash-chart{width:100%;height:155px;display:block;overflow:visible}
+.chart-grid{stroke:#edf1f3;stroke-width:1}
+.chart-area{fill:url(#cashFill)}
+.chart-line{fill:none;stroke:#287ee1;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+.chart-dot{fill:#fff;stroke:#287ee1;stroke-width:2.4}
+.chart-legend{display:flex;gap:15px;align-items:center;margin-top:5px;color:#8998a3;font-size:7px}
+.legend-dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:5px;background:#2678e7}
+.legend-dot.exp{background:#c9f36a}
+.chart-months{display:flex;justify-content:space-between;margin-top:7px;color:#99a5ad;font-size:6px;font-weight:800}
+.invoice-table{width:100%;border-collapse:collapse}
+.invoice-table th{padding:8px 7px;color:#93a1aa;text-align:left;font-size:6px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid #edf1f3}
+.invoice-table td{padding:11px 7px;border-bottom:1px solid #f0f3f5;color:#526777;font-size:8px;white-space:nowrap}
+.invoice-table tr:last-child td{border-bottom:0}
+.invoice-table tbody tr{cursor:pointer}
+.invoice-table tbody tr:hover{background:#f8fbfd}
+.invoice-client{display:flex;align-items:center;gap:7px;color:#233d52;font-weight:850}
+.client-mark{width:24px;height:24px;display:grid;place-items:center;border-radius:8px;background:#edf4f8;color:#3a708d;font-size:7px;font-weight:900}
+.status{display:inline-flex;align-items:center;gap:4px;padding:4px 7px;border-radius:20px;background:#eef7f2;color:#16845f;font-size:6px;font-weight:900}
+.status.pending{background:#fff5e9;color:#a97838}
+.status.overdue{background:#fff0f0;color:#b84f57}
+.status.draft{background:#f0f2f4;color:#7b8993}
+.overview-side{display:flex;flex-direction:column;gap:12px}
+.action-list{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.action-tile{min-width:0;height:67px;padding:9px 8px;border:1px solid #e8eef1;border-radius:10px;background:#fbfcfd;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;text-align:left;color:#415e72}
+.action-tile:hover{border-color:#bdd7ec;background:#f3f8fd}
+.action-tile i{width:22px;height:22px;border-radius:7px;background:#eaf3ff;color:#2678e7;display:grid;place-items:center;font-style:normal;font-size:11px}
+.action-tile b{font-size:7px}
+.activity-list{display:flex;flex-direction:column;gap:0}
+.activity-row{display:flex;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid #eef2f4}
+.activity-row:last-child{border-bottom:0}
+.activity-mark{flex:0 0 23px;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;background:#e9f6f0;color:#14865f;font-size:9px}
+.activity-row b{display:block;color:#304c60;font-size:7px}
+.activity-row small{display:block;margin-top:3px;color:#94a1aa;font-size:6px}
+.activity-row strong{margin-left:auto;color:#2c485d;font-size:7px;white-space:nowrap}
+.tools-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:12px}
+.tool-card{padding:12px;border:1px solid var(--line);border-radius:11px;background:#fff;text-align:left;box-shadow:var(--shadow);color:#324f63}
+.tool-card i{width:26px;height:26px;display:grid;place-items:center;border-radius:8px;background:#eaf3ff;color:#2478d5;font-style:normal;font-size:13px}
+.tool-card b{display:block;margin-top:9px;font-size:8px}
+.tool-card small{display:block;margin-top:4px;color:#8c9aa4;font-size:6px}
+.table-wrap{overflow:auto;border:1px solid #e8eef1;border-radius:11px;background:#fff}
+.full-table{width:100%;border-collapse:collapse;min-width:580px}
+.full-table th{padding:12px 13px;background:#f9fbfc;color:#8998a3;text-align:left;font-size:7px;letter-spacing:.12em;text-transform:uppercase}
+.full-table td{padding:13px;border-top:1px solid #eef2f4;color:#536a7a;font-size:8px}
+.full-table tbody tr{cursor:pointer}
+.full-table tbody tr:hover{background:#f8fbfd}
+.client-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.client-card{padding:15px;border:1px solid var(--line);border-radius:12px;background:#fff;text-align:left;color:inherit;box-shadow:var(--shadow)}
+.client-card:hover{border-color:#b8d5e9}
+.client-card-top{display:flex;align-items:center;gap:9px}
+.client-card-top .client-mark{width:34px;height:34px;border-radius:11px;font-size:9px}
+.client-card b{display:block;font-size:9px}
+.client-card small{display:block;margin-top:3px;color:#8e9ca6;font-size:7px}
+.client-card-foot{display:flex;justify-content:space-between;margin-top:14px;padding-top:11px;border-top:1px solid #edf1f3}
+.client-card-foot span{color:#93a1aa;font-size:7px}
+.client-card-foot strong{color:#1c4058;font-size:9px}
+.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.product-card{padding:10px;border:1px solid var(--line);border-radius:12px;background:#fff;box-shadow:var(--shadow)}
+.product-art{height:105px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(145deg,#e8f1f8,#f5f8fa);color:#2c739b;font-size:26px}
+.product-card:nth-child(2) .product-art{background:linear-gradient(145deg,#f5eadc,#faf5ee);color:#ae794b}
+.product-card:nth-child(3) .product-art{background:linear-gradient(145deg,#e3f1e9,#f4faf6);color:#46856b}
+.product-card b{display:block;margin-top:9px;color:#263f53;font-size:8px}
+.product-card small{display:block;margin-top:4px;color:#91a0aa;font-size:7px}
+.product-price{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.product-price strong{font-size:10px;color:#19384f}
+.store-hero{padding:24px;border-radius:14px;background:linear-gradient(125deg,#102d43,#185c6b);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.store-hero h2{margin:8px 0 5px;font-size:22px;letter-spacing:-.06em}
+.store-hero p{margin:0;color:#bad1d8;font-size:8px}
+.store-badge{padding:8px 11px;border-radius:20px;background:#c9f36a;color:#1c3543;font-size:7px;font-weight:900;white-space:nowrap}
+.report-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:12px}
+.expense-bars{display:flex;flex-direction:column;gap:13px}
+.bar-row{display:grid;grid-template-columns:105px 1fr 54px;align-items:center;gap:8px;font-size:7px;color:#758895}
+.bar-track{height:8px;border-radius:20px;background:#edf2f5;overflow:hidden}
+.bar-fill{height:100%;border-radius:20px;background:#2678e7}
+.bar-row:nth-child(2) .bar-fill{background:#38a98a}
+.bar-row:nth-child(3) .bar-fill{background:#c9a466}
+.bar-row:nth-child(4) .bar-fill{background:#8299b1}
+.empty-note{padding:18px;border:1px dashed #dce6eb;border-radius:10px;color:#91a0a8;font-size:8px;text-align:center}
+.dialog{width:min(500px,calc(100vw - 30px));border:1px solid #e2eaef;border-radius:17px;padding:0;box-shadow:0 25px 80px #112a3c42}
+.dialog::backdrop{background:#102d43a8;backdrop-filter:blur(3px)}
+.dialog-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid #edf1f3}
+.dialog-head h2{margin:0;font-size:15px;color:#17364c}
+.dialog-body{padding:18px 20px}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.field{display:block;margin-bottom:11px}
+.field span{display:block;margin-bottom:5px;color:#7e909d;font-size:7px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+.field input,.field select{width:100%;height:36px;padding:0 10px;border:1px solid #e3eaee;border-radius:8px;background:#fbfcfd;color:#2b4357;font-size:9px;outline:0}
+.field input:focus,.field select:focus{border-color:#87b9e9;box-shadow:0 0 0 3px #eaf4fe}
+.dialog-total{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:9px;background:#eff6fa;margin:6px 0 14px}
+.dialog-total span{color:#758b9a;font-size:8px;font-weight:800}
+.dialog-total strong{font-size:18px;color:#183b54}
+.dialog-actions{display:flex;justify-content:flex-end;gap:7px}
+.toast{position:fixed;z-index:50;bottom:18px;left:50%;transform:translate(-50%,10px);padding:10px 14px;border-radius:20px;background:#14384e;color:#fff;box-shadow:0 7px 24px #0b283c35;font-size:8px;opacity:0;pointer-events:none;transition:.2s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:430px){.demo-stage{padding:0;min-height:0}.device{width:100%;height:100%;padding:0;border:0;border-radius:0;box-shadow:none;background:transparent}.screen{border-radius:0}.notch{top:0}}
-@media(max-height:710px){.device{height:100%;border-radius:24px}.screen{border-radius:18px}.notch{height:18px}}
+.mobile-nav{display:none}
+@media(max-width:900px){
+ .app-shell{grid-template-columns:175px minmax(0,1fr)}
+ .sidebar{padding:17px 10px}
+ .content{padding:19px 18px 28px}
+ .topbar{padding:0 18px}
+ .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .dashboard-grid{grid-template-columns:minmax(0,1fr)}
+ .overview-side{display:grid;grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+ .demo-stage{min-height:0}
+ .app-shell{min-height:0;height:100%;grid-template-columns:1fr;grid-template-rows:52px minmax(0,1fr) 58px}
+ .sidebar{display:none}
+ .topbar{grid-column:1;grid-row:1;padding:0 13px}
+ .crumb{font-size:7px}
+ .search-box{width:110px}
+ .top-profile span{display:none}
+ .content{grid-column:1;grid-row:2;padding:16px 12px 20px}
+ .page-top{align-items:flex-start;flex-direction:column;margin-bottom:15px}
+ .page-top h1{font-size:21px}
+ .page-actions{width:100%}
+ .stats-grid{gap:7px}
+ .stat-card{padding:11px}
+ .stat-value{font-size:18px}
+ .dashboard-grid{grid-template-columns:1fr}
+ .overview-side{display:flex}
+ .tools-strip{grid-template-columns:1fr 1fr}
+ .client-grid{grid-template-columns:1fr 1fr}
+ .product-grid{grid-template-columns:1fr 1fr}
+ .report-grid{grid-template-columns:1fr}
+ .mobile-nav{grid-column:1;grid-row:3;display:flex;align-items:center;justify-content:space-around;background:#fff;border-top:1px solid var(--line);padding:5px 2px}
+ .mobile-nav button{border:0;background:transparent;color:#81929e;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:6px;font-weight:800}
+ .mobile-nav button i{font-size:14px;font-style:normal}
+ .mobile-nav button.active{color:var(--blue)}
+ .full-table{min-width:500px}
+}
 </style>
 </head>
 <body>
-<div class="demo-stage"><div class="device"><div class="screen">
- <div class="notch"></div>
- <div class="statusbar"><span>9:41</span><span class="status-icons">▮▮▮ ◉ ▰</span></div>
- <header class="appbar">
-  <div class="brand">Uome<span>.</span></div>
-  <div class="appbar-right">
-   <button class="top-icon" id="searchBtn" aria-label="Search">⌕</button>
-   <button class="top-icon" id="addBtn" aria-label="Create">＋</button>
-   <div class="avatar">JL</div>
+<div class="demo-stage">
+<div class="app-shell">
+ <aside class="sidebar">
+  <div class="brand">Uome<span class="brand-dot">.</span></div>
+  <div class="workspace-chip"><div class="workspace-mark">JL</div><div class="workspace-copy"><b>Jordan Lee Studio</b><small>Business workspace</small></div><span>⌄</span></div>
+  <div class="side-label">Workspace</div>
+  <nav class="nav-list" id="sideNav">
+   <button class="nav-item active" data-view="homeView"><span class="nav-icon">⌂</span>Overview</button>
+   <button class="nav-item" data-view="invoicesView"><span class="nav-icon">▤</span>Invoices</button>
+   <button class="nav-item" data-view="paymentsView"><span class="nav-icon">↗</span>Payments</button>
+   <button class="nav-item" data-view="clientsView"><span class="nav-icon">♙</span>Clients</button>
+   <button class="nav-item" data-view="catalogueView"><span class="nav-icon">▦</span>Catalogue</button>
+   <button class="nav-item" data-view="shopView"><span class="nav-icon">◇</span>Shopfront</button>
+   <button class="nav-item" data-view="reportsView"><span class="nav-icon">▥</span>Reports</button>
+  </nav>
+  <div class="side-bottom">
+   <div class="side-help"><span class="help-icon">?</span> Help & support</div>
+   <div class="profile-mini"><div class="avatar">JL</div><div><b>Jordan Lee</b><small>Owner account</small></div></div>
+  </div>
+ </aside>
+ <header class="topbar">
+  <div class="crumb" id="breadcrumb">WORKSPACE <span style="color:#b4c0c8">/</span> OVERVIEW</div>
+  <div class="top-actions">
+   <label class="search-box">⌕ <input id="globalSearch" placeholder="Search clients or invoices"></label>
+   <button class="icon-button" id="notifyBtn" aria-label="Notifications">♧</button>
+   <div class="top-profile"><div class="avatar">JL</div><span>Jordan Lee</span></div>
   </div>
  </header>
  <main class="content" id="content">
-  <section class="view" id="homeView">
-   <div class="eyebrow">Good morning, Jordan</div>
-   <div class="page-head"><div><h1>Overview</h1><p>Your business at a glance</p></div><button class="date-chip" id="rangeButton">Jan – Aug 2026⌄</button></div>
-   <article class="balance-card">
-    <div class="balance-top"><span>BUSINESS BALANCE</span><button class="balance-more" id="balanceMore">•••</button></div>
-    <div class="balance-value" id="balanceValue">£20,739.59</div>
-    <div class="balance-change"><span class="good-pill">↗ 12.8%</span><span>compared with last period</span></div>
-    <div class="chart-wrap">
-     <svg class="chart" viewBox="0 0 340 86" preserveAspectRatio="none" aria-label="Business balance trend">
-      <path class="area" d="M0 72 C22 60 34 72 52 57 S88 62 108 45 S143 52 162 38 S197 55 218 30 S250 46 271 23 S312 30 340 9 L340 86 L0 86Z"/>
-      <path class="income" d="M0 72 C22 60 34 72 52 57 S88 62 108 45 S143 52 162 38 S197 55 218 30 S250 46 271 23 S312 30 340 9"/>
-      <path class="expense" d="M0 80 C25 73 37 78 52 70 S83 77 108 62 S144 71 162 59 S197 71 218 55 S252 68 271 52 S313 62 340 43"/>
-      <circle cx="218" cy="30" r="4.2"/>
-     </svg>
+  <section class="view active" id="homeView">
+   <div class="page-top">
+    <div><div class="eyebrow">Monday, 9 November 2026</div><h1>Good morning, Jordan.</h1><p>Here's how the business is moving this month.</p></div>
+    <div class="page-actions"><button class="button" id="exportBtn">↓ Export report</button><button class="button primary" data-action="invoice">＋ New invoice</button></div>
+   </div>
+   <div class="stats-grid">
+    <article class="stat-card balance"><div class="stat-top"><span>Business balance</span><span class="stat-icon">£</span></div><div class="stat-value">£20,739.59</div><div class="stat-foot"><span class="up">↗ 12.8%</span> compared with last period</div></article>
+    <article class="stat-card"><div class="stat-top"><span>Pending transactions</span><span class="stat-icon">↗</span></div><div class="stat-value">£450.44</div><div class="stat-foot"><span class="up">+8.2%</span> from 6 payments</div></article>
+    <article class="stat-card"><div class="stat-top"><span>Outstanding invoices</span><span class="stat-icon">▤</span></div><div class="stat-value" id="outstandingValue">£2,580.00</div><div class="stat-foot">3 invoices need attention</div></article>
+    <article class="stat-card"><div class="stat-top"><span>Active clients</span><span class="stat-icon">♙</span></div><div class="stat-value">52</div><div class="stat-foot">23 returning customers</div></article>
+   </div>
+   <div class="dashboard-grid">
+    <div>
+     <section class="panel">
+      <div class="panel-head"><div><h2>Cash flow</h2><p>Income and outgoing payments</p></div><select class="mini-select" id="chartRange"><option value="6">Last 6 months</option><option value="3">Last 3 months</option><option value="1">This month</option></select></div>
+      <div class="chart-total"><strong>£18,240.50</strong><span>↗ 12.8%</span></div>
+      <svg class="cash-chart" viewBox="0 0 640 155" preserveAspectRatio="none" aria-label="Cash flow chart">
+       <defs><linearGradient id="cashFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#2678e7" stop-opacity=".20"/><stop offset="1" stop-color="#2678e7" stop-opacity="0"/></linearGradient></defs>
+       <path class="chart-grid" d="M0 20H640M0 58H640M0 96H640M0 134H640"/>
+       <path class="chart-area" d="M0 119 C38 105 56 111 92 89 S151 102 184 77 S241 80 278 63 S331 77 369 49 S421 67 460 33 S522 57 557 27 S606 32 640 10 L640 155H0Z"/>
+       <path class="chart-line" d="M0 119 C38 105 56 111 92 89 S151 102 184 77 S241 80 278 63 S331 77 369 49 S421 67 460 33 S522 57 557 27 S606 32 640 10"/>
+       <circle class="chart-dot" cx="460" cy="33" r="4.5"/>
+      </svg>
+      <div class="chart-legend"><span><i class="legend-dot"></i>Income</span><span><i class="legend-dot exp"></i>Expenses</span><span style="margin-left:auto">Values shown in GBP</span></div>
+      <div class="chart-months"><span>APR</span><span>MAY</span><span>JUN</span><span>JUL</span><span>AUG</span><span>SEP</span><span>OCT</span><span>NOV</span></div>
+     </section>
+     <section class="panel" style="margin-top:12px">
+      <div class="panel-head"><div><h2>Recent invoices</h2><p>Keep track of what's been sent and settled</p></div><button class="button soft" data-go="invoicesView">All invoices ↗</button></div>
+      <div class="table-wrap" style="border:0">
+       <table class="invoice-table"><thead><tr><th>Client</th><th>Invoice</th><th>Due date</th><th>Status</th><th style="text-align:right">Amount</th></tr></thead><tbody id="recentInvoiceRows">
+        <tr data-invoice="INV-1238"><td><span class="invoice-client"><i class="client-mark">JF</i>Jake Fryer Ltd.</span></td><td>INV-1238</td><td>18 Nov 2026</td><td><span class="status pending">Awaiting payment</span></td><td style="text-align:right">£1,400.00</td></tr>
+        <tr data-invoice="INV-1237"><td><span class="invoice-client"><i class="client-mark">SE</i>Sarah Evans</span></td><td>INV-1237</td><td>12 Nov 2026</td><td><span class="status">Paid</span></td><td style="text-align:right">£480.00</td></tr>
+        <tr data-invoice="INV-1236"><td><span class="invoice-client"><i class="client-mark">JH</i>Jason Halstead</span></td><td>INV-1236</td><td>03 Nov 2026</td><td><span class="status overdue">Overdue</span></td><td style="text-align:right">£320.00</td></tr>
+       </tbody></table>
+      </div>
+     </section>
     </div>
-    <div class="chart-labels"><span>JAN</span><span>MAR</span><span>MAY</span><span>JUL</span><span>AUG</span></div>
-    <div class="periods" id="periods"><button class="active" data-period="6">6M</button><button data-period="3">3M</button><button data-period="1">1M</button></div>
-   </article>
-   <div class="metric-grid">
-    <div class="metric"><label>Pending transactions</label><div class="metric-line"><strong>£450.44</strong><small class="up">↗ 8.2%</small></div></div>
-    <div class="metric"><label>Contacts</label><div class="metric-line"><strong>52</strong><small>23 leads</small></div></div>
+    <aside class="overview-side">
+     <section class="panel">
+      <div class="panel-head"><div><h2>Quick actions</h2><p>Get everyday work done faster</p></div></div>
+      <div class="action-list">
+       <button class="action-tile" data-action="invoice"><i>＋</i><b>Create invoice</b></button>
+       <button class="action-tile" data-action="payment"><i>↗</i><b>Request payment</b></button>
+       <button class="action-tile" data-go="clientsView"><i>♙</i><b>Add client</b></button>
+       <button class="action-tile" data-go="shopView"><i>◇</i><b>Open shopfront</b></button>
+      </div>
+     </section>
+     <section class="panel">
+      <div class="panel-head"><div><h2>Latest activity</h2><p>Across your business</p></div><button class="button" id="allActivity">View all</button></div>
+      <div class="activity-list">
+       <div class="activity-row"><span class="activity-mark">✓</span><div><b>Payment received</b><small>Sarah Evans · 08:42</small></div><strong>+£480.00</strong></div>
+       <div class="activity-row"><span class="activity-mark" style="background:#eef5ff;color:#2678e7">↗</span><div><b>Invoice sent</b><small>Jake Fryer Ltd. · Yesterday</small></div><strong>£1,400.00</strong></div>
+       <div class="activity-row"><span class="activity-mark" style="background:#fff4e8;color:#b47a34">◷</span><div><b>Reminder due</b><small>Jason Halstead · 03 Nov</small></div><strong>£320.00</strong></div>
+      </div>
+     </section>
+    </aside>
    </div>
-   <div class="section-head"><h2>Quick actions</h2><span class="section-meta">Your daily tools</span></div>
-   <div class="quick-grid">
-    <button class="quick" data-action="invoice"><i>＋</i>New invoice</button>
-    <button class="quick" data-action="quote"><i>▤</i>New quote</button>
-    <button class="quick" data-action="payment"><i>↗</i>Get paid</button>
-    <button class="quick" data-action="shopfront"><i>◇</i>Shopfront</button>
+   <div class="tools-strip">
+    <button class="tool-card" data-go="invoicesView"><i>▤</i><b>Invoicing</b><small>Create quotes and get paid faster</small></button>
+    <button class="tool-card" data-go="paymentsView"><i>↗</i><b>Payment links</b><small>Collect payments online or in person</small></button>
+    <button class="tool-card" data-go="catalogueView"><i>▦</i><b>Item catalogue</b><small>Save your services and prices</small></button>
+    <button class="tool-card" data-go="reportsView"><i>▥</i><b>Financial reports</b><small>Keep an eye on cash flow</small></button>
    </div>
-   <article class="pay-promo" style="margin-top:10px">
-    <div class="pay-promo-copy"><small>UOME PAY · INSTANT COLLECTION</small><h3>Get paid, your way.</h3><p>Send a payment link or take a card payment. Your client chooses how to pay.</p><button class="primary" data-action="payment">Create payment link ↗</button></div>
-    <div class="pay-illustration"><div class="pay-receipt"><b>UOME PAY</b><strong>£140.00</strong><small>Payment request</small><div class="receipt-line"></div><span class="receipt-status">● READY TO SEND</span></div></div>
-   </article>
-   <div class="section-head"><h2>People</h2><button class="text-btn" data-nav="clientsView">All contacts ↗</button></div>
-   <div class="people-strip">
-    <button class="person" data-client="Jason Halstead"><span class="person-avatar">JH</span>Jason</button>
-    <button class="person" data-client="Sarah Evans"><span class="person-avatar">SE</span>Sarah</button>
-    <button class="person" data-client="Jen Aoki"><span class="person-avatar">JA</span>Jen</button>
-    <button class="person" data-client="Jake Fryer Limited"><span class="person-avatar">JF</span>Jake</button>
+  </section>
+
+  <section class="view" id="invoicesView">
+   <div class="page-top"><div><div class="eyebrow">Billing and collections</div><h1>Invoices</h1><p>Every bill, quote and payment in one place.</p></div><div class="page-actions"><button class="button" id="quoteBtn">＋ New quote</button><button class="button primary" data-action="invoice">＋ New invoice</button></div></div>
+   <section class="panel"><div class="panel-head"><div><h2>Invoice register</h2><p>Click a row to inspect an invoice</p></div><select class="mini-select" id="invoiceFilter"><option value="all">All invoices</option><option value="sent">Awaiting payment</option><option value="paid">Paid</option><option value="overdue">Overdue</option></select></div>
+    <div class="table-wrap"><table class="full-table"><thead><tr><th>Client</th><th>Reference</th><th>Description</th><th>Due date</th><th>Status</th><th>Amount</th></tr></thead><tbody id="invoiceRows"></tbody></table></div>
+   </section>
+   <section class="stats-grid" style="margin-top:12px"><article class="stat-card"><div class="stat-top">Outstanding</div><div class="stat-value" id="invoiceOutstanding">£2,580.00</div><div class="stat-foot">Awaiting settlement</div></article><article class="stat-card"><div class="stat-top">Paid this month</div><div class="stat-value">£4,820.00</div><div class="stat-foot"><span class="up">↗ 9.4%</span> from October</div></article><article class="stat-card"><div class="stat-top">Overdue</div><div class="stat-value">£320.00</div><div class="stat-foot">1 client needs a reminder</div></article><article class="stat-card"><div class="stat-top">Drafts</div><div class="stat-value" id="draftCount">2</div><div class="stat-foot">Ready when you are</div></article></section>
+  </section>
+
+  <section class="view" id="paymentsView">
+   <div class="page-top"><div><div class="eyebrow">Collect and reconcile</div><h1>Payments</h1><p>Make it easier for customers to pay you.</p></div><div class="page-actions"><button class="button primary" data-action="payment">＋ Create payment link</button></div></div>
+   <div class="stats-grid"><article class="stat-card balance"><div class="stat-top">Received this month</div><div class="stat-value">£8,420.80</div><div class="stat-foot">Across card and bank payments</div></article><article class="stat-card"><div class="stat-top">Awaiting settlement</div><div class="stat-value">£450.44</div><div class="stat-foot">6 payment requests</div></article><article class="stat-card"><div class="stat-top">Average payment</div><div class="stat-value">£286.40</div><div class="stat-foot">Across 29 transactions</div></article><article class="stat-card"><div class="stat-top">Payment success</div><div class="stat-value">96.8%</div><div class="stat-foot"><span class="up">+2.1%</span> from last month</div></article></div>
+   <div class="dashboard-grid">
+    <section class="panel"><div class="panel-head"><div><h2>Recent payment requests</h2><p>Links prepared for your customers</p></div></div><div class="activity-list" id="paymentRequests">
+     <div class="activity-row"><span class="activity-mark">↗</span><div><b>Kitchen fitout · Jake Fryer Ltd.</b><small>pay.uome.example/1238 · Sent today</small></div><strong>£1,400.00</strong></div>
+     <div class="activity-row"><span class="activity-mark">✓</span><div><b>Design consultation · Sarah Evans</b><small>Paid via bank transfer</small></div><strong>£480.00</strong></div>
+    </div></section>
+    <section class="panel"><div class="panel-head"><div><h2>Ways to get paid</h2><p>Give customers a simple way to settle</p></div></div><div class="action-list"><button class="action-tile" data-action="payment"><i>↗</i><b>Payment link</b></button><button class="action-tile" data-action="payment"><i>▦</i><b>Scan to pay</b></button><button class="action-tile" data-action="payment"><i>▣</i><b>Card payment</b></button><button class="action-tile" data-action="payment"><i>⌂</i><b>Bank transfer</b></button></div></section>
    </div>
-   <div class="section-head"><h2>Recent activity</h2><button class="text-btn" data-nav="invoicesView">See all ↗</button></div>
-   <div class="activity-list" id="homeActivity"></div>
   </section>
 
-  <section class="view" id="invoicesView" hidden>
-   <div class="eyebrow">Billing & collections</div>
-   <div class="page-head"><div><h1>Invoices</h1><p>Every bill, quote and payment in one place</p></div><button class="primary" data-action="invoice">＋ New</button></div>
-   <div class="summary-row"><div class="summary"><small>Outstanding</small><b id="outstanding">£2,580</b></div><div class="summary"><small>Paid this month</small><b>£4,820</b></div></div>
-   <div class="filters" id="filters"><button class="active" data-filter="all">All</button><button data-filter="sent">Sent</button><button data-filter="overdue">Overdue</button><button data-filter="paid">Paid</button><button data-filter="draft">Drafts</button></div>
-   <div class="invoice-list" id="invoiceList"></div>
+  <section class="view" id="clientsView">
+   <div class="page-top"><div><div class="eyebrow">Your relationships</div><h1>Clients</h1><p>Keep customer details, conversations and payments connected.</p></div><div class="page-actions"><button class="button primary" id="addClient">＋ Add client</button></div></div>
+   <div class="stats-grid"><article class="stat-card"><div class="stat-top">Total contacts</div><div class="stat-value">52</div><div class="stat-foot">23 returning customers</div></article><article class="stat-card"><div class="stat-top">New this month</div><div class="stat-value">8</div><div class="stat-foot"><span class="up">+3</span> from October</div></article><article class="stat-card"><div class="stat-top">Outstanding</div><div class="stat-value">£2,580</div><div class="stat-foot">Across 3 clients</div></article><article class="stat-card"><div class="stat-top">Active conversations</div><div class="stat-value">12</div><div class="stat-foot">Last activity today</div></article></div>
+   <div class="client-grid" id="clientGrid"></div>
   </section>
 
-  <section class="view" id="invoiceDetailView" hidden>
-   <div class="section-head" style="margin-top:0"><button class="text-btn" data-back="invoicesView">‹ Back to invoices</button><span class="section-meta">Invoice detail</span></div>
-   <article class="detail-hero"><small id="detailId">INVOICE · INV-1238</small><h2 id="detailAmount">£1,400.00</h2><p id="detailStatus">Awaiting payment · Due 18 Nov 2026</p></article>
-   <div class="section-head"><h2>Bill to</h2></div><div class="card"><b id="detailClient" style="font-size:10px">Jake Fryer Limited</b><p style="margin:4px 0 0;font-size:8px;color:#8997a3">jake@fryer.example</p></div>
-   <div class="section-head"><h2>Invoice items</h2></div><div class="card"><div class="detail-row"><span id="detailDescription">Kitchen fitout</span><b id="detailLine">£1,400.00</b></div><div class="detail-row"><span>Subtotal</span><b id="detailSubtotal">£1,400.00</b></div><div class="detail-row"><span>VAT</span><b>£0.00</b></div><div class="detail-row"><b>Total due</b><b id="detailTotal">£1,400.00</b></div></div>
-   <div class="form-actions"><button class="secondary" id="remindBtn">Send reminder</button><button class="primary" id="paidBtn">Mark as paid</button></div>
-   <p class="section-meta" style="text-align:center;margin-top:12px">Prototype only. No real invoice is sent.</p>
+  <section class="view" id="catalogueView">
+   <div class="page-top"><div><div class="eyebrow">Products and services</div><h1>Catalogue</h1><p>Save the things you sell and add them to invoices or your shop.</p></div><div class="page-actions"><button class="button primary" id="addProduct">＋ Add item</button></div></div>
+   <div class="product-grid" id="catalogueGrid"></div>
   </section>
 
-  <section class="view" id="invoiceFormView" hidden>
-   <div class="section-head" style="margin-top:0"><button class="text-btn" data-back="invoicesView">‹ Back</button><strong id="formTitle" style="font-size:11px">New invoice</strong></div>
-   <div class="form-card">
-    <label class="field"><span>Client</span><select id="formClient"><option>Jake Fryer Limited</option><option>Jason Halstead</option><option>Sarah Evans</option><option>Jen Aoki</option><option>Monique Studio</option></select></label>
-    <label class="field"><span>Description</span><input id="formDescription" value="Kitchen fitout"></label>
-    <div class="split"><label class="field"><span>Quantity</span><input id="formQty" type="number" min="1" value="1"></label><label class="field"><span>Rate (£)</span><input id="formRate" type="number" min="0" step=".01" value="1400"></label></div>
-    <label class="field"><span>Due date</span><input id="formDue" type="date" value="2026-11-18"></label>
-    <label class="field"><span>Message</span><textarea id="formNote">Thanks for choosing us. Let me know if you have any questions.</textarea></label>
-    <div class="total-strip"><div><small>INVOICE TOTAL</small><div class="section-meta">Excluding VAT</div></div><strong id="formTotal">£1,400.00</strong></div>
-    <div class="form-actions"><button class="secondary" id="saveDraft">Save draft</button><button class="primary" id="sendInvoice">Send invoice ↗</button></div>
-   </div>
-   <p class="section-meta" style="text-align:center;margin-top:10px">Working prototype. No email is sent.</p>
+  <section class="view" id="shopView">
+   <div class="page-top"><div><div class="eyebrow">E-commerce</div><h1>Shopfront</h1><p>A small preview of your customer-facing store.</p></div><div class="page-actions"><span class="status">● Published preview</span></div></div>
+   <div class="store-hero"><div><div class="eyebrow" style="color:#b8d2dc">JORDAN LEE STUDIO</div><h2>Good work. Clear prices. Easy checkout.</h2><p>Choose a service below and add it to your basket.</p></div><span class="store-badge">STORE PREVIEW</span></div>
+   <div class="product-grid" id="shopGrid" style="margin-top:13px"></div>
+   <section class="panel" style="margin-top:12px"><div class="panel-head"><div><h2>Your basket</h2><p>Prototype checkout only</p></div><strong id="basketTotal">£0.00</strong></div><div class="page-actions"><span id="basketCount" class="eyebrow">0 ITEMS</span><button class="button primary" id="checkoutBtn">Continue to checkout ↗</button></div></section>
   </section>
 
-  <section class="view" id="paymentView" hidden>
-   <div class="eyebrow">Uome pay</div><div class="page-head"><div><h1>Get paid</h1><p>Create a secure payment request</p></div><button class="date-chip" data-nav="homeView">Cancel</button></div>
-   <article class="detail-hero"><small>PAYMENT REQUEST</small><h2 id="paymentLabel">£140.00</h2><p>Choose the payment method your customer prefers</p></article>
-   <label class="field"><span>Amount (£)</span><input id="paymentAmount" type="number" min="0" step=".01" value="140"></label>
-   <label class="field"><span>Customer</span><select id="paymentClient"><option>Jake Fryer Limited</option><option>Jason Halstead</option><option>Sarah Evans</option><option>Monique Studio</option></select></label>
-   <div class="section-head"><h2>Payment methods</h2><span class="section-meta">Choose one or more</span></div>
-   <div class="method-list" id="methodList">
-    <button class="method active" data-method="Bank transfer"><span class="method-mark">⇄</span><span class="method-copy"><b>Open banking</b><small>Instant bank transfer</small></span><span class="method-check">●</span></button>
-    <button class="method" data-method="Card"><span class="method-mark">▣</span><span class="method-copy"><b>Card payment</b><small>Visa, Mastercard and Apple Pay</small></span><span class="method-check">○</span></button>
-    <button class="method" data-method="Klarna"><span class="method-mark">K</span><span class="method-copy"><b>Klarna</b><small>Let customers spread the cost</small></span><span class="method-check">○</span></button>
-   </div>
-   <button class="primary" id="createPayment" style="width:100%;margin-top:13px">Create payment link ↗</button>
-   <p class="section-meta" style="text-align:center;margin-top:10px">Simulated only. No money is collected.</p>
-  </section>
-
-  <section class="view" id="paymentSuccessView" hidden>
-   <div class="section-head" style="margin-top:0"><button class="text-btn" data-back="homeView">‹ Back</button></div>
-   <div class="success-card"><div class="success-mark">✓</div><h3>Payment link ready</h3><p id="successCopy">Your request is ready to share with the customer.</p><div class="link-box" id="linkValue">pay.uome.example/request/INV-1241</div><button class="primary" id="copyLink" style="margin-top:12px">Copy payment link</button></div>
-   <div class="section-head"><h2>Request summary</h2></div><div class="card"><div class="detail-row"><span>Amount</span><b id="successAmount">£140.00</b></div><div class="detail-row"><span>Customer</span><b id="successClient">Jake Fryer Limited</b></div><div class="detail-row"><span>Payment method</span><b id="successMethod">Open banking</b></div></div>
-  </section>
-
-  <section class="view" id="clientsView" hidden>
-   <div class="eyebrow">Your business network</div><div class="page-head"><div><h1>Clients</h1><p>Keep every relationship moving</p></div><span class="date-chip">52 contacts</span></div>
-   <div class="summary-row"><div class="summary"><small>Total contacts</small><b>52</b></div><div class="summary"><small>Active leads</small><b>23</b></div></div>
-   <div class="client-list" id="clientList"></div>
-  </section>
-
-  <section class="view" id="clientDetailView" hidden>
-   <div class="section-head" style="margin-top:0"><button class="text-btn" data-back="clientsView">‹ Back to clients</button></div>
-   <div class="card" style="text-align:center;padding:18px"><div class="person-avatar" id="profileAvatar" style="margin:0 auto 8px;width:48px;height:48px">JF</div><h2 id="profileName" style="margin:0;font-size:14px">Jake Fryer Limited</h2><p class="section-meta">Client since March 2025</p><div class="form-actions"><button class="secondary" id="profileInvoice">New invoice</button><button class="primary" id="profileMessage">Message</button></div></div>
-   <div class="section-head"><h2>Account summary</h2></div><div class="summary-row"><div class="summary"><small>Lifetime billed</small><b>£8,420</b></div><div class="summary"><small>Outstanding</small><b id="clientDue">£1,400</b></div></div>
-   <div class="section-head"><h2>Recent invoices</h2></div><div class="activity-list" id="clientActivity"></div>
-  </section>
-
-  <section class="view" id="toolsView" hidden>
-   <div class="eyebrow">Tools for your business</div><div class="page-head"><div><h1>More</h1><p>Everything else in one place</p></div></div>
-   <div class="tool-grid">
-    <button class="tool-tile" data-tool="catalogue"><span class="tool-icon">▦</span><b>Catalogue</b><small>Services and products</small></button>
-    <button class="tool-tile" data-tool="shopfront"><span class="tool-icon">◇</span><b>Shopfront</b><small>Your online store</small></button>
-    <button class="tool-tile" data-tool="expenses"><span class="tool-icon">⌑</span><b>Expenses</b><small>Track business costs</small></button>
-    <button class="tool-tile" data-tool="reports"><span class="tool-icon">⌁</span><b>Reporting</b><small>Income and cash flow</small></button>
-    <button class="tool-tile" data-tool="scheduler"><span class="tool-icon">▣</span><b>Scheduler</b><small>Appointments</small></button>
-    <button class="tool-tile" data-tool="team"><span class="tool-icon">♙</span><b>Teams</b><small>Work together</small></button>
-   </div>
-   <div class="section-head"><h2>Get paid in person</h2></div>
-   <button class="activity" data-action="payment"><span class="row-icon">▣</span><span class="activity-copy"><b>Tap to Pay</b><small>Accept card payments from your phone</small></span><span>↗</span></button>
-  </section>
-
-  <section class="view" id="toolView" hidden>
-   <div class="section-head" style="margin-top:0"><button class="text-btn" data-back="toolsView">‹ Back to tools</button><strong id="toolTitle" style="font-size:11px">Catalogue</strong></div>
-   <div id="toolContent"></div>
-  </section>
-
-  <section class="view" id="reportsView" hidden>
-   <div class="eyebrow">Business performance</div><div class="page-head"><div><h1>Cash flow</h1><p>Income and expenses over time</p></div><button class="date-chip">Last 6 months⌄</button></div>
-   <article class="detail-hero"><small>NET INCOME · LAST 6 MONTHS</small><h2>£12,460</h2><p>↗ 12.8% vs previous period</p></article>
-   <div class="section-head"><h2>Monthly movement</h2></div><div class="card"><div class="bar-chart"><div class="bar-col"><i style="--h:48%"></i><i style="--e:25%"></i><small>MAR</small></div><div class="bar-col"><i style="--h:65%"></i><i style="--e:38%"></i><small>APR</small></div><div class="bar-col"><i style="--h:59%"></i><i style="--e:31%"></i><small>MAY</small></div><div class="bar-col"><i style="--h:78%"></i><i style="--e:40%"></i><small>JUN</small></div><div class="bar-col"><i style="--h:69%"></i><i style="--e:33%"></i><small>JUL</small></div><div class="bar-col"><i style="--h:93%"></i><i style="--e:43%"></i><small>AUG</small></div></div></div>
-   <div class="summary-row"><div class="summary"><small>Income</small><b>£18.2k</b></div><div class="summary"><small>Expenses</small><b>£5.7k</b></div></div>
-   <div class="section-head"><h2>Top expense categories</h2></div><div class="card"><div class="detail-row"><span>Materials</span><b>£2,450</b></div><div class="detail-row"><span>Travel</span><b>£1,240</b></div><div class="detail-row"><span>Software</span><b>£680</b></div><div class="detail-row"><span>Other</span><b>£1,330</b></div></div>
-  </section>
-
-  <section class="view" id="chatView" hidden>
-   <div class="section-head" style="margin-top:0"><button class="text-btn" data-back="clientDetailView">‹ Back to client</button><strong id="chatTitle" style="font-size:10px">Client messages</strong></div>
-   <div class="detail-hero"><small>CLIENT CONVERSATION</small><h2>Project update</h2><p>Messages and payment requests in one place</p></div>
-   <div class="chat-thread" id="chatThread"><div class="message">Hi Jordan, just checking when the kitchen work can start.<small>09:12</small></div><div class="message mine">The materials have arrived. I can start Monday morning.<small>09:20</small></div><div class="message">Perfect. Could you send the deposit invoice?<small>09:25</small></div></div>
-   <div class="chat-compose"><input id="chatInput" placeholder="Write a message"><button class="primary" id="sendMessage">Send</button></div>
+  <section class="view" id="reportsView">
+   <div class="page-top"><div><div class="eyebrow">Your numbers</div><h1>Reports</h1><p>Understand what is coming in and going out.</p></div><div class="page-actions"><button class="button" id="reportExport">↓ Export CSV</button></div></div>
+   <div class="stats-grid"><article class="stat-card balance"><div class="stat-top">Revenue this year</div><div class="stat-value">£74,820.40</div><div class="stat-foot"><span class="up">↗ 12.8%</span> year on year</div></article><article class="stat-card"><div class="stat-top">Expenses</div><div class="stat-value">£21,408.20</div><div class="stat-foot">28.6% of revenue</div></article><article class="stat-card"><div class="stat-top">Net income</div><div class="stat-value">£53,412.20</div><div class="stat-foot">Before tax</div></article><article class="stat-card"><div class="stat-top">Unpaid invoices</div><div class="stat-value">£2,580</div><div class="stat-foot">3 active invoices</div></article></div>
+   <div class="report-grid"><section class="panel"><div class="panel-head"><div><h2>Income by month</h2><p>Cash received in 2026</p></div></div><svg class="cash-chart" viewBox="0 0 640 155" preserveAspectRatio="none"><path class="chart-grid" d="M0 20H640M0 58H640M0 96H640M0 134H640"/><path class="chart-line" d="M0 105 C42 112 56 84 100 91 S150 72 190 82 S240 52 278 66 S330 48 370 58 S423 29 462 41 S520 31 557 36 S610 18 640 16"/></svg></section><section class="panel"><div class="panel-head"><div><h2>Expense breakdown</h2><p>By category</p></div></div><div class="expense-bars"><div class="bar-row"><span>Materials</span><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><b>£9,480</b></div><div class="bar-row"><span>Travel</span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><b>£5,760</b></div><div class="bar-row"><span>Software</span><div class="bar-track"><div class="bar-fill" style="width:31%"></div></div><b>£3,420</b></div><div class="bar-row"><span>Other</span><div class="bar-track"><div class="bar-fill" style="width:24%"></div></div><b>£2,748</b></div></div></section></div>
   </section>
  </main>
- <nav class="bottom-nav" id="bottomNav" aria-label="Main navigation">
-  <button class="nav-btn active" data-nav="homeView"><i>⌂</i>Home</button>
-  <button class="nav-btn" data-nav="invoicesView"><i>▤</i>Invoices</button>
-  <button class="nav-btn" data-nav="paymentView"><i>↗</i>Payments</button>
-  <button class="nav-btn" data-nav="clientsView"><i>♙</i>Clients</button>
-  <button class="nav-btn" data-nav="toolsView"><i>•••</i>More</button>
+ <nav class="mobile-nav" aria-label="Mobile navigation">
+  <button class="active" data-view="homeView"><i>⌂</i>Overview</button><button data-view="invoicesView"><i>▤</i>Invoices</button><button data-view="paymentsView"><i>↗</i>Pay</button><button data-view="clientsView"><i>♙</i>Clients</button><button data-view="shopView"><i>◇</i>Shop</button>
  </nav>
- <div class="toast" id="toast"></div>
-</div></div></div>
+</div>
+</div>
+
+<dialog class="dialog" id="invoiceDialog">
+ <div class="dialog-head"><div><div class="eyebrow">BILLING</div><h2>New invoice</h2></div><button class="icon-button" data-close="invoiceDialog">×</button></div>
+ <form class="dialog-body" id="invoiceForm">
+  <label class="field"><span>Client</span><select id="invoiceClient"><option>Jake Fryer Limited</option><option>Sarah Evans</option><option>Jason Halstead</option><option>Jen Aoki</option><option>Monique Studio</option></select></label>
+  <label class="field"><span>Description</span><input id="invoiceDesc" value="Kitchen fitout" required></label>
+  <div class="field-grid"><label class="field"><span>Quantity</span><input id="invoiceQty" type="number" min="1" value="1" required></label><label class="field"><span>Unit price (£)</span><input id="invoiceRate" type="number" min="0" step=".01" value="1400" required></label></div>
+  <label class="field"><span>Due date</span><input id="invoiceDue" type="date" value="2026-11-18"></label>
+  <div class="dialog-total"><span>Invoice total</span><strong id="invoiceTotal">£1,400.00</strong></div>
+  <div class="dialog-actions"><button class="button" type="button" data-close="invoiceDialog">Cancel</button><button class="button primary" type="submit">Prepare invoice ↗</button></div>
+ </form>
+</dialog>
+<dialog class="dialog" id="paymentDialog">
+ <div class="dialog-head"><div><div class="eyebrow">UOME PAY</div><h2>Create payment link</h2></div><button class="icon-button" data-close="paymentDialog">×</button></div>
+ <form class="dialog-body" id="paymentForm">
+  <label class="field"><span>Customer</span><select id="paymentClient"><option>Jake Fryer Limited</option><option>Sarah Evans</option><option>Jason Halstead</option><option>Jen Aoki</option><option>Monique Studio</option></select></label>
+  <div class="field-grid"><label class="field"><span>Amount (£)</span><input id="paymentAmount" type="number" min="1" step=".01" value="140"></label><label class="field"><span>Payment method</span><select id="paymentMethod"><option>Card or wallet</option><option>Bank transfer</option><option>Pay by QR</option></select></label></div>
+  <label class="field"><span>Payment note</span><input id="paymentNote" value="Kitchen fitout deposit"></label>
+  <div class="dialog-actions"><button class="button" type="button" data-close="paymentDialog">Cancel</button><button class="button primary" type="submit">Generate link ↗</button></div>
+ </form>
+</dialog>
+<dialog class="dialog" id="detailDialog">
+ <div class="dialog-head"><div><div class="eyebrow">INVOICE DETAILS</div><h2 id="detailTitle">Invoice</h2></div><button class="icon-button" data-close="detailDialog">×</button></div>
+ <div class="dialog-body"><div id="detailBody"></div><div class="dialog-actions" style="margin-top:16px"><button class="button" data-close="detailDialog">Close</button><button class="button primary" id="markPaidBtn">Mark as paid ✓</button></div></div>
+</dialog>
+<div class="toast" id="toast"></div>
 <script>
 (function(){
  const $=id=>document.getElementById(id);
- const views=[...document.querySelectorAll(".view")];
- const navIds=["homeView","invoicesView","paymentView","clientsView","toolsView"];
- let selectedInvoice=null,selectedClient="Jake Fryer Limited",filter="all",editingId=null;
- let selectedMethod="Bank transfer",invoiceMode="invoice",cart=[];
- let invoices=[
-  {id:"INV-1238",client:"Jake Fryer Limited",description:"Kitchen fitout",qty:1,rate:1400,due:"2026-11-18",status:"sent",date:"Today"},
-  {id:"INV-1237",client:"Sarah Evans",description:"Design consultation",qty:4,rate:120,due:"2026-11-12",status:"paid",date:"Yesterday"},
-  {id:"INV-1236",client:"Jason Halstead",description:"Site survey",qty:2,rate:160,due:"2026-11-03",status:"overdue",date:"3 Nov"},
-  {id:"INV-1235",client:"Monique Studio",description:"Photo and styling work",qty:1,rate:860,due:"2026-11-21",status:"sent",date:"2 Nov"}
- ];
- const clients=[
-  {name:"Jake Fryer Limited",initials:"JF",role:"Kitchen installation",email:"jake@fryer.example",balance:1400},
-  {name:"Jason Halstead",initials:"JH",role:"Property services",email:"jason@halstead.example",balance:320},
-  {name:"Sarah Evans",initials:"SE",role:"Consultant",email:"sarah@evans.example",balance:0},
-  {name:"Jen Aoki",initials:"JA",role:"Creative studio",email:"jen@aoki.example",balance:0},
-  {name:"Monique Studio",initials:"MS",role:"Photography",email:"hello@monique.example",balance:860}
- ];
- const products=[
-  {name:"Kitchen installation",desc:"Labour and fitting",price:1400,icon:"⌂"},
-  {name:"Design consultation",desc:"Per hour",price:120,icon:"✦"},
-  {name:"Site survey",desc:"On-site assessment",price:160,icon:"⌖"},
-  {name:"Photo and styling",desc:"Creative session",price:860,icon:"▧"}
- ];
  const money=n=>"£"+Number(n||0).toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2});
- const toast=msg=>{const el=$("toast");el.textContent=msg;el.classList.add("show");clearTimeout(window.__uomeToast);window.__uomeToast=setTimeout(()=>el.classList.remove("show"),1900)};
- function show(id){
-  views.forEach(v=>v.hidden=v.id!==id);
-  $("bottomNav").hidden=!navIds.includes(id);
-  document.querySelectorAll("[data-nav]").forEach(b=>b.classList.toggle("active",b.dataset.nav===id));
+ const navMap={homeView:"OVERVIEW",invoicesView:"INVOICES",paymentsView:"PAYMENTS",clientsView:"CLIENTS",catalogueView:"CATALOGUE",shopView:"SHOPFRONT",reportsView:"REPORTS"};
+ let invoices=[
+  {id:"INV-1238",client:"Jake Fryer Limited",initials:"JF",description:"Kitchen fitout",date:"09 Nov 2026",due:"18 Nov 2026",qty:1,rate:1400,status:"pending"},
+  {id:"INV-1237",client:"Sarah Evans",initials:"SE",description:"Design consultation",date:"08 Nov 2026",due:"12 Nov 2026",qty:4,rate:120,status:"paid"},
+  {id:"INV-1236",client:"Jason Halstead",initials:"JH",description:"Site survey",date:"03 Nov 2026",due:"03 Nov 2026",qty:2,rate:160,status:"overdue"},
+  {id:"INV-1235",client:"Monique Studio",initials:"MS",description:"Photo and styling work",date:"02 Nov 2026",due:"21 Nov 2026",qty:1,rate:860,status:"pending"}
+ ];
+ let clients=[
+  {name:"Jake Fryer Limited",initials:"JF",role:"Kitchen installation",email:"jake@fryer.example",balance:1400,activity:"Invoice sent today"},
+  {name:"Sarah Evans",initials:"SE",role:"Consultant",email:"sarah@evans.example",balance:0,activity:"Payment received yesterday"},
+  {name:"Jason Halstead",initials:"JH",role:"Property services",email:"jason@halstead.example",balance:320,activity:"Reminder due"},
+  {name:"Jen Aoki",initials:"JA",role:"Creative studio",email:"jen@aoki.example",balance:0,activity:"New message"},
+  {name:"Monique Studio",initials:"MS",role:"Photography",email:"hello@monique.example",balance:860,activity:"Quote viewed"}
+ ];
+ let products=[
+  {name:"Kitchen installation",description:"Labour and fitting",price:1400,icon:"⌂"},
+  {name:"Design consultation",description:"Hourly service",price:120,icon:"✦"},
+  {name:"Site survey",description:"On-site assessment",price:160,icon:"⌖"},
+  {name:"Photo and styling",description:"Creative session",price:860,icon:"▧"},
+  {name:"Project review",description:"Planning and review",price:240,icon:"◷"},
+  {name:"Maintenance visit",description:"One hour on-site",price:95,icon:"⚒"}
+ ];
+ let paymentRequests=[{id:"PAY-403821",client:"Jake Fryer Limited",amount:1400,status:"Awaiting payment",note:"Kitchen fitout deposit"},{id:"PAY-403804",client:"Sarah Evans",amount:480,status:"Paid",note:"Design consultation"}];
+ let basket=[],lastInvoice=null;
+ function toast(message){const t=$("toast");t.textContent=message;t.classList.add("show");clearTimeout(window.__uomeToast);window.__uomeToast=setTimeout(()=>t.classList.remove("show"),1900)}
+ function show(view){
+  document.querySelectorAll(".view").forEach(x=>x.classList.toggle("active",x.id===view));
+  document.querySelectorAll("[data-view]").forEach(x=>x.classList.toggle("active",x.dataset.view===view));
+  $("breadcrumb").innerHTML='WORKSPACE <span style="color:#b4c0c8">/</span> '+navMap[view];
   $("content").scrollTop=0;
  }
- function statusLabel(s){return s==="sent"?"Awaiting payment":s==="paid"?"Paid":s==="overdue"?"Overdue":"Draft"}
- function statusPill(s){return s==="paid"?"paid":s==="overdue"?"overdue":s==="draft"?"draft":"wait"}
- function invoiceCard(i){
-  return '<button class="invoice-row" data-invoice="'+i.id+'"><span class="row-icon">▤</span><span class="invoice-copy"><b>'+i.client+'</b><small>'+i.id+' · '+i.description+'</small></span><span class="invoice-value"><b>'+money(i.qty*i.rate)+'</b><small class="pill '+statusPill(i.status)+'">'+statusLabel(i.status)+'</small></span></button>';
- }
+ function statusClass(s){return s==="paid"?"":" "+(s==="overdue"?"overdue":s==="draft"?"draft":"pending")}
+ function statusText(s){return s==="pending"?"Awaiting payment":s==="paid"?"Paid":s==="overdue"?"Overdue":"Draft"}
+ function invoiceRow(i){return '<tr data-invoice="'+i.id+'"><td><span class="invoice-client"><i class="client-mark">'+i.initials+'</i>'+i.client+'</span></td><td>'+i.id+'</td><td>'+i.description+'</td><td>'+i.due+'</td><td><span class="status'+statusClass(i.status)+'">'+statusText(i.status)+'</span></td><td>'+money(i.qty*i.rate)+'</td></tr>'}
  function renderInvoices(){
-  const arr=invoices.filter(i=>filter==="all"||i.status===filter);
-  $("invoiceList").innerHTML=arr.length?arr.map(invoiceCard).join(""):'<div class="card"><b style="font-size:10px">No invoices in this view</b><p class="section-meta">Create a new invoice to get started.</p></div>';
-  $("invoiceList").querySelectorAll("[data-invoice]").forEach(b=>b.addEventListener("click",()=>openInvoice(b.dataset.invoice)));
-  const sum=invoices.filter(i=>i.status==="sent"||i.status==="overdue").reduce((a,i)=>a+i.qty*i.rate,0);
-  $("outstanding").textContent=money(sum);
-  renderActivity();
- }
- function renderActivity(){
-  $("homeActivity").innerHTML=invoices.slice(0,3).map(i=>'<button class="activity" data-invoice="'+i.id+'"><span class="row-icon">'+(i.status==="paid"?"✓":"↗")+'</span><span class="activity-copy"><b>'+i.client+'</b><small>'+i.id+' · '+statusLabel(i.status)+'</small></span><span class="activity-value"><b>'+money(i.qty*i.rate)+'</b><small>'+i.date+'</small></span></button>').join("");
-  $("homeActivity").querySelectorAll("[data-invoice]").forEach(b=>b.addEventListener("click",()=>openInvoice(b.dataset.invoice)));
- }
- function renderClients(){
-  $("clientList").innerHTML=clients.map(c=>'<button class="client-row" data-client="'+c.name+'"><span class="person-avatar">'+c.initials+'</span><span class="client-copy"><b>'+c.name+'</b><small>'+c.role+'</small></span><span class="client-value"><b>'+money(c.balance)+'</b><small>'+(c.balance?"Outstanding":"Up to date")+'</small></span></button>').join("");
-  $("clientList").querySelectorAll("[data-client]").forEach(b=>b.addEventListener("click",()=>openClient(b.dataset.client)));
+  const rows=invoices.map(invoiceRow).join("");
+  $("invoiceRows").innerHTML=rows;
+  $("recentInvoiceRows").innerHTML=invoices.slice(0,3).map(i=>'<tr data-invoice="'+i.id+'"><td><span class="invoice-client"><i class="client-mark">'+i.initials+'</i>'+i.client+'</span></td><td>'+i.id+'</td><td>'+i.due+'</td><td><span class="status'+statusClass(i.status)+'">'+statusText(i.status)+'</span></td><td style="text-align:right">'+money(i.qty*i.rate)+'</td></tr>').join("");
+  const sum=invoices.filter(i=>i.status==="pending"||i.status==="overdue").reduce((a,i)=>a+i.qty*i.rate,0);
+  $("outstandingValue").textContent=money(sum);$("invoiceOutstanding").textContent=money(sum);
+  $("draftCount").textContent=invoices.filter(i=>i.status==="draft").length;
+  document.querySelectorAll("[data-invoice]").forEach(row=>row.onclick=()=>openInvoice(row.dataset.invoice));
  }
  function openInvoice(id){
-  selectedInvoice=invoices.find(i=>i.id===id);if(!selectedInvoice)return;
-  $("detailId").textContent="INVOICE · "+selectedInvoice.id;
-  $("detailAmount").textContent=money(selectedInvoice.qty*selectedInvoice.rate);
-  $("detailStatus").textContent=statusLabel(selectedInvoice.status)+" · Due "+new Date(selectedInvoice.due+"T12:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
-  $("detailClient").textContent=selectedInvoice.client;
-  $("detailDescription").textContent=selectedInvoice.description+" · "+selectedInvoice.qty+" × "+money(selectedInvoice.rate);
-  $("detailLine").textContent=money(selectedInvoice.qty*selectedInvoice.rate);
-  $("detailSubtotal").textContent=money(selectedInvoice.qty*selectedInvoice.rate);
-  $("detailTotal").textContent=money(selectedInvoice.qty*selectedInvoice.rate);
-  $("paidBtn").textContent=selectedInvoice.status==="paid"?"Paid ✓":"Mark as paid";
-  $("paidBtn").disabled=selectedInvoice.status==="paid";
-  show("invoiceDetailView");
+  const item=invoices.find(x=>x.id===id);if(!item)return;lastInvoice=item;
+  $("detailTitle").textContent=item.id;
+  $("detailBody").innerHTML='<div class="detail-row"><span>Client</span><b>'+item.client+'</b></div><div class="detail-row"><span>Description</span><b>'+item.description+'</b></div><div class="detail-row"><span>Due date</span><b>'+item.due+'</b></div><div class="detail-row"><span>Status</span><span class="status'+statusClass(item.status)+'">'+statusText(item.status)+'</span></div><div class="dialog-total"><span>Total amount</span><strong>'+money(item.qty*item.rate)+'</strong></div>';
+  $("markPaidBtn").hidden=item.status==="paid";$("detailDialog").showModal();
  }
- function openClient(name){
-  const c=clients.find(x=>x.name===name);if(!c)return;
-  selectedClient=name;$("profileName").textContent=c.name;$("profileAvatar").textContent=c.initials;$("clientDue").textContent=money(c.balance);
-  const related=invoices.filter(i=>i.client===name);
-  $("clientActivity").innerHTML=related.length?related.map(i=>'<button class="activity" data-invoice="'+i.id+'"><span class="row-icon">▤</span><span class="activity-copy"><b>'+i.description+'</b><small>'+i.id+' · '+statusLabel(i.status)+'</small></span><span class="activity-value"><b>'+money(i.qty*i.rate)+'</b></span></button>').join(""):'<div class="section-meta">No invoices yet.</div>';
-  $("clientActivity").querySelectorAll("[data-invoice]").forEach(b=>b.addEventListener("click",()=>openInvoice(b.dataset.invoice)));
-  $("chatTitle").textContent=c.name;
-  show("clientDetailView");
+ function renderClients(){
+  $("clientGrid").innerHTML=clients.map(c=>'<button class="client-card" data-client="'+c.name+'"><div class="client-card-top"><span class="client-mark">'+c.initials+'</span><span><b>'+c.name+'</b><small>'+c.role+'</small></span></div><div class="client-card-foot"><span>'+c.activity+'</span><strong>'+money(c.balance)+'</strong></div></button>').join("");
+  document.querySelectorAll("[data-client]").forEach(b=>b.addEventListener("click",()=>{const c=clients.find(x=>x.name===b.dataset.client);toast(c.name+" · "+c.email+" · "+money(c.balance)+" outstanding")}));
  }
- function openForm(mode){
-  invoiceMode=mode||"invoice";$("formTitle").textContent=invoiceMode==="quote"?"New quote":"New invoice";
-  $("formClient").value=selectedClient;$("formDescription").value=invoiceMode==="quote"?"Kitchen renovation quote":"Kitchen fitout";
-  $("formQty").value=1;$("formRate").value=invoiceMode==="quote"?1600:1400;$("formDue").value="2026-11-18";
-  $("formTotal").textContent=money(Number($("formQty").value)*Number($("formRate").value));
-  show("invoiceFormView");
+ function productCard(p,shop=false){return '<article class="product-card"><div class="product-art">'+p.icon+'</div><b>'+p.name+'</b><small>'+p.description+'</small><div class="product-price"><strong>'+money(p.price)+'</strong><button class="button soft" data-add="'+p.name+'">'+(shop?"Add to basket":"Add to invoice")+'</button></div></article>'}
+ function renderProducts(){$("catalogueGrid").innerHTML=products.map(p=>productCard(p)).join("");$("shopGrid").innerHTML=products.map(p=>productCard(p,true)).join("");document.querySelectorAll("[data-add]").forEach(b=>b.addEventListener("click",()=>{const p=products.find(x=>x.name===b.dataset.add);if($("shopView").classList.contains("active")){basket.push(p);renderBasket();toast(p.name+" added to basket")}else{$("invoiceDesc").value=p.name;$("invoiceRate").value=p.price;updateInvoiceTotal();$("invoiceDialog").showModal()}}))}
+ function renderPayments(){
+  $("paymentRequests").innerHTML=paymentRequests.map(p=>'<div class="activity-row"><span class="activity-mark">'+(p.status==="Paid"?"✓":"↗")+'</span><div><b>'+p.note+' · '+p.client+'</b><small>'+p.id+' · '+p.status+'</small></div><strong>'+money(p.amount)+'</strong></div>').join("");
  }
- function updateTotal(){
-  const q=Math.max(1,Number($("formQty").value)||1),r=Math.max(0,Number($("formRate").value)||0);
-  $("formTotal").textContent=money(q*r);
+ function renderBasket(){
+  const total=basket.reduce((s,x)=>s+x.price,0);$("basketTotal").textContent=money(total);$("basketCount").textContent=basket.length+" ITEMS";
  }
- function saveInvoice(status){
-  const item={id:"INV-"+(1239+invoices.length),client:$("formClient").value,description:$("formDescription").value||"Service",qty:Math.max(1,Number($("formQty").value)||1),rate:Math.max(0,Number($("formRate").value)||0),due:$("formDue").value||"2026-11-18",status:status,date:"Just now"};
-  invoices.unshift(item);renderInvoices();
-  toast(invoiceMode==="quote"?"Quote saved in this prototype":status==="draft"?"Draft saved":"Invoice prepared in this prototype");
-  if(invoiceMode==="invoice"&&status==="sent")openInvoice(item.id);else show("invoicesView");
+ function openDialog(id){$(id).showModal()}
+ function updateInvoiceTotal(){$("invoiceTotal").textContent=money((Number($("invoiceQty").value)||1)*(Number($("invoiceRate").value)||0))}
+ function createInvoice(e){
+  e.preventDefault();
+  const c=clients.find(x=>x.name===$("invoiceClient").value)||clients[0];
+  const item={id:"INV-"+(1239+invoices.length),client:c.name,initials:c.initials,description:$("invoiceDesc").value||"Service",date:"09 Nov 2026",due:$("invoiceDue").value||"18 Nov 2026",qty:Math.max(1,Number($("invoiceQty").value)||1),rate:Math.max(0,Number($("invoiceRate").value)||0),status:"pending"};
+  invoices.unshift(item);renderInvoices();$("invoiceDialog").close();$("invoiceForm").reset();toast(item.id+" prepared in this prototype");show("invoicesView");
  }
- function openPayment(){
-  $("paymentAmount").value="140";$("paymentLabel").textContent="£140.00";show("paymentView");
+ function createPayment(e){
+  e.preventDefault();const c=$("paymentClient").value,amount=Math.max(1,Number($("paymentAmount").value)||1);
+  const id="PAY-"+String(Date.now()).slice(-6);const note=$("paymentNote").value||"Payment request";
+  paymentRequests.unshift({id,client:c,amount,status:"Awaiting payment",note});renderPayments();$("paymentDialog").close();show("paymentsView");toast("Payment link generated · "+id);
  }
- function createPayment(){
-  const amount=Math.max(0,Number($("paymentAmount").value)||0);
-  const client=$("paymentClient").value;
-  const id="PAY-"+String(Date.now()).slice(-6);
-  $("successAmount").textContent=money(amount);$("successClient").textContent=client;
-  $("successMethod").textContent=selectedMethod;
-  $("successCopy").textContent="Payment request for "+client+" · "+money(amount);
-  $("linkValue").textContent="pay.uome.example/"+id.toLowerCase();
-  show("paymentSuccessView");
- }
- function openTool(tool){
-  $("toolTitle").textContent=tool.charAt(0).toUpperCase()+tool.slice(1);
-  const copy={
-   catalogue:'<div class="eyebrow">Your services</div><div class="section-head"><h2>Catalogue</h2><span class="section-meta">4 items</span></div><div class="card"><div class="detail-row"><span>Kitchen installation</span><b>£1,400</b></div><div class="detail-row"><span>Design consultation</span><b>£120 / hr</b></div><div class="detail-row"><span>Site survey</span><b>£160</b></div><div class="detail-row"><span>Photo and styling</span><b>£860</b></div></div>',
-   expenses:'<div class="eyebrow">Spending overview</div><div class="summary-row"><div class="summary"><small>This month</small><b>£2,450</b></div><div class="summary"><small>Pending</small><b>£186</b></div></div><div class="card"><div class="detail-row"><span>Materials</span><b>£1,460</b></div><div class="detail-row"><span>Travel</span><b>£520</b></div><div class="detail-row"><span>Software</span><b>£180</b></div><div class="detail-row"><span>Other</span><b>£290</b></div></div>',
-   scheduler:'<div class="eyebrow">Your diary</div><div class="section-head"><h2>Upcoming</h2><span class="section-meta">November</span></div><div class="card"><div class="detail-row"><span>Site visit · Jake Fryer</span><b>10:30</b></div><div class="detail-row"><span>Consultation · Sarah Evans</span><b>14:00</b></div><div class="detail-row"><span>Project review · Jen Aoki</span><b>Thu 11:00</b></div></div>',
-   team:'<div class="eyebrow">Your team</div><div class="section-head"><h2>Members</h2><span class="section-meta">2 active</span></div><div class="card"><div class="detail-row"><span>Jordan Lee</span><b>Owner</b></div><div class="detail-row"><span>Sarah Evans</span><b>Admin</b></div></div>',
-   shopfront:'<div class="eyebrow">Uome shopfront</div><div class="page-head"><div><h1>Your store</h1><p>Preview what customers can order</p></div><span class="pill paid">LIVE PREVIEW</span></div><div class="product-grid" id="productGrid"></div><div class="cart-bar"><div><b id="cartCount">0 items · £0.00</b><small>Customer basket</small></div><button id="checkoutCart">Checkout ↗</button></div>'
-  };
-  $("toolContent").innerHTML=copy[tool]||'<div class="card"><h3 style="margin:0">'+tool+'</h3><p class="section-meta">Business tool preview.</p></div>';
-  show("toolView");
-  if(tool==="shopfront")renderProducts();
- }
- function renderProducts(){
-  $("productGrid").innerHTML=products.map((p,i)=>'<article class="product"><div class="product-art">'+p.icon+'</div><b>'+p.name+'</b><small>'+p.desc+'</small><div class="product-foot"><strong>'+money(p.price)+'</strong><button class="add-product" data-add-product="'+i+'">＋</button></div></article>').join("");
-  $("productGrid").querySelectorAll("[data-add-product]").forEach(b=>b.addEventListener("click",()=>{cart.push(products[Number(b.dataset.addProduct)]);updateCart();toast(products[Number(b.dataset.addProduct)].name+" added")}));
-  $("checkoutCart").addEventListener("click",()=>toast(cart.length?"Checkout prepared · "+cart.length+" items":"Add an item to the basket first"));
-  updateCart();
- }
- function updateCart(){
-  const total=cart.reduce((s,p)=>s+p.price,0);
-  const c=$("cartCount");if(c)c.textContent=cart.length+" items · "+money(total);
- }
- document.querySelectorAll("[data-nav]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.nav)));
- document.querySelectorAll("[data-action]").forEach(b=>b.addEventListener("click",()=>{
-  const a=b.dataset.action;
-  if(a==="invoice"||a==="quote")openForm(a);
-  if(a==="payment")openPayment();
-  if(a==="shopfront")openTool("shopfront");
- }));
- document.querySelectorAll("[data-tool]").forEach(b=>b.addEventListener("click",()=>openTool(b.dataset.tool)));
- document.querySelectorAll("[data-back]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.back)));
- document.querySelectorAll("[data-filter]").forEach(b=>b.addEventListener("click",()=>{
-  filter=b.dataset.filter;document.querySelectorAll("[data-filter]").forEach(x=>x.classList.toggle("active",x===b));renderInvoices();
- }));
- document.querySelectorAll("[data-client]").forEach(b=>b.addEventListener("click",()=>openClient(b.dataset.client)));
- document.querySelectorAll("[data-period]").forEach(b=>b.addEventListener("click",()=>{
-  document.querySelectorAll("[data-period]").forEach(x=>x.classList.toggle("active",x===b));
-  const label=b.dataset.period==="6"?"Jan – Aug 2026":b.dataset.period==="3"?"Jun – Aug 2026":"Aug 2026";
-  $("rangeButton").textContent=label+"⌄";toast(label+" overview");
- }));
- $("rangeButton").addEventListener("click",()=>toast("Choose a chart range below"));
- $("balanceMore").addEventListener("click",()=>show("reportsView"));
- $("addBtn").addEventListener("click",()=>openForm("invoice"));
- $("searchBtn").addEventListener("click",()=>{show("clientsView");toast("Search your business contacts")});
- $("profileInvoice").addEventListener("click",()=>openForm("invoice"));
-  $("paidBtn").addEventListener("click",()=>{
-  if(!selectedInvoice)return;selectedInvoice.status="paid";renderInvoices();openInvoice(selectedInvoice.id);toast("Invoice marked as paid");
- });
- $("remindBtn").addEventListener("click",()=>toast("Reminder prepared for "+(selectedInvoice?.client||"your customer")));
- ["formQty","formRate"].forEach(id=>$(id).addEventListener("input",updateTotal));
- $("saveDraft").addEventListener("click",()=>saveInvoice("draft"));
- $("sendInvoice").addEventListener("click",()=>saveInvoice("sent"));
- $("paymentAmount").addEventListener("input",()=>$("paymentLabel").textContent=money($("paymentAmount").value));
- document.querySelectorAll("[data-method]").forEach(b=>b.addEventListener("click",()=>{
-  selectedMethod=b.dataset.method;document.querySelectorAll("[data-method]").forEach(x=>{x.classList.toggle("active",x===b);x.querySelector(".method-check").textContent=x===b?"●":"○"});
- }));
- $("createPayment").addEventListener("click",createPayment);
- $("copyLink").addEventListener("click",()=>{toast("Payment link copied in this prototype");$("copyLink").textContent="Copied ✓"});
- $("profileMessage").addEventListener("click",()=>{show("chatView");$("chatTitle").textContent=selectedClient});
- $("sendMessage").addEventListener("click",()=>{
-  const v=$("chatInput").value.trim();if(!v)return;
-  const m=document.createElement("div");m.className="message mine";m.textContent=v;
-  const time=document.createElement("small");time.textContent="Just now";m.appendChild(time);$("chatThread").appendChild(m);$("chatInput").value="";
-  toast("Message added to prototype conversation");
- });
- $("chatInput").addEventListener("keydown",e=>{if(e.key==="Enter")$("sendMessage").click()});
- $("formQty").addEventListener("input",updateTotal);
- $("formRate").addEventListener("input",updateTotal);
- renderInvoices();renderActivity();renderClients();updateTotal();
+ document.querySelectorAll("[data-view]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.view)));
+ document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.go)));
+ document.querySelectorAll("[data-action]").forEach(b=>b.addEventListener("click",()=>openDialog(b.dataset.action==="invoice"?"invoiceDialog":"paymentDialog")));
+ document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>$(b.dataset.close).close()));
+ $("invoiceForm").addEventListener("submit",createInvoice);
+ $("paymentForm").addEventListener("submit",createPayment);
+ ["invoiceQty","invoiceRate"].forEach(id=>$(id).addEventListener("input",updateInvoiceTotal));
+ $("markPaidBtn").addEventListener("click",()=>{if(!lastInvoice)return;lastInvoice.status="paid";renderInvoices();$("detailDialog").close();toast(lastInvoice.id+" marked as paid")});
+ $("invoiceFilter").addEventListener("change",()=>{const f=$("invoiceFilter").value;document.querySelectorAll("#invoiceRows tr").forEach(row=>{const i=invoices.find(x=>x.id===row.dataset.invoice);row.hidden=f!=="all"&&i.status!==f})});
+ $("addClient").addEventListener("click",()=>toast("New client form ready for prototype extension"));
+ $("addProduct").addEventListener("click",()=>toast("New catalogue item form ready for prototype extension"));
+ $("chartRange").addEventListener("change",()=>toast("Cash flow updated to "+$("chartRange").selectedOptions[0].text.toLowerCase()));
+ $("exportBtn").addEventListener("click",()=>toast("Business overview prepared for export"));
+ $("reportExport").addEventListener("click",()=>toast("CSV report prepared in this prototype"));
+ $("allActivity").addEventListener("click",()=>show("reportsView"));
+ $("notifyBtn").addEventListener("click",()=>toast("No new notifications"));
+ $("globalSearch").addEventListener("keydown",e=>{if(e.key==="Enter"){const q=$("globalSearch").value.toLowerCase();const c=clients.find(x=>x.name.toLowerCase().includes(q));const i=invoices.find(x=>x.id.toLowerCase().includes(q)||x.client.toLowerCase().includes(q));if(c){show("clientsView");toast("Found "+c.name)}else if(i){openInvoice(i.id)}else toast("No matching result") }});
+ $("quoteBtn").addEventListener("click",()=>toast("Quote editor selected"));
+ $("checkoutBtn").addEventListener("click",()=>toast(basket.length?"Checkout prepared · "+basket.length+" items":"Add an item to your basket first"));
+ renderInvoices();renderClients();renderProducts();renderPayments();renderBasket();updateInvoiceTotal();
 })();
 </script>
 </body>
