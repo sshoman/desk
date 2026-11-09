@@ -267,3 +267,138 @@ html:has(body.ux-portfolio-page),body.ux-portfolio-page{
  position:absolute;inset:0;display:block;width:100%;height:100%;min-height:0;
  border:0;margin:0;padding:0;background:#fff;
 }
+
+
+/* UX cover, a clear first page before the individual projects. */
+.ux-portfolio-page .portfolio-shell{
+ position:relative!important;display:block!important;width:100%!important;height:100vh!important;height:100dvh!important;
+ min-height:0!important;max-width:none!important;margin:0!important;padding:0!important;overflow:hidden!important;
+ background:
+  radial-gradient(ellipse at 78% 46%,rgba(194,160,111,.18),transparent 34%),
+  linear-gradient(135deg,#f8f4eb 0%,#eee5d6 100%)!important;
+}
+.ux-portfolio-page .ux-cover{
+ position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,42%);
+ align-items:center;gap:clamp(26px,6vw,92px);max-width:1500px;margin:0 auto;
+ padding:clamp(32px,7vw,104px);
+}
+.ux-portfolio-page .ux-cover-copy{position:relative;z-index:1;max-width:660px}
+.ux-portfolio-page .ux-cover-kicker{
+ margin:0 0 18px;color:#a27e48;font:700 10px/1.2 "DM Sans",Arial,sans-serif;
+ letter-spacing:.2em;text-transform:uppercase;
+}
+.ux-portfolio-page .ux-cover h1{
+ margin:0;color:#28231d;font:600 clamp(48px,7.5vw,108px)/.96 "Playfair Display",Georgia,serif;
+ letter-spacing:-.045em;
+}
+.ux-portfolio-page .ux-cover-subtitle{
+ max-width:430px;margin:24px 0 0;color:#6d6255;font:400 clamp(13px,1.25vw,17px)/1.7 "DM Sans",Arial,sans-serif;
+}
+.ux-portfolio-page .ux-cover-rule{
+ width:68px;height:1px;margin:30px 0 22px;background:#b8945b;
+}
+.ux-portfolio-page .ux-cover-action{
+ display:inline-flex;align-items:center;gap:13px;margin-top:4px;padding:0;border:0;
+ background:transparent;color:#50402c;font:700 10px/1.2 "DM Sans",Arial,sans-serif;
+ letter-spacing:.11em;text-transform:uppercase;cursor:pointer;
+}
+.ux-portfolio-page .ux-cover-action svg{
+ width:28px;height:28px;padding:7px;border:1px solid #b99a6a;border-radius:50%;
+ fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;
+ transition:transform .2s ease,background .2s ease;
+}
+.ux-portfolio-page .ux-cover-action:hover svg{transform:translateX(4px);background:#e6d8c2}
+.ux-portfolio-page .ux-cover-certificate{
+ display:block;width:100%;max-width:590px;justify-self:end;padding:12px;
+ border:1px solid #cdbb9e;background:#fffdf8;box-shadow:0 24px 60px rgba(55,39,20,.16),0 3px 10px rgba(55,39,20,.08);
+ cursor:zoom-in;transform:rotate(1.2deg);transition:transform .25s ease,box-shadow .25s ease;
+}
+.ux-portfolio-page .ux-cover-certificate:hover{
+ transform:rotate(0) translateY(-3px);box-shadow:0 30px 70px rgba(55,39,20,.2),0 3px 10px rgba(55,39,20,.08);
+}
+.ux-portfolio-page .ux-cover-certificate img{display:block;width:100%;height:auto;max-height:66vh;object-fit:contain;background:#fff}
+.ux-portfolio-page .ux-cover-footnote{
+ margin-top:32px;color:#9a8c79;font:600 9px/1.4 "DM Sans",Arial,sans-serif;
+ letter-spacing:.1em;text-transform:uppercase;
+}
+
+/* One visible sample at a time; the frame itself fills the whole screen. */
+.ux-portfolio-page .ux-project-viewer[hidden]{display:none!important}
+.ux-portfolio-page .ux-project-viewer{
+ position:absolute;inset:0;display:block;width:100%;height:100%;min-height:0;margin:0;padding:0;
+}
+.ux-portfolio-page .ux-project-media{
+ position:absolute;inset:0;display:block;width:100%;height:100%;min-height:0;margin:0;padding:0;
+ overflow:hidden;border:0;background:#fff;box-shadow:none;
+}
+.ux-portfolio-page .ux-project-media iframe{
+ position:absolute;inset:0;display:block;width:100%;height:100%;min-height:0;
+ margin:0;padding:0;border:0;background:#fff;
+}
+
+/* A small folio-loading scene in the site's walnut, parchment and brass palette. */
+.ux-portfolio-page .ux-loader[hidden]{display:none!important}
+.ux-portfolio-page .ux-loader{
+ position:absolute;z-index:40;inset:0;display:grid;place-items:center;
+ padding:24px;background:rgba(30,24,18,.94);color:#f4ead8;
+}
+.ux-portfolio-page .ux-loader-card{
+ width:min(390px,88vw);padding:38px 34px 32px;text-align:center;
+ border:1px solid rgba(207,174,119,.34);background:linear-gradient(145deg,#35291e,#241d16);
+ box-shadow:0 24px 70px rgba(0,0,0,.35);
+}
+.ux-portfolio-page .ux-folio-stack{
+ position:relative;width:76px;height:66px;margin:0 auto 24px;
+}
+.ux-portfolio-page .ux-folio-stack span{
+ position:absolute;left:15px;top:8px;width:48px;height:52px;border:1px solid #b9935c;
+ background:#f0e5d2;box-shadow:0 5px 12px #0004;
+}
+.ux-portfolio-page .ux-folio-stack span:nth-child(1){transform:translate(-9px,5px) rotate(-12deg);background:#b99560}
+.ux-portfolio-page .ux-folio-stack span:nth-child(2){transform:translate(5px,2px) rotate(8deg);background:#d8c29e}
+.ux-portfolio-page .ux-folio-stack span:nth-child(3){
+ display:grid;place-items:center;transform:translate(0,-4px);color:#493722;
+ font:600 24px/1 "Playfair Display",Georgia,serif;animation:ux-folio-arrive 1.5s ease-in-out infinite;
+}
+.ux-portfolio-page .ux-loader-kicker{
+ color:#c5a16d;font:700 9px/1.2 "DM Sans",Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;
+}
+.ux-portfolio-page .ux-loader-card h2{
+ margin:12px 0 6px;color:#f8efdf;font:500 25px/1.15 "Playfair Display",Georgia,serif;
+}
+.ux-portfolio-page .ux-loader-card p{
+ margin:0;color:#c9bda9;font:400 11px/1.5 "DM Sans",Arial,sans-serif;
+}
+.ux-portfolio-page .ux-loader-track{
+ height:2px;margin:25px 0 0;overflow:hidden;background:#594733;
+}
+.ux-portfolio-page .ux-loader-track span{
+ display:block;width:34%;height:100%;background:#d2af78;animation:ux-loading 1.25s ease-in-out infinite;
+}
+@keyframes ux-loading{0%{transform:translateX(-110%)}100%{transform:translateX(330%)}}
+@keyframes ux-folio-arrive{0%,100%{transform:translate(0,-4px) rotate(0)}50%{transform:translate(0,-11px) rotate(-2deg)}}
+
+@media(max-width:760px){
+ .ux-portfolio-page .ux-cover{
+  grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);align-content:center;gap:22px;
+  padding:26px 22px 32px;
+ }
+ .ux-portfolio-page .ux-cover-copy{max-width:100%}
+ .ux-portfolio-page .ux-cover-kicker{margin-bottom:12px;font-size:9px}
+ .ux-portfolio-page .ux-cover h1{font-size:clamp(44px,12vw,68px)}
+ .ux-portfolio-page .ux-cover-subtitle{margin-top:12px;font-size:12px;line-height:1.5}
+ .ux-portfolio-page .ux-cover-rule{margin:17px 0 12px}
+ .ux-portfolio-page .ux-cover-footnote{display:none}
+ .ux-portfolio-page .ux-cover-certificate{
+  width:min(72vw,440px);max-height:40vh;justify-self:center;align-self:start;padding:7px;
+ }
+ .ux-portfolio-page .ux-cover-certificate img{max-height:38vh}
+}
+@media(max-width:420px){
+ .ux-portfolio-page .ux-cover{padding:22px 18px 28px;gap:18px}
+ .ux-portfolio-page .ux-cover-certificate{width:min(78vw,380px)}
+}
+@media(prefers-reduced-motion:reduce){
+ .ux-portfolio-page .ux-folio-stack span:nth-child(3),.ux-portfolio-page .ux-loader-track span{animation:none}
+ .ux-portfolio-page .ux-cover-action svg,.ux-portfolio-page .ux-cover-certificate{transition:none}
+}
