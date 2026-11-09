@@ -182,7 +182,7 @@ h2{margin:0;color:#302e29;font:800 13px Manrope,sans-serif}
      <p class="chat-day">MONDAY · 18 NOVEMBER</p>
      <div class="invoice-intro"><h1>Morning, Sam.</h1></div>
      <div class="chat-stream" id="chatStream">
-      <div class="assistant-row"><span class="assistant-mark"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M5.5 7.3c0-1.5 1.7-2.4 4.5-2.4s4.5.9 4.5 2.4-1.7 2.4-4.5 2.7-4.5 1.2-4.5 2.7 1.7 2.4 4.5 2.4 4.5-.9 4.5-2.4"/></svg></span><div class="message"><div class="message-head"><svg viewBox="0 0 16 16"><path d="M8 1.5v13M3.5 5c0-1.2 1.5-2 4.5-2s4.5.8 4.5 2-1.5 2.2-4.5 2.5S3.5 8.4 3.5 9.7s1.5 2 4.5 2 4.5-.8 4.5-2"/></svg> uome</div><p><strong>£420 in</strong> Tuesday. <strong>£82 out</strong> Thursday.</p><button class="inline-link" data-chat-action="calendar">Open calendar <svg viewBox="0 0 16 16"><path d="M3 8h9M8 3l5 5-5 5"/></svg></button></div></div>
+      <div class="assistant-row"><span class="assistant-mark"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M5.5 7.3c0-1.5 1.7-2.4 4.5-2.4s4.5.9 4.5 2.4-1.7 2.4-4.5 2.7-4.5 1.2-4.5 2.7 1.7 2.4 4.5 2.4 4.5-.9 4.5-2.4"/></svg></span><div class="message"><div class="message-head"><svg viewBox="0 0 16 16"><path d="M8 1.5v13M3.5 5c0-1.2 1.5-2 4.5-2s4.5.8 4.5 2-1.5 2.2-4.5 2.5S3.5 8.4 3.5 9.7s1.5 2 4.5 2 4.5-.8 4.5-2"/></svg> uome</div><p><strong>£420 arrives Tuesday. <strong>£82 leaves</strong> Thursday.</p><button class="inline-link" data-chat-action="calendar">Open calendar <svg viewBox="0 0 16 16"><path d="M3 8h9M8 3l5 5-5 5"/></svg></button></div></div>
       <div class="user-row"><div class="user-message">What’s left after both?</div></div>
       <div class="assistant-row"><span class="assistant-mark"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M5.5 7.3c0-1.5 1.7-2.4 4.5-2.4s4.5.9 4.5 2.4-1.7 2.4-4.5 2.7-4.5 1.2-4.5 2.7 1.7 2.4 4.5 2.4 4.5-.9 4.5-2.4"/></svg></span><div class="message"><div class="message-head">uome</div><p>You'll have</p><div class="result-balance"><strong>£1,578</strong><span>left</span></div><div class="money-pair"><div class="money-chip in"><small>Ella · Tuesday</small><b>+ £420</b></div><div class="money-chip out"><small>Internet · Thursday</small><b>− £82</b></div></div></div></div>
      </div>
@@ -281,7 +281,7 @@ h2{margin:0;color:#302e29;font:800 13px Manrope,sans-serif}
    const d=i-first+1,inMonth=d>0&&d<=days,n=inMonth?d:(d<=0?prior+d:d-days),button=document.createElement("button");
    button.type="button";button.className="day"+(inMonth?"":" muted")+(inMonth&&n===selectedDay?" selected":"")+(inMonth&&year===2019&&month===10&&n===18?" today":"");
    const number=document.createElement("span");number.textContent=n;button.appendChild(number);
-   const marks=events.filter(e=>inMonth&&e.day===n),dots=document.createElement("span");dots.className="day-dots";
+   const marks=events.filter(e=>inMonth&&year===2019&&month===10&&e.day===n),dots=document.createElement("span");dots.className="day-dots";
    marks.forEach(e=>{const dot=document.createElement("i");if(e.direction==="out")dot.classList.add("out");dots.appendChild(dot)});button.appendChild(dots);
    if(inMonth)button.addEventListener("click",()=>{selectedDay=n;drawCalendar();drawEvents()});else button.disabled=true;
    grid.appendChild(button);
@@ -289,7 +289,7 @@ h2{margin:0;color:#302e29;font:800 13px Manrope,sans-serif}
  }
  function drawEvents(){
   const date=new Date(year,month,selectedDay);dateTitle.textContent=date.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
-  const list=events.filter(e=>e.day===selectedDay);eventCount.textContent=list.length+" "+(list.length===1?"event":"events");eventList.innerHTML="";
+  const list=year===2019&&month===10?events.filter(e=>e.day===selectedDay):[];eventCount.textContent=list.length+" "+(list.length===1?"event":"events");eventList.innerHTML="";
   if(!list.length){const empty=document.createElement("div");empty.className="event";empty.innerHTML='<span class="event-icon">·</span><div class="event-copy"><strong>Nothing due</strong></div>';eventList.appendChild(empty);return}
   list.forEach(e=>{
    const row=document.createElement("article");row.className="event";
