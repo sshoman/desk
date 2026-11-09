@@ -2,7 +2,7 @@ const cities=[
  {name:"Seoul",moment:"AI Conference",src:"./assets/travelkorea-photo.svg",alt:"Original Seoul travel artwork"},
  {name:"Amman",moment:"Startup Pitch",src:"./assets/travelamman-photo.svg",alt:"Original Amman travel artwork"},
  {name:"Copenhagen",moment:"LARP",src:"./assets/travelcopenhagen-photo.svg",alt:"Original Copenhagen travel artwork"},
- {name:"Kuala Lumpur",moment:"Book Tour",src:"./assets/travelkl-low.png",alt:"Original Kuala Lumpur travel artwork"},
+ {name:"Kuala Lumpur",moment:"Book Tour",src:"./assets/travelkl-original.svg",alt:"Original Kuala Lumpur travel artwork"},
  {name:"Tel Aviv",moment:"Pokémon Hunt",src:"./assets/traveltlv-photo.svg",alt:"Original Tel Aviv travel artwork"},
  {name:"Istanbul",moment:"Startup Istanbul",src:"./assets/travelistanbul-photo.svg",alt:"Original Istanbul travel artwork"}
 ];
