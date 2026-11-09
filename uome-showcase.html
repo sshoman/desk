@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f5f2ef">
+<title>UoMe · Split the bill, not the mood</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--ink:#24202a;--muted:#817b88;--line:#ece8ef;--paper:#fbf9fc;--violet:#7655d8;--violet2:#9d82ef;--lav:#f0ebff;--mint:#dff6ed;--green:#258b69;--coral:#ff806e;--yellow:#f8d987}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#f1edf3;color:var(--ink);font-family:'DM Sans',Arial,sans-serif}
+button{font:inherit;cursor:pointer}
+.app{max-width:1160px;min-height:650px;margin:22px auto;background:#fff;border:1px solid #e8e2ec;border-radius:23px;box-shadow:0 22px 65px #37204b16;overflow:hidden;display:grid;grid-template-columns:208px minmax(0,1fr)}
+.sidebar{background:#fcfbfd;border-right:1px solid var(--line);padding:26px 17px 20px;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:10px;padding:1px 10px 30px;font:800 24px Manrope,sans-serif;letter-spacing:-1.5px}
+.brand-mark{width:31px;height:31px;border-radius:11px;background:linear-gradient(145deg,#a78bf6,#6d4bd1);position:relative;box-shadow:0 5px 13px #7655d840}
+.brand-mark:before,.brand-mark:after{content:"";position:absolute;background:white;border-radius:9px;transform:rotate(-36deg)}
+.brand-mark:before{width:5px;height:20px;left:10px;top:6px}
+.brand-mark:after{width:5px;height:14px;left:18px;top:10px;opacity:.8}
+.nav-label{padding:0 11px;margin:13px 0 9px;color:#aaa4ae;font:700 9px Manrope,sans-serif;letter-spacing:.17em}
+.nav{display:grid;gap:5px}
+.nav button{display:flex;align-items:center;gap:11px;width:100%;padding:10px 11px;border:0;border-radius:11px;background:transparent;color:#827b89;text-align:left;font-size:12px;font-weight:600}
+.nav button .ico{width:18px;height:18px;display:grid;place-items:center;font-size:15px}
+.nav button.active{background:#f0ebff;color:#6e50c7}
+.side-bottom{margin-top:auto;padding:13px 11px;border-radius:14px;background:#f7f3ff}
+.side-bottom b{display:block;font:700 11px Manrope,sans-serif}
+.side-bottom span{display:block;margin-top:5px;color:#8e8797;font-size:10px;line-height:1.5}
+.profile{display:flex;align-items:center;gap:9px;margin:19px 8px 0}
+.avatar{width:29px;height:29px;display:grid;place-items:center;border-radius:50%;font:800 10px Manrope,sans-serif;color:#fff;background:#4e4267;flex:none}
+.profile b{display:block;font-size:10px}.profile small{display:block;color:#aaa3ae;font-size:9px;margin-top:2px}
+.workspace{padding:27px 31px 34px;min-width:0;background:radial-gradient(ellipse at 100% 0%,#f9f6ff 0,transparent 32%),#fff}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:27px}
+.crumb{font:700 10px Manrope,sans-serif;letter-spacing:.15em;color:#a49caa;text-transform:uppercase}
+.top-actions{display:flex;align-items:center;gap:9px}
+.icon-btn{width:32px;height:32px;border:1px solid var(--line);background:#fff;border-radius:50%;color:#82798b}
+.top-user{display:flex;align-items:center;gap:8px;margin-left:5px}
+.top-user .avatar{width:30px;height:30px;background:#e28a72}
+.top-user span{font-size:10px;font-weight:700}
+.heading{display:flex;align-items:flex-end;justify-content:space-between;gap:15px;margin-bottom:23px}
+.kicker{color:var(--violet);font:800 9px Manrope,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+h1{margin:7px 0 5px;font:800 clamp(23px,3vw,31px)/1.12 Manrope,sans-serif;letter-spacing:-1.1px}
+.heading p{margin:0;color:#918b98;font-size:11px}
+.primary{border:0;border-radius:10px;padding:11px 15px;background:linear-gradient(135deg,#8b6ce5,#6c4bc9);color:#fff;font:700 11px Manrope,sans-serif;box-shadow:0 7px 17px #7655d82e;white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:20px}
+.stat{padding:15px 16px 14px;border:1px solid var(--line);border-radius:14px;background:#fff;min-width:0}
+.stat-top{display:flex;justify-content:space-between;align-items:center;color:#96909d;font-size:10px}
+.stat-icon{width:25px;height:25px;display:grid;place-items:center;border-radius:8px;background:#f2edff;color:#7b5bd3}
+.stat strong{display:block;margin-top:8px;font:800 21px Manrope,sans-serif;letter-spacing:-.8px}
+.stat small{display:block;margin-top:3px;color:#aaa3af;font-size:9px}
+.positive{color:var(--green)!important}
+.content-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(230px,.85fr);gap:14px;align-items:start}
+.panel{border:1px solid var(--line);border-radius:15px;background:#fff;overflow:hidden}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 17px;border-bottom:1px solid var(--line)}
+.panel-head h2{margin:0;font:800 12px Manrope,sans-serif}
+.panel-head small{display:block;color:#aaa3af;font-size:9px;margin-top:3px}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:20px;background:#e7f7ef;color:#268562;font:800 8px Manrope,sans-serif;letter-spacing:.07em;white-space:nowrap}
+.badge:before{content:"";width:5px;height:5px;border-radius:50%;background:#35b184}
+.receipt-meta{display:flex;align-items:center;gap:11px;padding:14px 17px 11px}
+.restaurant-icon{width:39px;height:39px;border-radius:12px;background:linear-gradient(145deg,#ffe0d2,#ffc8ae);display:grid;place-items:center;font-size:20px}
+.restaurant-meta b{display:block;font:800 12px Manrope,sans-serif}
+.restaurant-meta small{display:block;margin-top:3px;color:#a29ba7;font-size:9px}
+.receipt-mark{margin-left:auto;text-align:right;color:#b2abb6;font:700 8px Manrope,sans-serif;letter-spacing:.1em}
+.receipt-mark strong{display:block;color:#7b7182;font-size:12px;letter-spacing:0;margin-top:4px}
+.receipt-table{padding:0 17px 10px}
+.table-head{display:grid;grid-template-columns:minmax(0,1fr) 60px 120px;gap:8px;padding:8px 0;border-top:1px dashed #e7e1eb;border-bottom:1px solid #f0ecf2;color:#aaa3ae;font:700 8px Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.item{display:grid;grid-template-columns:minmax(0,1fr) 60px 120px;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #f5f2f6}
+.item-info b{display:block;font-size:10px;font-weight:700}
+.item-info small{display:block;margin-top:3px;color:#a49daa;font-size:8px}
+.price{text-align:right;font:700 10px Manrope,sans-serif}
+.assign{display:flex;justify-content:flex-end;gap:4px}
+.person-toggle{width:23px;height:23px;border:1px solid #e6e0eb;border-radius:50%;background:#faf9fb;color:#90899a;font:800 8px Manrope,sans-serif;padding:0;opacity:.48}
+.person-toggle.on{opacity:1;border-color:transparent;color:#fff;box-shadow:0 2px 5px #00000010}
+.person-toggle[data-person="sam"].on{background:#7660c6}
+.person-toggle[data-person="nina"].on{background:#e88c76}
+.person-toggle[data-person="theo"].on{background:#57a88f}
+.receipt-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 17px 14px;background:#fcfbfd;border-top:1px solid #f0ecf2}
+.subtotal{font-size:9px;color:#918a97}.subtotal b{display:block;color:#38313f;font:800 13px Manrope,sans-serif;margin-top:3px}
+.method{display:flex;align-items:center;gap:3px;padding:3px;border-radius:9px;background:#f0edf3}
+.method button{border:0;border-radius:7px;padding:7px 8px;background:transparent;color:#958d9c;font:700 8px Manrope,sans-serif}
+.method button.active{background:#fff;color:#6d50c8;box-shadow:0 1px 4px #34213b12}
+.side-panel{display:grid;gap:13px}
+.share-panel{padding:16px}
+.share-panel h2{margin:0;font:800 12px Manrope,sans-serif}
+.share-panel .hint{margin:4px 0 13px;color:#a59eaa;font-size:9px}
+.your-total{padding:13px;border-radius:12px;background:linear-gradient(135deg,#f2edff,#faf7ff);border:1px solid #ece5ff}
+.your-total span{color:#8c7eac;font-size:9px}
+.your-total strong{display:block;margin-top:4px;color:#6446c1;font:800 25px Manrope,sans-serif;letter-spacing:-1px}
+.your-total small{display:block;color:#9c92af;font-size:8px;margin-top:3px}
+.people{display:grid;gap:11px;margin-top:14px}
+.person-row{display:flex;align-items:center;gap:8px}
+.person-row .avatar{width:27px;height:27px;font-size:8px}
+.person-desc{min-width:0;flex:1}
+.person-desc b{display:block;font-size:9px}
+.person-desc small{display:block;margin-top:2px;color:#aaa3af;font-size:8px}
+.person-amount{text-align:right}
+.person-amount b{display:block;font:800 10px Manrope,sans-serif}
+.person-amount small{display:block;margin-top:3px;color:#a9a2ad;font-size:8px}
+.progress{height:4px;margin-top:5px;border-radius:4px;background:#f0edf2;overflow:hidden}
+.progress i{display:block;height:100%;border-radius:4px;width:40%;background:#8b72da}
+.people-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:11px;color:#a19aa6;font-size:8px}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:4px}
+.request{width:100%;margin-top:15px;padding:10px;border:0;border-radius:9px;background:#292330;color:#fff;font:700 9px Manrope,sans-serif}
+.request small{display:block;margin-top:3px;color:#b6adbf;font-size:8px;font-weight:500}
+.live{padding:14px 15px;background:#f9f7ff;border:1px solid #eee8ff;border-radius:14px}
+.live-top{display:flex;align-items:center;justify-content:space-between}
+.live-top b{font:800 10px Manrope,sans-serif}
+.live-top span{color:#36a27d;font:800 8px Manrope,sans-serif}
+.live-avatars{display:flex;align-items:center;margin-top:10px}
+.live-avatars .avatar{width:25px;height:25px;border:2px solid #f9f7ff;margin-right:-5px}
+.live p{margin:8px 0 0;color:#9e96a8;font-size:8px;line-height:1.5}
+.tip-row{display:flex;align-items:center;gap:6px;padding:10px 17px 13px;border-top:1px solid #f3eff4}
+.tip-row span{margin-right:auto;color:#a19aa6;font-size:9px}
+.tip-row button{border:1px solid #ece7ef;border-radius:7px;background:#fff;color:#8f8796;padding:6px 9px;font-size:8px}
+.tip-row button.active{color:#6d50c8;border-color:#cbbcf3;background:#f6f2ff;font-weight:700}
+.modal-backdrop{position:fixed;inset:0;display:none;place-items:center;background:#241b30a8;backdrop-filter:blur(6px);padding:20px;z-index:20}
+.modal-backdrop.open{display:grid}
+.modal{width:min(360px,100%);padding:23px;border-radius:18px;background:#fff;box-shadow:0 25px 80px #10081955;text-align:center}
+.qr{width:112px;height:112px;margin:15px auto;border:9px solid #fff;border-radius:12px;background:repeating-conic-gradient(#30263b 0 25%,#fff 0 50%) 0/18px 18px;outline:1px solid #e8e2eb}
+.modal h3{margin:0;font:800 17px Manrope,sans-serif}
+.modal p{color:#948b9b;font-size:10px;line-height:1.6}
+.share-link{display:flex;align-items:center;gap:8px;padding:9px;border:1px solid #eee8f0;border-radius:9px;text-align:left;color:#777080;font-size:9px}
+.share-link button{margin-left:auto;border:0;border-radius:7px;padding:7px 9px;background:#f0ebff;color:#6d50c8;font-size:8px;font-weight:700}
+.close{margin-top:12px;border:0;background:transparent;color:#9d95a3;font-size:10px}
+.toast{position:fixed;bottom:18px;left:50%;z-index:30;transform:translate(-50%,20px);opacity:0;pointer-events:none;padding:11px 15px;border-radius:10px;background:#28222f;color:#fff;font-size:10px;box-shadow:0 12px 35px #0002;transition:.2s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.note{padding:10px 13px;color:#aaa3af;font-size:8px;line-height:1.5;text-align:center}
+@media(max-width:850px){.app{margin:0;border-radius:0;grid-template-columns:1fr;min-height:100vh}.sidebar{padding:12px 14px;border-right:0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;align-items:center}.brand{padding:0}.nav-label,.side-bottom,.profile{display:none}.nav{display:flex;justify-content:flex-end}.nav button{width:auto;padding:8px}.nav button .ico{display:none}.workspace{padding:22px 18px 30px}}
+@media(max-width:610px){.workspace{padding:17px 12px 25px}.topbar{margin-bottom:20px}.heading{align-items:flex-start;flex-direction:column}.stats{gap:7px}.stat{padding:11px 10px}.stat strong{font-size:17px}.stat-top{font-size:8px}.content-grid{grid-template-columns:1fr}.table-head,.item{grid-template-columns:minmax(0,1fr) 48px 90px;gap:5px}.item-info b{font-size:9px}.person-toggle{width:21px;height:21px}.panel-head{padding:13px}.receipt-meta{padding:12px}.receipt-table{padding:0 12px 8px}.receipt-foot{align-items:flex-start;flex-direction:column;padding:11px 12px}.tip-row{padding:9px 12px}.method{width:100%}.method button{flex:1}.side-panel{grid-template-columns:1fr}.crumb{font-size:8px}.top-user span{display:none}.nav button{font-size:9px;padding:7px 8px}.nav{gap:1px}.brand{font-size:20px}.brand-mark{width:27px;height:27px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-mark"></span>UoMe</div>
+  <div>
+    <div class="nav-label">YOUR SPACE</div>
+    <nav class="nav" aria-label="Main navigation">
+      <button class="active"><span class="ico">⌂</span>Overview</button>
+      <button id="nav-split"><span class="ico">◫</span>Split a bill</button>
+      <button id="nav-friends"><span class="ico">♧</span>Friends</button>
+      <button id="nav-activity"><span class="ico">↗</span>Activity</button>
+    </nav>
+  </div>
+  <div class="side-bottom"><b>Good bills. Better nights.</b><span>Keep the money part simple, so the rest stays fun.</span></div>
+  <div class="profile"><span class="avatar">S</span><div><b>Sam Shoman</b><small>Personal account</small></div></div>
+</aside>
+<main class="workspace">
+  <div class="topbar">
+    <div class="crumb">YOUR OVERVIEW &nbsp; / &nbsp; SPLIT SESSION</div>
+    <div class="top-actions"><button class="icon-btn" aria-label="Help">?</button><button class="icon-btn" aria-label="Notifications">♧</button><div class="top-user"><span class="avatar">S</span><span>Sam</span></div></div>
+  </div>
+  <section class="heading">
+    <div><div class="kicker">THURSDAY NIGHT · LISBON</div><h1>Dinner's sorted.<br>Let's sort the bill.</h1><p>One receipt, three friends, no awkward maths.</p></div>
+    <button class="primary" id="invite-open">＋ Invite friends</button>
+  </section>
+  <section class="stats" aria-label="Bill overview">
+    <article class="stat"><div class="stat-top">GROUP SPEND <span class="stat-icon">↗</span></div><strong id="group-total">€86.40</strong><small>At Luca's Trattoria</small></article>
+    <article class="stat"><div class="stat-top">YOUR SHARE <span class="stat-icon">◒</span></div><strong id="your-stat">€31.18</strong><small class="positive">Ready to settle</small></article>
+    <article class="stat"><div class="stat-top">FRIENDS IN SESSION <span class="stat-icon">♧</span></div><strong>3 people</strong><small>Everyone is connected</small></article>
+  </section>
+  <section class="content-grid">
+    <article class="panel">
+      <div class="panel-head"><div><h2>Receipt breakdown</h2><small>Review the items and decide who had what.</small></div><span class="badge">RECEIPT SCANNED</span></div>
+      <div class="receipt-meta">
+        <div class="restaurant-icon">🍝</div><div class="restaurant-meta"><b>Luca's Trattoria</b><small>Lisbon · Today, 8:42 PM · Table 06</small></div>
+        <div class="receipt-mark">SCAN MATCH<strong>98% ✓</strong></div>
+      </div>
+      <div class="receipt-table">
+        <div class="table-head"><span>ITEM / TAP PEOPLE TO ASSIGN</span><span style="text-align:right">PRICE</span><span style="text-align:right">WHO HAD IT</span></div>
+        <div id="receipt-items"></div>
+      </div>
+      <div class="receipt-foot">
+        <div class="subtotal">ITEMS SUBTOTAL<b id="subtotal">€73.00</b></div>
+        <div class="method" role="group" aria-label="Split method">
+          <button data-method="item" class="active">By item</button><button data-method="even">Even split</button><button data-method="percent">By %</button>
+        </div>
+      </div>
+      <div class="tip-row"><span>Tip for the table</span><button data-tip="0">No tip</button><button data-tip="10">10%</button><button data-tip="15" class="active">15%</button><button data-tip="20">20%</button></div>
+    </article>
+    <aside class="side-panel">
+      <article class="panel share-panel">
+        <h2>Who's paying what</h2><p class="hint" id="method-hint">Each person pays for their items.</p>
+        <div class="your-total"><span>YOUR PART · SAM</span><strong id="your-total">€31.18</strong><small>Includes tax and tip</small></div>
+        <div class="people" id="people"></div>
+        <div class="people-legend"><span><i class="dot" style="background:#7660c6"></i>Sam</span><span><i class="dot" style="background:#e88c76"></i>Nina</span><span><i class="dot" style="background:#57a88f"></i>Theo</span></div>
+        <button class="request" id="request-payments">Send payment requests <small id="request-caption">Ask Nina and Theo to settle their share</small></button>
+      </article>
+      <article class="live">
+        <div class="live-top"><b>Live split session</b><span>● LIVE NOW</span></div>
+        <div class="live-avatars"><span class="avatar" style="background:#7660c6">S</span><span class="avatar" style="background:#e88c76">N</span><span class="avatar" style="background:#57a88f">T</span></div>
+        <p>Everyone can join from a link. No app download needed for guests.</p>
+      </article>
+      <div class="note">Portfolio prototype. The actions are simulated and no real payment is sent.</div>
+    </aside>
+  </section>
+</main>
+</div>
+<div class="modal-backdrop" id="invite-modal" role="dialog" aria-modal="true" aria-labelledby="invite-title">
+  <div class="modal"><h3 id="invite-title">Bring everyone to the table</h3><p>Share this session. Friends can join, choose their items and see their share live.</p><div class="qr" aria-label="Decorative QR code preview"></div><div class="share-link"><span>uome.app/s/luca-4821</span><button id="copy-link">Copy link</button></div><button class="close" id="invite-close">Close</button></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const members=[
+ {id:"sam",name:"Sam",initial:"S",color:"#7660c6",status:"Your share"},
+ {id:"nina",name:"Nina",initial:"N",color:"#e88c76",status:"Waiting to pay"},
+ {id:"theo",name:"Theo",initial:"T",color:"#57a88f",status:"Waiting to pay"}
+];
+const items=[
+ {id:1,name:"Burrata & warm focaccia",detail:"Starter · Shared plate",price:12.5,assigned:["sam","nina","theo"]},
+ {id:2,name:"Margherita pizza",detail:"Main · Thin crust",price:15,assigned:["sam","nina"]},
+ {id:3,name:"Truffle mushroom pasta",detail:"Main · Fresh tagliatelle",price:18.5,assigned:["nina"]},
+ {id:4,name:"Grilled sea bass",detail:"Main · Lemon butter",price:19,assigned:["sam"]},
+ {id:5,name:"Tiramisu",detail:"Dessert · Shared plate",price:8,assigned:["sam","theo"]}
+];
+let method="item",tip=15,paid=false;
+const money=n=>"€"+n.toFixed(2);
+const receiptItems=document.getElementById("receipt-items");
+const people=document.getElementById("people");
+let toastTimer;
+function showToast(message){const t=document.getElementById("toast");t.textContent=message;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2500)}
+function renderItems(){
+ receiptItems.innerHTML=items.map(item=>'<div class="item"><div class="item-info"><b>'+item.name+'</b><small>'+item.detail+'</small></div><div class="price">'+money(item.price)+'</div><div class="assign">'+members.map(m=>'<button class="person-toggle '+(item.assigned.includes(m.id)?"on":"")+'" data-person="'+m.id+'" data-item="'+item.id+'" aria-label="'+(item.assigned.includes(m.id)?"Remove ":"Assign ")+m.name+' from '+item.name+'" aria-pressed="'+item.assigned.includes(m.id)+'">'+m.initial+'</button>').join("")+'</div></div>').join("");
+ receiptItems.querySelectorAll(".person-toggle").forEach(button=>button.addEventListener("click",()=>{
+   if(method!=="item"){showToast("Switch to By item to change assignments.");return}
+   const item=items.find(x=>x.id===Number(button.dataset.item)),id=button.dataset.person;
+   if(item.assigned.includes(id)){if(item.assigned.length===1){showToast("At least one person needs this item.");return}item.assigned=item.assigned.filter(x=>x!==id)}
+   else item.assigned.push(id);
+   render();
+ }));
+}
+function calculate(){
+ const subtotal=items.reduce((sum,i)=>sum+i.price,0),tax=5.4,tipAmount=subtotal*tip/100,total=subtotal+tax+tipAmount;
+ let shares={sam:0,nina:0,theo:0};
+ if(method==="item"){items.forEach(item=>{item.assigned.forEach(id=>shares[id]+=item.price/item.assigned.length)})}
+ if(method==="even"){members.forEach(m=>shares[m.id]=subtotal/3)}
+ if(method==="percent"){shares={sam:subtotal*.4,nina:subtotal*.35,theo:subtotal*.25}}
+ members.forEach(m=>shares[m.id]=shares[m.id]+(shares[m.id]/subtotal)*(tax+tipAmount));
+ return {subtotal,total,shares,tax,tipAmount};
+}
+function render(){
+ const calc=calculate();
+ document.getElementById("group-total").textContent=money(calc.total);
+ document.getElementById("your-stat").textContent=money(calc.shares.sam);
+ document.getElementById("your-total").textContent=money(calc.shares.sam);
+ document.getElementById("subtotal").textContent=money(calc.subtotal);
+ document.getElementById("method-hint").textContent=method==="item"?"Each person pays for their items.":method==="even"?"The bill is shared equally between everyone.":"The bill is split by the selected percentages.";
+ people.innerHTML=members.map(m=>{
+   const status=m.id==="sam"?"Your share":paid?"Marked as paid":"Waiting to pay";
+   const pct=calc.shares[m.id]/calc.total*100;
+   return '<div class="person-row"><span class="avatar" style="background:'+m.color+'">'+m.initial+'</span><div class="person-desc"><b>'+m.name+'</b><small>'+status+'</small><div class="progress"><i style="width:'+pct+'%;background:'+m.color+'"></i></div></div><div class="person-amount"><b>'+money(calc.shares[m.id])+'</b><small>'+Math.round(pct)+'% of bill</small></div></div>';
+ }).join("");
+ document.getElementById("request-caption").textContent=paid?"Demo settlement recorded":"Ask Nina and Theo to settle their share";
+ document.querySelectorAll("[data-method]").forEach(b=>b.classList.toggle("active",b.dataset.method===method));
+ document.querySelectorAll("[data-tip]").forEach(b=>b.classList.toggle("active",Number(b.dataset.tip)===tip));
+ renderItems();
+}
+document.querySelectorAll("[data-method]").forEach(b=>b.addEventListener("click",()=>{method=b.dataset.method;render()}));
+document.querySelectorAll("[data-tip]").forEach(b=>b.addEventListener("click",()=>{tip=Number(b.dataset.tip);render()}));
+document.getElementById("request-payments").addEventListener("click",()=>{paid=!paid;render();showToast(paid?"Demo payments marked as received.":"Payment requests are ready to send.")});
+const modal=document.getElementById("invite-modal");
+document.getElementById("invite-open").addEventListener("click",()=>modal.classList.add("open"));
+document.getElementById("invite-close").addEventListener("click",()=>modal.classList.remove("open"));
+modal.addEventListener("click",e=>{if(e.target===modal)modal.classList.remove("open")});
+document.getElementById("copy-link").addEventListener("click",async()=>{try{await navigator.clipboard.writeText("https://uome.app/s/luca-4821");showToast("Session link copied.")}catch(e){showToast("Demo link: uome.app/s/luca-4821")}});
+document.getElementById("nav-split").addEventListener("click",()=>showToast("You're already in the split session."));
+document.getElementById("nav-friends").addEventListener("click",()=>modal.classList.add("open"));
+document.getElementById("nav-activity").addEventListener("click",()=>showToast("Recent activity: receipt scanned at 8:42 PM."));
+render();
+</script>
+</body>
+</html>
