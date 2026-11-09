@@ -107,6 +107,7 @@
    const handler=event=>{
     if(Math.abs(event.deltaY)<40||wheelLocked)return;
     const appScroller=event.target&&event.target.closest?event.target.closest(".uome-app-scroll"):null;
+    if(event.target&&event.target.closest&&event.target.closest(".phone")&&!appScroller)return;
     const scroller=appScroller||(doc.scrollingElement||doc.documentElement);
     const viewport=appScroller?appScroller.clientHeight:win.innerHeight;
     const atTop=scroller.scrollTop<=4;
