@@ -2408,3 +2408,9 @@ img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
  .portfolio-toolbar{top:10px!important;right:10px!important;left:auto!important;gap:6px!important}
  .portfolio-control{width:29px!important;height:29px!important;min-width:29px!important;min-height:29px!important}
 }
+
+
+/* Tel Aviv: the cut is baked into the artwork source, not created by the frame. */
+.wall-gallery .travel-frame--telaviv .travel-photo{
+ object-fit:contain!important;object-position:center!important;transform:none!important;
+}
