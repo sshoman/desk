@@ -85,14 +85,14 @@ scene.innerHTML=`
     <h1 class="screen-title">A few things I've built.</h1>
    </div>
    <nav class="screen-links" aria-label="Open a portfolio">
-    <button type="button" data-portfolio="/ux" data-title="UX">
+    <button type="button" data-portfolio="/ux" data-title="UX Portfolio">
      <span class="screen-number">01</span>
-     <span class="screen-copy"><b>UX</b></span>
+     <span class="screen-copy"><b>UX Portfolio</b></span>
      <span class="screen-arrow">↗</span>
     </button>
-    <button type="button" data-portfolio="/mar" data-title="MAR">
+    <button type="button" data-portfolio="/mar" data-title="Marketing Portfolio">
      <span class="screen-number">02</span>
-     <span class="screen-copy"><b>MAR</b></span>
+     <span class="screen-copy"><b>Marketing Portfolio</b></span>
      <span class="screen-arrow">↗</span>
     </button>
    </nav>
@@ -162,6 +162,8 @@ const portfolioPrev=scene.querySelector("#portfolio-prev");
 const portfolioNext=scene.querySelector("#portfolio-next");
 const portfolioClose=scene.querySelector("#portfolio-close");
 let lastTrigger=null;
+let activePortfolioPath=null;
+const deskAddress=window.location.pathname+window.location.search+window.location.hash;
 
 function navigatePortfolio(direction){
  if(modal.hidden)return;
@@ -178,8 +180,13 @@ window.addEventListener("message",event=>{
  portfolioNext.disabled=!event.data.canNext;
 });
 
-function openPortfolio(trigger){
+function openPortfolio(trigger,fromHistory=false){
  lastTrigger=trigger;
+ const portfolioPath=new URL(trigger.dataset.portfolio,window.location.origin).pathname;
+ if(!fromHistory&&window.location.pathname!==portfolioPath){
+  window.history.pushState({deskPortfolioPath:portfolioPath},"",portfolioPath);
+ }
+ activePortfolioPath=portfolioPath;
  modalTitle.textContent=trigger.dataset.title||"Portfolio";
  modal.hidden=false;
  modal.setAttribute("aria-hidden","false");
@@ -197,15 +204,25 @@ function openPortfolio(trigger){
  modalFrame.src=new URL(trigger.dataset.portfolio,window.location.href).href;
  requestAnimationFrame(()=>modalWindow.focus());
 }
-function closePortfolio(){
+function closePortfolio(fromHistory=false){
  if(modal.hidden)return;
  modal.hidden=true;
  modal.setAttribute("aria-hidden","true");
  modalFrame.src="about:blank";
  portfolioPrev.disabled=true;
  portfolioNext.disabled=true;
+ if(!fromHistory&&activePortfolioPath&&window.location.pathname===activePortfolioPath){
+  window.history.replaceState({desk:true},"",deskAddress||"/");
+ }
+ activePortfolioPath=null;
  lastTrigger?.focus();
 }
+
+window.addEventListener("popstate",()=>{
+ const trigger=[...scene.querySelectorAll("[data-portfolio]")].find(button=>new URL(button.dataset.portfolio,window.location.origin).pathname===window.location.pathname);
+ if(trigger){openPortfolio(trigger,true);return;}
+ if(!modal.hidden)closePortfolio(true);
+});
 
 /* Any click on the shade outside the portfolio window dismisses the overlay. */
 modal.addEventListener("click",event=>{
