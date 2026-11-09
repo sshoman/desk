@@ -60,7 +60,7 @@
 (function(){
  const projects=[
   {title:"Junior",src:"./junior-showcase.html"},
-  {title:"UoMe · Personal Finance Chatbot",src:"./uome-demo.html?v=uome-design-export-20261109"},
+  {title:"UoMe · Personal Finance Chatbot",src:"./uome-demo.html?v=uome-mobile-20261109b"},
   {title:"Xntry",src:"https://xntry.pages.dev/"},
   {title:"Outbound Fox",src:"https://outboundfox.pages.dev/"}
  ];
@@ -106,9 +106,11 @@
    const doc=frame.contentDocument;
    const handler=event=>{
     if(Math.abs(event.deltaY)<40||wheelLocked)return;
-    const scroller=doc.scrollingElement||doc.documentElement;
+    const appScroller=event.target&&event.target.closest?event.target.closest(".uome-app-scroll"):null;
+    const scroller=appScroller||(doc.scrollingElement||doc.documentElement);
+    const viewport=appScroller?appScroller.clientHeight:win.innerHeight;
     const atTop=scroller.scrollTop<=4;
-    const atBottom=scroller.scrollTop+win.innerHeight>=scroller.scrollHeight-4;
+    const atBottom=scroller.scrollTop+viewport>=scroller.scrollHeight-4;
     if(event.deltaY>0&&!atBottom)return;
     if(event.deltaY<0&&!atTop)return;
     event.preventDefault();
