@@ -4,160 +4,270 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#b58b43">
-<title>UoMe | personal finance, in conversation</title>
+<title>UoMe | personal finance chatbot</title>
 <base href="/">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#b58b43;--gold-dark:#8f6b2c;--ink:#292823;--muted:#9b978e;--line:#e9e4da;--paper:#fbfaf7;--white:#fff;--green:#738a70;--red:#b87762}
+:root{--gold:#b58b43;--gold-dark:#8f6b2c;--gold-pale:#f5efdf;--ink:#292823;--muted:#a29b8e;--line:#e9e4da;--paper:#fbfaf7;--green:#758b70;--red:#b97862}
 *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden}
 body{font-family:"DM Sans",Arial,sans-serif;color:var(--ink);background:#d8d4ca}button,input{font:inherit}button{cursor:pointer}
-.stage{width:100%;height:100%;display:grid;place-items:center;overflow:hidden;padding:14px;background:radial-gradient(ellipse at 50% 43%,#f4f1e9 0%,#ddd8cd 55%,#cbc6ba 100%)}
-.phone{position:relative;width:min(392px,calc(94svh * .46),calc(100vw - 28px));height:min(850px,94svh);padding:8px;border:1px solid #35332f;border-radius:48px;background:linear-gradient(145deg,#46443f,#11110f 46%,#302e2a);box-shadow:0 35px 75px #26221a38,0 8px 18px #241f1930,inset 0 1px 0 #ffffff80}
+.stage{width:100%;height:100%;display:grid;place-items:center;overflow:hidden;padding:12px;background:radial-gradient(ellipse at 50% 43%,#f5f2eb 0%,#dfd9cc 56%,#cbc4b7 100%)}
+.phone{position:relative;width:min(392px,calc(94svh * .46),calc(100vw - 24px));height:min(850px,94svh);padding:8px;border:1px solid #393731;border-radius:48px;background:linear-gradient(145deg,#48463f,#11110f 46%,#302e2a);box-shadow:0 35px 75px #26221a38,0 8px 18px #241f1930,inset 0 1px 0 #ffffff80}
 .phone:before{content:"";position:absolute;left:-3px;top:145px;width:3px;height:54px;border-radius:3px 0 0 3px;background:#55534d}
 .phone:after{content:"";position:absolute;right:-3px;top:185px;width:3px;height:76px;border-radius:0 3px 3px 0;background:#55534d}
-.phone-screen{position:relative;width:100%;height:100%;overflow:hidden;border-radius:39px;background:var(--paper);display:grid;grid-template-rows:27px 52px minmax(0,1fr) 62px}
-.status{display:flex;align-items:center;justify-content:space-between;padding:0 19px;color:#37352f;background:var(--paper);font:700 9px Manrope,sans-serif}.status-right{display:flex;align-items:center;gap:6px;font-size:9px}
-.appbar{display:flex;align-items:center;justify-content:space-between;padding:0 19px;border-bottom:1px solid #f0ece4;background:var(--paper)}
-.brand{display:flex;align-items:center;gap:8px;color:#2b2924;font:800 22px Manrope,sans-serif;letter-spacing:-1.4px}.brand-mark{width:26px;height:26px;display:grid;place-items:center;border:1.5px solid var(--gold);border-radius:50%;color:var(--gold-dark);font:700 15px Georgia,serif}.brand-word span{color:var(--gold)}
-.appbar-note{color:#aaa397;font:700 7px Manrope,sans-serif;letter-spacing:.13em;text-transform:uppercase}
-.app-scroll{min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;background:var(--paper)}.app-scroll::-webkit-scrollbar{display:none}
-.screen{display:none;min-height:100%;padding:19px 18px 24px}.screen.active{display:block}
-.eyebrow{color:var(--gold-dark);font:800 8px Manrope,sans-serif;letter-spacing:.17em;text-transform:uppercase}
-h1,h2,h3,p{margin-top:0}h1{margin:6px 0 5px;color:#292823;font:700 24px/1.12 Manrope,sans-serif;letter-spacing:-1.05px}h2{margin:0;color:#302e29;font:700 14px Manrope,sans-serif;letter-spacing:-.35px}
-.subline{margin:0;color:#928d83;font-size:10px;line-height:1.55}.chat-day{margin:0 0 17px;color:#a29d92;font:700 8px Manrope,sans-serif;letter-spacing:.14em}
-.chat-stream{display:grid;gap:12px}.assistant-row{display:flex;align-items:flex-start;gap:8px}
-.assistant-mark{flex:0 0 23px;width:23px;height:23px;display:grid;place-items:center;border:1px solid #d7bd88;border-radius:50%;color:var(--gold-dark);font:700 12px Georgia,serif}
-.message{max-width:91%;padding:12px 13px;border:1px solid var(--line);border-radius:3px 13px 13px 13px;background:#fff}
-.message p{margin:0;color:#59564e;font-size:10px;line-height:1.65}.message p+p{margin-top:7px}.message strong{color:#2e2c26;font-weight:700}
-.message-meta{display:block;margin-bottom:5px;color:var(--gold-dark);font:800 7px Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase}
-.user-row{display:flex;justify-content:flex-end}.user-message{max-width:84%;padding:10px 13px;border-radius:13px 3px 13px 13px;background:#eee6d6;color:#62573f;font-size:10px;line-height:1.55}
-.money-line{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;padding:9px 0;border-top:1px solid #f0ece4}.money-line:first-of-type{margin-top:8px}
-.money-line span{color:#6f6a60;font-size:9px}.money-line b{font:800 10px Manrope,sans-serif;white-space:nowrap}.money-line.in b{color:var(--green)}.money-line.out b{color:var(--red)}
-.inline-link{display:inline-flex;align-items:center;gap:7px;margin-top:10px;padding:0;border:0;background:none;color:var(--gold-dark);font:800 8px Manrope,sans-serif;letter-spacing:.06em}.inline-link span{font-size:13px}
-.chat-suggestions{display:flex;flex-wrap:wrap;gap:6px;margin:15px 0 13px;padding-left:31px}.suggestion{padding:7px 10px;border:1px solid #e6dcc7;border-radius:999px;background:transparent;color:#8a713f;font-size:8px}
-.chat-compose{display:flex;align-items:center;gap:7px;margin:0 0 5px;padding:6px;border:1px solid #e5dfd4;border-radius:14px;background:#fff}
-.chat-compose input{flex:1;min-width:0;padding:5px 4px;border:0;outline:0;background:transparent;color:#464239;font-size:9px}
-.chat-compose button{flex:0 0 30px;width:30px;height:30px;display:grid;place-items:center;border:0;border-radius:50%;background:var(--gold);color:#fff;font-size:13px}.chat-compose .chat-mic{border:1px solid #e7dcc5;background:#fbf7ee;color:var(--gold-dark)}
-.calendar-head{display:flex;align-items:center;justify-content:space-between;gap:7px;margin:15px 0 10px}.calendar-head strong{color:#37342d;font:800 13px Manrope,sans-serif}
-.month-arrows{display:flex;gap:5px}.month-arrows button{width:25px;height:25px;border:1px solid #e8e1d3;border-radius:50%;background:#fff;color:#92743d}
-.calendar-card{padding:11px 9px 10px;border:1px solid #eae4d9;border-radius:13px;background:#fff}.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;text-align:center}
-.weekday{padding:3px 0 7px;color:#aaa397;font:800 7px Manrope,sans-serif}
-.day{height:34px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;border-radius:8px;background:transparent;color:#5d594f;font:700 9px Manrope,sans-serif}
-.day.muted{color:#d1ccc2}.day.selected{background:var(--gold);color:white;box-shadow:0 3px 8px #b58b4333}.day.today:not(.selected){outline:1px solid #d5bd8a;outline-offset:-1px}
+.phone-screen{position:relative;width:100%;height:100%;overflow:hidden;border-radius:39px;background:var(--paper);display:grid;grid-template-rows:27px 51px minmax(0,1fr) 62px}
+.status{display:flex;align-items:center;justify-content:space-between;padding:0 19px;color:#38362f;background:var(--paper);font:700 9px Manrope,sans-serif}
+.status-icons{display:flex;align-items:center;gap:5px}.status-icons svg{width:12px;height:12px;stroke:#615b50;fill:none;stroke-width:1.5}
+.appbar{display:flex;align-items:center;justify-content:space-between;padding:0 18px;border-bottom:1px solid #f0ece4;background:var(--paper)}
+.brand{display:flex;align-items:center;gap:8px;color:#2b2924;font:800 22px Manrope,sans-serif;letter-spacing:-1.4px}
+.brand-mark{width:27px;height:27px;display:grid;place-items:center;border:1.5px solid var(--gold);border-radius:50%;color:var(--gold-dark)}
+.brand-mark svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.brand-word span{color:var(--gold)}
+.appbar-date{color:#b3a995;font:800 7px Manrope,sans-serif;letter-spacing:.14em}
+.app-scroll{min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;background:var(--paper)}
+.app-scroll::-webkit-scrollbar{display:none}
+.screen{display:none;min-height:100%;padding:18px 17px 22px}.screen.active{display:block}
+.eyebrow{color:var(--gold-dark);font:800 8px Manrope,sans-serif;letter-spacing:.15em;text-transform:uppercase}
+h1,h2,h3,p{margin-top:0}
+h1{margin:5px 0 4px;color:#292823;font:800 23px/1.12 Manrope,sans-serif;letter-spacing:-.9px}
+h2{margin:0;color:#302e29;font:800 13px Manrope,sans-serif}
+.subline{margin:0;color:#928d83;font-size:9px;line-height:1.45}
+.chat-day{margin:0 0 16px;color:#aaa398;font:800 7px Manrope,sans-serif;letter-spacing:.15em}
+.chat-stream{display:grid;gap:11px}
+.assistant-row{display:flex;align-items:flex-start;gap:8px}
+.assistant-mark{flex:0 0 23px;width:23px;height:23px;display:grid;place-items:center;border:1px solid #d6bf91;border-radius:50%;color:var(--gold-dark)}
+.assistant-mark svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.message{max-width:91%;padding:11px 12px;border:1px solid var(--line);border-radius:3px 13px 13px 13px;background:#fff}
+.message p{margin:0;color:#5b574e;font-size:10px;line-height:1.55}.message strong{color:#302d26;font-weight:800}
+.message-head{display:flex;align-items:center;gap:6px;margin-bottom:6px;color:var(--gold-dark);font:800 7px Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.message-head svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.5}
+.user-row{display:flex;justify-content:flex-end}
+.user-message{max-width:83%;padding:9px 12px;border-radius:13px 3px 13px 13px;background:#eee6d6;color:#62573f;font-size:10px;line-height:1.5}
+.result-balance{display:flex;align-items:baseline;gap:6px;margin:7px 0 2px;color:#2e2b25}
+.result-balance strong{font:800 25px Manrope,sans-serif;letter-spacing:-1px}
+.result-balance span{color:#a0998e;font-size:8px}
+.money-pair{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:9px}
+.money-chip{padding:7px 8px;border-radius:8px;background:#f8f5ee}
+.money-chip small{display:block;color:#aaa195;font-size:7px}
+.money-chip b{display:block;margin-top:3px;font:800 10px Manrope,sans-serif}
+.money-chip.in b{color:var(--green)}.money-chip.out b{color:var(--red)}
+.inline-link{display:inline-flex;align-items:center;gap:6px;margin-top:9px;padding:0;border:0;background:none;color:var(--gold-dark);font:800 8px Manrope,sans-serif}
+.inline-link svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.chat-suggestions{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 12px;padding-left:31px}
+.suggestion{padding:7px 9px;border:1px solid #e6dcc7;border-radius:999px;background:transparent;color:#8a713f;font-size:8px}
+.chat-compose{display:flex;align-items:center;gap:6px;margin:0 0 5px;padding:6px 7px;border:1px solid #e5dfd4;border-radius:13px;background:#fff}
+.chat-compose input{flex:1;min-width:0;padding:5px 3px;border:0;outline:0;background:transparent;color:#464239;font-size:9px}
+.icon-button{flex:0 0 30px;width:30px;height:30px;display:grid;place-items:center;border:0;border-radius:50%;background:var(--gold);color:#fff}
+.icon-button svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.icon-button.soft{border:1px solid #e7dcc5;background:#fbf7ee;color:var(--gold-dark)}
+.calendar-head{display:flex;align-items:center;justify-content:space-between;gap:7px;margin:14px 0 10px}
+.calendar-head strong{color:#37342d;font:800 13px Manrope,sans-serif}
+.month-arrows{display:flex;gap:5px}
+.month-arrows button{width:27px;height:27px;display:grid;place-items:center;border:1px solid #e8e1d3;border-radius:50%;background:#fff;color:#92743d}
+.month-arrows svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.calendar-card{padding:10px 8px 9px;border:1px solid #eae4d9;border-radius:12px;background:#fff}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;text-align:center}
+.weekday{padding:3px 0 6px;color:#aaa397;font:800 7px Manrope,sans-serif}
+.day{height:33px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;border-radius:8px;background:transparent;color:#5d594f;font:700 9px Manrope,sans-serif}
+.day.muted{color:#d1ccc2}.day.selected{background:var(--gold);color:#fff;box-shadow:0 3px 8px #b58b4333}
+.day.today:not(.selected){outline:1px solid #d5bd8a;outline-offset:-1px}
 .day-dots{height:4px;display:flex;gap:2px}.day-dots i{width:3px;height:3px;border-radius:50%;background:#7f9478}.day-dots i.out{background:#c18a6e}.day.selected .day-dots i{background:#fff}
-.calendar-legend{display:flex;gap:13px;margin:10px 2px 0;color:#a19a8d;font-size:7px}.legend-dot{display:inline-block;width:5px;height:5px;margin-right:4px;border-radius:50%;background:#7f9478}.legend-dot.out{background:#c18a6e}
-.date-summary{display:flex;align-items:center;justify-content:space-between;margin:16px 0 9px}.date-summary strong{color:#38352e;font:800 10px Manrope,sans-serif}.date-summary span{color:#aaa397;font-size:8px}
-.event-list{display:grid;gap:7px}.event{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:9px;padding:10px;border:1px solid #ece7dd;border-radius:11px;background:#fff}
-.event-icon{width:32px;height:32px;display:grid;place-items:center;border-radius:9px;background:#f4f0e6;color:var(--gold-dark);font:700 14px Georgia,serif}.event-icon.out{background:#f7eee9;color:#a66f58}
-.event-copy strong{display:block;color:#454139;font:800 9px Manrope,sans-serif}.event-copy small{display:block;margin-top:3px;color:#aaa397;font-size:7px}
-.event-amount{text-align:right;color:#5c574e;font:800 9px Manrope,sans-serif;white-space:nowrap}.event-amount.in{color:var(--green)}.event-amount.out{color:var(--red)}.event-amount small{display:block;margin-top:3px;color:#aaa397;font:600 7px "DM Sans",sans-serif}
-.calendar-note{margin:12px 2px 0;color:#aaa397;font-size:7px;line-height:1.5}
-.voice-panel{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;margin:15px 0 12px;padding:22px 15px 17px;border:1px solid #e9dfca;border-radius:15px;background:linear-gradient(155deg,#fbf8f0,#f4eddf)}
+.calendar-legend{display:flex;gap:12px;margin:9px 2px 0;color:#a19a8d;font-size:7px}
+.legend-dot{display:inline-block;width:5px;height:5px;margin-right:4px;border-radius:50%;background:#7f9478}.legend-dot.out{background:#c18a6e}
+.date-summary{display:flex;align-items:center;justify-content:space-between;margin:14px 0 8px}
+.date-summary strong{color:#38352e;font:800 10px Manrope,sans-serif}.date-summary span{color:#aaa397;font-size:8px}
+.event-list{display:grid;gap:6px}
+.event{display:grid;grid-template-columns:30px minmax(0,1fr) auto;align-items:center;gap:8px;padding:8px 9px;border:1px solid #ece7dd;border-radius:10px;background:#fff}
+.event-icon{width:29px;height:29px;display:grid;place-items:center;border-radius:8px;background:#f4f0e6;color:var(--green)}
+.event-icon.out{background:#f7eee9;color:var(--red)}
+.event-icon svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.event-copy strong{display:block;color:#454139;font:800 8px Manrope,sans-serif}
+.event-copy small{display:block;margin-top:2px;color:#aaa397;font-size:7px}
+.event-amount{text-align:right;color:#5c574e;font:800 9px Manrope,sans-serif;white-space:nowrap}
+.event-amount.in{color:var(--green)}.event-amount.out{color:var(--red)}
+.event-amount small{display:block;margin-top:2px;color:#aaa397;font:600 6px "DM Sans",sans-serif}
+.voice-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.voice-panel{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;margin:13px 0 10px;padding:19px 14px 15px;border:1px solid #e9dfca;border-radius:15px;background:linear-gradient(155deg,#fbf8f0,#f4eddf)}
 .voice-panel:before{content:"";position:absolute;top:-80px;right:-55px;width:170px;height:170px;border:1px solid #d6c09266;border-radius:50%;box-shadow:0 0 0 18px #d6c09215,0 0 0 37px #d6c0920c}
-.voice-control{position:relative;z-index:1;width:64px;height:64px;display:grid;place-items:center;border:1px solid #fff;border-radius:50%;background:var(--gold);color:#fff;box-shadow:0 7px 18px #a47b3838,0 0 0 7px #b58b4312;font-size:24px}
-.voice-control.listening{background:#9a7450;animation:pulse 1s infinite}@keyframes pulse{50%{box-shadow:0 0 0 13px #b58b4310,0 7px 18px #a47b3838}}
-.voice-title{margin:12px 0 4px;color:#514735;font:800 10px Manrope,sans-serif}.voice-status{margin:0;color:#978d7b;font-size:8px;text-align:center;line-height:1.5}
-.waveform{height:19px;display:flex;align-items:center;gap:3px;margin:10px 0 0}.waveform i{width:2px;height:5px;border-radius:4px;background:#ba9b60}
-.voice-panel.listening .waveform i{animation:wave .65s ease-in-out infinite alternate}.voice-panel.listening .waveform i:nth-child(2n){animation-delay:.16s}.voice-panel.listening .waveform i:nth-child(3n){animation-delay:.3s}
-@keyframes wave{to{height:17px}}
-.voice-example{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:9px 0 16px;color:#aaa397;font-size:7px;line-height:1.5}
-.voice-example button{flex:0 0 auto;padding:7px 9px;border:1px solid #e6dcc7;border-radius:999px;background:#fff;color:#8a713f;font:800 7px Manrope,sans-serif}
-.transcript-card{display:none;margin:11px 0 13px;padding:11px;border:1px solid #ece6da;border-radius:10px;background:#fff}.transcript-card.visible{display:block}
-.transcript-label{display:block;margin-bottom:5px;color:#aa9874;font:800 7px Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase}
-.transcript-copy{margin:0;color:#5e594f;font-size:9px;line-height:1.55}
-.invoice-card{display:none;margin-top:13px;padding:13px;border:1px solid #e8e1d5;border-radius:12px;background:#fff}.invoice-card.visible{display:block}
-.invoice-card-head{display:flex;justify-content:space-between;gap:8px;padding-bottom:10px;border-bottom:1px solid #f0ece4}
-.invoice-card-head strong{color:#353128;font:800 9px Manrope,sans-serif}.invoice-card-head small{display:block;margin-top:3px;color:#aaa397;font-size:7px}
+.voice-control{position:relative;z-index:1;width:62px;height:62px;display:grid;place-items:center;border:1px solid #fff;border-radius:50%;background:var(--gold);color:#fff;box-shadow:0 7px 18px #a47b3838,0 0 0 7px #b58b4312}
+.voice-control svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.voice-control.listening{background:#9a7450;animation:pulse 1s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 13px #b58b4310,0 7px 18px #a47b3838}}
+.voice-title{margin:10px 0 3px;color:#514735;font:800 10px Manrope,sans-serif}
+.voice-status{margin:0;color:#978d7b;font-size:8px;text-align:center;line-height:1.4}
+.waveform{height:16px;display:flex;align-items:center;gap:3px;margin:8px 0 0}
+.waveform i{width:2px;height:5px;border-radius:4px;background:#ba9b60}
+.voice-panel.listening .waveform i{animation:wave .65s ease-in-out infinite alternate}
+.voice-panel.listening .waveform i:nth-child(2n){animation-delay:.16s}.voice-panel.listening .waveform i:nth-child(3n){animation-delay:.3s}
+@keyframes wave{to{height:15px}}
+.voice-example{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:8px 0 12px;color:#aaa397;font-size:7px}
+.voice-example button{padding:6px 9px;border:1px solid #e6dcc7;border-radius:999px;background:#fff;color:#8a713f;font:800 7px Manrope,sans-serif}
+.transcript-card{display:none;margin:9px 0;padding:9px 10px;border:1px solid #ece6da;border-radius:9px;background:#fff}
+.transcript-card.visible{display:block}
+.transcript-label{display:block;margin-bottom:4px;color:#aa9874;font:800 6px Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.transcript-copy{margin:0;color:#5e594f;font-size:8px;line-height:1.45}
+.invoice-card{display:none;margin-top:10px;padding:11px;border:1px solid #e8e1d5;border-radius:11px;background:#fff}
+.invoice-card.visible{display:block}
+.invoice-card-head{display:flex;justify-content:space-between;gap:8px;padding-bottom:8px;border-bottom:1px solid #f0ece4}
+.invoice-card-head strong{color:#353128;font:800 8px Manrope,sans-serif}
+.invoice-card-head small{display:block;margin-top:2px;color:#aaa397;font-size:6px}
 .draft-label{align-self:flex-start;padding:4px 6px;border-radius:999px;background:#f7f1e4;color:#92743d;font:800 6px Manrope,sans-serif;letter-spacing:.08em}
-.invoice-client{padding:10px 0;border-bottom:1px solid #f0ece4}.invoice-client small{display:block;color:#aaa397;font:800 6px Manrope,sans-serif;letter-spacing:.1em}
-.invoice-client strong{display:block;margin-top:4px;color:#464137;font:800 10px Manrope,sans-serif}.invoice-client span{display:block;margin-top:3px;color:#aaa397;font-size:7px}
-.invoice-line{display:flex;justify-content:space-between;gap:8px;padding:10px 0;border-bottom:1px solid #f0ece4;color:#6b655a;font-size:8px}.invoice-line strong{color:#454036;font:800 8px Manrope,sans-serif;white-space:nowrap}
-.invoice-total{display:flex;align-items:center;justify-content:space-between;padding-top:11px}.invoice-total span{color:#978f82;font-size:8px}.invoice-total strong{color:#352f25;font:800 18px Manrope,sans-serif}
-.voice-edit{width:100%;margin-top:10px;padding:9px;border:1px solid #e7dcc5;border-radius:9px;background:#fbf8f1;color:#8a713f;font:800 8px Manrope,sans-serif}
-.primary-button,.secondary-button{width:100%;min-height:40px;margin-top:9px;border:0;border-radius:10px;background:var(--gold);color:#fff;font:800 9px Manrope,sans-serif;box-shadow:0 5px 12px #a47b3824}
+.invoice-client{padding:8px 0;border-bottom:1px solid #f0ece4}
+.invoice-client small{display:block;color:#aaa397;font:800 6px Manrope,sans-serif;letter-spacing:.1em}
+.invoice-client strong{display:block;margin-top:3px;color:#464137;font:800 10px Manrope,sans-serif}
+.invoice-client span{display:block;margin-top:2px;color:#aaa397;font-size:7px}
+.invoice-line{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid #f0ece4;color:#6b655a;font-size:8px}
+.invoice-line strong{color:#454036;font:800 8px Manrope,sans-serif;white-space:nowrap}
+.invoice-total{display:flex;align-items:center;justify-content:space-between;padding-top:8px}
+.invoice-total span{color:#978f82;font-size:7px}.invoice-total strong{color:#352f25;font:800 17px Manrope,sans-serif}
+.voice-edit{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:8px;padding:8px;border:1px solid #e7dcc5;border-radius:9px;background:#fbf8f1;color:#8a713f;font:800 7px Manrope,sans-serif}
+.voice-edit svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.6}
+.primary-button,.secondary-button{width:100%;min-height:38px;margin-top:8px;border:0;border-radius:10px;background:var(--gold);color:#fff;font:800 8px Manrope,sans-serif;box-shadow:0 5px 12px #a47b3824}
 .secondary-button{border:1px solid #e7dfd2;background:#fff;color:#76613a;box-shadow:none}
-.back-row{display:flex;align-items:center;gap:8px;margin-bottom:17px}.back-button{width:29px;height:29px;border:1px solid #e8e1d5;border-radius:50%;background:#fff;color:#8e703d}.back-row strong{color:#4c463b;font:800 9px Manrope,sans-serif}
-.sign-invoice{margin:15px 0 11px;padding:14px;border:1px solid #e9e1d3;border-radius:12px;background:#fff}
-.sign-invoice-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.sign-invoice-top strong{color:#413b31;font:800 10px Manrope,sans-serif}.sign-invoice-top small{display:block;margin-top:4px;color:#aaa397;font-size:7px}
-.sign-amount{margin:12px 0 10px;padding:10px 0;border-top:1px solid #f1ece3;border-bottom:1px solid #f1ece3}.sign-amount span{display:block;color:#aaa397;font-size:7px}.sign-amount strong{display:block;margin-top:3px;color:#3a342b;font:800 22px Manrope,sans-serif}
-.signature-wrap{margin-top:13px}.signature-wrap label{display:block;margin-bottom:7px;color:#8c7751;font:800 7px Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase}
-.signature-pad{display:block;width:100%;height:102px;border:1px dashed #cdbb95;border-radius:8px;background:linear-gradient(#fff,#fdfbf7);touch-action:none}
-.signature-tools{display:flex;justify-content:space-between;gap:8px;margin-top:6px;color:#aaa397;font-size:7px}.signature-tools button{padding:0;border:0;background:none;color:#8a713f;font:800 7px Manrope,sans-serif}
-.signed-card{display:none;margin-top:13px;padding:16px 12px;border-radius:11px;background:#f5f1e6;text-align:center}.signed-card.visible{display:block}
-.signed-mark{width:35px;height:35px;display:grid;place-items:center;margin:0 auto 8px;border-radius:50%;background:#758b70;color:white;font-size:17px}
-.signed-card h2{margin-bottom:4px;color:#4c5d46;font-size:13px}.signed-card p{margin:0;color:#8f9588;font-size:8px;line-height:1.5}
-.navbar{display:grid;grid-template-columns:repeat(3,1fr);align-items:center;padding:6px 8px 7px;border-top:1px solid #eee9df;background:#fff}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;border:0;background:transparent;color:#aaa397;font-size:7px;font-weight:700}
-.nav-icon{width:23px;height:21px;display:grid;place-items:center;font-size:15px}.nav-item.active{color:var(--gold-dark)}.nav-item.active .nav-icon{border-radius:7px;background:#f5efe2;color:var(--gold-dark)}
-.phone-screen.signoff-mode .navbar{display:none}.small-note{margin:13px 2px 0;color:#b1aa9e;text-align:center;font-size:6px}
-@media(max-width:430px){.stage{padding:7px}.phone{width:min(392px,calc(94svh * .46),calc(100vw - 14px));height:min(850px,96svh);padding:6px;border-radius:43px}.phone-screen{border-radius:36px}.screen{padding:17px 15px 20px}}
-@media(max-height:690px){.stage{padding:4px}.phone{width:min(354px,calc(92svh * .46));height:92svh;padding:6px;border-radius:39px}.phone-screen{border-radius:33px}.screen{padding-top:12px}.voice-panel{margin:9px 0;padding:13px}.voice-control{width:54px;height:54px}}
+.back-row{display:flex;align-items:center;gap:8px;margin-bottom:15px}
+.back-button{width:28px;height:28px;display:grid;place-items:center;border:1px solid #e8e1d5;border-radius:50%;background:#fff;color:#8e703d}
+.back-button svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.8}
+.approval-top{display:flex;align-items:center;gap:9px;margin:8px 0 13px}
+.approval-icon{width:33px;height:33px;display:grid;place-items:center;border-radius:50%;background:var(--gold-pale);color:var(--gold-dark)}
+.approval-icon svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.approval-top strong{display:block;color:#39352d;font:800 10px Manrope,sans-serif}
+.approval-top small{display:block;margin-top:2px;color:#aaa397;font-size:7px}
+.sign-invoice{margin:0 0 12px;padding:12px;border:1px solid #e9e1d3;border-radius:11px;background:#fff}
+.sign-invoice-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.sign-invoice-top strong{color:#413b31;font:800 10px Manrope,sans-serif}
+.sign-invoice-top small{display:block;margin-top:3px;color:#aaa397;font-size:7px}
+.sign-amount{margin:10px 0 9px;padding:9px 0;border-top:1px solid #f1ece3;border-bottom:1px solid #f1ece3}
+.sign-amount span{display:block;color:#aaa397;font-size:6px;letter-spacing:.1em}
+.sign-amount strong{display:block;margin-top:3px;color:#3a342b;font:800 22px Manrope,sans-serif}
+.signature-wrap{margin-top:9px}
+.signature-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.signature-heading label{color:#8c7751;font:800 7px Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.signature-heading button{padding:0;border:0;background:none;color:#8a713f;font:800 7px Manrope,sans-serif}
+.signature-pad{display:block;width:100%;height:91px;border:1px dashed #cdbb95;border-radius:8px;background:linear-gradient(#fff,#fdfbf7);touch-action:none}
+.signature-hint{margin:5px 0 0;color:#aaa397;font-size:6px}
+.signed-card{display:none;margin:10px 0;padding:12px;border:1px solid #dbe4d6;border-radius:10px;background:#f1f5ed;text-align:center}
+.signed-card.visible{display:block}
+.signed-mark{width:33px;height:33px;display:grid;place-items:center;margin:0 auto 6px;border-radius:50%;background:var(--green);color:white}
+.signed-mark svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2}
+.signed-card h2{margin-bottom:3px;color:#4c5d46;font-size:12px}
+.signed-card p{margin:0;color:#8f9588;font-size:7px}
+.navbar{display:grid;grid-template-columns:repeat(3,1fr);align-items:center;padding:5px 8px 6px;border-top:1px solid #eee9df;background:#fff}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:3px 0;border:0;background:transparent;color:#aaa397;font-size:7px;font-weight:700}
+.nav-icon{width:23px;height:20px;display:grid;place-items:center}
+.nav-icon svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+.nav-item.active{color:var(--gold-dark)}
+.nav-item.active .nav-icon{border-radius:7px;background:#f5efe2}
+.phone-screen.signoff-mode .navbar{display:none}
+.small-note{margin:10px 2px 0;color:#b1aa9e;text-align:center;font-size:6px}
+@media(max-width:430px){.stage{padding:6px}.phone{width:min(392px,calc(94svh * .46),calc(100vw - 12px));height:min(850px,96svh);padding:6px;border-radius:43px}.phone-screen{border-radius:36px}.screen{padding:16px 14px 19px}}
+@media(max-height:690px){.stage{padding:4px}.phone{width:min(354px,calc(92svh * .46));height:92svh;padding:6px;border-radius:39px}.phone-screen{border-radius:33px}.screen{padding-top:11px}.voice-panel{margin:8px 0;padding:12px}.voice-control{width:52px;height:52px}.signature-pad{height:72px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<div class="stage"><div class="phone" aria-label="UoMe mobile finance chatbot concept"><div class="phone-screen" id="phoneScreen">
- <div class="status"><span>9:41</span><span class="status-right">●●●　◒　▰</span></div>
- <header class="appbar"><div class="brand"><span class="brand-mark">u</span><span class="brand-word">uome<span>.</span></span></div><span class="appbar-note">your money, in words</span></header>
- <main class="app-scroll" id="appScroll">
-  <section class="screen active" data-screen="chat">
-   <p class="chat-day">MONDAY · 18 NOVEMBER 2019</p><div class="invoice-intro"><div class="eyebrow">YOUR FINANCIAL ASSISTANT</div><h1>Good morning, Sam.</h1><p class="subline">What would you like to know?</p></div>
-   <div class="chat-stream" id="chatStream">
-    <div class="assistant-row"><span class="assistant-mark">u</span><div class="message"><span class="message-meta">UoMe</span><p>You've got <strong>£420 coming in</strong> on Tuesday from Ella, and an <strong>£82 internet bill</strong> on Thursday.</p><p>Want me to lay out the rest of your week?</p><button class="inline-link" data-chat-action="calendar">See your money calendar <span>↗</span></button></div></div>
-    <div class="user-row"><div class="user-message">Will I have enough after the bill?</div></div>
-    <div class="assistant-row"><span class="assistant-mark">u</span><div class="message"><span class="message-meta">UoMe</span><p>Yes. Starting from your last balance of <strong>£1,240</strong>, you'll have <strong>£1,578</strong> after Ella's payment arrives and the bill leaves.</p><div class="money-line in"><span>Ella · due Tuesday</span><b>+ £420</b></div><div class="money-line out"><span>Internet · due Thursday</span><b>− £82</b></div></div></div>
-   </div>
-   <div class="chat-suggestions"><button class="suggestion" data-prompt="What's due this week?">What's due this week?</button><button class="suggestion" data-prompt="Create an invoice">Create an invoice</button></div>
-   <form class="chat-compose" id="chatForm"><input id="chatInput" type="text" placeholder="Ask UoMe..." aria-label="Ask UoMe"><button class="chat-mic" type="button" id="chatMic" aria-label="Speak to UoMe">◖</button><button type="submit" aria-label="Send message">↑</button></form>
-   <p class="small-note">UoMe · a personal finance chatbot · 2019 concept</p>
-  </section>
-  <section class="screen" data-screen="calendar">
-   <div class="eyebrow">YOUR MONEY, BY DATE</div><h1>Money calendar.</h1><p class="subline">See what's coming in and going out, day by day.</p>
-   <div class="calendar-head"><strong id="calendarTitle">November 2019</strong><div class="month-arrows"><button type="button" id="prevMonth" aria-label="Previous month">‹</button><button type="button" id="nextMonth" aria-label="Next month">›</button></div></div>
-   <div class="calendar-card"><div class="calendar-grid" id="calendarGrid"></div><div class="calendar-legend"><span><i class="legend-dot"></i>Money in</span><span><i class="legend-dot out"></i>Money out</span></div></div>
-   <div class="date-summary"><strong id="selectedDate">Tuesday, 19 November</strong><span id="eventCount">1 event</span></div><div class="event-list" id="eventList"></div>
-   <p class="calendar-note">Select any marked day to see the payments and invoices scheduled for it.</p>
-  </section>
-  <section class="screen" data-screen="invoice">
-   <div class="eyebrow">INVOICING, WITHOUT THE FORMS</div><h1>Say it. UoMe makes it.</h1><p class="subline">Tell me who it's for, what you did and what you charge.</p>
-   <div class="voice-panel" id="voicePanel"><button class="voice-control" id="invoiceMic" type="button" aria-label="Start voice invoice">♩</button><strong class="voice-title">Tap and speak</strong><p class="voice-status" id="voiceStatus">Your invoice starts with your voice.</p><div class="waveform" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-   <div class="voice-example"><span>Or try the voice example below.</span><button type="button" id="sampleVoice">Try example</button></div>
-   <div class="transcript-card" id="transcriptCard"><span class="transcript-label">Heard by UoMe</span><p class="transcript-copy" id="transcriptCopy"></p></div>
-   <article class="invoice-card" id="invoiceCard">
-    <div class="invoice-card-head"><div><strong>INVOICE · UOME-019</strong><small>Created by voice</small></div><span class="draft-label">DRAFT</span></div>
-    <div class="invoice-client"><small>INVOICE FOR</small><strong id="invoiceCustomer">Jamie</strong><span id="invoiceDue">Due Friday, 22 November 2019</span></div>
-    <div class="invoice-line"><span id="invoiceDescription">Design work · 2 hours × £45</span><strong id="invoiceLineTotal">£90.00</strong></div>
-    <div class="invoice-total"><span>Total due</span><strong id="invoiceTotal">£90.00</strong></div>
-    <button class="voice-edit" type="button" id="changeByVoice">◖ &nbsp; Say a change</button><button class="primary-button" type="button" id="sendForSignoff">Send for sign-off</button>
-   </article>
-   <p class="small-note">No typing. Speak the details, review the invoice, then send it for a signature.</p>
-  </section>
-  <section class="screen" data-screen="signoff">
-   <div class="back-row"><button class="back-button" type="button" id="backToInvoice" aria-label="Back to invoice">‹</button><strong>Invoice sign-off</strong></div>
-   <div class="eyebrow">READY FOR APPROVAL</div><h1>One last thing.</h1><p class="subline">The customer reviews the invoice and signs on your phone.</p>
-   <div class="sign-invoice"><div class="sign-invoice-top"><div><strong id="signCustomer">Jamie</strong><small>Invoice UOME-019 · 22 November 2019</small></div><span class="draft-label">TO SIGN</span></div><div class="sign-amount"><span>AMOUNT DUE</span><strong id="signTotal">£90.00</strong></div><p class="subline">I confirm that the work and amount above are correct.</p>
-    <div class="signature-wrap"><label>Customer signature</label><canvas class="signature-pad" id="signaturePad" aria-label="Signature area"></canvas><div class="signature-tools"><span>Sign with a finger or mouse</span><button type="button" id="clearSignature">Clear</button></div></div>
-   </div>
-   <div class="signed-card" id="signedCard"><div class="signed-mark">✓</div><h2>Signed and confirmed.</h2><p>The invoice is approved. UoMe has recorded the sign-off.</p></div>
-   <button class="primary-button" id="confirmSignoff" type="button">Confirm sign-off</button><button class="secondary-button" id="returnToChat" type="button">Back to UoMe</button>
-  </section>
- </main>
- <nav class="navbar" aria-label="UoMe navigation"><button class="nav-item active" type="button" data-go="chat"><span class="nav-icon">◌</span><span>Chat</span></button><button class="nav-item" type="button" data-go="calendar"><span class="nav-icon">▦</span><span>Calendar</span></button><button class="nav-item" type="button" data-go="invoice"><span class="nav-icon">＋</span><span>Invoice</span></button></nav>
-</div></div>
+<div class="stage">
+ <div class="phone" aria-label="UoMe mobile finance chatbot">
+  <div class="phone-screen" id="phoneScreen">
+   <div class="status"><span>9:41</span><span class="status-icons">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5.5a9 9 0 0 1 12 0M4.5 8a5.3 5.3 0 0 1 7 0M7 10.5a1.8 1.8 0 0 1 2 0"/></svg>
+    <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="3.5" width="11.5" height="9" rx="1.5"/><path d="M14 6v4"/></svg>
+   </span></div>
+   <header class="appbar">
+    <div class="brand"><span class="brand-mark"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M5.5 7.3c0-1.5 1.7-2.4 4.5-2.4s4.5.9 4.5 2.4-1.7 2.4-4.5 2.7-4.5 1.2-4.5 2.7 1.7 2.4 4.5 2.4 4.5-.9 4.5-2.4"/></svg></span><span class="brand-word">uome<span>.</span></span></div>
+    <span class="appbar-date">2019</span>
+   </header>
+   <main class="app-scroll uome-app-scroll" id="appScroll">
+    <section class="screen active" data-screen="chat">
+     <p class="chat-day">MONDAY · 18 NOVEMBER</p>
+     <div class="invoice-intro"><h1>Morning, Sam.</h1></div>
+     <div class="chat-stream" id="chatStream">
+      <div class="assistant-row"><span class="assistant-mark"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M5.5 7.3c0-1.5 1.7-2.4 4.5-2.4s4.5.9 4.5 2.4-1.7 2.4-4.5 2.7-4.5 1.2-4.5 2.7 1.7 2.4 4.5 2.4 4.5-.9 4.5-2.4"/></svg></span><div class="message"><div class="message-head"><svg viewBox="0 0 16 16"><path d="M8 1.5v13M3.5 5c0-1.2 1.5-2 4.5-2s4.5.8 4.5 2-1.5 2.2-4.5 2.5S3.5 8.4 3.5 9.7s1.5 2 4.5 2 4.5-.8 4.5-2"/></svg> uome</div><p><strong>£420 in</strong> Tuesday. <strong>£82 out</strong> Thursday.</p><button class="inline-link" data-chat-action="calendar">Open calendar <svg viewBox="0 0 16 16"><path d="M3 8h9M8 3l5 5-5 5"/></svg></button></div></div>
+      <div class="user-row"><div class="user-message">What’s left after both?</div></div>
+      <div class="assistant-row"><span class="assistant-mark"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M5.5 7.3c0-1.5 1.7-2.4 4.5-2.4s4.5.9 4.5 2.4-1.7 2.4-4.5 2.7-4.5 1.2-4.5 2.7 1.7 2.4 4.5 2.4 4.5-.9 4.5-2.4"/></svg></span><div class="message"><div class="message-head">uome</div><p>You'll have</p><div class="result-balance"><strong>£1,578</strong><span>left</span></div><div class="money-pair"><div class="money-chip in"><small>Ella · Tuesday</small><b>+ £420</b></div><div class="money-chip out"><small>Internet · Thursday</small><b>− £82</b></div></div></div></div>
+     </div>
+     <div class="chat-suggestions"><button class="suggestion" data-prompt="What is due this week?">Due this week</button><button class="suggestion" data-prompt="Create an invoice">New invoice</button></div>
+     <form class="chat-compose" id="chatForm">
+      <input id="chatInput" type="text" placeholder="Ask UoMe..." aria-label="Ask UoMe">
+      <button class="icon-button soft" type="button" id="chatMic" aria-label="Speak"><svg viewBox="0 0 20 20"><rect x="7" y="2.5" width="6" height="10" rx="3"/><path d="M4.5 9.5a5.5 5.5 0 0 0 11 0M10 15v3M7 18h6"/></svg></button>
+      <button class="icon-button" type="submit" aria-label="Send"><svg viewBox="0 0 20 20"><path d="M3 10h13M10 4l6 6-6 6"/></svg></button>
+     </form>
+    </section>
+
+    <section class="screen" data-screen="calendar">
+     <div class="eyebrow">MONEY CALENDAR</div>
+     <div class="calendar-head"><strong id="calendarTitle">November 2019</strong><div class="month-arrows">
+      <button type="button" id="prevMonth" aria-label="Previous month"><svg viewBox="0 0 16 16"><path d="m10 3-5 5 5 5"/></svg></button>
+      <button type="button" id="nextMonth" aria-label="Next month"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5"/></svg></button>
+     </div></div>
+     <div class="calendar-card"><div class="calendar-grid" id="calendarGrid"></div><div class="calendar-legend"><span><i class="legend-dot"></i>In</span><span><i class="legend-dot out"></i>Out</span></div></div>
+     <div class="date-summary"><strong id="selectedDate">Tuesday, 19 November</strong><span id="eventCount">1 event</span></div>
+     <div class="event-list" id="eventList"></div>
+    </section>
+
+    <section class="screen" data-screen="invoice">
+     <div class="voice-top"><div class="eyebrow">NEW INVOICE</div></div>
+     <h1>Say it.</h1><p class="subline">UoMe builds the invoice.</p>
+     <div class="voice-panel" id="voicePanel">
+      <button class="voice-control" id="invoiceMic" type="button" aria-label="Record invoice"><svg viewBox="0 0 24 24"><rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 18v3M9 21h6"/></svg></button>
+      <strong class="voice-title">Tap to speak</strong><p class="voice-status" id="voiceStatus">Client · work · price · due date</p>
+      <div class="waveform" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+     </div>
+     <div class="voice-example"><span></span><button type="button" id="sampleVoice">Try an example</button></div>
+     <div class="transcript-card" id="transcriptCard"><span class="transcript-label">Heard</span><p class="transcript-copy" id="transcriptCopy"></p></div>
+     <article class="invoice-card" id="invoiceCard">
+      <div class="invoice-card-head"><div><strong>INVOICE · UOME-019</strong><small>Voice draft</small></div><span class="draft-label">DRAFT</span></div>
+      <div class="invoice-client"><small>TO</small><strong id="invoiceCustomer">Jamie</strong><span id="invoiceDue">Due Friday, 22 November 2019</span></div>
+      <div class="invoice-line"><span id="invoiceDescription">Design · 2 hours × £45</span><strong id="invoiceLineTotal">£90.00</strong></div>
+      <div class="invoice-total"><span>Total</span><strong id="invoiceTotal">£90.00</strong></div>
+      <button class="voice-edit" type="button" id="changeByVoice"><svg viewBox="0 0 16 16"><rect x="5" y="2" width="6" height="9" rx="3"/><path d="M2.5 7.5a5.5 5.5 0 0 0 11 0M8 13v2"/></svg> Change by voice</button>
+      <button class="primary-button" type="button" id="sendForSignoff">Send to approve</button>
+     </article>
+    </section>
+
+    <section class="screen" data-screen="signoff">
+     <div class="back-row"><button class="back-button" type="button" id="backToInvoice" aria-label="Back to invoice"><svg viewBox="0 0 16 16"><path d="m10 3-5 5 5 5"/></svg></button><div class="eyebrow">INVOICE APPROVAL</div></div>
+     <div class="approval-top"><span class="approval-icon"><svg viewBox="0 0 20 20"><path d="M5 10.5 8.2 14 15.5 6"/></svg></span><div><strong>Approve invoice</strong><small id="approvalName">Jamie · UOME-019</small></div></div>
+     <div class="sign-invoice">
+      <div class="sign-invoice-top"><strong id="signCustomer">Jamie</strong><span class="draft-label">TO SIGN</span></div>
+      <div class="sign-amount"><span>AMOUNT</span><strong id="signTotal">£90.00</strong></div>
+      <div class="signature-wrap">
+       <div class="signature-heading"><label>Signature</label><button type="button" id="clearSignature">Clear</button></div>
+       <canvas class="signature-pad" id="signaturePad" aria-label="Sign here to approve invoice"></canvas>
+       <p class="signature-hint">Sign above to approve this invoice.</p>
+      </div>
+     </div>
+     <div class="signed-card" id="signedCard"><div class="signed-mark"><svg viewBox="0 0 20 20"><path d="m4 10 4 4 8-9"/></svg></div><h2>Approved</h2><p>Signature added to UOME-019.</p></div>
+     <button class="primary-button" id="confirmSignoff" type="button">Sign &amp; approve</button>
+     <button class="secondary-button" id="returnToChat" type="button">Done</button>
+    </section>
+   </main>
+
+   <nav class="navbar" aria-label="UoMe navigation">
+    <button class="nav-item active" type="button" data-go="chat"><span class="nav-icon"><svg viewBox="0 0 20 20"><path d="M3 4.5h14v9H9l-4.5 3v-3H3z"/></svg></span><span>Chat</span></button>
+    <button class="nav-item" type="button" data-go="calendar"><span class="nav-icon"><svg viewBox="0 0 20 20"><rect x="3" y="4.5" width="14" height="13" rx="2"/><path d="M6.5 2.5v4M13.5 2.5v4M3 8.5h14"/></svg></span><span>Calendar</span></button>
+    <button class="nav-item" type="button" data-go="invoice"><span class="nav-icon"><svg viewBox="0 0 20 20"><path d="M5 2.5h7l3 3v12H5zM12 2.5v4h3M8 10h4M8 13h4"/></svg></span><span>Invoice</span></button>
+   </nav>
+  </div>
+ </div>
+</div>
 <script>
 (function(){
  const appScroll=document.getElementById("appScroll"),phoneScreen=document.getElementById("phoneScreen");
  const screens=[...document.querySelectorAll("[data-screen]")],navItems=[...document.querySelectorAll(".nav-item")];
- function showScreen(name){screens.forEach(s=>s.classList.toggle("active",s.dataset.screen===name));navItems.forEach(b=>b.classList.toggle("active",b.dataset.go===name));phoneScreen.classList.toggle("signoff-mode",name==="signoff");appScroll.scrollTop=0}
+ function showScreen(name){
+  screens.forEach(s=>s.classList.toggle("active",s.dataset.screen===name));
+  navItems.forEach(b=>b.classList.toggle("active",b.dataset.go===name));
+  phoneScreen.classList.toggle("signoff-mode",name==="signoff");appScroll.scrollTop=0;
+ }
  document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>showScreen(b.dataset.go)));
  document.querySelectorAll("[data-chat-action]").forEach(b=>b.addEventListener("click",()=>showScreen(b.dataset.chatAction)));
  const events=[
-  {day:19,name:"Ella Morgan",type:"Invoice payment",amount:420,direction:"in",time:"Expected · 10:00"},
-  {day:21,name:"Home internet",type:"Direct debit",amount:82,direction:"out",time:"Scheduled · 08:00"},
-  {day:22,name:"Mia Creative",type:"Invoice payment",amount:240,direction:"in",time:"Expected · 12:30"},
-  {day:25,name:"Studio rent",type:"Standing order",amount:360,direction:"out",time:"Scheduled · 09:00"},
-  {day:28,name:"Northside Print",type:"Invoice payment",amount:185,direction:"in",time:"Expected · 15:00"}
+  {day:19,name:"Ella Morgan",type:"Invoice",amount:420,direction:"in",time:"10:00"},
+  {day:21,name:"Internet",type:"Direct debit",amount:82,direction:"out",time:"08:00"},
+  {day:22,name:"Mia Creative",type:"Invoice",amount:240,direction:"in",time:"12:30"},
+  {day:25,name:"Studio rent",type:"Standing order",amount:360,direction:"out",time:"09:00"},
+  {day:28,name:"Northside Print",type:"Invoice",amount:185,direction:"in",time:"15:00"}
  ];
  let month=10,year=2019,selectedDay=19;
  const grid=document.getElementById("calendarGrid"),dateTitle=document.getElementById("selectedDate"),eventCount=document.getElementById("eventCount"),eventList=document.getElementById("eventList");
@@ -180,36 +290,53 @@ h1,h2,h3,p{margin-top:0}h1{margin:6px 0 5px;color:#292823;font:700 24px/1.12 Man
  function drawEvents(){
   const date=new Date(year,month,selectedDay);dateTitle.textContent=date.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
   const list=events.filter(e=>e.day===selectedDay);eventCount.textContent=list.length+" "+(list.length===1?"event":"events");eventList.innerHTML="";
-  if(!list.length){const empty=document.createElement("div");empty.className="event";empty.innerHTML='<div class="event-icon">·</div><div class="event-copy"><strong>No scheduled movement</strong><small>Nothing expected on this date.</small></div>';eventList.appendChild(empty);return}
+  if(!list.length){const empty=document.createElement("div");empty.className="event";empty.innerHTML='<span class="event-icon">·</span><div class="event-copy"><strong>Nothing due</strong></div>';eventList.appendChild(empty);return}
   list.forEach(e=>{
-   const row=document.createElement("article");row.className="event";const icon=document.createElement("span");icon.className="event-icon"+(e.direction==="out"?" out":"");icon.textContent=e.direction==="in"?"↑":"↓";
-   const copy=document.createElement("div");copy.className="event-copy";const strong=document.createElement("strong");strong.textContent=e.name;const small=document.createElement("small");small.textContent=e.type+" · "+e.time;copy.append(strong,small);
+   const row=document.createElement("article");row.className="event";
+   const icon=document.createElement("span");icon.className="event-icon"+(e.direction==="out"?" out":"");
+   icon.innerHTML=e.direction==="in"?'<svg viewBox="0 0 20 20"><path d="M10 16V4M5 9l5-5 5 5"/></svg>':'<svg viewBox="0 0 20 20"><path d="M10 4v12M5 11l5 5 5-5"/></svg>';
+   const copy=document.createElement("div");copy.className="event-copy";
+   const strong=document.createElement("strong");strong.textContent=e.name;
+   const small=document.createElement("small");small.textContent=e.type+" · "+e.time;copy.append(strong,small);
    const amount=document.createElement("div");amount.className="event-amount "+e.direction;amount.append(document.createTextNode((e.direction==="in"?"+ ":"− ")+money(e.amount)));
-   const hint=document.createElement("small");hint.textContent=e.direction==="in"?"Money in":"Money out";amount.appendChild(hint);row.append(icon,copy,amount);eventList.appendChild(row);
+   row.append(icon,copy,amount);eventList.appendChild(row);
   });
  }
  document.getElementById("prevMonth").addEventListener("click",()=>{month--;if(month<0){month=11;year--}selectedDay=1;drawCalendar();drawEvents()});
  document.getElementById("nextMonth").addEventListener("click",()=>{month++;if(month>11){month=0;year++}selectedDay=1;drawCalendar();drawEvents()});
  drawCalendar();drawEvents();
+
  const chatStream=document.getElementById("chatStream"),chatInput=document.getElementById("chatInput");
  function addMessage(text,isUser){
   const row=document.createElement("div");row.className=isUser?"user-row":"assistant-row";
   if(isUser){const bubble=document.createElement("div");bubble.className="user-message";bubble.textContent=text;row.appendChild(bubble)}
-  else{const mark=document.createElement("span");mark.className="assistant-mark";mark.textContent="u";const bubble=document.createElement("div");bubble.className="message";const meta=document.createElement("span");meta.className="message-meta";meta.textContent="UoMe";const p=document.createElement("p");p.textContent=text;bubble.append(meta,p);row.append(mark,bubble)}
+  else{
+   const mark=document.createElement("span");mark.className="assistant-mark";
+   mark.innerHTML='<svg viewBox="0 0 20 20"><path d="M10 3v14M5.5 7.3c0-1.5 1.7-2.4 4.5-2.4s4.5.9 4.5 2.4-1.7 2.4-4.5 2.7-4.5 1.2-4.5 2.7 1.7 2.4 4.5 2.4 4.5-.9 4.5-2.4"/></svg>';
+   const bubble=document.createElement("div");bubble.className="message";const meta=document.createElement("div");meta.className="message-head";meta.textContent="uome";const p=document.createElement("p");p.textContent=text;bubble.append(meta,p);row.append(mark,bubble);
+  }
   chatStream.appendChild(row);appScroll.scrollTop=appScroll.scrollHeight;
  }
  function replyFor(text){
   const q=text.toLowerCase();
-  if(q.includes("invoice")||q.includes("bill")){const answer="Let's make it by voice. Tell me who it's for, what you did and your rate.";addMessage(answer,false);showScreen("invoice");return null}
-  if(q.includes("calendar")||q.includes("due")||q.includes("week")){const answer="Here's your money calendar. Tap a date to see what is due.";addMessage(answer,false);showScreen("calendar");return null}
-  if(q.includes("balance")||q.includes("enough"))return "Your last recorded balance was £1,240. Ella's £420 payment and the £82 internet bill would leave £1,578 after both are cleared.";
-  if(q.includes("save")||q.includes("spend"))return "I can check that against the dates and amounts you've entered. Start with the money calendar and we can work it through.";
-  return "I can help with your balance, payments and invoices. Try asking what is due this week, or tell me to create an invoice.";
+  if(q.includes("invoice")||q.includes("bill")){addMessage("Let's make it by voice.",false);showScreen("invoice");return null}
+  if(q.includes("calendar")||q.includes("due")||q.includes("week")){addMessage("Here are the dates.",false);showScreen("calendar");return null}
+  if(q.includes("balance")||q.includes("enough"))return "£1,578 after the £420 payment arrives and the £82 bill leaves.";
+  if(q.includes("save")||q.includes("spend"))return "You can check the dates and amounts in your calendar.";
+  return "Ask about your balance, payments or invoices.";
  }
- document.getElementById("chatForm").addEventListener("submit",e=>{e.preventDefault();const text=chatInput.value.trim();if(!text)return;addMessage(text,true);chatInput.value="";const answer=replyFor(text);if(answer)addMessage(answer,false)});
- document.querySelectorAll("[data-prompt]").forEach(b=>b.addEventListener("click",()=>{const text=b.dataset.prompt;addMessage(text,true);const answer=replyFor(text);if(answer)addMessage(answer,false)}));
- const voicePanel=document.getElementById("voicePanel"),voiceStatus=document.getElementById("voiceStatus"),transcriptCard=document.getElementById("transcriptCard"),transcriptCopy=document.getElementById("transcriptCopy"),invoiceCard=document.getElementById("invoiceCard");
- const sampleCommand="Invoice Jamie for two hours of design at forty five pounds an hour, due Friday.";let recognition=null;
+ document.getElementById("chatForm").addEventListener("submit",e=>{
+  e.preventDefault();const text=chatInput.value.trim();if(!text)return;
+  addMessage(text,true);chatInput.value="";const answer=replyFor(text);if(answer)addMessage(answer,false);
+ });
+ document.querySelectorAll("[data-prompt]").forEach(b=>b.addEventListener("click",()=>{
+  const text=b.dataset.prompt;addMessage(text,true);const answer=replyFor(text);if(answer)addMessage(answer,false);
+ }));
+
+ const voicePanel=document.getElementById("voicePanel"),voiceStatus=document.getElementById("voiceStatus");
+ const transcriptCard=document.getElementById("transcriptCard"),transcriptCopy=document.getElementById("transcriptCopy"),invoiceCard=document.getElementById("invoiceCard");
+ const sampleCommand="Invoice Jamie for two hours of design at forty five pounds an hour, due Friday.";
+ let recognition=null;
  function numberFromWords(value){
   const s=value.toLowerCase().trim();if(/^\d+(\.\d+)?$/.test(s))return Number(s);
   const values={one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,twenty:20,thirty:30,forty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
@@ -223,33 +350,38 @@ h1,h2,h3,p{margin-top:0}h1{margin:6px 0 5px;color:#292823;font:700 24px/1.12 Man
   const hours=hoursMatch?numberFromWords(hoursMatch[1]):2,rate=rateMatch?numberFromWords(rateMatch[1]):45;
   const customer=customerMatch?customerMatch[1].trim().replace(/\b\w/g,c=>c.toUpperCase()):"Jamie",amount=(hours||2)*(rate||45);
   const serviceMatch=spoken.match(/hours?\s+(?:of\s+)?([a-z][a-z ]*?)(?:\s+at|\s+due|$)/i);
-  const service=serviceMatch?serviceMatch[1].trim().replace(/\b\w/g,c=>c.toUpperCase()):"Design work";
+  const service=serviceMatch?serviceMatch[1].trim().replace(/\b\w/g,c=>c.toUpperCase()):"Design";
   const q=spoken.toLowerCase(),due=q.includes("monday")?"Monday, 25 November 2019":q.includes("thursday")?"Thursday, 21 November 2019":"Friday, 22 November 2019";
   document.getElementById("invoiceCustomer").textContent=customer;document.getElementById("invoiceDue").textContent="Due "+due;
   document.getElementById("invoiceDescription").textContent=service+" · "+(hours||2)+" hours × £"+(rate||45);
   document.getElementById("invoiceLineTotal").textContent=money(amount);document.getElementById("invoiceTotal").textContent=money(amount);
   document.getElementById("signCustomer").textContent=customer;document.getElementById("signTotal").textContent=money(amount);
-  document.querySelector(".sign-invoice-top small").textContent="Invoice UOME-019 · "+due;
+  document.getElementById("approvalName").textContent=customer+" · UOME-019";
+  document.querySelector(".sign-invoice-top small")?.remove();
   transcriptCopy.textContent=spoken;transcriptCard.classList.add("visible");invoiceCard.classList.add("visible");
-  voiceStatus.textContent="Invoice details picked up. Review below.";invoiceCard.scrollIntoView({behavior:"smooth",block:"nearest"});
+  voiceStatus.textContent="Draft ready.";invoiceCard.scrollIntoView({behavior:"smooth",block:"nearest"});
  }
  function setListening(on){voicePanel.classList.toggle("listening",on);document.getElementById("invoiceMic").classList.toggle("listening",on)}
  function listenForInvoice(){
   const Speech=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!Speech){voiceStatus.textContent="This browser does not offer speech input here. Try the sample voice command.";return}
+  if(!Speech){voiceStatus.textContent="Voice input isn't available here.";return}
   if(recognition){recognition.stop();recognition=null}
-  recognition=new Speech();recognition.lang="en-GB";recognition.interimResults=true;recognition.continuous=false;setListening(true);voiceStatus.textContent="Listening. Say the invoice details.";
+  recognition=new Speech();recognition.lang="en-GB";recognition.interimResults=true;recognition.continuous=false;
+  setListening(true);voiceStatus.textContent="Listening…";
   recognition.onresult=e=>{let result="";for(let i=e.resultIndex;i<e.results.length;i++)result+=e.results[i][0].transcript;if(result)transcriptCopy.textContent=result;if(e.results[e.results.length-1].isFinal)invoiceFromVoice(result)};
-  recognition.onerror=()=>{setListening(false);voiceStatus.textContent="I didn't catch that. Try once more or use the sample command."};
-  recognition.onend=()=>{setListening(false);if(!invoiceCard.classList.contains("visible"))voiceStatus.textContent="Ready when you are."};recognition.start();
+  recognition.onerror=()=>{setListening(false);voiceStatus.textContent="Try again."};
+  recognition.onend=()=>{setListening(false);if(!invoiceCard.classList.contains("visible"))voiceStatus.textContent="Tap to speak."};
+  recognition.start();
  }
  document.getElementById("invoiceMic").addEventListener("click",listenForInvoice);
  document.getElementById("sampleVoice").addEventListener("click",()=>invoiceFromVoice(sampleCommand));
- document.getElementById("changeByVoice").addEventListener("click",()=>{voiceStatus.textContent="Say the change you want. The invoice will be updated.";listenForInvoice()});
+ document.getElementById("changeByVoice").addEventListener("click",()=>{voiceStatus.textContent="Listening for a change…";listenForInvoice()});
  document.getElementById("sendForSignoff").addEventListener("click",()=>showScreen("signoff"));
  document.getElementById("backToInvoice").addEventListener("click",()=>showScreen("invoice"));
  document.getElementById("returnToChat").addEventListener("click",()=>showScreen("chat"));
- const signaturePad=document.getElementById("signaturePad"),ctx=signaturePad.getContext("2d");let drawing=false,hasSignature=false,lastPoint=null;
+
+ const signaturePad=document.getElementById("signaturePad"),ctx=signaturePad.getContext("2d");
+ let drawing=false,hasSignature=false,lastPoint=null;
  function resizeSignature(){
   const rect=signaturePad.getBoundingClientRect(),ratio=window.devicePixelRatio||1,old=hasSignature?signaturePad.toDataURL():null;
   signaturePad.width=Math.max(1,Math.round(rect.width*ratio));signaturePad.height=Math.max(1,Math.round(rect.height*ratio));
@@ -260,14 +392,24 @@ h1,h2,h3,p{margin-top:0}h1{margin:6px 0 5px;color:#292823;font:700 24px/1.12 Man
  signaturePad.addEventListener("pointerdown",e=>{drawing=true;hasSignature=true;lastPoint=pointFor(e);signaturePad.setPointerCapture(e.pointerId);ctx.beginPath();ctx.moveTo(lastPoint.x,lastPoint.y);ctx.lineTo(lastPoint.x+.1,lastPoint.y+.1);ctx.stroke()});
  signaturePad.addEventListener("pointermove",e=>{if(!drawing)return;const next=pointFor(e);ctx.beginPath();ctx.moveTo(lastPoint.x,lastPoint.y);ctx.lineTo(next.x,next.y);ctx.stroke();lastPoint=next});
  ["pointerup","pointercancel","lostpointercapture"].forEach(type=>signaturePad.addEventListener(type,()=>{drawing=false;lastPoint=null}));
- document.getElementById("clearSignature").addEventListener("click",()=>{ctx.clearRect(0,0,signaturePad.width,signaturePad.height);hasSignature=false});
- document.getElementById("confirmSignoff").addEventListener("click",()=>{if(!hasSignature){document.getElementById("confirmSignoff").textContent="Add a signature first";return}document.getElementById("signedCard").classList.add("visible");document.getElementById("confirmSignoff").hidden=true;document.querySelector(".signature-wrap").hidden=true});
+ const confirm=document.getElementById("confirmSignoff");
+ confirm.addEventListener("click",()=>{
+  if(!hasSignature){confirm.textContent="Add signature first";return}
+  document.getElementById("signedCard").classList.add("visible");
+  confirm.hidden=true;document.querySelector(".signature-wrap").hidden=true;
+ });
+ document.getElementById("clearSignature").addEventListener("click",()=>{
+  ctx.clearRect(0,0,signaturePad.width,signaturePad.height);hasSignature=false;confirm.textContent="Sign & approve";confirm.hidden=false;
+  document.getElementById("signedCard").classList.remove("visible");document.querySelector(".signature-wrap").hidden=false;
+ });
  const resizeObserver=new ResizeObserver(resizeSignature);resizeObserver.observe(signaturePad);resizeSignature();
+
  document.getElementById("chatMic").addEventListener("click",()=>{
-  const Speech=window.SpeechRecognition||window.webkitSpeechRecognition;if(!Speech){document.getElementById("chatMic").textContent="×";chatInput.placeholder="Voice input unavailable in this browser";return}
-  const rec=new Speech();rec.lang="en-GB";rec.continuous=false;document.getElementById("chatMic").textContent="…";
-  rec.onresult=e=>{chatInput.value=e.results[0][0].transcript;document.getElementById("chatMic").textContent="◖";chatInput.focus()};
-  rec.onerror=rec.onend=()=>{document.getElementById("chatMic").textContent="◖"};rec.start();
+  const Speech=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!Speech){document.getElementById("chatMic").setAttribute("aria-label","Voice unavailable");return}
+  const rec=new Speech();rec.lang="en-GB";rec.continuous=false;const button=document.getElementById("chatMic");
+  rec.onresult=e=>{chatInput.value=e.results[0][0].transcript;chatInput.focus()};
+  rec.onerror=()=>button.setAttribute("aria-label","Speak");rec.onend=()=>button.setAttribute("aria-label","Speak");rec.start();
  });
 })();
 </script>

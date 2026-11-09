@@ -2,138 +2,131 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <base href="/">
-<title>Marketing Portfolio | Shoman</title>
-<link rel="stylesheet" href="./portfolio.css?v=uome-chatbot-2019-gold-20261109c">
+<meta name="theme-color" content="#211a14">
+<title>Marketing | Shoman</title>
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="./portfolio.css?v=marketing-cover-certificate-20261109d">
 </head>
-<body class="marketing-portfolio-page">
+<body class="marketing-portfolio-page ux-portfolio-page">
 <main class="portfolio-shell">
- <header class="portfolio-masthead">
-  <h1>Marketing Portfolio</h1>
-  <div class="certificate-dock" aria-label="Outreach certificate">
-   <button class="certificate-preview" type="button" data-certificate-open="./portfolio-assets/outreachcertificate.png" aria-label="View outreach certificate full size">
-    <img src="./portfolio-assets/outreachcertificate.png" alt="Outreach certificate" loading="eager" fetchpriority="high">
-    <span class="certificate-zoom" aria-hidden="true">↗</span>
+ <section class="ux-cover mar-cover" id="mar-cover" aria-label="Marketing portfolio introduction">
+  <div class="ux-cover-copy">
+   <p class="ux-cover-kicker">Selected marketing work</p>
+   <h1>Marketing</h1>
+   <p class="ux-cover-subtitle">Outreach and content that move work forward.</p>
+   <div class="ux-cover-rule"></div>
+   <button class="ux-cover-action" id="mar-cover-next" type="button">
+    <span>Explore the work</span>
+    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5"/></svg>
    </button>
   </div>
- </header>
- <section class="marketing-slider" aria-label="Marketing samples">
-  <div class="category-tabs" role="tablist" aria-label="Marketing sample categories">
-   <button class="category-tab" type="button" role="tab" id="tab-outreach" aria-selected="true" aria-controls="marketing-slide" data-category="outreach">Outreach</button>
-   <button class="category-tab" type="button" role="tab" id="tab-social" aria-selected="false" aria-controls="marketing-slide" data-category="social">Social Media</button>
+  <button class="ux-cover-certificate mar-cover-certificate" type="button" data-certificate-open="./portfolio-assets/outreachcertificate.png" aria-label="View marketing certificate full size">
+   <img src="./portfolio-assets/outreachcertificate.png" alt="Marketing and outreach certificate" loading="eager" fetchpriority="high">
+  </button>
+ </section>
+
+ <section class="mar-viewer" id="mar-viewer" aria-label="Marketing samples" hidden>
+  <div class="mar-category-tabs" role="tablist" aria-label="Sample category">
+   <button type="button" role="tab" data-category="outreach" aria-selected="true">Outreach</button>
+   <button type="button" role="tab" data-category="social" aria-selected="false">Social</button>
   </div>
-  <div class="slider-toolbar">
-   <span class="slider-caption" id="slide-category">OUTREACH</span>
-   <span class="slider-label" id="slide-label">Outreach sequences</span>
-   <span class="slider-counter" id="slide-counter">01 / 04</span>
-  </div>
-  <div class="slider-image-wrap" id="marketing-slide"><img id="marketing-slide-image" src="./portfolio-assets/outreach-sequences.png" alt="Outreach sequence sample" loading="eager" fetchpriority="high"></div>
+  <div class="mar-sample-image"><img id="mar-image" src="./portfolio-assets/outreach-sequences.png" alt="Outreach sequence sample"></div>
+  <div class="mar-sample-meta"><span id="mar-label">Outreach sequences</span><span id="mar-count">01 / 07</span></div>
  </section>
 </main>
+
 <nav class="portfolio-float-controls" aria-label="Portfolio controls">
- <button type="button" id="mar-float-prev" aria-label="Previous sample"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg></button>
- <button type="button" id="mar-float-next" aria-label="Next sample"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></button>
+ <button type="button" id="mar-float-prev" aria-label="Previous page"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg></button>
+ <button type="button" id="mar-float-next" aria-label="Next page"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></button>
  <button type="button" id="mar-float-close" aria-label="Close portfolio"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button>
 </nav>
+
 <div class="certificate-viewer" id="certificate-viewer" hidden aria-hidden="true">
  <button type="button" class="certificate-close" data-certificate-close aria-label="Close certificate">×</button>
  <img id="certificate-full-image" alt="Full-size certificate">
 </div>
+
 <script>
 (function(){
- const categories={
-  outreach:{title:"OUTREACH",items:[
-   {src:"./portfolio-assets/outreach-sequences.png",alt:"Outreach sequences dashboard",label:"Outreach sequences"},
-   {src:"./portfolio-assets/coldemail21.png",alt:"Cold email sample one",label:"Cold email 01"},
-   {src:"./portfolio-assets/coldemail23.jpg",alt:"Cold email sample two",label:"Cold email 02"},
-   {src:"./portfolio-assets/coldemail24.png",alt:"Cold email sample three",label:"Cold email 03"}
-  ]},
-  social:{title:"SOCIAL MEDIA",items:[
-   {src:"./portfolio-assets/content1.PNG",alt:"Social media content sample one",label:"Social media 01"},
-   {src:"./portfolio-assets/content2.png",alt:"Social media content sample two",label:"Social media 02"},
-   {src:"./portfolio-assets/content4.png",alt:"Social media content sample three",label:"Social media 03"}
-  ]}
- };
- const categoryOrder=["outreach","social"];
- let category="outreach",index=0;
+ const samples=[
+  {category:"outreach",src:"./portfolio-assets/outreach-sequences.png",alt:"Outreach sequences",label:"Outreach sequences"},
+  {category:"outreach",src:"./portfolio-assets/coldemail21.png",alt:"Cold email sample one",label:"Cold email 01"},
+  {category:"outreach",src:"./portfolio-assets/coldemail23.jpg",alt:"Cold email sample two",label:"Cold email 02"},
+  {category:"outreach",src:"./portfolio-assets/coldemail24.png",alt:"Cold email sample three",label:"Cold email 03"},
+  {category:"social",src:"./portfolio-assets/content1.PNG",alt:"Social media sample one",label:"Social 01"},
+  {category:"social",src:"./portfolio-assets/content2.png",alt:"Social media sample two",label:"Social 02"},
+  {category:"social",src:"./portfolio-assets/content4.png",alt:"Social media sample three",label:"Social 03"}
+ ];
+ let current=-1,wheelLocked=false,wheelTimer=0;
  const embedded=window.parent!==window;
  if(embedded)document.body.classList.add("portfolio-embedded");
- const image=document.getElementById("marketing-slide-image");
- const title=document.getElementById("slide-category");
- const label=document.getElementById("slide-label");
- const countEl=document.getElementById("slide-counter");
- const slide=document.getElementById("marketing-slide");
- const viewer=document.getElementById("certificate-viewer");
- const full=document.getElementById("certificate-full-image");
- const notify=()=>{
-  const position=categoryOrder.indexOf(category);
-  const globalIndex=categoryOrder.slice(0,position).reduce((sum,key)=>sum+categories[key].items.length,0)+index;
-  const total=categoryOrder.reduce((sum,key)=>sum+categories[key].items.length,0);
-  window.parent.postMessage({
-   type:"desk-portfolio:state",canPrev:globalIndex>0,canNext:globalIndex<total-1,index:globalIndex,total
-  },window.location.origin);
- };
- const render=()=>{
-  const group=categories[category],item=group.items[index];
-  image.src=item.src;image.alt=item.alt;title.textContent=group.title;label.textContent=item.label;
-  countEl.textContent=String(index+1).padStart(2,"0")+" / "+String(group.items.length).padStart(2,"0");
-  document.querySelectorAll("[data-category]").forEach(tab=>tab.setAttribute("aria-selected",String(tab.dataset.category===category)));
-  notify();
- };
- const move=direction=>{
-  const sequence=categoryOrder.flatMap(key=>categories[key].items.map((item,itemIndex)=>({category:key,index:itemIndex})));
-  const current=sequence.findIndex(item=>item.category===category&&item.index===index);
-  const target=Math.max(0,Math.min(sequence.length-1,current+direction));
-  if(target===current)return;
-  category=sequence[target].category;index=sequence[target].index;render();
- };
- document.querySelectorAll("[data-category]").forEach(tab=>tab.addEventListener("click",()=>{
-  category=tab.dataset.category;index=0;render();
- }));
- window.addEventListener("message",event=>{
-  if(event.source!==window.parent||event.origin!==window.location.origin)return;
-  if(event.data?.type==="desk-portfolio:navigate")move(Number(event.data.direction)||0);
- });
- document.addEventListener("keydown",event=>{
-  if(!viewer.hidden)return;
-  if(event.key==="ArrowLeft"){event.preventDefault();move(-1)}
-  if(event.key==="ArrowRight"){event.preventDefault();move(1)}
- });
- let swipeStartX=null;
- slide.addEventListener("pointerdown",event=>{swipeStartX=event.clientX});
- slide.addEventListener("pointerup",event=>{
-  if(swipeStartX===null)return;
-  const delta=event.clientX-swipeStartX;swipeStartX=null;
-  if(Math.abs(delta)<45)return;
-  move(delta<0?1:-1);
- });
- slide.addEventListener("pointercancel",()=>{swipeStartX=null});
- let wheelTotal=0,wheelLocked=false,wheelTimer=null;
- document.querySelector(".marketing-slider").addEventListener("wheel",event=>{
-  if(!viewer.hidden)return;
-  event.preventDefault();
-  if(Math.abs(event.deltaY)<2)return;
-  wheelTotal+=event.deltaY;
-  clearTimeout(wheelTimer);
-  if(!wheelLocked&&Math.abs(wheelTotal)>=38){
-   move(wheelTotal>0?1:-1);wheelTotal=0;wheelLocked=true;
+ const cover=document.getElementById("mar-cover");
+ const viewer=document.getElementById("mar-viewer");
+ const image=document.getElementById("mar-image");
+ const label=document.getElementById("mar-label");
+ const count=document.getElementById("mar-count");
+ const tabs=[...document.querySelectorAll("[data-category]")];
+ const notify=()=>window.parent.postMessage({
+  type:"desk-portfolio:state",canPrev:current>=0,canNext:current<samples.length-1,
+  index:current+1,total:samples.length+1
+ },window.location.origin);
+ function render(){
+  if(current<0){cover.hidden=false;viewer.hidden=true}
+  else{
+   const sample=samples[current];cover.hidden=true;viewer.hidden=false;
+   image.src=sample.src;image.alt=sample.alt;label.textContent=sample.label;
+   count.textContent=String(current+1).padStart(2,"0")+" / "+String(samples.length).padStart(2,"0");
+   tabs.forEach(tab=>tab.setAttribute("aria-selected",String(tab.dataset.category===sample.category)));
   }
-  wheelTimer=setTimeout(()=>{wheelTotal=0;wheelLocked=false},380);
- },{passive:false});
+  notify();
+ }
+ function move(direction){
+  const target=Math.max(-1,Math.min(samples.length-1,current+direction));
+  if(target===current)return;current=target;render();
+ }
+ document.getElementById("mar-cover-next").addEventListener("click",()=>move(1));
  document.getElementById("mar-float-prev").addEventListener("click",()=>move(-1));
  document.getElementById("mar-float-next").addEventListener("click",()=>move(1));
  document.getElementById("mar-float-close").addEventListener("click",()=>{
   if(embedded)window.parent.postMessage({type:"desk-portfolio:close"},window.location.origin);
   else window.location.assign("/");
  });
- const close=()=>{viewer.hidden=true;viewer.setAttribute("aria-hidden","true");full.src=""};
+ tabs.forEach(tab=>tab.addEventListener("click",()=>{
+  current=samples.findIndex(sample=>sample.category===tab.dataset.category);
+  render();
+ }));
+ window.addEventListener("message",event=>{
+  if(event.source!==window.parent||event.origin!==window.location.origin)return;
+  if(event.data?.type==="desk-portfolio:navigate")move(Number(event.data.direction)||0);
+ });
+ window.addEventListener("wheel",event=>{
+  if(Math.abs(event.deltaY)<40||wheelLocked)return;
+  event.preventDefault();wheelLocked=true;move(event.deltaY>0?1:-1);
+  window.setTimeout(()=>{wheelLocked=false},550);
+ },{passive:false});
+ document.addEventListener("keydown",event=>{
+  if(event.key==="Escape"){
+   if(!document.getElementById("certificate-viewer").hidden){closeCertificate();return}
+   if(embedded)window.parent.postMessage({type:"desk-portfolio:close"},window.location.origin);
+   else window.location.assign("/");
+  }
+  if(event.key==="ArrowRight"||event.key==="ArrowDown"){event.preventDefault();move(1)}
+  if(event.key==="ArrowLeft"||event.key==="ArrowUp"){event.preventDefault();move(-1)}
+ });
+ const certViewer=document.getElementById("certificate-viewer");
+ const full=document.getElementById("certificate-full-image");
+ function closeCertificate(){certViewer.hidden=true;certViewer.setAttribute("aria-hidden","true");full.src=""}
  document.querySelectorAll("[data-certificate-open]").forEach(button=>button.addEventListener("click",()=>{
   full.src=button.dataset.certificateOpen;full.alt=button.querySelector("img").alt+" full size";
-  viewer.hidden=false;viewer.setAttribute("aria-hidden","false");
+  certViewer.hidden=false;certViewer.setAttribute("aria-hidden","false");
  }));
- viewer.addEventListener("click",event=>{if(event.target===viewer||event.target.closest("[data-certificate-close]"))close()});
- document.addEventListener("keydown",event=>{if(event.key==="Escape")close()});
+ certViewer.addEventListener("click",event=>{
+  if(event.target===certViewer||event.target.closest("[data-certificate-close]"))closeCertificate();
+ });
  render();
 })();
 </script>

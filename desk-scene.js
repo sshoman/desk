@@ -85,14 +85,14 @@ scene.innerHTML=`
     <h1 class="screen-title">A few things I've built.</h1>
    </div>
    <nav class="screen-links" aria-label="Open a portfolio">
-    <button type="button" data-portfolio="/ux" data-title="UX Portfolio">
+    <button type="button" data-portfolio="/ux" data-title="UX">
      <span class="screen-number">01</span>
-     <span class="screen-copy"><b>UX Portfolio</b><small>Selected live projects</small></span>
+     <span class="screen-copy"><b>UX</b></span>
      <span class="screen-arrow">↗</span>
     </button>
-    <button type="button" data-portfolio="/mar" data-title="Marketing Portfolio">
+    <button type="button" data-portfolio="/mar" data-title="MAR">
      <span class="screen-number">02</span>
-     <span class="screen-copy"><b>Marketing Portfolio</b><small>Selected marketing work</small></span>
+     <span class="screen-copy"><b>MAR</b></span>
      <span class="screen-arrow">↗</span>
     </button>
    </nav>
