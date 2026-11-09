@@ -60,7 +60,7 @@
 (function(){
  const projects=[
   {title:"Junior",src:"./junior-showcase.html"},
-  {title:"UoMe · Personal Finance Chatbot",src:"./uome-demo.html"},
+  {title:"UoMe · Personal Finance Chatbot",src:"./uome-demo.html?v=uome-design-export-20261109"},
   {title:"Xntry",src:"https://xntry.pages.dev/"},
   {title:"Outbound Fox",src:"https://outboundfox.pages.dev/"}
  ];
@@ -104,7 +104,18 @@
    const win=frame.contentWindow;
    if(!win||win.location.origin!==window.location.origin)return;
    const doc=frame.contentDocument;
-   const handler=event=>wheelMove(event);
+   const handler=event=>{
+    if(Math.abs(event.deltaY)<40||wheelLocked)return;
+    const scroller=doc.scrollingElement||doc.documentElement;
+    const atTop=scroller.scrollTop<=4;
+    const atBottom=scroller.scrollTop+win.innerHeight>=scroller.scrollHeight-4;
+    if(event.deltaY>0&&!atBottom)return;
+    if(event.deltaY<0&&!atTop)return;
+    event.preventDefault();
+    wheelLocked=true;
+    move(event.deltaY>0?1:-1);
+    window.setTimeout(()=>{wheelLocked=false},650);
+   };
    doc.addEventListener("wheel",handler,{capture:true,passive:false});
   }catch(_){}
  }
