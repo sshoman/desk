@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f3f6f7">
+<title>UoMe | Invoice Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#102d43;--navy2:#173f57;--blue:#2678e7;--blue2:#eaf3ff;--mint:#d9f5e9;--lime:#c9f36a;--ink:#1d3042;--muted:#82919d;--line:#e5edf1;--canvas:#f3f6f7;--green:#15845f;--gold:#c69a51;--white:#fff}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#eef2f4;color:var(--ink);font-family:"DM Sans",Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}
+.shell{width:100%;min-height:820px;display:grid;grid-template-columns:190px minmax(0,1fr);background:var(--canvas)}
+.rail{background:var(--navy);color:#fff;padding:25px 14px 18px;display:flex;flex-direction:column}
+.brand{display:flex;align-items:center;gap:9px;padding:0 10px 30px;font:800 25px Manrope,sans-serif;letter-spacing:-1.4px}
+.brand-mark{width:29px;height:29px;display:grid;place-items:center;border-radius:9px;background:var(--lime);color:var(--navy);font:900 16px Manrope,sans-serif;transform:rotate(-7deg)}
+.workspace-label{margin:0 10px 9px;color:#829dab;font:800 8px Manrope,sans-serif;letter-spacing:.16em}
+.nav{display:grid;gap:4px}
+.nav a{display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:9px;color:#b5c7d2;text-decoration:none;font-size:10px;font-weight:700}
+.nav a.active{background:#ffffff18;color:#fff;box-shadow:inset 3px 0 var(--lime)}
+.nav i{width:17px;text-align:center;font-style:normal;font-size:14px}
+.rail-foot{margin-top:auto;padding:12px 10px;border-top:1px solid #ffffff20;color:#9bb0bd;font-size:8px;line-height:1.55}
+.rail-profile{display:flex;align-items:center;gap:8px;margin-top:14px;color:#fff;font-size:9px;font-weight:700}
+.mini-avatar{width:26px;height:26px;display:grid;place-items:center;border-radius:50%;background:#d1e8f3;color:#193c55;font:800 9px Manrope,sans-serif}
+.main{min-width:0;padding:22px 25px 28px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 0 17px;border-bottom:1px solid var(--line)}
+.crumb{color:#8999a4;font:800 8px Manrope,sans-serif;letter-spacing:.12em}
+.top-actions{display:flex;align-items:center;gap:9px}
+.top-actions button{width:29px;height:29px;border:1px solid var(--line);border-radius:9px;background:#fff;color:#607788}
+.top-actions .profile-chip{width:auto;padding:0 8px;display:flex;align-items:center;gap:6px;font-size:8px;font-weight:800}
+.heading{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;padding:22px 0 17px}
+.eyebrow{color:#8b9ba6;font:800 8px Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+h1{margin:6px 0 4px;color:#17364d;font:800 clamp(22px,2.5vw,29px)/1.12 Manrope,sans-serif;letter-spacing:-1.2px}
+.heading p{margin:0;color:#8796a1;font-size:9px}
+.head-actions{display:flex;gap:7px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:32px;padding:0 12px;border:1px solid #dfe8ed;border-radius:8px;background:#fff;color:#577084;font-size:8px;font-weight:800}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 5px 12px #2678e72b}
+.btn.dark{background:var(--navy);border-color:var(--navy);color:#fff}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #a8d0fa;outline-offset:2px}
+.progress-line{display:flex;align-items:center;gap:0;padding:0 0 17px}
+.step{display:flex;align-items:center;gap:7px;color:#9aa7b0;font:800 8px Manrope,sans-serif;white-space:nowrap}
+.step b{width:19px;height:19px;display:grid;place-items:center;border-radius:50%;border:1px solid #d9e2e8;background:#fff;font-size:8px}
+.step.active{color:#236fc1}.step.active b{background:#eaf3ff;border-color:#93b9ec;color:#236fc1}
+.step.done{color:#26835f}.step.done b{background:#e5f6ee;border-color:#9ed7bb;color:#26835f}
+.step-line{height:1px;flex:1;max-width:90px;margin:0 9px;background:#dce4e9}
+.studio{display:grid;grid-template-columns:minmax(290px,.92fr) minmax(0,1.08fr);gap:13px;align-items:start}
+.builder{display:grid;gap:10px;min-width:0}
+.card{border:1px solid var(--line);border-radius:12px;background:#fff;box-shadow:0 7px 20px #17364d08;overflow:hidden}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 14px;border-bottom:1px solid #eef2f4}
+.card-head strong{color:#233e53;font:800 10px Manrope,sans-serif}
+.card-head small{color:#98a4ad;font-size:7px}
+.card-body{padding:12px 14px}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.field{display:block;min-width:0;margin-bottom:9px}
+.field:last-child{margin-bottom:0}
+.field label,.label{display:block;margin:0 0 5px;color:#82929e;font:800 7px Manrope,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.field input,.field select,.field textarea{width:100%;min-width:0;min-height:31px;padding:7px 8px;border:1px solid #e3eaee;border-radius:7px;background:#fbfcfd;color:#2e475b;font-size:8px}
+.field textarea{min-height:48px;resize:vertical}
+.input-wrap{position:relative}
+.input-wrap span{position:absolute;left:9px;top:9px;color:#91a0a8;font-size:8px}
+.input-wrap input{padding-left:23px}
+.client-select{display:flex;align-items:center;gap:8px}
+.client-select select{flex:1}
+.client-avatar{width:28px;height:28px;display:grid;place-items:center;flex:none;border-radius:9px;background:#f7e9dc;color:#94623c;font:800 8px Manrope,sans-serif}
+.item-table{width:100%;border-collapse:collapse}
+.item-table th{padding:0 4px 7px;color:#99a4ad;text-align:left;font:800 6px Manrope,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.item-table td{padding:7px 4px;border-top:1px solid #f0f3f5;vertical-align:middle}
+.item-name{width:46%}
+.item-name b{display:block;color:#3c5264;font-size:8px}
+.item-name small{display:block;margin-top:3px;color:#9ba6ae;font-size:6px}
+.qty-input,.rate-input{width:100%;min-width:0;height:26px;border:1px solid #e7edf0;border-radius:6px;background:#fbfcfd;color:#526a7b;text-align:center;font-size:8px}
+.rate-input{text-align:right;padding:0 6px}
+.line-total{text-align:right;color:#2e485d;font:800 8px Manrope,sans-serif;white-space:nowrap}
+.remove{border:0;background:transparent;color:#b1bac1;font-size:12px}
+.add-line{display:flex;gap:7px;align-items:center;margin-top:8px}
+.add-line select{flex:1;min-width:0;height:29px;padding:0 8px;border:1px solid #e4ebef;border-radius:7px;background:#fbfcfd;color:#607687;font-size:7px}
+.add-line button{height:29px;padding:0 10px;border:1px solid #d5e5f5;border-radius:7px;background:#f0f7ff;color:#2678c9;font:800 7px Manrope,sans-serif}
+.summary{display:grid;gap:7px;padding-top:10px;border-top:1px solid #edf1f3}
+.summary-row{display:flex;justify-content:space-between;color:#84939e;font-size:8px}
+.summary-row strong{color:#40596b;font:800 8px Manrope,sans-serif}
+.summary-row.total{padding-top:8px;border-top:1px solid #e9eef1;color:#193a53;font-weight:800}
+.summary-row.total strong{font-size:15px;color:#17364d}
+.tax-row{display:flex;align-items:center;justify-content:space-between;margin-top:9px;color:#8b9aa5;font-size:7px}
+.tax-row label{display:flex;align-items:center;gap:5px}
+.tax-row input{accent-color:var(--blue)}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:4px 7px;border-radius:30px;background:#e8f6ef;color:#21815f;font:800 6px Manrope,sans-serif}
+.preview-wrap{position:sticky;top:14px;min-width:0}
+.preview-top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;background:#f9fbfc}
+.preview-top strong{font:800 8px Manrope,sans-serif;color:#657b8b}
+.preview-toggle{display:flex;gap:3px;padding:3px;border-radius:7px;background:#edf1f3}
+.preview-toggle button{height:23px;padding:0 9px;border:0;border-radius:5px;background:transparent;color:#8998a3;font:800 7px Manrope,sans-serif}
+.preview-toggle button.active{background:#fff;color:#2c6fb4;box-shadow:0 1px 3px #17364d12}
+.paper{min-height:655px;padding:27px 30px 24px;background:#fff;border:1px solid var(--line);border-radius:0 0 12px 12px;box-shadow:0 12px 28px #17364d0b}
+.paper-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding-bottom:20px;border-bottom:1px solid #e9eef1}
+.paper-brand{display:flex;align-items:center;gap:8px;color:#17394f;font:900 17px Manrope,sans-serif;letter-spacing:-.8px}
+.paper-brand .brand-mark{width:22px;height:22px;border-radius:7px;font-size:12px}
+.paper-sub{margin-top:4px;color:#98a4ad;font-size:7px}
+.doc-kind{text-align:right}
+.doc-kind b{display:block;color:#173950;font:800 16px Manrope,sans-serif;letter-spacing:-.6px}
+.doc-kind small{display:block;margin-top:3px;color:#9aa5ad;font-size:7px;letter-spacing:.1em}
+.paper-parties{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:17px 0}
+.party label{display:block;margin-bottom:7px;color:#a0aab2;font:800 6px Manrope,sans-serif;letter-spacing:.12em}
+.party b{display:block;color:#365267;font:800 8px Manrope,sans-serif}
+.party span{display:block;margin-top:4px;color:#8897a2;font-size:7px;line-height:1.5}
+.invoice-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px 11px;border-radius:8px;background:#f5f8f9}
+.invoice-meta span{display:block;color:#9aa6ae;font:800 6px Manrope,sans-serif;letter-spacing:.08em}
+.invoice-meta b{display:block;margin-top:4px;color:#506b7d;font:800 7px Manrope,sans-serif}
+.preview-lines{width:100%;margin-top:18px;border-collapse:collapse}
+.preview-lines th{padding:7px 3px;border-bottom:1px solid #e6edf0;color:#97a3ab;text-align:left;font:800 6px Manrope,sans-serif;letter-spacing:.09em}
+.preview-lines td{padding:10px 3px;border-bottom:1px solid #f0f3f5;color:#596f7f;font-size:7px}
+.preview-lines td:last-child,.preview-lines th:last-child{text-align:right}
+.preview-lines td:nth-child(2),.preview-lines th:nth-child(2){text-align:center}
+.paper-bottom{display:grid;grid-template-columns:1fr 160px;gap:15px;margin-top:18px}
+.pay-note{padding:11px;border-radius:8px;background:#f6f9fa;color:#82929e;font-size:7px;line-height:1.55}
+.pay-note b{display:block;margin-bottom:5px;color:#426078;font:800 7px Manrope,sans-serif}
+.preview-total{display:grid;gap:6px}
+.preview-total div{display:flex;justify-content:space-between;color:#82919c;font-size:7px}
+.preview-total b{color:#4a6375;font:800 7px Manrope,sans-serif}
+.preview-total .grand{padding-top:8px;border-top:1px solid #e8edf0;color:#183b55;font-weight:800}
+.preview-total .grand b{color:#16374e;font-size:13px}
+.pay-strip{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;padding:12px 13px;border-radius:9px;background:linear-gradient(110deg,#102d43,#1c566a);color:#fff}
+.pay-strip span{font-size:7px;color:#c3d8e0}.pay-strip b{display:block;margin-top:3px;font:800 9px Manrope,sans-serif}
+.pay-strip button{border:0;border-radius:7px;background:var(--lime);color:#19384b;padding:8px 11px;font:900 7px Manrope,sans-serif;white-space:nowrap}
+.paper-foot{margin-top:15px;padding-top:9px;border-top:1px solid #edf1f3;display:flex;justify-content:space-between;color:#a4adb4;font-size:6px}
+.customer-view{display:none}
+.customer-view .customer-banner{padding:9px 11px;border-radius:8px;background:#eaf5ff;color:#3478b6;font:800 7px Manrope,sans-serif;margin-bottom:16px}
+.customer-view .pay-strip{margin-top:24px}
+.action-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.action-row span{color:#8797a2;font-size:7px}
+.action-row strong{color:#31536a;font:800 8px Manrope,sans-serif}
+.action-row button{border:0;border-radius:7px;background:#eaf3ff;color:#2678c9;padding:7px 9px;font:800 7px Manrope,sans-serif}
+.toast{position:fixed;z-index:20;left:50%;bottom:20px;transform:translate(-50%,12px);opacity:0;pointer-events:none;padding:10px 14px;border-radius:9px;background:#17374d;color:#fff;box-shadow:0 7px 24px #102d4330;font-size:8px;transition:.2s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.modal-backdrop{position:fixed;inset:0;z-index:30;display:none;place-items:center;padding:18px;background:#102d4399;backdrop-filter:blur(5px)}
+.modal-backdrop.open{display:grid}
+.modal{width:min(360px,100%);padding:22px;border:1px solid #e2eaee;border-radius:15px;background:#fff;box-shadow:0 25px 70px #102d4355}
+.modal h3{margin:0;color:#17364c;font:800 15px Manrope,sans-serif}
+.modal p{margin:8px 0 15px;color:#7f909c;font-size:8px;line-height:1.6}
+.modal-link{display:flex;align-items:center;gap:8px;padding:9px;border:1px solid #e6edf1;border-radius:8px;color:#607788;font-size:8px}
+.modal-link button{margin-left:auto;border:0;border-radius:6px;padding:7px 9px;background:#eaf3ff;color:#2678c9;font:800 7px Manrope,sans-serif}
+.modal-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:15px}
+@media(max-width:940px){.shell{grid-template-columns:155px minmax(0,1fr)}.main{padding:18px}.studio{grid-template-columns:minmax(280px,.9fr) minmax(0,1.1fr);gap:9px}.paper{padding:21px 20px}}
+@media(max-width:720px){.shell{grid-template-columns:1fr;min-height:100vh}.rail{display:none}.main{padding:14px 11px 22px}.heading{align-items:flex-start;flex-direction:column}.head-actions{width:100%}.studio{grid-template-columns:1fr}.preview-wrap{position:static;order:-1}.paper{min-height:0;padding:20px 17px}.paper-bottom{grid-template-columns:1fr 140px}.progress-line{overflow:hidden}.step-line{margin:0 5px}.crumb{font-size:7px}.step{font-size:7px}.card-body{padding:11px}.field-grid{gap:7px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="rail">
+ <div class="brand"><span class="brand-mark">u</span>UoMe</div>
+ <div class="workspace-label">BUSINESS TOOLS</div>
+ <nav class="nav">
+  <a href="#" aria-label="Overview"><i>⌂</i>Overview</a>
+  <a class="active" href="#" aria-current="page"><i>▤</i>Invoices</a>
+  <a href="#"><i>↗</i>Payments</a>
+  <a href="#"><i>♙</i>Customers</a>
+  <a href="#"><i>▦</i>Catalogue</a>
+  <a href="#"><i>▥</i>Reports</a>
+ </nav>
+ <div class="rail-foot">Make the business side feel less like work.<div class="rail-profile"><span class="mini-avatar">NL</span>Northline Studio</div></div>
+</aside>
+<main class="main">
+ <header class="topbar"><div class="crumb">WORKSPACE &nbsp; / &nbsp; INVOICES &nbsp; / &nbsp; NEW INVOICE</div><div class="top-actions"><button aria-label="Help">?</button><button aria-label="Notifications">♧</button><button class="profile-chip"><span class="mini-avatar">NL</span>Northline Studio</button></div></header>
+ <section class="heading">
+  <div><div class="eyebrow">CREATE AND SEND</div><h1>New invoice</h1><p>Build it once. Let UoMe take care of the money bit.</p></div>
+  <div class="head-actions"><button class="btn" id="save-draft">Save draft</button><button class="btn primary" id="send-invoice">↗ &nbsp; Send invoice</button></div>
+ </section>
+ <div class="progress-line"><div class="step done"><b>✓</b>Details</div><div class="step-line"></div><div class="step active" id="step-review"><b>2</b>Review</div><div class="step-line"></div><div class="step" id="step-send"><b>3</b>Send</div></div>
+ <section class="studio">
+  <div class="builder">
+   <article class="card">
+    <div class="card-head"><strong>01 &nbsp; Customer details</strong><span class="pill">SAVED CUSTOMER</span></div>
+    <div class="card-body">
+     <div class="field client-select"><span class="client-avatar">ME</span><div style="flex:1;min-width:0"><label for="client" class="label">Bill to</label><select id="client"><option value="Maya Ellis">Maya Ellis · Maya Studio</option><option value="Oliver Reed">Oliver Reed · Reed Workshop</option><option value="Ava Collins">Ava Collins · Independent</option></select></div></div>
+     <div class="field-grid">
+      <div class="field"><label for="email">Email address</label><input id="email" type="email" value="maya@mayastudio.co"></div>
+      <div class="field"><label for="company">Company</label><input id="company" value="Maya Studio"></div>
+     </div>
+    </div>
+   </article>
+   <article class="card">
+    <div class="card-head"><strong>02 &nbsp; What are you charging for?</strong><small>Pull from your catalogue or add a line</small></div>
+    <div class="card-body">
+     <table class="item-table"><thead><tr><th class="item-name">SERVICE / ITEM</th><th style="width:48px;text-align:center">QTY</th><th style="width:84px;text-align:right">RATE (£)</th><th style="width:70px;text-align:right">TOTAL</th><th></th></tr></thead><tbody id="line-items">
+      <tr data-row="1"><td class="item-name"><b>Brand identity package</b><small>Design & creative</small></td><td><input class="qty-input" type="number" min="1" value="1" aria-label="Brand identity quantity"></td><td><input class="rate-input" type="number" min="0" value="850" aria-label="Brand identity rate"></td><td class="line-total">£850.00</td><td><button class="remove" aria-label="Remove line">×</button></td></tr>
+      <tr data-row="2"><td class="item-name"><b>Website design</b><small>Home page and two inner pages</small></td><td><input class="qty-input" type="number" min="1" value="2" aria-label="Website design quantity"></td><td><input class="rate-input" type="number" min="0" value="240" aria-label="Website design rate"></td><td class="line-total">£480.00</td><td><button class="remove" aria-label="Remove line">×</button></td></tr>
+     </tbody></table>
+     <div class="add-line"><select id="catalogue"><option value="">Add from catalogue…</option><option value="Social media kit|180|Campaign assets">Social media kit · £180</option><option value="Extra design hour|65|Creative services">Extra design hour · £65</option><option value="Print-ready artwork|95|Production">Print-ready artwork · £95</option></select><button id="add-item">＋ Add item</button></div>
+     <div class="tax-row"><label><input type="checkbox" id="vat" checked> VAT (20%)</label><span>Calculated automatically</span></div>
+     <div class="summary">
+      <div class="summary-row"><span>Subtotal</span><strong id="subtotal">£1,330.00</strong></div>
+      <div class="summary-row"><span>VAT · 20%</span><strong id="vat-total">£266.00</strong></div>
+      <div class="summary-row total"><span>Total due</span><strong id="total">£1,596.00</strong></div>
+     </div>
+    </div>
+   </article>
+   <article class="card">
+    <div class="card-head"><strong>03 &nbsp; Payment and notes</strong><small>Keep the terms clear</small></div>
+    <div class="card-body">
+     <div class="field-grid">
+      <div class="field"><label for="invoice-date">Invoice date</label><input id="invoice-date" type="date" value="2026-11-09"></div>
+      <div class="field"><label for="due-date">Payment due</label><select id="due-date"><option>Due in 7 days</option><option selected>Due in 14 days</option><option>Due in 30 days</option><option>Due on receipt</option></select></div>
+     </div>
+     <div class="field"><label for="payment-options">Ways to pay</label><select id="payment-options"><option>Card, Apple Pay and Google Pay</option><option>Card and bank transfer</option><option>Bank transfer only</option></select></div>
+     <div class="field"><label for="note">Note to customer</label><textarea id="note">Thanks for working with us. Please use the secure payment link below.</textarea></div>
+    </div>
+   </article>
+  </div>
+  <aside class="preview-wrap">
+   <div class="preview-top"><strong>LIVE CUSTOMER PREVIEW</strong><div class="preview-toggle"><button id="business-tab" class="active">Invoice</button><button id="customer-tab">Customer view</button></div></div>
+   <div class="paper" id="invoice-paper">
+    <div class="paper-head"><div><div class="paper-brand"><span class="brand-mark">u</span>UoMe</div><div class="paper-sub">Powered by Northline Studio</div></div><div class="doc-kind"><b>INVOICE</b><small id="invoice-number">INV-2026-014</small></div></div>
+    <div class="paper-parties">
+     <div class="party"><label>FROM</label><b>Northline Studio</b><span>18 King Street<br>Manchester, UK<br>hello@northline.studio</span></div>
+     <div class="party"><label>BILL TO</label><b id="preview-client">Maya Ellis</b><span id="preview-company">Maya Studio<br>maya@mayastudio.co</span></div>
+    </div>
+    <div class="invoice-meta"><div><span>ISSUED</span><b id="preview-issued">09 Nov 2026</b></div><div><span>PAYMENT TERMS</span><b id="preview-due">Due in 14 days</b></div><div><span>STATUS</span><b style="color:#bd8a42">Awaiting payment</b></div></div>
+    <table class="preview-lines"><thead><tr><th>DESCRIPTION</th><th>QTY</th><th style="text-align:right">AMOUNT</th></tr></thead><tbody id="preview-lines">
+     <tr><td>Brand identity package</td><td>1</td><td>£850.00</td></tr><tr><td>Website design</td><td>2</td><td>£480.00</td></tr>
+    </tbody></table>
+    <div class="paper-bottom"><div class="pay-note"><b>NOTE FROM NORTHLINE</b><span id="preview-note">Thanks for working with us. Please use the secure payment link below.</span></div><div class="preview-total"><div><span>Subtotal</span><b id="preview-subtotal">£1,330.00</b></div><div><span>VAT</span><b id="preview-vat">£266.00</b></div><div class="grand"><span>Total due</span><b id="preview-total">£1,596.00</b></div></div></div>
+    <div class="pay-strip"><div><span>SECURE PAYMENT</span><b id="preview-pay-label">Pay £1,596.00 online</b></div><button id="preview-pay">Pay invoice ↗</button></div>
+    <div class="paper-foot"><span>Questions? hello@northline.studio</span><span>INVOICE · INV-2026-014</span></div>
+   </div>
+   <div class="action-row" style="margin-top:9px"><span>Preview updates as you edit the invoice.</span><strong>● Live</strong></div>
+  </aside>
+ </section>
+</main>
+</div>
+<div class="modal-backdrop" id="send-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal"><h3 id="modal-title">Your invoice is ready</h3><p id="modal-copy">Review the payment link, then share it with your customer.</p><div class="modal-link"><span id="share-url">uome.app/i/INV-2026-014</span><button id="copy-link">Copy link</button></div><div class="modal-actions"><button class="btn" id="close-modal">Close</button><button class="btn primary" id="mark-sent">Mark as sent</button></div></div></div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(function(){
+ const $=id=>document.getElementById(id);
+ const money=n=>"£"+Number(n||0).toLocaleString("en-GB",{minimumFractionDigits:2,maximumFractionDigits:2});
+ const tbody=$("line-items"),preview=$("preview-lines");
+ let serial=14,toastTimer;
+ function showToast(message){const t=$("toast");t.textContent=message;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2200)}
+ function rows(){return [...tbody.querySelectorAll("tr")].map(row=>({name:row.querySelector(".item-name b").textContent,qty:Math.max(1,Number(row.querySelector(".qty-input").value)||1),rate:Math.max(0,Number(row.querySelector(".rate-input").value)||0),row}));}
+ function calculate(){
+  const subtotal=rows().reduce((s,x)=>s+x.qty*x.rate,0),vat=$("vat").checked?subtotal*.2:0;
+  return {subtotal,vat,total:subtotal+vat};
+ }
+ function update(){
+  const data=rows(),sum=calculate(),fmtDate=$("invoice-date").value?new Date($("invoice-date").value+"T12:00:00").toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"}):"09 Nov 2026";
+  data.forEach(x=>{x.row.querySelector(".line-total").textContent=money(x.qty*x.rate)});
+  $("subtotal").textContent=money(sum.subtotal);$("vat-total").textContent=money(sum.vat);$("total").textContent=money(sum.total);
+  $("preview-subtotal").textContent=money(sum.subtotal);$("preview-vat").textContent=money(sum.vat);$("preview-total").textContent=money(sum.total);$("preview-pay-label").textContent="Pay "+money(sum.total)+" online";
+  preview.innerHTML=data.map(x=>"<tr><td>"+escapeHtml(x.name)+"</td><td>"+x.qty+"</td><td>"+money(x.qty*x.rate)+"</td></tr>").join("");
+  $("preview-client").textContent=$("client").value;$("preview-company").innerHTML=escapeHtml($("company").value)+"<br>"+escapeHtml($("email").value);
+  $("preview-due").textContent=$("due-date").value;$("preview-issued").textContent=fmtDate;$("preview-note").textContent=$("note").value;
+ }
+ function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
+ function bindRows(){tbody.querySelectorAll("input").forEach(input=>input.addEventListener("input",update));tbody.querySelectorAll(".remove").forEach(btn=>btn.addEventListener("click",()=>{if(tbody.children.length===1){showToast("An invoice needs at least one line item.");return}btn.closest("tr").remove();update()}))}
+ $("add-item").addEventListener("click",()=>{const value=$("catalogue").value;if(!value){showToast("Choose a catalogue item first.");return}const [name,rate,detail]=value.split("|");const tr=document.createElement("tr");tr.innerHTML='<td class="item-name"><b>'+escapeHtml(name)+'</b><small>'+escapeHtml(detail)+'</small></td><td><input class="qty-input" type="number" min="1" value="1" aria-label="Quantity for '+escapeHtml(name)+'"></td><td><input class="rate-input" type="number" min="0" value="'+Number(rate)+'" aria-label="Rate for '+escapeHtml(name)+'"></td><td class="line-total">'+money(rate)+'</td><td><button class="remove" aria-label="Remove line">×</button></td>';tbody.appendChild(tr);$("catalogue").value="";bindRows();update()});
+ ["client","email","company","invoice-date","due-date","payment-options","note","vat"].forEach(id=>$(id).addEventListener("input",update));
+ $("client").addEventListener("change",()=>{const data={"Maya Ellis":["maya@mayastudio.co","Maya Studio"],"Oliver Reed":["oliver@reedworkshop.co","Reed Workshop"],"Ava Collins":["ava@collinsmail.co","Independent"]}[$("client").value];$("email").value=data[0];$("company").value=data[1];update()});
+ $("business-tab").addEventListener("click",()=>{ $("business-tab").classList.add("active");$("customer-tab").classList.remove("active");$("invoice-paper").classList.remove("customer-view")});
+ $("customer-tab").addEventListener("click",()=>{ $("customer-tab").classList.add("active");$("business-tab").classList.remove("active");$("invoice-paper").classList.add("customer-view")});
+ function openShare(){serial=Math.max(serial,14);$("invoice-number").textContent="INV-2026-"+String(serial).padStart(3,"0");$("share-url").textContent="uome.app/i/INV-2026-"+String(serial).padStart(3,"0");$("send-modal").classList.add("open")}
+ $("send-invoice").addEventListener("click",openShare);$("save-draft").addEventListener("click",()=>showToast("Draft saved in this portfolio prototype."));
+ $("close-modal").addEventListener("click",()=>$("send-modal").classList.remove("open"));
+ $("send-modal").addEventListener("click",e=>{if(e.target===$("send-modal"))$("send-modal").classList.remove("open")});
+ $("copy-link").addEventListener("click",async()=>{try{await navigator.clipboard.writeText("https://uome.app/i/INV-2026-"+String(serial).padStart(3,"0"));showToast("Invoice link copied.")}catch(e){showToast("Demo invoice link is ready to share.")}});
+ $("mark-sent").addEventListener("click",()=>{$("send-modal").classList.remove("open");$("step-review").classList.remove("active");$("step-review").classList.add("done");$("step-send").classList.add("active");showToast("Invoice marked as sent in the demo.")});
+ $("preview-pay").addEventListener("click",()=>showToast("Customer payment screen preview. No real payment is processed."));
+ bindRows();update();
+})();
+</script>
+</body>
+</html>
