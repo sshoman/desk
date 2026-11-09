@@ -100,7 +100,7 @@ scene.innerHTML=`
   <div class="laptop-hinge"></div><div class="laptop-base"></div><div class="keyboard" aria-hidden="true"><div class="keyboard-bed"><div class="key-grid"><div class="key-row row-1"><span class="keycap" style="flex:1">esc</span><span class="keycap" style="flex:1">1</span><span class="keycap" style="flex:1">2</span><span class="keycap" style="flex:1">3</span><span class="keycap" style="flex:1">4</span><span class="keycap" style="flex:1">5</span><span class="keycap" style="flex:1">6</span><span class="keycap" style="flex:1">7</span><span class="keycap" style="flex:1">8</span><span class="keycap" style="flex:1">9</span><span class="keycap" style="flex:1">0</span><span class="keycap" style="flex:1">-</span><span class="keycap" style="flex:1">=</span><span class="keycap" style="flex:1">⌫</span></div><div class="key-row row-2"><span class="keycap key-wide" style="flex:1.35">tab</span><span class="keycap" style="flex:1">Q</span><span class="keycap" style="flex:1">W</span><span class="keycap" style="flex:1">E</span><span class="keycap" style="flex:1">R</span><span class="keycap" style="flex:1">T</span><span class="keycap" style="flex:1">Y</span><span class="keycap" style="flex:1">U</span><span class="keycap" style="flex:1">I</span><span class="keycap" style="flex:1">O</span><span class="keycap" style="flex:1">P</span><span class="keycap" style="flex:1">[</span><span class="keycap" style="flex:1">]</span><span class="keycap" style="flex:1">\</span></div><div class="key-row row-3"><span class="keycap key-wide" style="flex:1.6">caps</span><span class="keycap" style="flex:1">A</span><span class="keycap" style="flex:1">S</span><span class="keycap" style="flex:1">D</span><span class="keycap" style="flex:1">F</span><span class="keycap" style="flex:1">G</span><span class="keycap" style="flex:1">H</span><span class="keycap" style="flex:1">J</span><span class="keycap" style="flex:1">K</span><span class="keycap" style="flex:1">L</span><span class="keycap" style="flex:1">;</span><span class="keycap" style="flex:1">'</span><span class="keycap key-wide" style="flex:1.5">enter</span></div><div class="key-row row-4"><span class="keycap key-wide" style="flex:1.95">shift</span><span class="keycap" style="flex:1">Z</span><span class="keycap" style="flex:1">X</span><span class="keycap" style="flex:1">C</span><span class="keycap" style="flex:1">V</span><span class="keycap" style="flex:1">B</span><span class="keycap" style="flex:1">N</span><span class="keycap" style="flex:1">M</span><span class="keycap" style="flex:1">,</span><span class="keycap" style="flex:1">.</span><span class="keycap" style="flex:1">/</span><span class="keycap key-wide" style="flex:1.95">shift</span></div><div class="key-row row-5"><span class="keycap" style="flex:1.05">fn</span><span class="keycap" style="flex:1.1">ctrl</span><span class="keycap" style="flex:1.1">⌘</span><span class="keycap" style="flex:1.05">alt</span><span class="keycap key-wide key-space" style="flex:4.8"></span><span class="keycap" style="flex:1.05">alt</span><span class="keycap" style="flex:1.1">⌘</span><span class="keycap" style="flex:1">←</span><span class="keycap" style="flex:1">↓</span><span class="keycap" style="flex:1">→</span></div></div></div></div><div class="trackpad" aria-hidden="true"></div>
  </section>
 
- <a class="paper" href="/paper.html" target="_self" data-paper-link aria-label="Open Agentic Learning Without Retention research paper">
+ <a class="paper" href="https://zenodo.org/records/23971266" target="_blank" rel="noopener noreferrer" aria-label="Open Agentic Learning Without Retention research paper">
   <span class="paper-pin" aria-hidden="true"></span>
   <div class="paper-meta"><span>RESEARCH PAPER</span><span>2026</span></div>
   <strong>Agentic Learning<br>Without Retention</strong>
@@ -135,9 +135,9 @@ scene.innerHTML=`
    <div class="modal-shade">
     <section class="portfolio-window" role="dialog" aria-modal="true" aria-labelledby="portfolio-modal-title" tabindex="-1">
      <div class="portfolio-toolbar" aria-label="Portfolio navigation">
-      <button class="portfolio-control" id="portfolio-prev" type="button" aria-label="Previous project" disabled>←</button>
-      <button class="portfolio-control" id="portfolio-next" type="button" aria-label="Next project" disabled>→</button>
-      <button class="portfolio-control portfolio-close" id="portfolio-close" type="button" aria-label="Close portfolio">×</button>
+      <button class="portfolio-control" id="portfolio-prev" type="button" aria-label="Previous project" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg></button>
+      <button class="portfolio-control" id="portfolio-next" type="button" aria-label="Next project" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></button>
+      <button class="portfolio-control portfolio-close" id="portfolio-close" type="button" aria-label="Close portfolio"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button>
      </div>
      <span id="portfolio-modal-title" class="portfolio-modal-title">Portfolio</span>
      <iframe class="portfolio-frame" title="Portfolio content" src="about:blank" loading="eager"></iframe>
@@ -209,11 +209,6 @@ function closePortfolio(){
 /* Any click on the shade outside the portfolio window dismisses the overlay. */
 modal.addEventListener("click",event=>{
  if(!modalWindow.contains(event.target))closePortfolio();
-});
-/* The paper always opens the local paper page, never an external record. */
-scene.querySelector("[data-paper-link]")?.addEventListener("click",event=>{
- event.preventDefault();
- window.location.assign(new URL("/paper.html",window.location.origin).href);
 });
 
 scene.addEventListener("click",event=>{
