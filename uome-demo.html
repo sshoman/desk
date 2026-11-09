@@ -48,8 +48,8 @@ button{cursor:pointer}
 .good-pill{padding:4px 7px;border-radius:12px;background:#c9f36a20;color:#d9f7a1;font-weight:850}
 .chart-wrap{position:relative;z-index:1;margin-top:10px}
 .chart{width:100%;height:86px;display:block;overflow:visible}
-.chart path.area{fill:#c8f16a15}
-.chart path.income{fill:none;stroke:#c9f36a;stroke-width:2.7;stroke-linecap:round}
+.chart path.area{fill:rgba(201,243,106,.15)!important;stroke:none!important}
+.chart path.income{fill:none!important;stroke:#c9f36a!important;stroke-width:2.7!important;stroke-linecap:round!important}
 .chart path.expense{fill:none;stroke:#9cc9d4;stroke-width:1.7;stroke-linecap:round;opacity:.8}
 .chart circle{fill:#c9f36a;stroke:#fff;stroke-width:2}
 .chart-labels{position:relative;z-index:1;display:flex;justify-content:space-between;margin:0 1px;color:#abc6d0;font-size:7px;letter-spacing:.08em}
@@ -516,8 +516,7 @@ button{cursor:pointer}
  $("addBtn").addEventListener("click",()=>openForm("invoice"));
  $("searchBtn").addEventListener("click",()=>{show("clientsView");toast("Search your business contacts")});
  $("profileInvoice").addEventListener("click",()=>openForm("invoice"));
- $("profileMessage").addEventListener("click",()=>show("chatView"));
- $("paidBtn").addEventListener("click",()=>{
+  $("paidBtn").addEventListener("click",()=>{
   if(!selectedInvoice)return;selectedInvoice.status="paid";renderInvoices();openInvoice(selectedInvoice.id);toast("Invoice marked as paid");
  });
  $("remindBtn").addEventListener("click",()=>toast("Reminder prepared for "+(selectedInvoice?.client||"your customer")));

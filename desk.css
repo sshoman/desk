@@ -2291,3 +2291,7 @@ img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
  .travel-frame:nth-child(5){width:clamp(60px,17vw,70px)!important}
  .travel-frame:nth-child(5) .travel-photo{object-position:right center!important}
 }
+
+.wall-gallery .travel-frame:nth-child(5) .travel-photo{
+ object-fit:contain!important;object-position:center!important;background:#342c22!important;
+}
