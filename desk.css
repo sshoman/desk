@@ -104,3 +104,7 @@
  .award-engraving span{font-size:clamp(3px,.72vw,4px)}
  .book-photo{object-fit:cover}
 }
+
+/* Kuala Lumpur: keep the original artwork crisp inside its frame. */
+.tf4 img{filter:none!important;image-rendering:auto!important;opacity:1!important;object-fit:contain!important}
+@media(max-width:760px){.tf4 img{filter:none!important;image-rendering:auto!important;opacity:1!important}}
