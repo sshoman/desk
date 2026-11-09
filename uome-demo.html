@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#b58b43">
-<title>UoMe | personal finance chatbot</title>
+<title>UoMe | Invoice with voice</title>
 <base href="/">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -163,18 +163,114 @@ h2{margin:0;color:#302e29;font:800 13px Manrope,sans-serif}
 @media(max-width:430px){.stage{padding:6px}.phone{width:min(392px,calc(94svh * .46),calc(100vw - 12px));height:min(850px,96svh);padding:6px;border-radius:43px}.phone-screen{border-radius:36px}.screen{padding:16px 14px 19px}}
 @media(max-height:690px){.stage{padding:4px}.phone{width:min(354px,calc(92svh * .46));height:92svh;padding:6px;border-radius:39px}.phone-screen{border-radius:33px}.screen{padding-top:11px}.voice-panel{margin:8px 0;padding:12px}.voice-control{width:52px;height:52px}.signature-pad{height:72px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* UoMe identity: invoice with voice, not a generic finance dashboard. */
+.brand{gap:9px!important}
+.brand-mark{
+ width:30px!important;height:30px!important;flex:0 0 30px!important;
+ border:0!important;border-radius:9px!important;
+ background:linear-gradient(145deg,#c7a05b,#9a7132)!important;
+ color:#fff!important;box-shadow:0 4px 9px #98713b30,inset 0 1px 0 #ffffff66!important;
+}
+.brand-mark svg{width:19px!important;height:19px!important;stroke:#fff!important;stroke-width:1.55!important}
+.brand-lockup{display:flex;flex-direction:column;align-items:flex-start;gap:1px}
+.brand-word{line-height:.94}
+.brand-lockup small{color:#a18c68;font:800 6px/1.1 Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.assistant-mark svg{width:15px!important;height:15px!important;stroke-width:1.45!important}
+.message-head svg{width:13px;height:13px;stroke-width:1.45!important}
+.nav-icon{width:25px!important;height:22px!important}
+.nav-icon svg{width:18px!important;height:18px!important;stroke-width:1.5!important}
+.nav-item.active .nav-icon{border-radius:8px!important;background:#f3ebda!important}
+
+/* The financial calendar reads as a live cash-flow map. */
+.calendar-head{margin:8px 0 11px!important}
+.calendar-head strong{font-size:15px!important;letter-spacing:-.35px}
+.forecast-card{
+ position:relative;overflow:hidden;margin:0 0 15px;padding:13px 14px 11px;
+ border:1px solid #3c453a;border-radius:15px;
+ background:linear-gradient(145deg,#354034 0%,#222a24 100%);
+ color:#f7f0e3;box-shadow:0 9px 18px #22291f20;
+}
+.forecast-card:after{
+ content:"";position:absolute;right:-48px;top:-78px;width:160px;height:160px;
+ border:1px solid #d8b87327;border-radius:50%;
+ box-shadow:0 0 0 16px #d8b8730c,0 0 0 34px #d8b87308;pointer-events:none;
+}
+.forecast-top{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;color:#c4b28f;font:800 7px Manrope,sans-serif;letter-spacing:.13em}
+.forecast-top span:last-child{padding:4px 6px;border:1px solid #d5bd8c55;border-radius:99px;color:#e4d4b5}
+.forecast-main{position:relative;z-index:1;display:flex;align-items:baseline;gap:8px;margin-top:5px}
+.forecast-main strong{color:#fff8eb;font:800 27px/1 Manrope,sans-serif;letter-spacing:-1.2px}
+.forecast-main>span{color:#c2b8a4;font-size:7px}
+.forecast-chart{position:relative;z-index:1;display:block;width:100%;height:42px;margin:5px 0 1px;overflow:visible}
+.forecast-area{fill:url(#forecastFill)}
+.forecast-line{fill:none;stroke:#d8b873;stroke-width:2;stroke-linecap:round}
+.forecast-chart circle{fill:#e3c987;stroke:#374236;stroke-width:1.5}
+.forecast-flows{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-top:8px;border-top:1px solid #ffffff20}
+.forecast-flows>div{display:flex;align-items:center;justify-content:space-between;gap:5px}
+.forecast-flows span{display:flex;align-items:center;gap:5px;color:#c8c0b0;font:800 6px Manrope,sans-serif;letter-spacing:.08em}
+.flow-key{width:5px;height:5px;border-radius:50%;background:#a8bd91}
+.flow-key.outgoing{background:#d49a7f}
+.forecast-flows strong{color:#f7f0e3;font:800 10px Manrope,sans-serif}
+.week-title{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 8px}
+.week-title strong,.timeline-title strong{color:#39362e;font:800 10px Manrope,sans-serif}
+.week-title>span,.timeline-title>span{color:#a39b8d;font-size:7px}
+.week-rail{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin-bottom:15px}
+.week-day{
+ min-width:0;min-height:72px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:2px;
+ padding:7px 1px 5px;border:1px solid #ebe5d9;border-radius:10px;background:#fff;color:#595449;
+}
+.week-day-name{color:#aaa194;font:800 6px Manrope,sans-serif;letter-spacing:.06em}
+.week-day>strong{font:800 12px Manrope,sans-serif}
+.week-day-bars{height:18px;display:flex;align-items:flex-end;gap:3px}
+.week-day-bars i{display:block;width:4px;min-height:2px;border-radius:4px;background:#98ad8d}
+.week-day-bars i.outgoing{background:#cf9278}
+.week-day-amount{min-height:9px;color:#8b806d;font:700 6px Manrope,sans-serif}
+.week-day.selected{border-color:#b58b43;background:#f6efdf;box-shadow:0 3px 9px #b58b4320}
+.week-day.selected .week-day-name{color:#8b6c35}
+.week-day.selected>strong{color:#7b5d2e}
+.week-day.outside{opacity:.32}
+.week-day:disabled{cursor:default}
+.timeline-title{display:flex;align-items:center;justify-content:space-between;margin:0 0 6px}
+.timeline-title>div{display:flex;flex-direction:column;gap:2px}
+.timeline-title small{color:#a49b8d;font-size:7px}
+.event-list{display:grid;gap:0!important}
+.event{
+ display:grid!important;grid-template-columns:30px 25px minmax(0,1fr) auto!important;
+ align-items:center!important;gap:7px!important;
+ padding:9px 1px!important;border:0!important;border-bottom:1px solid #eee9df!important;
+ border-radius:0!important;background:transparent!important;
+}
+.event-date{display:flex;flex-direction:column;align-items:center;gap:1px}
+.event-date strong{color:#554c3d;font:800 12px Manrope,sans-serif}
+.event-date small{color:#aaa093;font:800 6px Manrope,sans-serif}
+.event-icon{width:23px!important;height:23px!important;border-radius:8px!important;background:#edf2e9!important;color:#718b68!important}
+.event-icon.out{background:#f7eee8!important;color:#bd8066!important}
+.event-icon svg{width:13px!important;height:13px!important;stroke-width:1.7!important}
+.event-copy strong{color:#454139!important;font:800 8px Manrope,sans-serif!important}
+.event-copy small{color:#aaa397!important;font-size:7px!important}
+.event-amount{color:#5c574e;font:800 8px Manrope,sans-serif;white-space:nowrap}
+.event-amount.in{color:#718b68}.event-amount.out{color:#bd8066}
+.timeline-empty{padding:14px 4px;color:#aaa397;font-size:8px;text-align:center;border-bottom:1px solid #eee9df}
+@media(max-width:430px){
+ .forecast-card{padding:12px 12px 10px}
+ .week-rail{gap:3px}
+ .week-day{min-height:69px;border-radius:9px}
+ .event{grid-template-columns:27px 23px minmax(0,1fr) auto!important;gap:6px!important}
+ .forecast-main strong{font-size:25px}
+}
+
 </style>
 </head>
 <body>
 <div class="stage">
- <div class="phone" aria-label="UoMe mobile finance chatbot">
+ <div class="phone" aria-label="UoMe invoice with voice mobile app">
   <div class="phone-screen" id="phoneScreen">
    <div class="status"><span>9:41</span><span class="status-icons">
     <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5.5a9 9 0 0 1 12 0M4.5 8a5.3 5.3 0 0 1 7 0M7 10.5a1.8 1.8 0 0 1 2 0"/></svg>
     <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="3.5" width="11.5" height="9" rx="1.5"/><path d="M14 6v4"/></svg>
    </span></div>
    <header class="appbar">
-    <div class="brand"><span class="brand-mark"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M5.5 7.3c0-1.5 1.7-2.4 4.5-2.4s4.5.9 4.5 2.4-1.7 2.4-4.5 2.7-4.5 1.2-4.5 2.7 1.7 2.4 4.5 2.4 4.5-.9 4.5-2.4"/></svg></span><span class="brand-word">uome<span>.</span></span></div>
+    <div class="brand"><span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 4.5h15v11.5h-7.2l-5.2 4V16H4.5z"/><path d="M9 9v3m3-5v7m3-4v2"/></svg></span><span class="brand-lockup"><span class="brand-word">uome<span>.</span></span><small>invoice with voice</small></span></div>
     <span class="appbar-date">2019</span>
    </header>
    <main class="app-scroll uome-app-scroll" id="appScroll">
@@ -182,9 +278,9 @@ h2{margin:0;color:#302e29;font:800 13px Manrope,sans-serif}
      <p class="chat-day">MONDAY · 18 NOVEMBER</p>
      <div class="invoice-intro"><h1>Morning, Sam.</h1></div>
      <div class="chat-stream" id="chatStream">
-      <div class="assistant-row"><span class="assistant-mark"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M5.5 7.3c0-1.5 1.7-2.4 4.5-2.4s4.5.9 4.5 2.4-1.7 2.4-4.5 2.7-4.5 1.2-4.5 2.7 1.7 2.4 4.5 2.4 4.5-.9 4.5-2.4"/></svg></span><div class="message"><div class="message-head"><svg viewBox="0 0 16 16"><path d="M8 1.5v13M3.5 5c0-1.2 1.5-2 4.5-2s4.5.8 4.5 2-1.5 2.2-4.5 2.5S3.5 8.4 3.5 9.7s1.5 2 4.5 2 4.5-.8 4.5-2"/></svg> uome</div><p><strong>£420 arrives Tuesday. <strong>£82 leaves</strong> Thursday.</p><button class="inline-link" data-chat-action="calendar">Open calendar <svg viewBox="0 0 16 16"><path d="M3 8h9M8 3l5 5-5 5"/></svg></button></div></div>
+      <div class="assistant-row"><span class="assistant-mark"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 4h13v10h-6.5l-4.5 3.5V14h-2zM8 8v3m3-5v7m3-4v2"/></svg></span><div class="message"><div class="message-head"><svg viewBox="0 0 16 16"><path d="M3.5 3h9v7h-4.5l-3.5 2.5V10H3.5zM6.5 6v2m2-3v3m2-2v1"/></svg> uome</div><p><strong>£420 arrives Tuesday.</strong> <strong>£82 leaves</strong> Thursday.</p><button class="inline-link" data-chat-action="calendar">Open calendar <svg viewBox="0 0 16 16"><path d="M3 8h9M8 3l5 5-5 5"/></svg></button></div></div>
       <div class="user-row"><div class="user-message">What’s left after both?</div></div>
-      <div class="assistant-row"><span class="assistant-mark"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M5.5 7.3c0-1.5 1.7-2.4 4.5-2.4s4.5.9 4.5 2.4-1.7 2.4-4.5 2.7-4.5 1.2-4.5 2.7 1.7 2.4 4.5 2.4 4.5-.9 4.5-2.4"/></svg></span><div class="message"><div class="message-head">uome</div><p>You'll have</p><div class="result-balance"><strong>£1,578</strong><span>left</span></div><div class="money-pair"><div class="money-chip in"><small>Ella · Tuesday</small><b>+ £420</b></div><div class="money-chip out"><small>Internet · Thursday</small><b>− £82</b></div></div></div></div>
+      <div class="assistant-row"><span class="assistant-mark"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 4h13v10h-6.5l-4.5 3.5V14h-2zM8 8v3m3-5v7m3-4v2"/></svg></span><div class="message"><div class="message-head">uome</div><p>You'll have</p><div class="result-balance"><strong>£1,578</strong><span>left</span></div><div class="money-pair"><div class="money-chip in"><small>Ella · Tuesday</small><b>+ £420</b></div><div class="money-chip out"><small>Internet · Thursday</small><b>− £82</b></div></div></div></div>
      </div>
      <div class="chat-suggestions"><button class="suggestion" data-prompt="What is due this week?">Due this week</button><button class="suggestion" data-prompt="Create an invoice">New invoice</button></div>
      <form class="chat-compose" id="chatForm">
@@ -195,13 +291,31 @@ h2{margin:0;color:#302e29;font:800 13px Manrope,sans-serif}
     </section>
 
     <section class="screen" data-screen="calendar">
-     <div class="eyebrow">MONEY CALENDAR</div>
+     <div class="eyebrow">CASH FLOW</div>
      <div class="calendar-head"><strong id="calendarTitle">November 2019</strong><div class="month-arrows">
       <button type="button" id="prevMonth" aria-label="Previous month"><svg viewBox="0 0 16 16"><path d="m10 3-5 5 5 5"/></svg></button>
       <button type="button" id="nextMonth" aria-label="Next month"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5"/></svg></button>
      </div></div>
-     <div class="calendar-card"><div class="calendar-grid" id="calendarGrid"></div><div class="calendar-legend"><span><i class="legend-dot"></i>In</span><span><i class="legend-dot out"></i>Out</span></div></div>
-     <div class="date-summary"><strong id="selectedDate">Tuesday, 19 November</strong><span id="eventCount">1 event</span></div>
+     <article class="forecast-card">
+      <div class="forecast-top"><span>PROJECTED BALANCE</span><span id="forecastDate">28 NOV</span></div>
+      <div class="forecast-main"><strong id="forecastBalance">£1,643</strong><span>after scheduled payments</span></div>
+      <svg class="forecast-chart" viewBox="0 0 320 54" preserveAspectRatio="none" aria-hidden="true">
+       <defs><linearGradient id="forecastFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8b873" stop-opacity=".34"/><stop offset="1" stop-color="#d8b873" stop-opacity="0"/></linearGradient></defs>
+       <path class="forecast-area" d="M0 42 C25 42 28 24 58 26 S95 38 122 30 S155 36 183 24 S222 31 248 17 S286 21 320 8 V54 H0Z"/>
+       <path class="forecast-line" d="M0 42 C25 42 28 24 58 26 S95 38 122 30 S155 36 183 24 S222 31 248 17 S286 21 320 8"/>
+       <circle cx="58" cy="26" r="3"/><circle cx="183" cy="24" r="3"/><circle cx="320" cy="8" r="3"/>
+      </svg>
+      <div class="forecast-flows">
+       <div><span><i class="flow-key incoming"></i>COMING IN</span><strong id="moneyIn">£845</strong></div>
+       <div><span><i class="flow-key outgoing"></i>GOING OUT</span><strong id="moneyOut">£442</strong></div>
+      </div>
+     </article>
+     <div class="week-title"><strong>Money by day</strong><span id="weekLabel">18–24 Nov</span></div>
+     <div class="week-rail" id="weekRail" aria-label="Select a day"></div>
+     <div class="timeline-title">
+      <div><strong>Upcoming</strong><small id="selectedDate">From Tuesday, 19 November</small></div>
+      <span id="eventCount">5 scheduled</span>
+     </div>
      <div class="event-list" id="eventList"></div>
     </section>
 
@@ -244,9 +358,9 @@ h2{margin:0;color:#302e29;font:800 13px Manrope,sans-serif}
    </main>
 
    <nav class="navbar" aria-label="UoMe navigation">
-    <button class="nav-item active" type="button" data-go="chat"><span class="nav-icon"><svg viewBox="0 0 20 20"><path d="M3 4.5h14v9H9l-4.5 3v-3H3z"/></svg></span><span>Chat</span></button>
-    <button class="nav-item" type="button" data-go="calendar"><span class="nav-icon"><svg viewBox="0 0 20 20"><rect x="3" y="4.5" width="14" height="13" rx="2"/><path d="M6.5 2.5v4M13.5 2.5v4M3 8.5h14"/></svg></span><span>Calendar</span></button>
-    <button class="nav-item" type="button" data-go="invoice"><span class="nav-icon"><svg viewBox="0 0 20 20"><path d="M5 2.5h7l3 3v12H5zM12 2.5v4h3M8 10h4M8 13h4"/></svg></span><span>Invoice</span></button>
+    <button class="nav-item active" type="button" data-go="chat"><span class="nav-icon"><svg viewBox="0 0 20 20"><path d="M3 5.5c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v6.5c0 1.1-.9 2-2 2H9l-4.5 3V14H5c-1.1 0-2-.9-2-2z"/><path d="M7 8.8h.01M10 8.8h.01M13 8.8h.01"/></svg></span><span>Chat</span></button>
+    <button class="nav-item" type="button" data-go="calendar"><span class="nav-icon"><svg viewBox="0 0 20 20"><rect x="3" y="4" width="14" height="13" rx="2"/><path d="M6.5 2.5v4M13.5 2.5v4M3 8h14"/><path d="M6.5 11.5h.01M10 11.5h.01M13.5 11.5h.01M6.5 14.5h.01"/></svg></span><span>Calendar</span></button>
+    <button class="nav-item" type="button" data-go="invoice"><span class="nav-icon"><svg viewBox="0 0 20 20"><path d="M5 2.5h7l3 3v12H5zM12 2.5v4h3"/><path d="M8 10h4M8 13h2.5M8 15.5h4"/></svg></span><span>Invoice</span></button>
    </nav>
   </div>
  </div>
@@ -270,36 +384,68 @@ h2{margin:0;color:#302e29;font:800 13px Manrope,sans-serif}
   {day:28,name:"Northside Print",type:"Invoice",amount:185,direction:"in",time:"15:00"}
  ];
  let month=10,year=2019,selectedDay=19;
- const grid=document.getElementById("calendarGrid"),dateTitle=document.getElementById("selectedDate"),eventCount=document.getElementById("eventCount"),eventList=document.getElementById("eventList");
+ const weekRail=document.getElementById("weekRail"),dateTitle=document.getElementById("selectedDate"),eventCount=document.getElementById("eventCount"),eventList=document.getElementById("eventList");
  const money=v=>"£"+Number(v).toFixed(2);
+ const monthEvents=()=>year===2019&&month===10?events:[];
  function drawCalendar(){
-  const first=new Date(year,month,1).getDay(),days=new Date(year,month+1,0).getDate(),prior=new Date(year,month,0).getDate();
-  document.getElementById("calendarTitle").textContent=new Date(year,month,1).toLocaleDateString("en-GB",{month:"long",year:"numeric"});grid.innerHTML="";
-  ["S","M","T","W","T","F","S"].forEach(label=>{const el=document.createElement("span");el.className="weekday";el.textContent=label;grid.appendChild(el)});
-  const total=Math.ceil((first+days)/7)*7;
-  for(let i=0;i<total;i++){
-   const d=i-first+1,inMonth=d>0&&d<=days,n=inMonth?d:(d<=0?prior+d:d-days),button=document.createElement("button");
-   button.type="button";button.className="day"+(inMonth?"":" muted")+(inMonth&&n===selectedDay?" selected":"")+(inMonth&&year===2019&&month===10&&n===18?" today":"");
-   const number=document.createElement("span");number.textContent=n;button.appendChild(number);
-   const marks=events.filter(e=>inMonth&&year===2019&&month===10&&e.day===n),dots=document.createElement("span");dots.className="day-dots";
-   marks.forEach(e=>{const dot=document.createElement("i");if(e.direction==="out")dot.classList.add("out");dots.appendChild(dot)});button.appendChild(dots);
-   if(inMonth)button.addEventListener("click",()=>{selectedDay=n;drawCalendar();drawEvents()});else button.disabled=true;
-   grid.appendChild(button);
+  const monthDate=new Date(year,month,1),currentEvents=monthEvents();
+  document.getElementById("calendarTitle").textContent=monthDate.toLocaleDateString("en-GB",{month:"long",year:"numeric"});
+  const incoming=currentEvents.filter(e=>e.direction==="in").reduce((sum,e)=>sum+e.amount,0);
+  const outgoing=currentEvents.filter(e=>e.direction==="out").reduce((sum,e)=>sum+e.amount,0);
+  document.getElementById("moneyIn").textContent=money(incoming);
+  document.getElementById("moneyOut").textContent=money(outgoing);
+  document.getElementById("forecastBalance").textContent=money(1240+incoming-outgoing);
+  const lastDay=currentEvents.length?Math.max(...currentEvents.map(e=>e.day)):new Date(year,month+1,0).getDate();
+  document.getElementById("forecastDate").textContent=String(lastDay).padStart(2,"0")+" "+monthDate.toLocaleDateString("en-GB",{month:"short"}).toUpperCase();
+  const selectedDate=new Date(year,month,selectedDay),monday=new Date(year,month,selectedDay-((selectedDate.getDay()+6)%7)),sunday=new Date(monday);sunday.setDate(monday.getDate()+6);
+  document.getElementById("weekLabel").textContent=monday.toLocaleDateString("en-GB",{day:"numeric"})+"–"+sunday.toLocaleDateString("en-GB",{day:"numeric",month:"short"});
+  weekRail.innerHTML="";
+  const maxFlow=Math.max(1,...currentEvents.map(e=>e.amount));
+  for(let i=0;i<7;i++){
+   const date=new Date(monday);date.setDate(monday.getDate()+i);
+   const inside=date.getMonth()===month,dayEvents=inside?currentEvents.filter(e=>e.day===date.getDate()):[];
+   const incomingDay=dayEvents.filter(e=>e.direction==="in").reduce((sum,e)=>sum+e.amount,0);
+   const outgoingDay=dayEvents.filter(e=>e.direction==="out").reduce((sum,e)=>sum+e.amount,0);
+   const dayButton=document.createElement("button");dayButton.type="button";
+   dayButton.className="week-day"+(date.getDate()===selectedDay&&inside?" selected":"")+(inside?"":" outside");
+   dayButton.disabled=!inside;dayButton.setAttribute("aria-pressed",date.getDate()===selectedDay&&inside?"true":"false");
+   const dayName=document.createElement("span");dayName.className="week-day-name";dayName.textContent=date.toLocaleDateString("en-GB",{weekday:"short"}).toUpperCase();
+   const dayNumber=document.createElement("strong");dayNumber.textContent=date.getDate();
+   const bars=document.createElement("span");bars.className="week-day-bars";
+   const inBar=document.createElement("i");inBar.className="incoming";inBar.style.height=(incomingDay?Math.max(3,Math.round(incomingDay/maxFlow*18)):2)+"px";
+   const outBar=document.createElement("i");outBar.className="outgoing";outBar.style.height=(outgoingDay?Math.max(3,Math.round(outgoingDay/maxFlow*18)):2)+"px";
+   bars.append(inBar,outBar);
+   const amount=document.createElement("small");amount.className="week-day-amount";
+   amount.textContent=incomingDay?"+"+incomingDay:outgoingDay?"−"+outgoingDay:"·";
+   dayButton.append(dayName,dayNumber,bars,amount);
+   if(inside)dayButton.addEventListener("click",()=>{selectedDay=date.getDate();drawCalendar();drawEvents()});
+   weekRail.appendChild(dayButton);
   }
  }
  function drawEvents(){
-  const date=new Date(year,month,selectedDay);dateTitle.textContent=date.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
-  const list=year===2019&&month===10?events.filter(e=>e.day===selectedDay):[];eventCount.textContent=list.length+" "+(list.length===1?"event":"events");eventList.innerHTML="";
-  if(!list.length){const empty=document.createElement("div");empty.className="event";empty.innerHTML='<span class="event-icon">·</span><div class="event-copy"><strong>Nothing due</strong></div>';eventList.appendChild(empty);return}
+  const date=new Date(year,month,selectedDay);
+  dateTitle.textContent="From "+date.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"});
+  const list=monthEvents().filter(e=>e.day>=selectedDay).sort((a,b)=>a.day-b.day);
+  eventCount.textContent=list.length+" "+(list.length===1?"payment":"payments");
+  eventList.innerHTML="";
+  if(!list.length){
+   const empty=document.createElement("div");empty.className="timeline-empty";empty.textContent="Nothing else scheduled this month.";
+   eventList.appendChild(empty);return;
+  }
   list.forEach(e=>{
-   const row=document.createElement("article");row.className="event";
-   const icon=document.createElement("span");icon.className="event-icon"+(e.direction==="out"?" out":"");
-   icon.innerHTML=e.direction==="in"?'<svg viewBox="0 0 20 20"><path d="M10 16V4M5 9l5-5 5 5"/></svg>':'<svg viewBox="0 0 20 20"><path d="M10 4v12M5 11l5 5 5-5"/></svg>';
+   const row=document.createElement("article");row.className="event "+e.direction;
+   const dateBadge=document.createElement("time");dateBadge.className="event-date";
+   const day=document.createElement("strong");day.textContent=String(e.day).padStart(2,"0");
+   const weekday=document.createElement("small");weekday.textContent=new Date(year,month,e.day).toLocaleDateString("en-GB",{weekday:"short"}).toUpperCase();
+   dateBadge.append(day,weekday);
+   const icon=document.createElement("span");icon.className="event-icon "+e.direction;
+   icon.innerHTML=e.direction==="in"?'<svg viewBox="0 0 20 20"><path d="M10 15V5M6 9l4-4 4 4"/></svg>':'<svg viewBox="0 0 20 20"><path d="M10 5v10M6 11l4 4 4-4"/></svg>';
    const copy=document.createElement("div");copy.className="event-copy";
-   const strong=document.createElement("strong");strong.textContent=e.name;
-   const small=document.createElement("small");small.textContent=e.type+" · "+e.time;copy.append(strong,small);
-   const amount=document.createElement("div");amount.className="event-amount "+e.direction;amount.append(document.createTextNode((e.direction==="in"?"+ ":"− ")+money(e.amount)));
-   row.append(icon,copy,amount);eventList.appendChild(row);
+   const name=document.createElement("strong");name.textContent=e.name;
+   const meta=document.createElement("small");meta.textContent=e.type+" · "+e.time;
+   copy.append(name,meta);
+   const amount=document.createElement("strong");amount.className="event-amount "+e.direction;amount.textContent=(e.direction==="in"?"+":"−")+money(e.amount);
+   row.append(dateBadge,icon,copy,amount);eventList.appendChild(row);
   });
  }
  document.getElementById("prevMonth").addEventListener("click",()=>{month--;if(month<0){month=11;year--}selectedDay=1;drawCalendar();drawEvents()});
@@ -312,7 +458,7 @@ h2{margin:0;color:#302e29;font:800 13px Manrope,sans-serif}
   if(isUser){const bubble=document.createElement("div");bubble.className="user-message";bubble.textContent=text;row.appendChild(bubble)}
   else{
    const mark=document.createElement("span");mark.className="assistant-mark";
-   mark.innerHTML='<svg viewBox="0 0 20 20"><path d="M10 3v14M5.5 7.3c0-1.5 1.7-2.4 4.5-2.4s4.5.9 4.5 2.4-1.7 2.4-4.5 2.7-4.5 1.2-4.5 2.7 1.7 2.4 4.5 2.4 4.5-.9 4.5-2.4"/></svg>';
+   mark.innerHTML='<svg viewBox="0 0 20 20"><path d="M3.5 4h13v10h-6.5l-4.5 3.5V14h-2zM8 8v3m3-5v7m3-4v2"/></svg>';
    const bubble=document.createElement("div");bubble.className="message";const meta=document.createElement("div");meta.className="message-head";meta.textContent="uome";const p=document.createElement("p");p.textContent=text;bubble.append(meta,p);row.append(mark,bubble);
   }
   chatStream.appendChild(row);appScroll.scrollTop=appScroll.scrollHeight;
