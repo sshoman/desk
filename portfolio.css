@@ -138,3 +138,25 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",Ari
  .sample-media.uome-media{min-height:810px!important;padding:9px!important}
  .sample-media.uome-media>.uome-frame{width:min(100%,390px)!important;height:min(790px,88vh)!important;border-radius:38px!important}
 }
+
+
+/* UoMe is showcased as a business workspace, not a narrow chat-phone mockup. */
+.sample-media.uome-media{
+ min-height:870px!important;display:block!important;padding:0!important;overflow:hidden!important;
+ background:#eef2f4!important;
+}
+.sample-media.uome-media>.uome-frame{
+ display:block!important;width:100%!important;height:870px!important;min-height:870px!important;
+ max-height:none!important;border:0!important;border-radius:15px!important;background:#f4f7f8!important;
+ box-shadow:0 10px 30px rgba(16,45,67,.12)!important;
+}
+@media(max-width:760px){
+ .sample-media.uome-media{min-height:920px!important;padding:0!important;border-radius:12px!important}
+ .sample-media.uome-media>.uome-frame{width:100%!important;height:920px!important;min-height:920px!important;border-radius:12px!important}
+}
+
+/* The Tel Aviv source is intentionally shown wider to preserve the original
+   composition while the right edge clips the far side of the face. */
+.travel-frame--telaviv{width:60%!important}
+@media (min-width:601px) and (max-width:1200px){.travel-frame--telaviv{width:76%!important}}
+@media (max-width:600px){.travel-frame--telaviv{width:78%!important}}
