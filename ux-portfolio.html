@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<base href="/">
 <meta name="theme-color" content="#211a14">
 <title>UX Portfolio | Shoman</title>
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
@@ -51,6 +52,12 @@
  </div>
 </main>
 
+<nav class="portfolio-float-controls" aria-label="Portfolio controls">
+ <button type="button" id="ux-float-prev" aria-label="Previous project"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg></button>
+ <button type="button" id="ux-float-next" aria-label="Next project"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></button>
+ <button type="button" id="ux-float-close" aria-label="Close portfolio"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button>
+</nav>
+
 <div class="certificate-viewer" id="certificate-viewer" hidden aria-hidden="true">
  <button type="button" class="certificate-close" data-certificate-close aria-label="Close certificate">×</button>
  <img id="certificate-full-image" alt="Full-size certificate">
@@ -65,6 +72,8 @@
   {title:"Outbound Fox",src:"https://outboundfox.pages.dev/"}
  ];
  let current=-1;
+ const embedded=window.parent!==window;
+ if(embedded)document.body.classList.add("portfolio-embedded");
  let pendingSrc="";
  let loadedSrc="";
  let loaderShownAt=0;
@@ -156,6 +165,12 @@
   if(target===current)return;
   current=target;render();
  }
+ document.getElementById("ux-float-prev").addEventListener("click",()=>move(-1));
+ document.getElementById("ux-float-next").addEventListener("click",()=>move(1));
+ document.getElementById("ux-float-close").addEventListener("click",()=>{
+  if(embedded)window.parent.postMessage({type:"desk-portfolio:close"},window.location.origin);
+  else window.location.assign("/");
+ });
  document.getElementById("ux-cover-next").addEventListener("click",()=>move(1));
  window.addEventListener("message",event=>{
   if(event.source!==window.parent||event.origin!==window.location.origin)return;

@@ -85,12 +85,12 @@ scene.innerHTML=`
     <h1 class="screen-title">A few things I've built.</h1>
    </div>
    <nav class="screen-links" aria-label="Open a portfolio">
-    <button type="button" data-portfolio="./ux-portfolio.html?v=ux-cover-folio-20261109b" data-title="UX Portfolio">
+    <button type="button" data-portfolio="/ux" data-title="UX Portfolio">
      <span class="screen-number">01</span>
      <span class="screen-copy"><b>UX Portfolio</b><small>Selected live projects</small></span>
      <span class="screen-arrow">↗</span>
     </button>
-    <button type="button" data-portfolio="./marketing-portfolio.html" data-title="Marketing Portfolio">
+    <button type="button" data-portfolio="/mar" data-title="Marketing Portfolio">
      <span class="screen-number">02</span>
      <span class="screen-copy"><b>Marketing Portfolio</b><small>Selected marketing work</small></span>
      <span class="screen-arrow">↗</span>
@@ -172,6 +172,7 @@ portfolioNext.addEventListener("click",()=>navigatePortfolio(1));
 portfolioClose.addEventListener("click",closePortfolio);
 window.addEventListener("message",event=>{
  if(event.source!==modalFrame.contentWindow||event.origin!==window.location.origin)return;
+ if(event.data?.type==="desk-portfolio:close"){closePortfolio();return;}
  if(event.data?.type!=="desk-portfolio:state")return;
  portfolioPrev.disabled=!event.data.canPrev;
  portfolioNext.disabled=!event.data.canNext;

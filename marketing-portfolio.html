@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<base href="/">
 <title>Marketing Portfolio | Shoman</title>
 <link rel="stylesheet" href="./portfolio.css">
 </head>
@@ -30,6 +31,11 @@
   <div class="slider-image-wrap" id="marketing-slide"><img id="marketing-slide-image" src="./portfolio-assets/outreach-sequences.png" alt="Outreach sequence sample" loading="eager" fetchpriority="high"></div>
  </section>
 </main>
+<nav class="portfolio-float-controls" aria-label="Portfolio controls">
+ <button type="button" id="mar-float-prev" aria-label="Previous sample"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5"/></svg></button>
+ <button type="button" id="mar-float-next" aria-label="Next sample"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5"/></svg></button>
+ <button type="button" id="mar-float-close" aria-label="Close portfolio"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg></button>
+</nav>
 <div class="certificate-viewer" id="certificate-viewer" hidden aria-hidden="true">
  <button type="button" class="certificate-close" data-certificate-close aria-label="Close certificate">×</button>
  <img id="certificate-full-image" alt="Full-size certificate">
@@ -51,6 +57,8 @@
  };
  const categoryOrder=["outreach","social"];
  let category="outreach",index=0;
+ const embedded=window.parent!==window;
+ if(embedded)document.body.classList.add("portfolio-embedded");
  const image=document.getElementById("marketing-slide-image");
  const title=document.getElementById("slide-category");
  const label=document.getElementById("slide-label");
@@ -113,6 +121,12 @@
   }
   wheelTimer=setTimeout(()=>{wheelTotal=0;wheelLocked=false},380);
  },{passive:false});
+ document.getElementById("mar-float-prev").addEventListener("click",()=>move(-1));
+ document.getElementById("mar-float-next").addEventListener("click",()=>move(1));
+ document.getElementById("mar-float-close").addEventListener("click",()=>{
+  if(embedded)window.parent.postMessage({type:"desk-portfolio:close"},window.location.origin);
+  else window.location.assign("/");
+ });
  const close=()=>{viewer.hidden=true;viewer.setAttribute("aria-hidden","true");full.src=""};
  document.querySelectorAll("[data-certificate-open]").forEach(button=>button.addEventListener("click",()=>{
   full.src=button.dataset.certificateOpen;full.alt=button.querySelector("img").alt+" full size";

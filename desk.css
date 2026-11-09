@@ -2414,3 +2414,10 @@ img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
 .wall-gallery .travel-frame--telaviv .travel-photo{
  object-fit:contain!important;object-position:center!important;transform:none!important;
 }
+
+
+/* The toolbar floats over the portfolio and takes no layout space. */
+.portfolio-toolbar{position:absolute!important;z-index:10002!important;top:16px!important;right:16px!important;left:auto!important;opacity:.5!important;transition:opacity .18s ease!important}
+.portfolio-toolbar:hover,.portfolio-toolbar:focus-within{opacity:1!important}
+.portfolio-control{opacity:1!important}
+@media(max-width:600px){.portfolio-toolbar{top:10px!important;right:10px!important;left:auto!important}}
