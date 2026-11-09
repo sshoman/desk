@@ -154,9 +154,3 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",Ari
  .sample-media.uome-media{min-height:920px!important;padding:0!important;border-radius:12px!important}
  .sample-media.uome-media>.uome-frame{width:100%!important;height:920px!important;min-height:920px!important;border-radius:12px!important}
 }
-
-/* The Tel Aviv source is intentionally shown wider to preserve the original
-   composition while the right edge clips the far side of the face. */
-.travel-frame--telaviv{width:60%!important}
-@media (min-width:601px) and (max-width:1200px){.travel-frame--telaviv{width:76%!important}}
-@media (max-width:600px){.travel-frame--telaviv{width:78%!important}}

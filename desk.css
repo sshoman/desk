@@ -2295,3 +2295,23 @@ img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
 .wall-gallery .travel-frame:nth-child(5) .travel-photo{
  object-fit:contain!important;object-position:center!important;background:#342c22!important;
 }
+
+
+/* Tel Aviv uses a wider frame so the original shot stays zoomed out.
+   The source still trims its right edge at the half-face line. */
+@media (min-width:1201px){.travel-frame--telaviv{width:62%!important}}
+@media (min-width:601px) and (max-width:1200px){.travel-frame--telaviv{width:76%!important}}
+@media (max-width:600px){.travel-frame--telaviv{width:78%!important}}
+
+/* Travel photos stay still. Captions remain visible, but no hover zoom or lift. */
+.travel-frame,.travel-photo,.travel-frame figcaption{transition:none!important}
+.travel-frame:hover,.travel-frame:focus-visible{
+ transform:none!important;filter:none!important;
+ box-shadow:0 4px 8px #0008,0 0 0 1px #d4b78255!important;cursor:default!important;
+}
+.travel-frame:hover .travel-photo,.travel-frame:focus-visible .travel-photo{
+ transform:none!important;filter:none!important;
+}
+.travel-frame:hover figcaption,.travel-frame:focus-visible figcaption{
+ opacity:1!important;visibility:visible!important;transform:none!important;
+}
