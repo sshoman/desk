@@ -2331,17 +2331,7 @@ img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
 }
 
 
-/* Kuala Lumpur: give the original, full-resolution artwork more room in its frame. */
-.wall-gallery .travel-frame[aria-label^="Kuala Lumpur"]{
- width:48%!important;height:92%!important;
-}
-.wall-gallery .travel-frame[aria-label^="Kuala Lumpur"] .travel-photo{
- object-fit:cover!important;object-position:center!important;
- filter:none!important;image-rendering:auto!important;
-}
-@media(max-width:600px){
- .wall-gallery .travel-frame[aria-label^="Kuala Lumpur"]{width:54%!important;height:88%!important}
-}
+/* Kuala Lumpur inherits the exact same frame dimensions as the other travel photos. */
 
 /* A wider keyboard uses the laptop deck instead of floating as a narrow strip. */
 .keyboard{left:6%!important;width:88%!important}
@@ -2391,13 +2381,6 @@ img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
 }
 
 
-/* Match Kuala Lumpur to the standard travel-photo frame dimensions. */
-.wall-gallery .travel-frame[aria-label^="Kuala Lumpur"]{
- width:66%!important;height:100%!important;
-}
-.wall-gallery .travel-frame[aria-label^="Kuala Lumpur"] .travel-photo{
- object-fit:cover!important;object-position:center!important;
-}
 
 /* Portfolio controls float over the sample, never occupying a layout row. */
 .portfolio-toolbar{
