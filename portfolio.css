@@ -402,3 +402,5 @@ html:has(body.ux-portfolio-page),body.ux-portfolio-page{
  .ux-portfolio-page .ux-folio-stack span:nth-child(3),.ux-portfolio-page .ux-loader-track span{animation:none}
  .ux-portfolio-page .ux-cover-action svg,.ux-portfolio-page .ux-cover-certificate{transition:none}
 }
+
+.ux-portfolio-page .ux-cover[hidden]{display:none!important}
