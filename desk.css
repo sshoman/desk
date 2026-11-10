@@ -2455,3 +2455,51 @@ img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
 @media(prefers-reduced-motion:reduce){
  .book-mockup:hover>img,.book-mockup:focus-visible>img{animation:none!important}
 }
+
+
+/* Quiet ambient movement. The room feels occupied, not animated for attention. */
+.desk-lamp-right .lamp-glow{
+ animation:desk-lamp-light 8.8s ease-in-out infinite!important;
+}
+.desk-lamp-right .lamp-bulb{
+ animation:desk-lamp-bulb 8.8s ease-in-out infinite!important;
+}
+.paper:after{
+ transform-origin:top right;
+ animation:paper-corner-shift 12s ease-in-out infinite;
+}
+.screen-dot{
+ animation:screen-status-breathe 3.8s ease-in-out infinite;
+}
+@keyframes desk-lamp-light{
+ 0%,100%{opacity:.88}
+ 24%{opacity:.96}
+ 25%{opacity:.82}
+ 27%{opacity:.94}
+ 61%{opacity:1}
+ 62%{opacity:.86}
+ 64%{opacity:.95}
+}
+@keyframes desk-lamp-bulb{
+ 0%,100%{opacity:1}
+ 25%{opacity:.82}
+ 27%{opacity:1}
+ 62%{opacity:.88}
+ 64%{opacity:1}
+}
+@keyframes paper-corner-shift{
+ 0%,88%,100%{transform:rotate(0deg)}
+ 91%{transform:rotate(1.7deg)}
+ 94%{transform:rotate(-.7deg)}
+ 97%{transform:rotate(0deg)}
+}
+@keyframes screen-status-breathe{
+ 0%,100%{opacity:1;transform:scale(1);box-shadow:0 0 7px #a9be91}
+ 50%{opacity:.62;transform:scale(.82);box-shadow:0 0 3px #a9be91}
+}
+@media(prefers-reduced-motion:reduce){
+ .desk-lamp-right .lamp-glow,
+ .desk-lamp-right .lamp-bulb,
+ .paper:after,
+ .screen-dot{animation:none!important}
+}
