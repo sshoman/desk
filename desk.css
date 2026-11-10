@@ -2623,3 +2623,125 @@ img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
 @media(prefers-reduced-motion:reduce){
  .desk-plant,.desk-plant .plant-canopy{animation:none!important}
 }
+
+
+/* The first-place glass award now stands alone between the laptop and book. */
+.award-glass-display .glass-arab{
+ position:absolute!important;left:58%!important;top:0!important;
+ width:42%!important;height:100%!important;flex:none!important;
+}
+.first-place-dock{
+ position:absolute!important;z-index:10!important;
+ left:66.25%!important;top:51.2%!important;
+ width:4.05%!important;height:16.9%!important;
+ display:block!important;pointer-events:none!important;
+}
+.first-place-dock .glass-trophy{
+ position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+}
+.first-place-dock .glass-prism{
+ width:62px!important;height:145px!important;bottom:7%!important;
+}
+.first-place-dock .glass-foot{width:66px!important;height:7px!important}
+.first-place-dock .glass-contact-shadow{left:-3%!important;right:-3%!important}
+
+/* The plant keeps moving after it lands. Branches sway together; individual leaves lag. */
+.desk-plant .plant-canopy{
+ animation:plant-leaf-settle .92s cubic-bezier(.2,.7,.3,1) .78s both,
+           plant-wind-sway 8.4s ease-in-out 1.8s infinite!important;
+}
+.desk-plant .plant-leaf{
+ transform-box:fill-box;
+ transform-origin:50% 88%;
+ animation:plant-leaf-breeze 5.7s ease-in-out infinite;
+}
+.desk-plant .plant-leaf--top{animation-delay:-1.4s}
+.desk-plant .plant-leaf--left-high{animation-delay:-3.1s}
+.desk-plant .plant-leaf--right-high{animation-delay:-.8s}
+.desk-plant .plant-leaf--left-low{animation-delay:-2.2s}
+.desk-plant .plant-leaf--right-low{animation-delay:-4s}
+.desk-plant .plant-leaf--inner-left{animation-delay:-1.9s}
+.desk-plant .plant-leaf--inner-right{animation-delay:-3.5s}
+@keyframes plant-wind-sway{
+ 0%,100%{transform:rotate(-1.15deg)}
+ 28%{transform:rotate(1.9deg)}
+ 56%{transform:rotate(2.8deg)}
+ 78%{transform:rotate(-1.8deg)}
+}
+@keyframes plant-leaf-breeze{
+ 0%,100%{transform:rotate(-.6deg)}
+ 38%{transform:rotate(1.8deg)}
+ 66%{transform:rotate(-1.5deg)}
+}
+
+/* The lamp pivots from its base. Its head and light cone move at a different pace. */
+.desk-lamp-right{
+ transform-origin:50% 97%;
+ animation:lamp-stand-sway 9.2s ease-in-out infinite;
+ will-change:transform;
+}
+.desk-lamp-right .lamp-head{
+ position:absolute;inset:0;z-index:4;
+ transform-origin:51% 17%;
+ animation:lamp-head-aim 6.8s ease-in-out infinite;
+ will-change:transform;
+}
+.desk-lamp-right .lamp-shade{
+ transform-origin:50% 8%;
+ animation:lamp-shade-settle 6.8s ease-in-out infinite;
+}
+.desk-lamp-right .lamp-glow{
+ transform-origin:50% 0;
+ animation:desk-lamp-light 8.8s ease-in-out infinite!important,
+           lamp-beam-sway 7.6s ease-in-out infinite!important;
+}
+.desk-lamp-right .lamp-glow:after{
+ opacity:.13;
+ animation:lamp-dust-drift 11s ease-in-out infinite;
+}
+@keyframes lamp-stand-sway{
+ 0%,100%{transform:rotate(-.7deg)}
+ 32%{transform:rotate(1.15deg)}
+ 67%{transform:rotate(-1.35deg)}
+}
+@keyframes lamp-head-aim{
+ 0%,100%{transform:rotate(-1.3deg)}
+ 36%{transform:rotate(1.1deg)}
+ 72%{transform:rotate(1.7deg)}
+}
+@keyframes lamp-shade-settle{
+ 0%,100%{transform:rotate(0)}
+ 43%{transform:rotate(-1.2deg)}
+ 75%{transform:rotate(.8deg)}
+}
+@keyframes lamp-beam-sway{
+ 0%,100%{transform:rotate(-1.5deg);opacity:.86}
+ 38%{transform:rotate(1.2deg);opacity:1}
+ 72%{transform:rotate(2.1deg);opacity:.9}
+}
+@media (min-width:601px) and (max-width:1200px) and (orientation:landscape){
+ .first-place-dock{left:66.35%!important;top:51.2%!important;width:9.4%!important;height:16.9%!important}
+ .first-place-dock .glass-prism{width:68px!important;height:140px!important}
+ .first-place-dock .glass-foot{width:72px!important}
+ .book-mockup{left:77%!important;top:59%!important;width:17%!important;height:23%!important}
+}
+@media (min-width:601px) and (max-width:1200px) and (orientation:portrait){
+ .first-place-dock{left:65%!important;top:65.4%!important;width:13%!important;height:17%!important}
+ .first-place-dock .glass-prism{width:54px!important;height:108px!important}
+ .first-place-dock .glass-foot{width:56px!important}
+}
+@media(max-width:600px) and (orientation:portrait){
+ .award-glass-display{left:1.5%!important;width:32%!important}
+ .award-glass-display .glass-arab{left:57%!important;width:43%!important}
+ .first-place-dock{left:59.2%!important;top:65.1%!important;width:10.5%!important;height:17.2%!important}
+ .first-place-dock .glass-prism{width:34px!important;height:78px!important}
+ .first-place-dock .glass-foot{width:37px!important;height:5px!important}
+ .first-place-dock .glass-engraving{padding-top:7px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .desk-plant,.desk-plant .plant-canopy,.desk-plant .plant-leaf,
+ .desk-lamp-right,.desk-lamp-right .lamp-head,.desk-lamp-right .lamp-shade,
+ .desk-lamp-right .lamp-glow,.desk-lamp-right .lamp-glow:after{
+  animation:none!important;will-change:auto!important;
+ }
+}
