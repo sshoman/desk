@@ -21,6 +21,51 @@ scene.innerHTML=`
  <div class="wall-line" aria-hidden="true"></div>
  <div class="desk-top" aria-hidden="true"></div>
  <div class="desk-front" aria-hidden="true"></div>
+ <div class="desk-plant" aria-hidden="true">
+  <svg viewBox="0 0 180 260" role="presentation" focusable="false">
+   <defs>
+    <linearGradient id="plant-leaf-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#71865a"/><stop offset=".48" stop-color="#49663e"/><stop offset="1" stop-color="#263f2b"/></linearGradient>
+    <linearGradient id="plant-leaf-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#819267"/><stop offset=".5" stop-color="#506d43"/><stop offset="1" stop-color="#304a32"/></linearGradient>
+    <linearGradient id="plant-pot" x1="0" y1="0" x2="1" y2=".2"><stop offset="0" stop-color="#684631"/><stop offset=".28" stop-color="#b17a51"/><stop offset=".62" stop-color="#895638"/><stop offset="1" stop-color="#513624"/></linearGradient>
+    <linearGradient id="plant-pot-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d1a178"/><stop offset=".45" stop-color="#93603e"/><stop offset="1" stop-color="#593a27"/></linearGradient>
+   </defs>
+   <ellipse cx="91" cy="252" rx="43" ry="6" fill="#090806" opacity=".28"/>
+   <g fill="none" stroke="#526342" stroke-width="3" stroke-linecap="round">
+    <path d="M90 207 C89 169 87 126 92 61"/>
+    <path d="M88 194 C76 164 51 127 29 91"/>
+    <path d="M91 190 C107 157 134 124 157 91"/>
+    <path d="M89 202 C67 180 44 166 20 151"/>
+    <path d="M93 199 C117 177 143 163 165 151"/>
+    <path d="M90 181 C89 151 78 125 67 102"/>
+    <path d="M94 178 C105 147 116 122 128 103"/>
+   </g>
+   <g class="plant-canopy">
+    <path d="M91 112 C61 91 59 42 91 9 C119 39 121 83 91 112Z" fill="url(#plant-leaf-b)" stroke="#243e2a" stroke-width="1.6"/>
+    <path d="M84 123 C48 119 16 91 24 50 C60 49 87 81 84 123Z" fill="url(#plant-leaf-a)" stroke="#263e2b" stroke-width="1.6"/>
+    <path d="M99 119 C111 79 143 55 167 67 C166 102 137 127 99 119Z" fill="url(#plant-leaf-b)" stroke="#263e2b" stroke-width="1.6"/>
+    <path d="M82 158 C48 158 13 138 10 104 C43 91 74 117 82 158Z" fill="url(#plant-leaf-b)" stroke="#263e2b" stroke-width="1.6"/>
+    <path d="M99 157 C120 121 151 108 174 125 C161 156 132 170 99 157Z" fill="url(#plant-leaf-a)" stroke="#263e2b" stroke-width="1.6"/>
+    <path d="M87 177 C56 182 29 167 25 143 C50 129 78 146 87 177Z" fill="url(#plant-leaf-a)" stroke="#263e2b" stroke-width="1.6"/>
+    <path d="M98 177 C119 151 146 146 163 161 C147 185 120 191 98 177Z" fill="url(#plant-leaf-b)" stroke="#263e2b" stroke-width="1.6"/>
+    <g fill="none" stroke="#b4c092" stroke-width="1.25" stroke-linecap="round" opacity=".48">
+     <path d="M91 108 C91 76 91 42 91 15"/>
+     <path d="M82 119 C65 95 46 72 28 53"/>
+     <path d="M101 116 C121 94 145 77 164 70"/>
+     <path d="M80 154 C58 134 34 116 14 107"/>
+     <path d="M102 154 C126 140 151 130 171 127"/>
+     <path d="M85 174 C66 159 47 148 28 145"/>
+     <path d="M101 175 C121 167 143 163 159 162"/>
+    </g>
+   </g>
+   <ellipse cx="90" cy="204" rx="35" ry="8" fill="#392519"/>
+   <path d="M57 203 C60 224 63 244 72 250 C82 254 99 254 109 250 C118 244 121 224 123 203Z" fill="url(#plant-pot)" stroke="#4a3020" stroke-width="1.5"/>
+   <path d="M62 218 C78 224 103 224 118 218" fill="none" stroke="#d1a17b" stroke-width="2" opacity=".42"/>
+   <path d="M65 240 C79 246 101 246 115 240" fill="none" stroke="#3d281c" stroke-width="2" opacity=".5"/>
+   <ellipse cx="90" cy="203" rx="35" ry="8" fill="url(#plant-pot-rim)" stroke="#4a3020" stroke-width="1.5"/>
+   <ellipse cx="90" cy="202" rx="29" ry="4.5" fill="#30251b"/>
+   <path d="M49 251 C59 258 120 259 131 251 L125 258 C113 263 67 263 55 258Z" fill="#68442d" stroke="#422a1c" stroke-width="1"/>
+  </svg>
+ </div>
  <div class="desk-lamp desk-lamp-right" aria-hidden="true">
   <span class="lamp-glow"></span>
   <span class="lamp-base"></span>
