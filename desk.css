@@ -2823,3 +2823,63 @@ img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
   animation:none!important;
  }
 }
+
+
+/* The plant stays exactly where it is. It does not enter or sway. */
+.desk-plant,.desk-plant .plant-canopy,.desk-plant .plant-leaf{
+ animation:none!important;
+ transform:none!important;
+ opacity:1!important;
+ will-change:auto!important;
+}
+
+/* Late morning light enters from off-screen left and travels over the walnut. */
+.desk-sunlight{
+ position:absolute;z-index:1;inset:0;overflow:hidden;pointer-events:none;
+ mix-blend-mode:normal;
+}
+.sunlight-wash{
+ position:absolute;left:-27%;top:-55%;width:91%;height:205%;
+ clip-path:polygon(0 0,82% 0,100% 100%,17% 100%);
+ background:
+  radial-gradient(ellipse at 24% 48%,rgba(255,220,160,.22) 0%,rgba(255,208,139,.12) 36%,transparent 73%),
+  linear-gradient(106deg,rgba(255,225,174,.16),rgba(255,215,157,.06) 58%,transparent 100%);
+ filter:blur(12px);
+ opacity:.9;
+ transform:translate3d(-1%,0,0) rotate(-1deg);
+ animation:sunlight-wash-drift 25s ease-in-out infinite;
+}
+.sunlight-shadow{
+ position:absolute;left:-24%;top:-34%;width:105%;height:177%;
+ clip-path:polygon(0 0,100% 0,87% 100%,0 100%);
+ background:
+  linear-gradient(105deg,
+   transparent 0 19%,
+   rgba(8,5,3,.25) 21% 24%,
+   rgba(8,5,3,.13) 25%,
+   transparent 28% 48%,
+   rgba(7,4,2,.20) 50% 53%,
+   rgba(7,4,2,.09) 54%,
+   transparent 57% 77%,
+   rgba(7,4,2,.13) 79% 81%,
+   transparent 84% 100%),
+  radial-gradient(ellipse at 23% 59%,rgba(7,4,2,.18),transparent 61%);
+ filter:blur(7px);
+ opacity:.72;
+ transform:translate3d(-2%,0,0) skewY(-2deg);
+ animation:window-shadow-drift 29s cubic-bezier(.42,0,.58,1) infinite;
+}
+@keyframes sunlight-wash-drift{
+ 0%,100%{opacity:.72;transform:translate3d(-2%,0,0) rotate(-1.2deg)}
+ 36%{opacity:.96;transform:translate3d(5%,1%,0) rotate(-.3deg)}
+ 68%{opacity:.8;transform:translate3d(10%,0,0) rotate(.8deg)}
+}
+@keyframes window-shadow-drift{
+ 0%,100%{opacity:.68;transform:translate3d(-3%,0,0) skewY(-2deg)}
+ 34%{opacity:.82;transform:translate3d(4%,1%,0) skewY(-1.2deg)}
+ 72%{opacity:.62;transform:translate3d(11%,0,0) skewY(-2.8deg)}
+}
+@media(prefers-reduced-motion:reduce){
+ .desk-plant,.desk-plant .plant-canopy,.desk-plant .plant-leaf,
+ .sunlight-wash,.sunlight-shadow{animation:none!important}
+}
