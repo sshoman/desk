@@ -2745,3 +2745,81 @@ img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
   animation:none!important;will-change:auto!important;
  }
 }
+
+
+/* Keep the lamp fixed. Only its bulb, pool of light and dust move. */
+.desk-lamp-right,
+.desk-lamp-right .lamp-head,
+.desk-lamp-right .lamp-shade,
+.desk-lamp-right .lamp-stem,
+.desk-lamp-right .lamp-base{
+ animation:none!important;
+ transform:none!important;
+ will-change:auto!important;
+}
+.desk-lamp-right .lamp-glow{
+ transform:none!important;
+ animation:lamp-light-breathe 6.4s ease-in-out infinite!important;
+}
+.desk-lamp-right .lamp-bulb{
+ animation:lamp-bulb-flicker 7.8s ease-in-out infinite!important;
+}
+.desk-lamp-right .lamp-glow:after{
+ animation:lamp-dust-drift 11s ease-in-out infinite!important;
+}
+@keyframes lamp-light-breathe{
+ 0%,100%{opacity:.78;filter:blur(5px)}
+ 24%{opacity:.94;filter:blur(5.5px)}
+ 25%{opacity:.84;filter:blur(5px)}
+ 27%{opacity:.98;filter:blur(5.4px)}
+ 64%{opacity:.9;filter:blur(5px)}
+}
+@keyframes lamp-bulb-flicker{
+ 0%,100%{opacity:1;box-shadow:0 5px 10px 4px #f5d59a55}
+ 23%{opacity:.92;box-shadow:0 4px 8px 3px #f5d59a44}
+ 24%{opacity:.78;box-shadow:0 3px 6px 2px #f5d59a33}
+ 26%{opacity:1;box-shadow:0 5px 11px 5px #f5d59a66}
+ 68%{opacity:.96;box-shadow:0 5px 10px 4px #f5d59a55}
+}
+
+/* A clear but quiet online signal inside the laptop display. */
+.screen-dot{
+ position:relative!important;
+ width:6px!important;height:6px!important;
+ margin-left:5px!important;margin-right:0!important;
+ animation:screen-online-flicker 1.85s steps(1,end) infinite!important;
+ box-shadow:0 0 6px #a9be91,0 0 12px #a9be9140!important;
+}
+.screen-dot:after{
+ content:"";
+ position:absolute;inset:-3px;
+ border:1px solid rgba(169,190,145,.6);
+ border-radius:50%;
+ animation:screen-online-ring 2.4s ease-out infinite;
+}
+@keyframes screen-online-flicker{
+ 0%,100%{opacity:1;box-shadow:0 0 7px #b6d39b,0 0 13px #a9be9166}
+ 45%{opacity:.66;box-shadow:0 0 3px #a9be91}
+ 48%{opacity:1;box-shadow:0 0 8px #c6e6a5,0 0 15px #a9be9177}
+ 51%{opacity:.78}
+ 54%{opacity:1}
+}
+@keyframes screen-online-ring{
+ 0%{opacity:.65;transform:scale(.65)}
+ 75%,100%{opacity:0;transform:scale(2.3)}
+}
+
+/* No shake or flicker on the book. Keep its details available on hover. */
+.book-mockup:hover>img,
+.book-mockup:focus-visible>img{
+ animation:none!important;
+}
+
+/* All added movement respects the visitor's motion setting. */
+@media(prefers-reduced-motion:reduce){
+ .desk-lamp-right .lamp-glow,.desk-lamp-right .lamp-bulb,
+ .desk-lamp-right .lamp-glow:after,.screen-dot,.screen-dot:after,
+ .book-mockup:hover>img,.book-mockup:focus-visible>img{
+  animation:none!important;
+ }
+}
