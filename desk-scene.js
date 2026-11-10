@@ -22,48 +22,57 @@ scene.innerHTML=`
  <div class="desk-top" aria-hidden="true"></div>
  <div class="desk-front" aria-hidden="true"></div>
  <div class="desk-plant" aria-hidden="true">
-  <svg viewBox="0 0 180 260" preserveAspectRatio="xMidYMax meet" role="presentation" focusable="false">
+  <svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMax meet" role="presentation" focusable="false">
    <defs>
-    <linearGradient id="plant-leaf-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#71865a"/><stop offset=".48" stop-color="#49663e"/><stop offset="1" stop-color="#263f2b"/></linearGradient>
-    <linearGradient id="plant-leaf-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#819267"/><stop offset=".5" stop-color="#506d43"/><stop offset="1" stop-color="#304a32"/></linearGradient>
-    <linearGradient id="plant-pot" x1="0" y1="0" x2="1" y2=".2"><stop offset="0" stop-color="#684631"/><stop offset=".28" stop-color="#b17a51"/><stop offset=".62" stop-color="#895638"/><stop offset="1" stop-color="#513624"/></linearGradient>
-    <linearGradient id="plant-pot-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d1a178"/><stop offset=".45" stop-color="#93603e"/><stop offset="1" stop-color="#593a27"/></linearGradient>
+    <linearGradient id="plant-leaf-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#91a176"/><stop offset=".42" stop-color="#5e794d"/><stop offset="1" stop-color="#263d2a"/></linearGradient>
+    <linearGradient id="plant-leaf-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7f9568"/><stop offset=".48" stop-color="#49683d"/><stop offset="1" stop-color="#213a29"/></linearGradient>
+    <linearGradient id="plant-leaf-c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a0ad7d"/><stop offset=".44" stop-color="#60784a"/><stop offset="1" stop-color="#304b31"/></linearGradient>
+    <linearGradient id="plant-stem" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#293f29"/><stop offset=".45" stop-color="#74845a"/><stop offset="1" stop-color="#31452d"/></linearGradient>
+    <linearGradient id="plant-pot" x1="0" y1="0" x2="1" y2=".15"><stop offset="0" stop-color="#65412c"/><stop offset=".24" stop-color="#a96d48"/><stop offset=".48" stop-color="#c18a60"/><stop offset=".76" stop-color="#895436"/><stop offset="1" stop-color="#4b3022"/></linearGradient>
+    <linearGradient id="plant-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d3a17a"/><stop offset=".32" stop-color="#a36d49"/><stop offset="1" stop-color="#68442e"/></linearGradient>
    </defs>
-   <ellipse cx="91" cy="252" rx="43" ry="6" fill="#090806" opacity=".28"/>
-   <g fill="none" stroke="#526342" stroke-width="3" stroke-linecap="round">
-    <path d="M90 207 C89 169 87 126 92 61"/>
-    <path d="M88 194 C76 164 51 127 29 91"/>
-    <path d="M91 190 C107 157 134 124 157 91"/>
-    <path d="M89 202 C67 180 44 166 20 151"/>
-    <path d="M93 199 C117 177 143 163 165 151"/>
-    <path d="M90 181 C89 151 78 125 67 102"/>
-    <path d="M94 178 C105 147 116 122 128 103"/>
-   </g>
+   <ellipse cx="100" cy="289" rx="48" ry="7" fill="#080705" opacity=".32"/>
    <g class="plant-canopy">
-    <path d="M91 112 C61 91 59 42 91 9 C119 39 121 83 91 112Z" fill="url(#plant-leaf-b)" stroke="#243e2a" stroke-width="1.6"/>
-    <path d="M84 123 C48 119 16 91 24 50 C60 49 87 81 84 123Z" fill="url(#plant-leaf-a)" stroke="#263e2b" stroke-width="1.6"/>
-    <path d="M99 119 C111 79 143 55 167 67 C166 102 137 127 99 119Z" fill="url(#plant-leaf-b)" stroke="#263e2b" stroke-width="1.6"/>
-    <path d="M82 158 C48 158 13 138 10 104 C43 91 74 117 82 158Z" fill="url(#plant-leaf-b)" stroke="#263e2b" stroke-width="1.6"/>
-    <path d="M99 157 C120 121 151 108 174 125 C161 156 132 170 99 157Z" fill="url(#plant-leaf-a)" stroke="#263e2b" stroke-width="1.6"/>
-    <path d="M87 177 C56 182 29 167 25 143 C50 129 78 146 87 177Z" fill="url(#plant-leaf-a)" stroke="#263e2b" stroke-width="1.6"/>
-    <path d="M98 177 C119 151 146 146 163 161 C147 185 120 191 98 177Z" fill="url(#plant-leaf-b)" stroke="#263e2b" stroke-width="1.6"/>
-    <g fill="none" stroke="#b4c092" stroke-width="1.25" stroke-linecap="round" opacity=".48">
-     <path d="M91 108 C91 76 91 42 91 15"/>
-     <path d="M82 119 C65 95 46 72 28 53"/>
-     <path d="M101 116 C121 94 145 77 164 70"/>
-     <path d="M80 154 C58 134 34 116 14 107"/>
-     <path d="M102 154 C126 140 151 130 171 127"/>
-     <path d="M85 174 C66 159 47 148 28 145"/>
-     <path d="M101 175 C121 167 143 163 159 162"/>
+    <g fill="none" stroke="url(#plant-stem)" stroke-width="4" stroke-linecap="round">
+     <path d="M99 238 C97 196 99 154 101 115 C102 84 101 62 102 43"/>
+     <path d="M99 222 C79 196 61 170 43 139"/>
+     <path d="M101 218 C121 190 142 166 165 139"/>
+     <path d="M99 203 C76 187 58 180 35 176"/>
+     <path d="M102 205 C123 192 145 188 169 190"/>
+     <path d="M100 181 C91 157 82 139 72 122"/>
+     <path d="M103 180 C116 157 128 139 140 123"/>
+    </g>
+    <g stroke="#29432c" stroke-width="1.4" stroke-linejoin="round">
+     <path d="M102 112 C75 87 77 48 103 20 C128 48 128 87 102 112Z" fill="url(#plant-leaf-c)"/>
+     <path d="M91 148 C58 145 29 119 34 82 C68 78 94 112 91 148Z" fill="url(#plant-leaf-a)"/>
+     <path d="M108 151 C115 113 145 86 173 99 C171 135 142 158 108 151Z" fill="url(#plant-leaf-b)"/>
+     <path d="M88 191 C57 195 25 179 19 148 C48 130 81 153 88 191Z" fill="url(#plant-leaf-b)"/>
+     <path d="M111 194 C131 163 158 151 182 169 C168 199 139 210 111 194Z" fill="url(#plant-leaf-c)"/>
+     <path d="M95 173 C68 165 51 138 61 111 C88 119 104 145 95 173Z" fill="url(#plant-leaf-c)"/>
+     <path d="M106 178 C109 147 132 124 155 129 C155 158 134 180 106 178Z" fill="url(#plant-leaf-a)"/>
+    </g>
+    <g fill="none" stroke="#c0cc9a" stroke-width="1.35" stroke-linecap="round" opacity=".52">
+     <path d="M102 106 C103 77 103 48 103 25"/>
+     <path d="M89 143 C71 121 53 101 38 85"/>
+     <path d="M111 147 C132 127 153 110 170 102"/>
+     <path d="M85 185 C62 169 40 156 23 150"/>
+     <path d="M114 190 C138 181 159 173 179 171"/>
+     <path d="M94 168 C82 148 72 128 64 115"/>
+     <path d="M108 173 C125 157 140 141 152 132"/>
+    </g>
+    <g fill="none" stroke="#d0d9ad" stroke-width=".7" opacity=".23">
+     <path d="M47 93 Q69 106 79 132"/><path d="M130 124 Q143 130 158 148"/>
+     <path d="M37 157 Q59 160 76 177"/><path d="M132 183 Q154 175 168 176"/>
     </g>
    </g>
-   <ellipse cx="90" cy="204" rx="35" ry="8" fill="#392519"/>
-   <path d="M57 203 C60 224 63 244 72 250 C82 254 99 254 109 250 C118 244 121 224 123 203Z" fill="url(#plant-pot)" stroke="#4a3020" stroke-width="1.5"/>
-   <path d="M62 218 C78 224 103 224 118 218" fill="none" stroke="#d1a17b" stroke-width="2" opacity=".42"/>
-   <path d="M65 240 C79 246 101 246 115 240" fill="none" stroke="#3d281c" stroke-width="2" opacity=".5"/>
-   <ellipse cx="90" cy="203" rx="35" ry="8" fill="url(#plant-pot-rim)" stroke="#4a3020" stroke-width="1.5"/>
-   <ellipse cx="90" cy="202" rx="29" ry="4.5" fill="#30251b"/>
-   <path d="M49 251 C59 258 120 259 131 251 L125 258 C113 263 67 263 55 258Z" fill="#68442d" stroke="#422a1c" stroke-width="1"/>
+   <ellipse cx="100" cy="237" rx="39" ry="9" fill="#3a271b"/>
+   <path d="M62 237 C65 258 71 280 80 286 C90 291 111 291 121 286 C130 280 135 258 138 237Z" fill="url(#plant-pot)" stroke="#4e3221" stroke-width="1.8"/>
+   <path d="M69 254 C83 261 116 262 130 254" fill="none" stroke="#dfb28c" stroke-width="1.8" opacity=".35"/>
+   <path d="M74 277 C87 283 111 284 124 277" fill="none" stroke="#3d281c" stroke-width="2" opacity=".5"/>
+   <ellipse cx="100" cy="237" rx="39" ry="9" fill="url(#plant-rim)" stroke="#4e3221" stroke-width="1.7"/>
+   <ellipse cx="100" cy="235.5" rx="32" ry="5.5" fill="#2c2118"/>
+   <path d="M76 235 Q91 231 104 235 T126 235" fill="none" stroke="#6c5a39" stroke-width="1.2" opacity=".65"/>
+   <path d="M57 286 Q100 295 143 286 L136 294 Q100 300 64 294Z" fill="#70482f" stroke="#452b1d" stroke-width="1.2"/>
   </svg>
  </div>
  <div class="desk-lamp desk-lamp-right" aria-hidden="true">
