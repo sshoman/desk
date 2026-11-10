@@ -19,7 +19,12 @@ scene.innerHTML=`
  <div class="wall-light" aria-hidden="true"></div>
  <section class="wall-gallery" aria-label="Original travel memories">${frameMarkup}</section>
  <div class="wall-line" aria-hidden="true"></div>
- <div class="desk-top" aria-hidden="true"></div>
+ <div class="desk-top" aria-hidden="true">
+  <div class="desk-sunlight">
+   <span class="sunlight-wash"></span>
+   <span class="sunlight-shadow"></span>
+  </div>
+ </div>
  <div class="desk-front" aria-hidden="true"></div>
  <div class="desk-plant" aria-hidden="true">
   <svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMax meet" role="presentation" focusable="false">
