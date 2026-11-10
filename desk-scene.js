@@ -22,7 +22,7 @@ scene.innerHTML=`
  <div class="desk-top" aria-hidden="true"></div>
  <div class="desk-front" aria-hidden="true"></div>
  <div class="desk-plant" aria-hidden="true">
-  <svg viewBox="0 0 180 260" role="presentation" focusable="false">
+  <svg viewBox="0 0 180 260" preserveAspectRatio="xMidYMax meet" role="presentation" focusable="false">
    <defs>
     <linearGradient id="plant-leaf-a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#71865a"/><stop offset=".48" stop-color="#49663e"/><stop offset="1" stop-color="#263f2b"/></linearGradient>
     <linearGradient id="plant-leaf-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#819267"/><stop offset=".5" stop-color="#506d43"/><stop offset="1" stop-color="#304a32"/></linearGradient>
