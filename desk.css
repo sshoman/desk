@@ -2586,7 +2586,7 @@ img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
  left:1.3%;
  top:39%;
  width:11.2%;
- height:42.5%;
+ height:30%;
  transform-origin:50% 88%;
  filter:drop-shadow(0 10px 9px #0008);
  pointer-events:none;
@@ -2612,7 +2612,13 @@ img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
  100%{transform:rotate(0)}
 }
 @media(max-width:600px) and (orientation:portrait){
- .desk-plant{display:none!important}
+ .desk-plant{
+  display:block!important;
+  left:1.2%!important;
+  top:52.1%!important;
+  width:14.5%!important;
+  height:13.4%!important;
+ }
 }
 @media(prefers-reduced-motion:reduce){
  .desk-plant,.desk-plant .plant-canopy{animation:none!important}
