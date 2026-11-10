@@ -467,3 +467,23 @@ html:has(body.ux-portfolio-page),body.ux-portfolio-page{
  .marketing-portfolio-page .mar-category-tabs button{padding:7px 10px;font-size:8px}
  .marketing-portfolio-page .mar-sample-meta{font-size:8px}
 }
+
+
+/* Give the marketing certificate the same framed paper treatment as the design certificate. */
+.marketing-portfolio-page .mar-cover-certificate{
+ box-sizing:border-box!important;
+ padding:14px!important;
+ border:1px solid #bda77e!important;
+ border-radius:3px!important;
+ background:linear-gradient(145deg,#fffdf8 0%,#eee5d6 100%)!important;
+ box-shadow:0 22px 56px rgba(55,39,20,.2),0 4px 13px rgba(71,55,34,.14),inset 0 1px 0 #fff!important;
+}
+.marketing-portfolio-page .mar-cover-certificate img{
+ display:block!important;
+ background:#fff!important;
+ border:1px solid #e1d7c8!important;
+ box-shadow:0 1px 3px rgba(55,39,20,.08)!important;
+}
+@media(max-width:760px){
+ .marketing-portfolio-page .mar-cover-certificate{padding:8px!important}
+}
