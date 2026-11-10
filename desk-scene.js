@@ -43,13 +43,13 @@ scene.innerHTML=`
      <path d="M103 180 C116 157 128 139 140 123"/>
     </g>
     <g stroke="#29432c" stroke-width="1.4" stroke-linejoin="round">
-     <path d="M102 112 C75 87 77 48 103 20 C128 48 128 87 102 112Z" fill="url(#plant-leaf-c)"/>
-     <path d="M91 148 C58 145 29 119 34 82 C68 78 94 112 91 148Z" fill="url(#plant-leaf-a)"/>
-     <path d="M108 151 C115 113 145 86 173 99 C171 135 142 158 108 151Z" fill="url(#plant-leaf-b)"/>
-     <path d="M88 191 C57 195 25 179 19 148 C48 130 81 153 88 191Z" fill="url(#plant-leaf-b)"/>
-     <path d="M111 194 C131 163 158 151 182 169 C168 199 139 210 111 194Z" fill="url(#plant-leaf-c)"/>
-     <path d="M95 173 C68 165 51 138 61 111 C88 119 104 145 95 173Z" fill="url(#plant-leaf-c)"/>
-     <path d="M106 178 C109 147 132 124 155 129 C155 158 134 180 106 178Z" fill="url(#plant-leaf-a)"/>
+     <path class="plant-leaf plant-leaf--top" d="M102 112 C75 87 77 48 103 20 C128 48 128 87 102 112Z" fill="url(#plant-leaf-c)"/>
+     <path class="plant-leaf plant-leaf--left-high" d="M91 148 C58 145 29 119 34 82 C68 78 94 112 91 148Z" fill="url(#plant-leaf-a)"/>
+     <path class="plant-leaf plant-leaf--right-high" d="M108 151 C115 113 145 86 173 99 C171 135 142 158 108 151Z" fill="url(#plant-leaf-b)"/>
+     <path class="plant-leaf plant-leaf--left-low" d="M88 191 C57 195 25 179 19 148 C48 130 81 153 88 191Z" fill="url(#plant-leaf-b)"/>
+     <path class="plant-leaf plant-leaf--right-low" d="M111 194 C131 163 158 151 182 169 C168 199 139 210 111 194Z" fill="url(#plant-leaf-c)"/>
+     <path class="plant-leaf plant-leaf--inner-left" d="M95 173 C68 165 51 138 61 111 C88 119 104 145 95 173Z" fill="url(#plant-leaf-c)"/>
+     <path class="plant-leaf plant-leaf--inner-right" d="M106 178 C109 147 132 124 155 129 C155 158 134 180 106 178Z" fill="url(#plant-leaf-a)"/>
     </g>
     <g fill="none" stroke="#c0cc9a" stroke-width="1.35" stroke-linecap="round" opacity=".52">
      <path d="M102 106 C103 77 103 48 103 25"/>
@@ -79,35 +79,15 @@ scene.innerHTML=`
   <span class="lamp-glow"></span>
   <span class="lamp-base"></span>
   <span class="lamp-stem"></span>
-  <span class="lamp-shade"></span>
-  <span class="lamp-cap"></span>
-  <span class="lamp-bulb"></span>
+  <span class="lamp-head">
+   <span class="lamp-shade"></span>
+   <span class="lamp-cap"></span>
+   <span class="lamp-bulb"></span>
+  </span>
  </div>
 
  
  <div class="award-glass-display" aria-label="Awards">
-  <article class="glass-trophy glass-rehoboth" tabindex="0" aria-label="AI Week 2019 award, South Korea" aria-describedby="award-rehoboth-details">
-   <span class="glass-contact-shadow"></span>
-   <div class="glass-foot"><span class="glass-foot-front"></span><span class="glass-foot-side"></span></div>
-   <div class="glass-prism">
-    <div class="glass-face-front">
-     <div class="glass-engraving">
-      <span class="glass-brand">KOREA</span>
-      <span class="glass-small">AI WEEK 2019</span>
-      <span class="glass-rank">1st</span>
-      <span class="glass-placing">PLACE</span>
-      <span class="glass-line"></span>
-      <span class="glass-detail">AWARD</span>
-     </div>
-    </div>
-    <span class="glass-face-right"></span><span class="glass-face-top"></span>
-   </div>
-   <div class="award-hover" id="award-rehoboth-details">
-     <span class="award-hover-kicker">REHOBOTH, SOUTH KOREA</span>
-     <strong>1st Place</strong>
-     <small>Pitch Competition · AI Week 2019</small>
-    </div>
-  </article>
   <article class="glass-trophy glass-arab" tabindex="0" aria-label="Arab Bank award" aria-describedby="award-arab-details">
    <span class="glass-contact-shadow"></span>
    <div class="glass-foot"><span class="glass-foot-front"></span><span class="glass-foot-side"></span></div>
@@ -129,6 +109,30 @@ scene.innerHTML=`
     <strong>Top 3</strong>
     <small>Financial Technology Startups</small>
    </div>
+  </article>
+ </div>
+ <div class="first-place-dock" aria-label="1st place award">
+  <article class="glass-trophy glass-rehoboth" tabindex="0" aria-label="AI Week 2019 award, South Korea" aria-describedby="award-rehoboth-details">
+   <span class="glass-contact-shadow"></span>
+   <div class="glass-foot"><span class="glass-foot-front"></span><span class="glass-foot-side"></span></div>
+   <div class="glass-prism">
+    <div class="glass-face-front">
+     <div class="glass-engraving">
+      <span class="glass-brand">KOREA</span>
+      <span class="glass-small">AI WEEK 2019</span>
+      <span class="glass-rank">1st</span>
+      <span class="glass-placing">PLACE</span>
+      <span class="glass-line"></span>
+      <span class="glass-detail">AWARD</span>
+     </div>
+    </div>
+    <span class="glass-face-right"></span><span class="glass-face-top"></span>
+   </div>
+   <div class="award-hover" id="award-rehoboth-details">
+     <span class="award-hover-kicker">REHOBOTH, SOUTH KOREA</span>
+     <strong>1st Place</strong>
+     <small>Pitch Competition · AI Week 2019</small>
+    </div>
   </article>
  </div>
  <section class="laptop" aria-label="Portfolio on the laptop">
