@@ -2588,27 +2588,27 @@ img[src*="travelkl-low.png"]{image-rendering:pixelated!important}
  width:11.2%;
  height:30%;
  transform-origin:50% 88%;
- filter:drop-shadow(0 10px 9px #0008);
+ filter:drop-shadow(0 9px 8px #0009);
  pointer-events:none;
- animation:plant-arrive 1.42s cubic-bezier(.18,.88,.28,1) .12s both;
+ animation:plant-arrive 1.22s cubic-bezier(.2,.82,.24,1) .08s both;
 }
 .desk-plant svg{display:block;width:100%;height:100%;overflow:visible}
 .desk-plant .plant-canopy{
  transform-box:fill-box;
  transform-origin:50% 100%;
- animation:plant-leaf-settle 1.08s ease-out 1.02s both;
+ animation:plant-leaf-settle .92s cubic-bezier(.2,.7,.3,1) .78s both;
 }
 @keyframes plant-arrive{
- 0%{opacity:0;transform:translate3d(-118%,13%,0) rotate(-15deg) scale(.76)}
- 64%{opacity:1;transform:translate3d(5%, -1.2%,0) rotate(2.8deg) scale(1.035)}
- 82%{transform:translate3d(-1.5%, .5%,0) rotate(-1.1deg) scale(.995)}
+ 0%{opacity:0;transform:translate3d(-126%,9%,0) rotate(-10deg) scale(.88)}
+ 68%{opacity:1;transform:translate3d(2.4%,0,0) rotate(1.5deg) scale(1.012)}
+ 86%{transform:translate3d(-.7%,0,0) rotate(-.45deg) scale(1)}
  100%{opacity:1;transform:translate3d(0,0,0) rotate(0) scale(1)}
 }
 @keyframes plant-leaf-settle{
  0%{transform:rotate(0)}
- 28%{transform:rotate(4deg)}
- 57%{transform:rotate(-2.4deg)}
- 78%{transform:rotate(1deg)}
+ 32%{transform:rotate(2.2deg)}
+ 62%{transform:rotate(-1.25deg)}
+ 82%{transform:rotate(.45deg)}
  100%{transform:rotate(0)}
 }
 @media(max-width:600px) and (orientation:portrait){
